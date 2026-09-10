@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Делись — агрегатор по вторичной недвижимости в СПб и ЛО</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/main.css?v=20260611f">
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="/" class="header__logo">
+        <img src="images/logo.svg" alt="" class="header__logo-img">
+        <span class="header__logo-text">ДЕЛИСЬ</span>
+      </a>
+      <button class="header__location" type="button">
+        <img src="images/icon-location.svg" alt="" width="24" height="24">
+        <span>Ленинградская область</span>
+        <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
+      </button>
+    </div>
+
+    <nav class="header__nav">
+      <button class="header__nav-link" type="button">
+        Услуги
+        <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
+      </button>
+      <a href="#" class="header__nav-link">О проекте</a>
+      <a href="#" class="header__nav-link">Вакансии</a>
+      <a href="#" class="header__nav-link">Контакты</a>
+    </nav>
+
+    <div class="header__right">
+      <button class="header__icon-btn" aria-label="Поиск">
+        <img src="images/icon-search-header.svg" alt="" width="22" height="22">
+      </button>
+      <a href="#" class="header__icon-btn" aria-label="Избранное">
+        <img src="images/icon-heart.svg" alt="" width="22" height="22">
+      </a>
+      <a href="#" class="header__icon-btn" aria-label="Сообщения">
+        <img src="images/icon-telegram-header.svg" alt="" width="22" height="22">
+      </a>
+      <div class="header__auth" id="header-auth">
+        <a href="pages/cabinet/login.html" class="header__login-btn">Вход</a>
+        <a href="pages/cabinet/register.html" class="btn btn--dark header__cabinet-btn">Регистрация</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero__container">
+
+    <div class="hero__left">
+      <div class="hero__offer">
+        <img src="images/hero-bg.svg" alt="" class="hero__offer-bg">
+        <div class="hero__offer-content">
+          <h1 class="hero__title">
+            148 объектов<br>
+            в Санкт-Петербурге<br>
+            и Ленинградской области
+          </h1>
+          <p class="hero__text">
+            Делись — информационный агентский агрегатор по вторичной недвижимости.
+            Ваши объекты видят тысячи риелторов, которые получат комиссию за приведённого покупателя.
+          </p>
+        </div>
+      </div>
+
+      <ul class="stats">
+        <li class="stats__item stats__item--1">
+          <span class="stats__num">300<sup>+</sup></span>
+          <span class="stats__label">Партнёров<br>по Санкт-Петербургу</span>
+        </li>
+        <li class="stats__item stats__item--2">
+          <span class="stats__num">40<sup>+</sup></span>
+          <span class="stats__label">Запросов<br>на поиск<br>от партнёров</span>
+        </li>
+        <li class="stats__item stats__item--3">
+          <span class="stats__num">200<sup>+</sup></span>
+          <span class="stats__label">Обучающих<br>вебинаров<br>в течение года</span>
+          <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
+        </li>
+        <li class="stats__item stats__item--4">
+          <span class="stats__num">50<sup>+</sup></span>
+          <span class="stats__label">Узкопрофильных<br>специалистов<br>в своей сфере</span>
+          <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero__right">
+      <img src="images/hero-top-object.png" alt="" class="hero__right-photo">
+      <div class="hero__right-overlay"></div>
+      <div class="hero__top-card">
+        <span class="hero__top-card-label">Топ объект</span>
+        <h3 class="hero__top-card-title">1-к квартира, 30 м²</h3>
+        <ul class="hero__top-card-list">
+          <li><span>Цена</span><span class="dotted"></span><span>5 200 000 ₽</span></li>
+          <li><span>Комиссия за сделку</span><span class="dotted"></span><span>200 000 ₽</span></li>
+        </ul>
+      </div>
+      <a href="#" class="btn btn--dark hero__top-card-btn">Смотреть объект</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== SEARCH BAR (под hero) ========== -->
+<section class="searchbar-section">
+  <div class="searchbar-section__container">
+   <div class="searchbar-wrap">
+    <div class="searchbar">
+      <!-- Переключатель вида: карточки (3-полосы) / таблица (плитка) -->
+      <div class="view-toggle" id="view-toggle">
+        <button class="view-toggle__btn" data-view="cards" aria-label="Карточки">
+          <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="16">
+            <rect x="0" y="1" width="3" height="3" rx="1" fill="currentColor"/>
+            <rect x="0" y="6.5" width="3" height="3" rx="1" fill="currentColor"/>
+            <rect x="0" y="12" width="3" height="3" rx="1" fill="currentColor"/>
+            <rect x="5" y="1.5" width="15" height="2" rx="1" fill="currentColor"/>
+            <rect x="5" y="7" width="15" height="2" rx="1" fill="currentColor"/>
+            <rect x="5" y="12.5" width="15" height="2" rx="1" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="view-toggle__btn" data-view="table" aria-label="Таблица">
+          <svg viewBox="0 0 22 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="22" height="16">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 11.2c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2H2.35C1.05 16 0 15.1 0 14v-.8c0-1.1 1.05-2 2.35-2H8zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4H8c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4H2.35z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3 11.2c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2h-5.65c-1.3 0-2.35-.9-2.35-2v-.8c0-1.1 1.05-2 2.35-2h5.65zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4h5.65c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4h-5.65z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 5.6c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2H2.35C1.05 10.4 0 9.5 0 8.4v-.8c0-1.1 1.05-2 2.35-2H8zM2.35 7.2c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4H8c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4H2.35z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3 5.6c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2h-5.65c-1.3 0-2.35-.9-2.35-2v-.8c0-1.1 1.05-2 2.35-2h5.65zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4h5.65c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4h-5.65z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2H2.35C1.05 4.8 0 3.9 0 2.8V2C0 .9 1.05 0 2.35 0H8zM2.35 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4H8c.26 0 .47-.18.47-.4V2c0-.22-.21-.4-.47-.4H2.35z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3 0c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2h-5.65c-1.3 0-2.35-.9-2.35-2V2c0-1.1 1.05-2 2.35-2h5.65zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4h5.65c.26 0 .47-.18.47-.4V2c0-.22-.21-.4-.47-.4h-5.65z"/>
+          </svg>
+        </button>
+      </div>
+
+      <button class="searchbar__map" type="button">
+        <img src="images/icon-map.svg" alt="" width="24" height="24">
+        Показать на карте
+      </button>
+      <div class="searchbar__input">
+        <input type="text" id="search-input" placeholder="Поиск по базе: ID, метро, город, район, ЖК, улица, застройщик...">
+        <img src="images/icon-search.svg" alt="" width="22" height="22">
+      </div>
+
+      <!-- Сортировка — выпадающий список -->
+      <div class="searchbar__sort-wrap">
+        <button class="searchbar__sort" type="button" id="sort-btn" onclick="document.getElementById('sort-dropdown').classList.toggle('is-open'); this.classList.toggle('is-open')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="16" height="16"><path d="M4 3v10M4 3l-2 2M4 3l2 2M12 13V3M12 13l-2-2M12 13l2-2"/></svg>
+          <span id="sort-label">С меньшей площадью</span>
+          <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="searchbar__sort-chevron"><path d="M1 1.5l5 5 5-5"/></svg>
+        </button>
+        <div class="searchbar__sort-dropdown" id="sort-dropdown">
+          <button type="button" data-sort="area-asc"   class="searchbar__sort-option is-active">С меньшей площадью</button>
+          <button type="button" data-sort="area-desc"  class="searchbar__sort-option">С большей площадью</button>
+          <button type="button" data-sort="price-asc"  class="searchbar__sort-option">С меньшей ценой</button>
+          <button type="button" data-sort="price-desc" class="searchbar__sort-option">С большей ценой</button>
+        </div>
+      </div>
+
+      <button class="searchbar__filters btn btn--dark" type="button" onclick="openFilters()">
+        <img src="images/icon-settings.svg" alt="" width="24" height="24">
+        Все фильтры
+      </button>
+    </div>
+
+    <!-- Список объектов под строкой поиска (внутри того же контейнера) -->
+    <div class="main-list" id="main-list" data-view="list" style="display:none;"></div>
+   </div>
+
+    <!-- Карта (открывается по клику «Показать на карте») -->
+    <div class="map-view" id="map-view" style="display:none;">
+      <div class="map-view__canvas">
+        <!-- Контейнер для Яндекс.Карты -->
+        <div id="ymap" class="map-view__ymap"></div>
+
+        <!-- Карточка объекта (показывается при клике на пин) -->
+        <article class="map-card" id="map-card">
+          <div class="map-card__photo">
+            <img src="images/obj-1.png" alt="" class="map-card__img">
+            <span class="map-card__badge">Объект «Делись»</span>
+            <button class="map-card__heart" type="button" aria-label="В избранное">
+              <img src="images/icon-heart-outline.svg" alt="" width="16" height="14">
+            </button>
+          </div>
+          <div class="map-card__body">
+            <div class="map-card__title-row">
+              <span class="map-card__type">Студия</span>
+              <span class="map-card__dot">·</span>
+              <span class="map-card__area">39.4 м²</span>
+            </div>
+            <div class="map-card__tags">
+              <span class="map-card__tag">Возможна ипотека</span>
+              <span class="map-card__tag">Вторичка</span>
+            </div>
+            <div class="map-card__addr">
+              <img src="images/icon-pin-purple.svg" alt="" width="12" height="14">
+              <span>Санкт-Петербург, наб. реки Кам…</span>
+            </div>
+            <div class="map-card__metro">
+              <img src="images/icon-metro.svg" alt="" width="13" height="10">
+              <span>Московская</span>
+              <img src="images/icon-walk.svg" alt="" width="9" height="13">
+              <span>10 мин.</span>
+            </div>
+            <div class="map-card__prices">
+              <div class="map-card__price-row"><span>Сумма</span><span class="map-card__dots"></span><b>5 205 000 ₽</b></div>
+              <div class="map-card__price-row"><span>Цена, ₽/м2</span><span class="map-card__dots"></span><b>206 951 ₽/м2</b></div>
+              <div class="map-card__price-row map-card__price-row--commission"><span>Комиссия за сделку</span><span class="map-card__dots"></span><b>1 000 000 ₽</b></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services">
+  <div class="services__container">
+    <h2 class="section-title">Услуги сервиса</h2>
+    <ul class="services__grid">
+      <li class="service-card service-card--shadow">
+        <img src="images/service-1-icon.svg" alt="" class="service-card__icon" width="40" height="36">
+        <img src="images/service-1-decor.svg" alt="" class="service-card__decor" width="260" height="233">
+        <h3 class="service-card__title">Запрос на поиск</h3>
+        <p class="service-card__text">Агенты будут предлагать объекты, соответствующие вашим параметрам</p>
+      </li>
+      <li class="service-card">
+        <img src="images/service-2-icon.svg" alt="" class="service-card__icon" width="42" height="36">
+        <img src="images/service-2-decor.svg" alt="" class="service-card__decor" width="264" height="228">
+        <h3 class="service-card__title">Межрегион<br><span class="service-card__sub">(в разработке)</span></h3>
+        <p class="service-card__text">Передать клиента под закрытие сделки в другом регионе</p>
+      </li>
+      <li class="service-card">
+        <img src="images/service-3-icon.svg" alt="" class="service-card__icon" width="30" height="36">
+        <img src="images/service-3-decor.svg" alt="" class="service-card__decor" width="192" height="234">
+        <h3 class="service-card__title">Сопровождение сделки</h3>
+        <p class="service-card__text">Проверить документы и безопасно провести сделку</p>
+      </li>
+      <li class="service-card">
+        <img src="images/service-4-icon.svg" alt="" class="service-card__icon" width="48" height="28">
+        <img src="images/service-4-decor.svg" alt="" class="service-card__decor" width="318" height="186">
+        <h3 class="service-card__title">Помощь в продаже</h3>
+        <p class="service-card__text">Продать объект через «Делись»</p>
+      </li>
+      <li class="service-card">
+        <img src="images/service-5-icon.svg" alt="" class="service-card__icon" width="33" height="36">
+        <img src="images/service-5-decor.svg" alt="" class="service-card__decor" width="234" height="258">
+        <h3 class="service-card__title">Юридическая помощь</h3>
+        <p class="service-card__text">Решить судебные споры</p>
+      </li>
+      <li class="service-card">
+        <img src="images/service-6-icon.svg" alt="" class="service-card__icon" width="41" height="36">
+        <img src="images/service-6-decor.svg" alt="" class="service-card__decor" width="252" height="222">
+        <h3 class="service-card__title">Помощь с ремонтом</h3>
+        <p class="service-card__text">Сделать качественный ремонт</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== CATALOG ========== -->
+<section class="catalog">
+  <div class="catalog__container">
+
+    <div class="catalog__panel">
+      <div class="catalog__head">
+        <h2 class="section-title">Топ объекты от «Делись»</h2>
+        <a href="catalog.html" class="btn btn--outline">Все объекты</a>
+      </div>
+
+      <div class="catalog__grid" id="catalog-grid">
+        <!-- 7 cards + 1 promo banner — generated by JS from data/objects.json -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== VIDEO ========== -->
+<section class="video">
+  <div class="video__container">
+    <div class="video__head">
+      <div class="video__head-left">
+        <h2 class="section-title">Видео</h2>
+        <div class="tabs">
+          <button class="tabs__btn tabs__btn--active" type="button">Все видео</button>
+          <button class="tabs__btn" type="button">Вебинары</button>
+          <button class="tabs__btn" type="button">Новости</button>
+          <button class="tabs__btn" type="button">Платформа</button>
+          <button class="tabs__btn" type="button">Застройщики</button>
+          <button class="tabs__btn tabs__btn--muted" type="button">Обзоры</button>
+        </div>
+      </div>
+      <div class="video__head-right">
+        <div class="slider-arrows">
+          <button class="slider-arrows__btn" aria-label="Назад">
+            <img src="images/arrow-left-inactive.svg" alt="" width="36" height="36">
+          </button>
+          <button class="slider-arrows__btn slider-arrows__btn--active" aria-label="Вперёд">
+            <img src="images/arrow-right.svg" alt="" width="36" height="36">
+          </button>
+        </div>
+        <a href="#" class="btn btn--outline">Все видео</a>
+      </div>
+    </div>
+
+    <ul class="video__grid">
+      <li class="video-card">
+        <a href="#" class="video-card__media">
+          <img src="images/video-1.png" alt="">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+        </a>
+        <time class="video-card__time">01:01:57</time>
+        <h3 class="video-card__title">Обучение застройщика You&Co (ОАЭ)</h3>
+      </li>
+      <li class="video-card">
+        <a href="#" class="video-card__media">
+          <img src="images/video-2.png" alt="">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+        </a>
+        <time class="video-card__time">12:34</time>
+        <h3 class="video-card__title">Как работать с базой объектов</h3>
+      </li>
+      <li class="video-card">
+        <a href="#" class="video-card__media">
+          <img src="images/video-3.png" alt="">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+        </a>
+        <time class="video-card__time">07:12</time>
+        <h3 class="video-card__title">Платформа «Делись» — обзор</h3>
+      </li>
+      <li class="video-card">
+        <a href="#" class="video-card__media">
+          <img src="images/video-4.png" alt="">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+        </a>
+        <time class="video-card__time">18:40</time>
+        <h3 class="video-card__title">Юридические тонкости вторички</h3>
+      </li>
+      <li class="video-card">
+        <a href="#" class="video-card__media">
+          <img src="images/video-2.png" alt="">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+        </a>
+        <time class="video-card__time">22:01</time>
+        <h3 class="video-card__title">Сделка по ипотеке от и до</h3>
+      </li>
+      <li class="video-card">
+        <a href="#" class="video-card__media">
+          <img src="images/video-3.png" alt="">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+        </a>
+        <time class="video-card__time">09:50</time>
+        <h3 class="video-card__title">Что нового в марте</h3>
+      </li>
+    </ul>
+
+    <div class="pagination">
+      <span class="pagination__dot pagination__dot--active"></span>
+      <span class="pagination__dot"></span>
+      <span class="pagination__dot"></span>
+      <span class="pagination__dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARTNERS (бегущая строка) ========== -->
+<section class="partners">
+  <div class="partners__container">
+    <h2 class="section-title section-title--center">Наши партнёры</h2>
+    <div class="marquee">
+      <div class="marquee__track">
+        <ul class="marquee__group">
+          <li><img src="images/partner-1.svg" alt="Century 21"></li>
+          <li><img src="images/partner-3.svg" alt="Сбер"></li>
+          <li><img src="images/partner-4.svg" alt="Циан"></li>
+          <li><img src="images/partner-5.svg" alt="ПИК"></li>
+          <li><img src="images/partner-2.svg" alt="Century 21"></li>
+          <li><img src="images/partner-3.svg" alt="Сбер"></li>
+          <li><img src="images/partner-4.svg" alt="Циан"></li>
+          <li><img src="images/partner-5.svg" alt="ПИК"></li>
+        </ul>
+        <ul class="marquee__group" aria-hidden="true">
+          <li><img src="images/partner-1.svg" alt=""></li>
+          <li><img src="images/partner-3.svg" alt=""></li>
+          <li><img src="images/partner-4.svg" alt=""></li>
+          <li><img src="images/partner-5.svg" alt=""></li>
+          <li><img src="images/partner-2.svg" alt=""></li>
+          <li><img src="images/partner-3.svg" alt=""></li>
+          <li><img src="images/partner-4.svg" alt=""></li>
+          <li><img src="images/partner-5.svg" alt=""></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NEWS ========== -->
+<section class="news">
+  <div class="news__container">
+    <h2 class="section-title section-title--center">Дайджест новостей</h2>
+
+    <div class="news__row">
+      <div class="news__main">
+        <div class="news__head">
+          <div class="tabs">
+            <button class="tabs__btn tabs__btn--active" type="button">Все новости</button>
+            <button class="tabs__btn" type="button">Платформа</button>
+            <button class="tabs__btn" type="button">Застройщики</button>
+            <button class="tabs__btn tabs__btn--muted" type="button">Обзоры</button>
+          </div>
+          <a href="#" class="btn btn--outline btn--sm">Все новости</a>
+        </div>
+
+        <article class="news-featured">
+          <img src="images/news-featured.png" alt="" class="news-featured__img">
+          <div class="news-featured__body">
+            <div class="news-featured__meta">
+              <span>22/11/23</span>
+              <img src="images/dot-separator.svg" alt="" width="4" height="4">
+              <span>11:36</span>
+              <img src="images/dot-separator.svg" alt="" width="4" height="4">
+              <img src="images/icon-clock.svg" alt="" width="16" height="16">
+              <span>5 мин.</span>
+            </div>
+            <h3 class="news-featured__title">Облигации в портфеле.<br>Вводная статья.</h3>
+            <p class="news-featured__lead">Вводная статья-ликбез про облигации. Тема огромная, все в одну статью не уместить, но самые основные принципы будут описаны тут. 1) Для начала разберемся с терминологией. Инвесторы часто употребляют клише под названием</p>
+            <a href="#" class="news-featured__link"><img src="images/icon-link.svg" alt="" width="36" height="36"></a>
+          </div>
+        </article>
+
+        <ul class="news-list">
+          <li class="news-card">
+            <img src="images/news-featured.png" alt="" class="news-card__img">
+            <div class="news-card__meta">
+              <span>22/11/23</span>
+              <span>11:36</span>
+            </div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Облигации в портфеле. Вводная статья</h4>
+              <p class="news-card__text">Облигации в портфеле. Вводная статья. Вводная статья-ликбез про облигации. Тема</p>
+            </div>
+            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
+          </li>
+          <li class="news-card">
+            <img src="images/news-featured.png" alt="" class="news-card__img">
+            <div class="news-card__meta">
+              <span>20/11/23</span>
+              <span>09:12</span>
+            </div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Изменения в законодательстве о недвижимости</h4>
+              <p class="news-card__text">Главные нововведения, которые коснутся риелторов и собственников в 2024 году</p>
+            </div>
+            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
+          </li>
+          <li class="news-card">
+            <img src="images/news-featured.png" alt="" class="news-card__img">
+            <div class="news-card__meta">
+              <span>18/11/23</span>
+              <span>15:48</span>
+            </div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Как оформить ипотеку на вторичку: гайд</h4>
+              <p class="news-card__text">Пошаговый разбор всех этапов сделки от заявки до получения ключей</p>
+            </div>
+            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
+          </li>
+          <li class="news-card">
+            <img src="images/news-featured.png" alt="" class="news-card__img">
+            <div class="news-card__meta">
+              <span>15/11/23</span>
+              <span>13:25</span>
+            </div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Рынок СПб: итоги октября</h4>
+              <p class="news-card__text">Цены, спрос и интересные тенденции на петербургской вторичке</p>
+            </div>
+            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
+          </li>
+        </ul>
+      </div>
+
+      <aside class="news__side">
+        <div class="news__side-head">
+          <h3>Акции</h3>
+          <a href="#" class="btn btn--outline btn--sm">Все акции</a>
+        </div>
+        <a href="#" class="promo-banner"><img src="images/promo-banner-1.svg" alt="Акция"></a>
+        <a href="#" class="promo-banner"><img src="images/promo-banner-2.svg" alt="Акция"></a>
+        <a href="#" class="promo-banner"><img src="images/promo-banner-3.svg" alt="Акция"></a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FORM ========== -->
+<section class="form-section">
+  <div class="form-section__container">
+    <div class="form-banner">
+      <img src="images/form-banner-bg.svg" alt="" class="form-banner__bg">
+      <img src="images/form-person.png" alt="" class="form-banner__person">
+      <div class="form-banner__left">
+        <h2 class="form-banner__title">Продадим вашу<br>недвижимость<br>за 30 дней!</h2>
+        <p class="form-banner__text">Благодаря нашему уникальному подходу вашу недвижимость будут предлагать своим реальным покупателям агентства и риелторы по всей стране</p>
+        <a href="#" class="btn btn--outline-white">Помощь в продаже</a>
+      </div>
+
+      <div class="form-banner__right">
+        <form class="form-banner__form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.')">
+          <h3 class="form-banner__form-title">Оставьте свои контактные данные,<br>и мы поможем продать вашу недвижимость</h3>
+          <div class="form-banner__fields">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="tel" placeholder="+7 (___) ___ - __ - __" required>
+          </div>
+          <div class="form-banner__bottom">
+            <button type="submit" class="btn btn--dark">Отправить</button>
+            <label class="form-banner__check">
+              <img src="images/icon-checkbox.svg" alt="" width="24" height="24">
+              <span>Нажимая на кнопку «Отправить», я соглашаюсь<br>с <u>Политикой обработки персональных данных</u></span>
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer__inner">
+
+    <div class="footer__col footer__col--brand">
+      <p class="footer__brand">© «Делись», 2025</p>
+      <a href="#" class="footer__link">Политика конфиденциальности</a>
+      <a href="#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
+    </div>
+
+    <nav class="footer__nav">
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Карьера</a></li>
+        <li><a href="#">Документы</a></li>
+        <li><a href="#">Счета и реквизиты</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Торговая марка</a></li>
+        <li><a href="#">Правовая информация</a></li>
+        <li><a href="#">Договор оферты</a></li>
+        <li><a href="#">Гарантия</a></li>
+      </ul>
+    </nav>
+
+    <button class="footer__up" aria-label="Наверх" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <img src="images/icon-arrow-up.svg" alt="" width="20" height="20">
+    </button>
+
+    <div class="footer__contacts">
+      <a href="tel:+70000000000" class="footer__phone">+7 (000) 000-00-00</a>
+      <a href="#" class="btn btn--brand">
+        <img src="images/icon-phone.svg" alt="" width="24" height="24">
+        Заказать звонок
+      </a>
+      <div class="footer__socials">
+        <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ========== FILTERS OVERLAY ========== -->
+<div class="filter-overlay" id="filter-overlay" onclick="if(event.target.id==='filter-overlay') closeFilters()">
+  <aside class="filter-panel">
+    <div class="filter-panel__head">
+      <h3 class="filter-panel__title">Все фильтры</h3>
+      <button class="filter-panel__close" onclick="closeFilters()" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="20" height="20"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+      </button>
+    </div>
+
+    <label class="filter-toggle">
+      <input type="checkbox" checked>
+      <span class="filter-toggle__slider"></span>
+      <span>Только объекты от «Делись»</span>
+    </label>
+
+    <div class="filter-select" onclick="this.classList.toggle('is-open')">
+      <div class="filter-select__head">
+        <span class="filter-select__placeholder">Выбрать район</span>
+        <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="filter-select__chevron"><path d="M1 1.5l5 5 5-5"/></svg>
+      </div>
+      <div class="filter-select__dropdown" data-group="district" onclick="event.stopPropagation()">
+        <label class="filter-check"><input type="checkbox"><span>Московский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Калининский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Курортный</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Красногвардейский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Фрунзенский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Кронштадтский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Невский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Пушкинский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Красносельский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Приморский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Выборгский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Центральный</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Петродворцовый</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Василеостровский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Петроградский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Адмиралтейский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Колпинский</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group__label">Тип недвижимости</div>
+      <div class="filter-checks" data-group="type">
+        <label class="filter-check"><input type="checkbox"><span>Квартира</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Загородная недвижимость</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Комната</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Коммерция</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group__label">Количество комнат</div>
+      <div class="filter-pills" data-group="rooms">
+        <button type="button" class="filter-pill" data-room="С">С</button>
+        <button type="button" class="filter-pill" data-room="1">1</button>
+        <button type="button" class="filter-pill" data-room="2">2</button>
+        <button type="button" class="filter-pill" data-room="3">3</button>
+        <button type="button" class="filter-pill" data-room="4+">4+</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group__label">Этаж</div>
+      <div class="filter-row">
+        <div class="filter-range" data-key="floor" data-step="1" data-unit="">
+          <div class="filter-range__values"><span>от <strong data-from>—</strong></span><span>до <strong data-to>—</strong></span></div>
+          <div class="filter-range__track"><div class="filter-range__fill"></div><div class="filter-range__thumb" data-thumb="from"></div><div class="filter-range__thumb" data-thumb="to"></div></div>
+        </div>
+        <div class="filter-checks filter-checks--vertical">
+          <label class="filter-check"><input type="checkbox" data-flag="not-first"><span>Не первый</span></label>
+          <label class="filter-check"><input type="checkbox" data-flag="not-last"><span>Не последний</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-row filter-row--2col">
+      <div class="filter-group">
+        <div class="filter-group__label">Площадь</div>
+        <div class="filter-range" data-key="area" data-step="1" data-unit=" м²">
+          <div class="filter-range__values"><span>от <strong data-from>—</strong></span><span>до <strong data-to>—</strong></span></div>
+          <div class="filter-range__track"><div class="filter-range__fill"></div><div class="filter-range__thumb" data-thumb="from"></div><div class="filter-range__thumb" data-thumb="to"></div></div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group__label">Цена</div>
+        <div class="filter-range" data-key="price" data-step="50000" data-unit=" ₽">
+          <div class="filter-range__values"><span>от <strong data-from>—</strong></span><span>до <strong data-to>—</strong></span></div>
+          <div class="filter-range__track"><div class="filter-range__fill"></div><div class="filter-range__thumb" data-thumb="from"></div><div class="filter-range__thumb" data-thumb="to"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-row filter-row--2col">
+      <div class="filter-group">
+        <div class="filter-group__label">Размер бонуса в %</div>
+        <div class="filter-range" data-key="bonusPct" data-step="1" data-unit=" %">
+          <div class="filter-range__values"><span>от <strong data-from>—</strong></span><span>до <strong data-to>—</strong></span></div>
+          <div class="filter-range__track"><div class="filter-range__fill"></div><div class="filter-range__thumb" data-thumb="from"></div><div class="filter-range__thumb" data-thumb="to"></div></div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group__label">Размер бонуса в ₽</div>
+        <div class="filter-range" data-key="bonusRub" data-step="10000" data-unit=" ₽">
+          <div class="filter-range__values"><span>от <strong data-from>—</strong></span><span>до <strong data-to>—</strong></span></div>
+          <div class="filter-range__track"><div class="filter-range__fill"></div><div class="filter-range__thumb" data-thumb="from"></div><div class="filter-range__thumb" data-thumb="to"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-panel__actions">
+      <button class="filter-panel__reset" type="button" id="filter-reset">Сбросить</button>
+      <button class="filter-panel__search" type="button" id="filter-apply">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span id="filter-apply-label">Показать</span>
+      </button>
+    </div>
+  </aside>
+</div>
+
+<script>
+function openFilters() { document.getElementById('filter-overlay').classList.add('is-open'); document.body.style.overflow='hidden'; }
+function closeFilters() { document.getElementById('filter-overlay').classList.remove('is-open'); document.body.style.overflow=''; }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeFilters();
+});
+</script>
+
+<script src="data/objects.js"></script>
+<script src="js/favorites.js?v=20260609f"></script>
+<script src="js/main.js?v=20260611f"></script>
+</body>
+</html>

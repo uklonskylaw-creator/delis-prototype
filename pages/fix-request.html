@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заявка на фиксацию клиента — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/main.css?v=20260611g">
+</head>
+<body>
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="../index.html" class="header__logo">
+        <img src="../images/logo.svg" alt="" class="header__logo-img">
+        <span class="header__logo-text">ДЕЛИСЬ</span>
+      </a>
+      <button class="header__location" type="button">
+        <img src="../images/icon-location.svg" alt="" width="24" height="24">
+        <span>Ленинградская область</span>
+        <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
+      </button>
+    </div>
+
+    <nav class="header__nav">
+      <button class="header__nav-link" type="button">
+        Услуги
+        <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
+      </button>
+      <a href="#" class="header__nav-link">О проекте</a>
+      <a href="#" class="header__nav-link">Вакансии</a>
+      <a href="#" class="header__nav-link">Контакты</a>
+    </nav>
+
+    <div class="header__right">
+      <button class="header__icon-btn" aria-label="Поиск">
+        <img src="../images/icon-search-header.svg" alt="" width="22" height="22">
+      </button>
+      <a href="#" class="header__icon-btn" aria-label="Избранное">
+        <img src="../images/icon-heart.svg" alt="" width="22" height="22">
+      </a>
+      <a href="#" class="header__icon-btn" aria-label="Сообщения">
+        <img src="../images/icon-telegram-header.svg" alt="" width="22" height="22">
+      </a>
+      <div class="header__auth" id="header-auth">
+        <a href="cabinet/profile.html" class="btn btn--dark header__cabinet-btn">Личный кабинет</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="fix-page">
+  <div class="fix-page__container">
+    <div class="fix-page__head">
+      <button class="fix-back" type="button" onclick="history.back()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10 13L5 8l5-5"/></svg>
+        Назад
+      </button>
+      <h1 class="fix-page__title">Заявка на фиксацию клиента</h1>
+    </div>
+
+    <div class="fix-form">
+      <div class="fix-card">
+        <span class="fix-card__label">Агент</span>
+        <div class="fix-agent">
+          <img id="fix-agent-avatar" src="../images/obj-agent.png" alt="" class="fix-agent__avatar">
+          <span id="fix-agent-name">Уклонский Михаил</span>
+        </div>
+      </div>
+
+      <div class="fix-card" id="fix-client-card">
+        <span class="fix-card__label">Клиент</span>
+        <button class="fix-client-pick" id="fix-client-btn" type="button">
+          <span class="fix-plus">+</span>
+          <span id="fix-client-text">Выбрать или создать клиента</span>
+        </button>
+      </div>
+
+      <div class="fix-card fix-card--top">
+        <span class="fix-card__label">Комментарий</span>
+        <textarea class="fix-textarea" id="fix-comment" placeholder="Дополнительная информация о сделке"></textarea>
+      </div>
+
+      <div class="fix-submit-row">
+        <div class="fix-note">
+          <img class="fix-note__ava" src="../images/obj-agent.png" alt="Менеджер">
+          <span>Менеджер ответит в течение 10 минут<br>по результату возможности фиксации</span>
+        </div>
+        <button class="btn btn--dark fix-submit" id="fix-submit" type="button">Отправить заявку</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+
+    <div class="footer__col footer__col--brand">
+      <p class="footer__brand">© «Делись», 2025</p>
+      <a href="#" class="footer__link">Политика конфиденциальности</a>
+      <a href="#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
+    </div>
+
+    <nav class="footer__nav">
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Карьера</a></li>
+        <li><a href="#">Документы</a></li>
+        <li><a href="#">Счета и реквизиты</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Торговая марка</a></li>
+        <li><a href="#">Правовая информация</a></li>
+        <li><a href="#">Договор оферты</a></li>
+        <li><a href="#">Гарантия</a></li>
+      </ul>
+    </nav>
+
+    <button class="footer__up" aria-label="Наверх" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <img src="../images/icon-arrow-up.svg" alt="" width="20" height="20">
+    </button>
+
+    <div class="footer__contacts">
+      <a href="tel:+70000000000" class="footer__phone">+7 (000) 000-00-00</a>
+      <a href="#" class="btn btn--brand">
+        <img src="../images/icon-phone.svg" alt="" width="24" height="24">
+        Заказать звонок
+      </a>
+      <div class="footer__socials">
+        <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<div class="pf-modal" id="fix-client-modal">
+  <div class="pf-modal__panel">
+    <div class="pf-modal__head">
+      <h3 class="pf-modal__title">Новый клиент</h3>
+      <button class="pf-modal__close" type="button" aria-label="Закрыть">&times;</button>
+    </div>
+    <form class="pf-form" id="fix-client-form">
+      <label class="pf-field"><span>Фамилия и имя</span><input name="name" type="text" required placeholder="Иванов Иван"></label>
+      <label class="pf-field"><span>Телефон клиента</span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__"></label>
+      <div class="pf-form__actions">
+        <button type="button" class="pf-modal__cancel">Отмена</button>
+        <button type="submit" class="btn btn--brand">Добавить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="snackbar" id="snackbar"></div>
+
+<script src="../js/main.js?v=20260611g"></script>
+<script>
+(function(){
+  // Агент = текущий пользователь
+  try {
+    var u = JSON.parse(localStorage.getItem('delis_user')||'null');
+    if (u && u.name) document.getElementById('fix-agent-name').textContent = u.name.split(' ').slice(0,2).join(' ');
+    if (u && u.avatar) document.getElementById('fix-agent-avatar').src = u.avatar;
+  } catch(e){}
+
+  // Объект, по которому фиксируем (если передан)
+  var objId = new URLSearchParams(location.search).get('object') || new URLSearchParams(location.search).get('id') || '';
+
+  var chosenClient = null;
+  var modal = document.getElementById('fix-client-modal');
+  var form = document.getElementById('fix-client-form');
+  function openModal(){ modal.classList.add('is-open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('is-open'); document.body.style.overflow=''; }
+  document.getElementById('fix-client-btn').addEventListener('click', openModal);
+  modal.querySelector('.pf-modal__close').addEventListener('click', closeModal);
+  modal.querySelector('.pf-modal__cancel').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+  function snackbar(msg, v){ var el=document.getElementById('snackbar'); el.textContent=msg; el.className='snackbar snackbar--visible'+(v?' snackbar--'+v:''); setTimeout(function(){el.className='snackbar';},3000); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var fd = new FormData(form);
+    chosenClient = { name: fd.get('name'), phone: fd.get('phone') };
+    var t = document.getElementById('fix-client-text');
+    t.textContent = chosenClient.name;
+    document.getElementById('fix-client-btn').classList.add('is-chosen');
+    document.getElementById('fix-client-card').classList.remove('is-error');
+    closeModal();
+    form.reset();
+  });
+
+  document.getElementById('fix-submit').addEventListener('click', function(){
+    if (!chosenClient) {
+      document.getElementById('fix-client-card').classList.add('is-error');
+      snackbar('Сначала выберите клиента', 'error');
+      return;
+    }
+    var fixations = [];
+    try { fixations = JSON.parse(localStorage.getItem('delis_fixations')||'[]'); } catch(e){}
+    fixations.unshift({
+      name: chosenClient.name,
+      phone: chosenClient.phone,
+      comment: document.getElementById('fix-comment').value || '',
+      object: objId,
+      created: new Date().toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'2-digit'}),
+      status: 'на рассмотрении'
+    });
+    localStorage.setItem('delis_fixations', JSON.stringify(fixations));
+    snackbar('Заявка отправлена', 'success');
+    setTimeout(function(){ location.href='cabinet/clients.html?tab=fixations'; }, 1400);
+  });
+})();
+</script>
+</body>
+</html>

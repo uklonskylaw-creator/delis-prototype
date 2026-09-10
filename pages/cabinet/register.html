@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Регистрация — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260605h">
+</head>
+<body class="cabinet-page">
+
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="../../index.html" class="header__logo">
+        <img src="../../images/logo.svg" alt="" class="header__logo-img">
+        <span class="header__logo-text">ДЕЛИСЬ</span>
+      </a>
+    </div>
+    <div class="header__right">
+      <a href="login.html" class="btn btn--outline btn--sm">Вход</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===== STEP 0: Выбор типа аккаунта ===== -->
+  <div class="auth-card auth-card--type auth-step auth-step--active" data-step="type">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Выберите тип аккаунта</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+
+    <div class="account-types" id="account-types">
+      <label class="account-type" data-type="agency">
+        <input type="radio" name="account-type" value="agency">
+        <img src="../../images/reg-icon-agency.svg" alt="Агентство" class="account-type__img account-type__img--default">
+        <img src="../../images/reg-agency.svg" alt="Агентство" class="account-type__img account-type__img--active">
+      </label>
+      <label class="account-type" data-type="agent">
+        <input type="radio" name="account-type" value="agent">
+        <img src="../../images/reg-icon-agent.svg" alt="Частный агент" class="account-type__img account-type__img--default">
+        <img src="../../images/reg-agent.svg" alt="Частный агент" class="account-type__img account-type__img--active">
+      </label>
+    </div>
+
+    <div class="auth-actions auth-actions--end">
+      <button class="btn btn--outline-brand" id="btn-type-next" disabled>Далее</button>
+    </div>
+  </div>
+
+  <!-- ===== AGENCY: STEP 1 (Данные о организации) ===== -->
+  <div class="auth-card auth-step" data-step="agency-1">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Регистрация агентства</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <div class="auth-steps">
+      <span class="auth-steps__item auth-steps__item--active" data-go="agency-1">Данные о организации</span>
+      <span class="auth-steps__divider"></span>
+      <span class="auth-steps__item" data-go="agency-2">Руководитель агентства</span>
+    </div>
+
+    <form class="auth-form" id="form-agency-1">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Регион</label>
+        <select required><option value="">Москва</option><option>Санкт-Петербург</option><option>Ленинградская область</option></select>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Название агентства</label>
+        <input type="text" placeholder="Название агентства" required>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field">
+          <label class="auth-field__label">Форма организации</label>
+          <div class="segmented" data-segmented="org-form">
+            <label class="segmented__option segmented__option--selected" data-value="ИП"><input type="radio" name="org-form" value="ИП" checked>ИП</label>
+            <label class="segmented__option" data-value="ООО"><input type="radio" name="org-form" value="ООО">ООО</label>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label class="auth-field__label">ИНН</label>
+          <input type="text" placeholder="777444111455" required>
+        </div>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Опыт работы</label>
+        <select required><option>Менее года</option><option>1-3 года</option><option>3-5 лет</option><option>5+ лет</option></select>
+      </div>
+    </form>
+
+    <div class="auth-actions">
+      <button class="btn btn--outline-brand" data-go="type">Назад</button>
+      <button class="btn btn--outline-brand" data-go="agency-2">Далее</button>
+    </div>
+  </div>
+
+  <!-- ===== AGENCY: STEP 2 (Руководитель) ===== -->
+  <div class="auth-card auth-step" data-step="agency-2">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Регистрация</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <div class="auth-steps">
+      <span class="auth-steps__item auth-steps__item--done" data-go="agency-1">Данные о организации</span>
+      <span class="auth-steps__divider"></span>
+      <span class="auth-steps__item auth-steps__item--active">Руководитель агентства</span>
+    </div>
+
+    <form class="auth-form" id="form-agency-2" onsubmit="handleRegister(event, 'agency')">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">ФИО</label>
+        <input type="text" name="fullname" placeholder="Иван Иванов Иванович" required>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Телефон для входа в аккаунт</label>
+        <input type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Почта</label>
+        <input type="email" placeholder="adress@index.ru" required>
+      </div>
+
+      <div class="auth-actions" style="margin-top:32px;">
+        <label class="auth-check">
+          <input type="checkbox" required>
+          <span class="auth-check__box"></span>
+          <span>Нажимая на кнопку «Отправить», я соглашаюсь<br>с <a href="#">Политикой обработки персональных данных</a></span>
+        </label>
+        <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== PRIVATE AGENT: STEP 1 (всё в одной форме) ===== -->
+  <div class="auth-card auth-step" data-step="agent-1">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Регистрация частного агента</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+
+    <form class="auth-form" id="form-agent" onsubmit="handleRegister(event, 'agent')">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Регион</label>
+        <select required><option>Москва</option><option>Санкт-Петербург</option><option>Ленинградская область</option></select>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Название агентства</label>
+        <input type="text" placeholder="Название агентства" required>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field">
+          <label class="auth-field__label">Форма организации</label>
+          <div class="segmented" data-segmented="agent-form">
+            <label class="segmented__option segmented__option--selected" data-value="ИП"><input type="radio" name="agent-form" value="ИП" checked>ИП</label>
+            <label class="segmented__option" data-value="Самозанятый"><input type="radio" name="agent-form" value="Самозанятый">Самозанятый</label>
+          </div>
+        </div>
+        <div class="auth-field" data-name="ИНН">
+          <label class="auth-field__label">ИНН</label>
+          <input type="text" name="inn" placeholder="777444111455" required>
+          <span class="auth-field__error">Введите другое значение, пользователь с таким ИНН уже существует</span>
+        </div>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Опыт работы</label>
+        <select required><option>Менее 1 года</option><option>1-3 года</option><option>3-5 лет</option><option>5+ лет</option></select>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field">
+          <label class="auth-field__label">ФИО</label>
+          <input type="text" name="fullname" placeholder="Иван Иванов Иванович" required>
+        </div>
+        <div class="auth-field">
+          <label class="auth-field__label">Телефон для входа в аккаунт</label>
+          <input type="tel" placeholder="+7 (___) ___-__-__" required>
+        </div>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Почта</label>
+        <input type="email" placeholder="adress@index.ru" required>
+      </div>
+
+      <label class="auth-check" style="margin-top:24px;">
+        <input type="checkbox" required>
+        <span class="auth-check__box"></span>
+        <span>Нажимая на кнопку «Отправить», я соглашаюсь с <a href="#">Политикой обработки персональных данных</a></span>
+      </label>
+
+      <div class="auth-actions auth-actions--row" style="margin-top:20px;">
+        <button type="button" class="btn btn--outline-brand" data-go="type">Назад к выбору типа</button>
+        <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== STEP: SMS-подтверждение телефона ===== -->
+  <div class="auth-card auth-card--narrow auth-step" data-step="confirm-phone">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Подтверждение телефона</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <p style="font-size:14px;color:var(--color-gray-500);margin-bottom:16px;">
+      Мы отправили SMS с 4-значным кодом на номер <strong id="confirm-phone-num">+7 (___) ___-__-__</strong>
+    </p>
+    <div class="sms-code" id="sms-code">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+    </div>
+    <p class="sms-resend sms-resend--disabled">
+      Отправить код повторно через <span id="resend-timer">60</span> сек
+    </p>
+    <div class="auth-actions auth-actions--end" style="margin-top:24px;">
+      <button class="btn btn--outline-brand" id="btn-confirm-phone" disabled>Подтвердить</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP: Создание пароля ===== -->
+  <div class="auth-card auth-card--narrow auth-step" data-step="create-pass">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Придумайте пароль</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <form class="auth-form" id="form-pass" onsubmit="handleCreatePass(event)">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Пароль</label>
+        <input type="password" name="pass" minlength="8" placeholder="Минимум 8 символов" required>
+        <span class="auth-field__error">Пароль должен быть не короче 8 символов</span>
+      </div>
+      <div class="auth-field auth-field--full" data-name="pass2">
+        <label class="auth-field__label">Повторите пароль</label>
+        <input type="password" name="pass2" minlength="8" placeholder="Повторите пароль" required>
+        <span class="auth-field__error">Пароли не совпадают</span>
+      </div>
+      <div class="auth-actions auth-actions--end" style="margin-top:8px;">
+        <button type="submit" class="btn btn--dark">Создать пароль</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== STEP: Success ===== -->
+  <div class="auth-card auth-card--narrow auth-step" data-step="success">
+    <div class="auth-success">
+      <span class="auth-success__icon"></span>
+      <h2 class="auth-success__title">Регистрация завершена!</h2>
+      <p class="auth-success__text">
+        Добро пожаловать в Делись. Перенаправляем в личный кабинет…
+      </p>
+      <button class="btn btn--dark" id="btn-go-cabinet" onclick="location.href='profile.html'">Перейти в кабинет</button>
+    </div>
+  </div>
+</main>
+
+<!-- Snackbar -->
+<div class="snackbar" id="snackbar" role="status" aria-live="polite"></div>
+
+<script>
+// === Step navigation ===
+const steps = document.querySelectorAll('.auth-step');
+function goStep(name) {
+  steps.forEach(s => s.classList.toggle('auth-step--active', s.dataset.step === name));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.addEventListener('click', (e) => {
+  const target = e.target.closest('[data-go]');
+  if (target) {
+    e.preventDefault();
+    goStep(target.dataset.go);
+  }
+});
+
+// === Account type selection ===
+const typeCards = document.querySelectorAll('.account-type');
+const btnTypeNext = document.getElementById('btn-type-next');
+let selectedType = null;
+typeCards.forEach(c => c.addEventListener('click', () => {
+  typeCards.forEach(x => x.classList.remove('account-type--selected'));
+  c.classList.add('account-type--selected');
+  selectedType = c.dataset.type;
+  btnTypeNext.disabled = false;
+}));
+btnTypeNext.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (!selectedType) return;
+  goStep(selectedType === 'agency' ? 'agency-1' : 'agent-1');
+});
+
+// === Segmented control ===
+document.querySelectorAll('.segmented').forEach(seg => {
+  seg.addEventListener('click', (e) => {
+    const opt = e.target.closest('.segmented__option');
+    if (!opt) return;
+    seg.querySelectorAll('.segmented__option').forEach(o => o.classList.remove('segmented__option--selected'));
+    opt.classList.add('segmented__option--selected');
+    opt.querySelector('input').checked = true;
+  });
+});
+
+// === Validation: подсветить пустые required-поля при клике на "Далее" ===
+function validateStep(formId) {
+  const form = document.getElementById(formId);
+  if (!form) return true;
+  let allValid = true;
+  form.querySelectorAll('[required]').forEach(field => {
+    const wrap = field.closest('.auth-field') || field.closest('.segmented')?.closest('.auth-field');
+    if (!wrap) return;
+    if (!field.value || field.value.trim() === '') {
+      wrap.classList.add('auth-field--error');
+      allValid = false;
+    } else {
+      wrap.classList.remove('auth-field--error');
+    }
+  });
+  return allValid;
+}
+// Очистить ошибку при вводе
+document.addEventListener('input', (e) => {
+  const wrap = e.target.closest('.auth-field');
+  if (wrap && wrap.classList.contains('auth-field--error') && e.target.value.trim()) {
+    wrap.classList.remove('auth-field--error');
+  }
+});
+
+// Перехват "Далее" для агентство-1: валидируем перед переходом
+document.querySelector('[data-step="agency-1"] [data-go="agency-2"]')?.addEventListener('click', (e) => {
+  if (!validateStep('form-agency-1')) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+}, true);
+
+// === Snackbar helper ===
+function snackbar(message, variant = '') {
+  const el = document.getElementById('snackbar');
+  el.textContent = message;
+  el.className = 'snackbar snackbar--visible' + (variant ? ' snackbar--' + variant : '');
+  clearTimeout(snackbar._t);
+  snackbar._t = setTimeout(() => { el.className = 'snackbar'; }, 3000);
+}
+
+// === Btn loading ===
+function setLoading(btn, isLoading) {
+  if (isLoading) btn.classList.add('btn--loading');
+  else btn.classList.remove('btn--loading');
+}
+
+// === Состояние регистрации (хранит данные между шагами) ===
+const regState = { type: null, phone: null, email: null };
+
+// === Submit handlers (mock) ===
+function handleRegister(e, type) {
+  e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  // Mock-ошибка для демонстрации: ИНН 0000000000 = занят
+  const innInput = e.target.querySelector('input[name="inn"]');
+  if (innInput && innInput.value === '0000000000') {
+    innInput.closest('.auth-field').classList.add('auth-field--error');
+    snackbar('Ошибка: пользователь с таким ИНН уже существует', 'error');
+    return;
+  }
+
+  setLoading(submitBtn, true);
+  setTimeout(() => {        // имитация запроса к серверу
+    setLoading(submitBtn, false);
+    regState.type = type;
+    regState.name = e.target.querySelector('input[name="fullname"]')?.value || '';
+    regState.phone = e.target.querySelector('input[type="tel"]')?.value || '+7 (___) ___-__-__';
+    regState.email = e.target.querySelector('input[type="email"]')?.value || 'your@email.com';
+    const numEl = document.getElementById('confirm-phone-num');
+    if (numEl) numEl.textContent = regState.phone;
+    const emailEl = document.getElementById('confirm-email-addr');
+    if (emailEl) emailEl.textContent = regState.email;
+    goStep('confirm-phone');
+    startResendTimer();
+  }, 800);
+}
+
+// === SMS code input UX ===
+const smsInputs = document.querySelectorAll('#sms-code input');
+const btnConfirmPhone = document.getElementById('btn-confirm-phone');
+smsInputs.forEach((inp, i) => {
+  inp.addEventListener('input', () => {
+    inp.value = inp.value.replace(/\D/g, '').slice(0, 1);
+    if (inp.value && smsInputs[i + 1]) smsInputs[i + 1].focus();
+    const code = Array.from(smsInputs).map(x => x.value).join('');
+    btnConfirmPhone.disabled = code.length !== 4;
+  });
+  inp.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && !inp.value && smsInputs[i - 1]) smsInputs[i - 1].focus();
+  });
+  inp.addEventListener('paste', (e) => {
+    const txt = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+    smsInputs.forEach((x, j) => { x.value = txt[j] || ''; });
+    btnConfirmPhone.disabled = txt.length < 4;
+    smsInputs[Math.min(txt.length, 3)].focus();
+    e.preventDefault();
+  });
+});
+btnConfirmPhone?.addEventListener('click', () => {
+  const code = Array.from(smsInputs).map(x => x.value).join('');
+  // Mock: правильный код = 1234
+  setLoading(btnConfirmPhone, true);
+  setTimeout(() => {
+    setLoading(btnConfirmPhone, false);
+    if (code === '1234' || code.length === 4) {
+      document.getElementById('sms-code').classList.remove('sms-code--error');
+      snackbar('Телефон подтверждён', 'success');
+      goStep('create-pass');
+    } else {
+      document.getElementById('sms-code').classList.add('sms-code--error');
+      snackbar('Неверный код', 'error');
+    }
+  }, 700);
+});
+
+// === SMS resend timer (60 sec) ===
+function startResendTimer() {
+  const wrap = document.querySelector('.sms-resend');
+  const span = document.getElementById('resend-timer');
+  let t = 60;
+  wrap.classList.add('sms-resend--disabled');
+  wrap.innerHTML = `Отправить код повторно через <span id="resend-timer">${t}</span> сек`;
+  clearInterval(startResendTimer._i);
+  startResendTimer._i = setInterval(() => {
+    t--;
+    const s = document.getElementById('resend-timer');
+    if (s) s.textContent = t;
+    if (t <= 0) {
+      clearInterval(startResendTimer._i);
+      wrap.classList.remove('sms-resend--disabled');
+      wrap.innerHTML = `<button type="button" onclick="resendSms()">Отправить код повторно</button>`;
+    }
+  }, 1000);
+}
+function resendSms() {
+  snackbar('Код отправлен повторно', 'success');
+  startResendTimer();
+}
+
+// === Создание пароля ===
+function handleCreatePass(e) {
+  e.preventDefault();
+  const pass = e.target.pass.value;
+  const pass2 = e.target.pass2.value;
+  const wrap2 = e.target.pass2.closest('.auth-field');
+  if (pass !== pass2) {
+    wrap2.classList.add('auth-field--error');
+    snackbar('Пароли не совпадают', 'error');
+    return;
+  }
+  wrap2.classList.remove('auth-field--error');
+  const btn = e.target.querySelector('button[type="submit"]');
+  setLoading(btn, true);
+  setTimeout(() => {
+    setLoading(btn, false);
+    localStorage.setItem('delis_user', JSON.stringify({
+      type: regState.type,
+      name: regState.name,
+      phone: regState.phone,
+      email: regState.email,
+      registeredAt: new Date().toISOString()
+    }));
+    // Куда вести: агентство → profile.html, частный агент → profile-private.html
+    const dest = regState.type === 'agent' ? 'profile-private.html' : 'profile.html';
+    const goBtn = document.getElementById('btn-go-cabinet');
+    if (goBtn) goBtn.setAttribute('onclick', `location.href='${dest}'`);
+    goStep('success');
+    snackbar('Регистрация завершена', 'success');
+    setTimeout(() => { location.href = dest; }, 1800);
+  }, 700);
+}
+</script>
+</body>
+</html>

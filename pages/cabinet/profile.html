@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Личная информация — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260611i">
+</head>
+<body class="cabinet-page cabinet-page--app">
+
+<div id="cab-header"></div>
+
+<main>
+  <div class="cabinet-shell">
+    <div class="cabinet-breadcrumbs"><a href="../../index.html">Главная</a> • Личный кабинет</div>
+    <h1 class="cabinet-title">Личный кабинет</h1>
+
+    <div class="cabinet-layout">
+      <div id="cab-sidebar-slot"></div>
+
+      <div class="cab-main">
+
+        <div class="agent-section-head">
+          <span class="profile-col__head">Профиль</span>
+          <button class="btn btn--brand agency-edit-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Редактировать профиль
+          </button>
+        </div>
+
+        <!-- ===== Карточка профиля (директор) ===== -->
+        <div class="agent-card">
+          <div class="agent-card__aside">
+            <div class="profile-card__avatar-wrap agent-avatar-wrap">
+              <img src="../../images/form-person.png" alt="" class="profile-card__avatar">
+              <button class="profile-card__avatar-edit" title="Сменить фото" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+            </div>
+            <span class="agent-role">Директор</span>
+            <div class="agent-stats">
+              <div class="status-cell"><div class="status-cell__num">10</div><div class="status-cell__label">Активных<br>объектов</div></div>
+              <div class="status-cell"><div class="status-cell__num">26</div><div class="status-cell__label">Количество<br>сотрудников</div></div>
+            </div>
+          </div>
+
+          <div class="agent-card__body">
+            <div class="agent-card__top">
+              <h2 class="agent-card__name" id="pf-name">Уклонский Михаил Александрович</h2>
+              <div class="profile-card__socials">
+                <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="m9.78 18.65.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
+                <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.808 19.5c-7.346 0-11.535-5.039-11.71-13.42h3.679c.122 6.151 2.83 8.755 4.977 9.288V6.08h3.466v5.314c2.12-.227 4.346-2.643 5.097-5.314h3.465c-.572 3.292-2.99 5.708-4.71 6.701 1.72.804 4.471 2.91 5.521 6.719h-3.812c-.822-2.563-2.86-4.548-5.561-4.815v4.815h-.412z"/></svg></a>
+                <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" fill="currentColor"/></svg></a>
+                <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
+              </div>
+            </div>
+
+            <div class="agent-contacts">
+              <div>Телефон: <strong id="pf-phone">+7 (995) 590-59-00</strong></div>
+              <div>Почта: <strong id="pf-email">uklonsky.law@gmail.com</strong></div>
+              <div>Телеграм: <a href="#" class="agent-link">Привязать</a></div>
+            </div>
+
+            <div class="profile-card__section-title">Специализация</div>
+            <div class="profile-card__tags">
+              <span class="profile-tag">Юрист по недвижимости</span>
+              <span class="profile-tag">Основатель проекта</span>
+              <span class="profile-tag">Стаж 10+ лет</span>
+              <span class="profile-tag">Риелтор</span>
+              <span class="profile-tag">Директор агентства «Делись»</span>
+            </div>
+
+            <div class="profile-card__section-title">О себе</div>
+            <p class="agency-desc agent-about-short">
+              Руководитель агентства недвижимости «Делись». Более 10 лет на рынке вторичной
+              недвижимости Санкт-Петербурга и Ленинградской области. Юридическое сопровождение
+              сделок и развитие партнёрской сети.
+            </p>
+          </div>
+        </div>
+
+        <!-- ===== Карточка агентства ===== -->
+        <div class="agent-section-head agent-section-head--sub">
+          <span class="profile-col__head">Агентство</span>
+        </div>
+        <div class="agency-card">
+          <div class="agency-id">
+            <div class="agency-id__logo-wrap">
+              <div class="agency-id__logo">
+                <img src="../../images/logo.svg" alt="" class="agency-id__logo-img">
+              </div>
+              <button class="agency-id__refresh" title="Обновить" aria-label="Обновить" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <path d="M21 12a9 9 0 1 1-3-6.7" stroke-linecap="round"/>
+                  <path d="M21 4v5h-5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="agency-id__info">
+              <div class="agency-id__name">Делись</div>
+              <ul class="agency-id__list">
+                <li>Циан ID: <strong>96092136</strong> <a href="#" class="agency-id__ext" aria-label="Открыть на Циан"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a></li>
+                <li>ИНН <strong>123456789123456789</strong></li>
+                <li>Дата регистрации: <strong>01.01.25</strong></li>
+                <li class="agency-id__verified">
+                  <span>Подтверждённое агентство</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#37A46A"/><path d="M7 12.5l3.5 3.5L17 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="agency-card__stats">
+            <div class="status-cell"><div class="status-cell__num">10</div><div class="status-cell__label">Активных<br>объектов</div></div>
+            <div class="status-cell"><div class="status-cell__num">40</div><div class="status-cell__label">Запросов<br>от партнёров</div></div>
+            <div class="status-cell"><div class="status-cell__num">16</div><div class="status-cell__label">Закрытых<br>сделок</div></div>
+            <div class="status-cell"><div class="status-cell__num">26</div><div class="status-cell__label">Количество<br>сотрудников</div></div>
+          </div>
+        </div>
+
+        <!-- ===== Описание агентства ===== -->
+        <div class="cab-card agent-block">
+          <div class="cab-card__sub-title">Описание агентства</div>
+          <p class="agency-desc">
+            Но акционеры крупнейших компаний объективно рассмотрены соответствующими инстанциями.
+            С учётом сложившейся международной обстановки, высококачественный прототип будущего
+            проекта не даёт нам много выбора, кроме определения экономической целесообразности
+            принимаемых решений. Приятно, граждане, наблюдать, как активно развивающиеся страны
+            третьего мира являются только методом политического участия и обнародованы. Учитывая
+            ключевые сценарии поведения, разбавленное изрядной долей эмпатии, рациональное
+            мышление способствует повышению качества форм воздействия.
+          </p>
+          <div class="agency-tags-row" style="margin-top:16px;">
+            <span class="profile-tag">Вторичка</span>
+            <span class="profile-tag">Новостройки</span>
+            <span class="profile-tag">Апартаменты</span>
+            <span class="profile-tag">Коммерческая</span>
+            <span class="profile-tag">Загородная</span>
+            <span class="profile-tag">Зарубежная</span>
+          </div>
+        </div>
+
+        <!-- ===== Галерея ===== -->
+        <div class="cab-card agent-block">
+          <div class="cab-card__sub-title">Галерея</div>
+          <div class="agency-gallery agent-gallery">
+            <div class="agency-gallery__item"><img src="../../images/video-1.png" alt=""><button>↻</button></div>
+            <div class="agency-gallery__item"><img src="../../images/video-2.png" alt=""><button>↻</button></div>
+            <div class="agency-gallery__item"><img src="../../images/video-3.png" alt=""><button>↻</button></div>
+            <div class="agency-gallery__item"><img src="../../images/video-4.png" alt=""><button>↻</button></div>
+            <div class="agency-gallery__item"><img src="../../images/video-1.png" alt=""><button>↻</button></div>
+            <div class="agency-gallery__item"><img src="../../images/video-2.png" alt=""><button>↻</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="_layout.js"></script>
+<script src="profile.js?v=20260611g"></script>
+<script>mountCabinet('profile'); initProfileEdit();</script>
+</body>
+</html>

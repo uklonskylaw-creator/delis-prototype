@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Квартира-студия 39.4 м², 5/7 эт. (объявление) — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/main.css?v=20260611f">
+<link rel="stylesheet" href="../css/object.css?v=20260609f">
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="../index.html" class="header__logo">
+        <img src="../images/logo.svg" alt="" class="header__logo-img">
+        <span class="header__logo-text">ДЕЛИСЬ</span>
+      </a>
+      <button class="header__location" type="button">
+        <img src="../images/icon-location.svg" alt="" width="24" height="24">
+        <span>Ленинградская область</span>
+        <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
+      </button>
+    </div>
+
+    <nav class="header__nav">
+      <button class="header__nav-link" type="button">
+        Услуги
+        <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
+      </button>
+      <a href="#" class="header__nav-link">О проекте</a>
+      <a href="#" class="header__nav-link">Вакансии</a>
+      <a href="#" class="header__nav-link">Контакты</a>
+    </nav>
+
+    <div class="header__right">
+      <button class="header__icon-btn" aria-label="Поиск">
+        <img src="../images/icon-search-header.svg" alt="" width="22" height="22">
+      </button>
+      <a href="#" class="header__icon-btn" aria-label="Избранное">
+        <img src="../images/icon-heart.svg" alt="" width="22" height="22">
+      </a>
+      <a href="#" class="header__icon-btn" aria-label="Сообщения">
+        <img src="../images/icon-telegram-header.svg" alt="" width="22" height="22">
+      </a>
+      <div class="header__auth" id="header-auth">
+        <a href="cabinet/login.html" class="header__login-btn">Вход</a>
+        <a href="cabinet/register.html" class="btn btn--dark header__cabinet-btn">Регистрация</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== BREADCRUMBS ========== -->
+<section class="obj-breadcrumbs">
+  <div class="obj-breadcrumbs__container">
+    <nav class="obj-crumbs">
+      <a href="../index.html" class="obj-crumbs__link">Главная</a>
+      <span class="obj-crumbs__dot">·</span>
+      <a href="../index.html#top" class="obj-crumbs__link">Топ объекты «Делись»</a>
+      <span class="obj-crumbs__dot">·</span>
+      <span class="obj-crumbs__current" data-field="id">ID123456789</span>
+    </nav>
+    <button class="obj-back" type="button" onclick="history.back()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10 13L5 8l5-5"/></svg>
+      <span>Назад</span>
+    </button>
+  </div>
+</section>
+
+<!-- ========== MAIN INFO ========== -->
+<section class="obj-main">
+  <div class="obj-main__container">
+    <div class="obj-main__grid">
+
+      <!-- LEFT: Превью + заголовок -->
+      <div class="obj-card obj-card--preview">
+        <div class="obj-head">
+          <div class="obj-head__title-row">
+            <h1 class="obj-head__title">
+              <span data-field="title">Квартира — студия</span>
+              <span class="obj-head__dot">·</span>
+              <span data-field="area">39.4 м²</span>
+              <span class="obj-head__dot">·</span>
+              <span data-field="floor">5/7 эт.</span>
+            </h1>
+            <button class="obj-head__heart is-active" type="button" aria-label="В избранное">
+              <img src="../images/icon-heart-filled.svg" alt="" width="22" height="20">
+            </button>
+          </div>
+          <div class="obj-head__addr">
+            <img src="../images/icon-pin-purple.svg" alt="" width="14" height="16">
+            <span data-field="address">Очень длинный адрес, очень очень очень очень очень очень очень очень очень очень длинный адрес,</span>
+          </div>
+          <div class="obj-head__transport">
+            <div class="obj-head__transport-item">
+              <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+              <span data-field="metro">м. МЦД Курьяново</span>
+              <img src="../images/icon-walk.svg" alt="" width="10" height="14">
+              <span>5 мин.</span>
+            </div>
+            <span class="obj-head__transport-sep">·</span>
+            <div class="obj-head__transport-item">
+              <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+              <span data-field="metro">м. МЦД Курьяново</span>
+              <img src="../images/icon-bus.svg" alt="" width="14" height="14">
+              <span>5 мин.</span>
+            </div>
+            <span class="obj-head__transport-sep">·</span>
+            <div class="obj-head__transport-item">
+              <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+              <span data-field="metro">м. МЦД Курьяново</span>
+              <img src="../images/icon-car.svg" alt="" width="14" height="14">
+              <span>5 мин.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Галерея фотографий -->
+        <div class="obj-gallery" id="obj-gallery">
+          <div class="obj-gallery__main">
+            <div class="obj-gallery__main-bg" style="background-image:url('../images/obj-photo.png');"></div>
+            <img src="../images/obj-photo.png" alt="" class="obj-gallery__main-img" id="obj-gallery-main">
+            <button class="obj-gallery__arrow obj-gallery__arrow--left" type="button" aria-label="Предыдущее фото">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 12L4 7l5-5"/></svg>
+            </button>
+            <button class="obj-gallery__arrow obj-gallery__arrow--right" type="button" aria-label="Следующее фото">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 2l5 5-5 5"/></svg>
+            </button>
+          </div>
+          <div class="obj-gallery__thumbs">
+            <button class="obj-thumb is-active" type="button" data-idx="0"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="1"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="2"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="3"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="4"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="5"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="6"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb" type="button" data-idx="7"><img src="../images/obj-photo.png" alt=""></button>
+            <button class="obj-thumb obj-thumb--more" type="button" data-idx="8">
+              <img src="../images/obj-photo.png" alt="">
+              <span class="obj-thumb__more-label">+5</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: сайдбар -->
+      <aside class="obj-sidebar">
+
+        <!-- Карточка агента + цена + действия -->
+        <div class="obj-card obj-side-card">
+
+          <!-- 3 кнопки сверху -->
+          <div class="obj-side-tabs">
+            <button class="obj-side-tab" type="button">
+              <img src="../images/icon-external-link.svg" alt="" width="22" height="22">
+              <span>Открыть на Циан</span>
+            </button>
+            <button class="obj-side-tab" type="button">
+              <img src="../images/icon-doc.svg" alt="" width="22" height="22">
+              <span>Юр. отчет</span>
+            </button>
+            <button class="obj-side-tab obj-side-tab--locked" type="button" disabled>
+              <img src="../images/icon-presentation.svg" alt="" width="22" height="22">
+              <span>Презентация</span>
+              <img src="../images/icon-lock-figma.svg" alt="" width="16" height="18" class="obj-side-tab__lock">
+            </button>
+          </div>
+
+          <!-- Плашка «неавторизованный пользователь» -->
+          <div class="obj-anon">
+            <div class="obj-anon__avatar">
+              <img src="../images/icon-user-anon.svg" alt="" width="42" height="42">
+            </div>
+            <div class="obj-anon__info">
+              <div class="obj-anon__title">Объект размещён неавторизованным пользователем</div>
+              <p class="obj-anon__text">Контактные данные можно найти на стороннем ресурсе, но для большей безопасности рекомендуем зафиксировать договорённости в чате нашей платформы</p>
+            </div>
+          </div>
+
+          <!-- Цены с пунктирами -->
+          <div class="obj-prices">
+            <div class="obj-prices__row">
+              <span class="obj-prices__label">Сумма</span>
+              <span class="obj-prices__dots"></span>
+              <b class="obj-prices__val" data-field="price">5 205 000 ₽</b>
+            </div>
+            <div class="obj-prices__row">
+              <span class="obj-prices__label">Цена за м²</span>
+              <span class="obj-prices__dots"></span>
+              <b class="obj-prices__val" data-field="pricePerM">206 951 ₽/м²</b>
+            </div>
+            <div class="obj-prices__row obj-prices__row--commission obj-prices__row--locked">
+              <span class="obj-prices__label">Комиссия за сделку</span>
+              <span class="obj-prices__dots"></span>
+              <img src="../images/icon-lock.svg" alt="" width="18" height="18" class="obj-prices__lock">
+            </div>
+          </div>
+
+          <!-- Кнопки действий — заблокированы, клик ведёт на регистрацию -->
+          <div class="obj-actions">
+            <button class="obj-actions__btn obj-actions__btn--locked" type="button" data-locked title="Зарегистрируйтесь, чтобы открыть">
+              <span>Написать в чат</span>
+              <img src="../images/icon-lock.svg" alt="" width="16" height="16">
+            </button>
+            <button class="obj-actions__btn obj-actions__btn--locked" type="button" data-locked title="Зарегистрируйтесь, чтобы открыть">
+              <span>Зафиксировать</span>
+              <img src="../images/icon-lock.svg" alt="" width="16" height="16">
+            </button>
+            <button class="obj-actions__btn obj-actions__btn--locked" type="button" data-locked title="Зарегистрируйтесь, чтобы открыть">
+              <span>Забронировать</span>
+              <img src="../images/icon-lock.svg" alt="" width="16" height="16">
+            </button>
+          </div>
+          <a href="cabinet/register.html" class="obj-actions__cta" data-locked-cta>
+            <img src="../images/icon-lock.svg" alt="" width="14" height="14">
+            Зарегистрируйтесь, чтобы открыть контакты, чат и бронирование
+          </a>
+        </div>
+
+        <!-- Промо «Помощь от «Делись»» (для неавторизованного) -->
+        <div class="obj-promo obj-promo--help">
+          <div class="obj-promo__body">
+            <h3 class="obj-promo__title">Помощь от «Делись»</h3>
+            <ul class="obj-help-list">
+              <li><img src="../images/icon-check-green.svg" alt="" width="22" height="22"><span>Проверим документы и поможем с ипотекой</span></li>
+              <li><img src="../images/icon-check-green.svg" alt="" width="22" height="22"><span>Сопроводим сделку до конца</span></li>
+              <li><img src="../images/icon-check-green.svg" alt="" width="22" height="22"><span>Гарантируем выплату вашей комиссии</span></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ОПИСАНИЕ + ПАРАМЕТРЫ ========== -->
+<section class="obj-content">
+  <div class="obj-main__container">
+    <div class="obj-content__grid">
+
+      <!-- LEFT: Описание -->
+      <div class="obj-card obj-text-card">
+        <h2 class="obj-section-title">Описание объекта</h2>
+        <div class="obj-tags">
+          <span class="obj-tag">Возможна ипотека</span>
+          <span class="obj-tag">Вторичка</span>
+          <span class="obj-tag">Объект от «Делись»</span>
+        </div>
+        <div class="obj-text" id="obj-text">
+          <p>Во первых — она стоит на 1 000 000 руб. дешевле, чем аналогичное предложение от застройщика на первом этаже. Лучше предложения в этом ЖК для покупки под программу с переводом долга просто нет.</p>
+          <p>Жилой комплекс включает в себя 5 очередей строительства: 8 домов-башень и 9 малоэтажных домов. Семиэтажные корпуса и высотные здания выполнены в неоклассическом стиле.</p>
+          <p>В проекте предложено множество планировочных решений: в наличии квартиры, как классического типа, так и европланировки. В них предусмотрены нестандартные широкие балконы с увеличенной площадью и панорамным остеклением.</p>
+          <p>В состав комплекса входит 3 детских сада на 140 мест и школа на 825 мест. Территория комплекса благоустроена: выполнено авторское озеленение, проложены лесные дорожки, предусмотрены площадки для отдыха и спорта. На первых этажах предусмотрены коммерческие помещения. Для автовладельцев спроектировано 4 отдельностоящих паркинга и 6 пристроенных.</p>
+          <p>Жилой комплекс находится в Приморском районе Санкт-Петербурга Комплекс с 3 сторон окружают лесные массивы. Рядом с ЖК расположены Суздальские озера и Шуваловский парк, а в 10 минутах езды — Юнтоловский заповедник. Метро «Проспект Просвещения» находится в 15 минутах езды.</p>
+          <p>Торг обсуждается. Звоните, будем рады помочь</p>
+          <div class="obj-text__extra">тут больше инфы</div>
+        </div>
+        <div class="obj-show-more">
+          <button type="button" class="obj-show-more__btn" data-target="obj-text">
+            <span class="obj-show-more__label-collapsed">Показать полностью</span>
+            <span class="obj-show-more__label-expanded">Скрыть</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: Параметры -->
+      <div class="obj-card obj-params-card">
+        <h2 class="obj-section-title">Параметры</h2>
+        <div class="obj-params" id="obj-params">
+          <div class="obj-param-row"><span class="obj-param-label">Площадь общая, м2</span><span class="obj-param-dots"></span><span class="obj-param-value" data-field="area">122.2 м²</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Тип жилья</span><span class="obj-param-dots"></span><span class="obj-param-value" data-field="type">Квартира</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Квартира</span><span class="obj-param-dots"></span><span class="obj-param-value">Вторичное жильё</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Цена</span><span class="obj-param-dots"></span><span class="obj-param-value">206 951 ₽/мес.</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Площадь кухни</span><span class="obj-param-dots"></span><span class="obj-param-value">12.2 м²</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Высота потолка, м</span><span class="obj-param-dots"></span><span class="obj-param-value">3 м.</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Комнат</span><span class="obj-param-dots"></span><span class="obj-param-value" data-field="rooms">2</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Этаж</span><span class="obj-param-dots"></span><span class="obj-param-value" data-field="floorOnly">1 / 2</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Тип балкона</span><span class="obj-param-dots"></span><span class="obj-param-value">Лоджия</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Ремонт</span><span class="obj-param-dots"></span><span class="obj-param-value">—</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Листинг №11</span><span class="obj-param-dots"></span><span class="obj-param-value">—</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Листинг №12</span><span class="obj-param-dots"></span><span class="obj-param-value">—</span></div>
+          <div class="obj-param-row"><span class="obj-param-label">Листинг №13</span><span class="obj-param-dots"></span><span class="obj-param-value">—</span></div>
+          <div class="obj-params__extra">тут больше инфы</div>
+        </div>
+        <div class="obj-show-more">
+          <button type="button" class="obj-show-more__btn" data-target="obj-params">
+            <span class="obj-show-more__label-collapsed">Показать полностью</span>
+            <span class="obj-show-more__label-expanded">Скрыть</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== КАРТА ========== -->
+<section class="obj-map-section">
+  <div class="obj-main__container">
+    <div class="obj-map">
+      <div id="obj-ymap" class="obj-map__canvas"></div>
+      <!-- Карточка деталей расположения слева сверху -->
+      <div class="obj-map__card">
+        <div class="obj-map__addr">
+          <img src="../images/icon-pin-purple.svg" alt="" width="14" height="16">
+          <span>Санкт-Петербург, наб. реки Каменки, 3к3</span>
+        </div>
+        <p class="obj-map__desc">Жилой комплекс находится в Приморском районе Санкт-Петербурга Комплекс с 3 сторон</p>
+        <div class="obj-map__transport">
+          <div class="obj-map__transport-item">
+            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+            <span>Московская</span>
+            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
+            <span>10 мин.</span>
+          </div>
+          <div class="obj-map__transport-item">
+            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+            <span>Московская</span>
+            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
+            <span>10 мин.</span>
+          </div>
+          <div class="obj-map__transport-item">
+            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+            <span>Московская</span>
+            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
+            <span>10 мин.</span>
+          </div>
+          <div class="obj-map__transport-item">
+            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
+            <span>Московская</span>
+            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
+            <span>10 мин.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer__inner">
+
+    <div class="footer__col footer__col--brand">
+      <p class="footer__brand">© «Делись», 2025</p>
+      <a href="#" class="footer__link">Политика конфиденциальности</a>
+      <a href="#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
+    </div>
+
+    <nav class="footer__nav">
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Карьера</a></li>
+        <li><a href="#">Документы</a></li>
+        <li><a href="#">Счета и реквизиты</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Торговая марка</a></li>
+        <li><a href="#">Правовая информация</a></li>
+        <li><a href="#">Договор оферты</a></li>
+        <li><a href="#">Гарантия</a></li>
+      </ul>
+    </nav>
+
+    <button class="footer__up" aria-label="Наверх" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <img src="../images/icon-arrow-up.svg" alt="" width="20" height="20">
+    </button>
+
+    <div class="footer__contacts">
+      <a href="tel:+70000000000" class="footer__phone">+7 (000) 000-00-00</a>
+      <a href="#" class="btn btn--brand">
+        <img src="../images/icon-phone.svg" alt="" width="24" height="24">
+        Заказать звонок
+      </a>
+      <div class="footer__socials">
+        <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="../js/favorites.js?v=20260609f"></script>
+<script src="../js/main.js?v=20260611f"></script>
+<script src="../data/objects.js"></script>
+<script src="../js/object.js?v=20260609f"></script>
+<script>
+// Заблокированные элементы (кнопки и скрытая комиссия) → ведут на регистрацию
+document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-locked], .obj-prices__row--locked')) {
+    window.location.href = 'cabinet/register.html';
+  }
+});
+</script>
+<script>
+(function() {
+  const main = document.getElementById('obj-gallery-main');
+  const mainBg = document.querySelector('.obj-gallery__main-bg');
+  const thumbs = document.querySelectorAll('.obj-thumb');
+  if (!main || !thumbs.length) return;
+
+  function setActive(idx) {
+    thumbs.forEach(t => t.classList.toggle('is-active', Number(t.dataset.idx) === idx));
+    const t = thumbs[idx];
+    if (t) {
+      const img = t.querySelector('img');
+      if (img) {
+        main.src = img.src;
+        if (mainBg) mainBg.style.backgroundImage = 'url(' + img.src + ')';
+      }
+    }
+  }
+  thumbs.forEach(t => t.addEventListener('click', () => setActive(Number(t.dataset.idx))));
+
+  const leftBtn = document.querySelector('.obj-gallery__arrow--left');
+  const rightBtn = document.querySelector('.obj-gallery__arrow--right');
+  function getActiveIdx() {
+    const active = document.querySelector('.obj-thumb.is-active');
+    return active ? Number(active.dataset.idx) : 0;
+  }
+  if (leftBtn) leftBtn.addEventListener('click', () => {
+    const i = getActiveIdx();
+    setActive(i > 0 ? i - 1 : thumbs.length - 1);
+  });
+  if (rightBtn) rightBtn.addEventListener('click', () => {
+    const i = getActiveIdx();
+    setActive(i < thumbs.length - 1 ? i + 1 : 0);
+  });
+
+  // Сердечко в шапке объекта — избранное обрабатывается в object.js
+
+  // "Показать полностью" / "Скрыть" — раскрытие блоков
+  document.querySelectorAll('.obj-show-more__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const open = target.classList.toggle('is-expanded');
+      btn.classList.toggle('is-open', open);
+    });
+  });
+
+  // Табы сверху — клик делает активным
+  document.querySelectorAll('.obj-side-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.obj-side-tab').forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+    });
+  });
+
+  // Кнопка "Позвонить" — показать номер телефона
+  const callBtn = document.getElementById('obj-call-btn');
+  if (callBtn) {
+    callBtn.addEventListener('click', () => {
+      if (!callBtn.dataset.revealed) {
+        callBtn.textContent = callBtn.dataset.phone;
+        callBtn.dataset.revealed = '1';
+      } else {
+        // повторный клик — попытка позвонить
+        window.location.href = 'tel:' + callBtn.dataset.phone.replace(/[^\d+]/g, '');
+      }
+    });
+  }
+
+  // Яндекс.Карта с пином объекта
+  if (window.ymaps) {
+    ymaps.ready(function () {
+      const map = new ymaps.Map('obj-ymap', {
+        center: [60.0205, 30.2756],  // Приморский район, СПб (наб. реки Каменки)
+        zoom: 12,
+        controls: ['zoomControl']
+      }, { suppressMapOpenBlock: true });
+
+      const PinLayout = ymaps.templateLayoutFactory.createClass(
+        '<div class="obj-price-pin">{{ properties.label }}</div>'
+      );
+      const pin = new ymaps.Placemark([60.0205, 30.2756], { label: '7,4 млн.' }, {
+        iconLayout: PinLayout,
+        iconShape: { type: 'Rectangle', coordinates: [[-40, -32], [40, 0]] }
+      });
+      map.geoObjects.add(pin);
+    });
+  }
+})();
+</script>
+</body>
+</html>

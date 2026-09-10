@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Избранное — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260604n">
+</head>
+<body class="cabinet-page cabinet-page--app">
+
+<div id="cab-header"></div>
+
+<main>
+  <div class="cabinet-shell">
+    <div class="cabinet-breadcrumbs"><a href="../../index.html">Главная</a> • Личный кабинет • Избранное</div>
+    <h1 class="cabinet-title">Личный кабинет</h1>
+
+    <div class="cabinet-layout">
+      <div id="cab-sidebar-slot"></div>
+
+      <div class="cab-main">
+        <div class="cab-card">
+          <div class="cab-card__head">
+            <div class="cab-card__title">Избранное</div>
+          </div>
+
+          <div id="fav-grid" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../../data/objects.js"></script>
+<script src="../../js/favorites.js?v=20260609f"></script>
+<script src="_layout.js"></script>
+<script>
+mountCabinet('favorites');
+
+const grid = document.getElementById('fav-grid');
+
+function favCard(o) {
+  return `
+  <article class="fav-card" data-id="${o.id}">
+    <div class="fav-card__top">
+      <a href="../object.html?id=${o.id}" class="fav-card__title">${o.title}</a>
+      <button class="fav-card__remove" type="button" onclick="removeFav('${o.id}')" aria-label="Убрать из избранного">
+        <svg viewBox="0 0 24 24" fill="#764FE9" width="22" height="22"><path d="M12 21s-7-4.5-9.5-9C.5 7 4 3 8 3c2 0 3 1 4 2 1-1 2-2 4-2 4 0 7.5 4 5.5 9-2.5 4.5-9.5 9-9.5 9z"/></svg>
+      </button>
+    </div>
+    <div class="fav-card__tags">
+      <span class="obj-tag">${o.metro}</span>
+      <span class="obj-tag">${o.walk}</span>
+    </div>
+    <div class="fav-card__rows">
+      <div><span>Площадь</span><strong>${o.area}</strong></div>
+      <div><span>Цена</span><strong>${o.price}</strong></div>
+    </div>
+    <a href="../object.html?id=${o.id}" class="fav-card__media"><img src="../../${o.image}" alt=""></a>
+  </article>`;
+}
+
+function drawFavs(items) {
+  const ids = (typeof Favorites !== 'undefined') ? Favorites.get() : [];
+  const favs = items.filter(o => ids.includes(o.id));
+  if (!favs.length) {
+    grid.style.display = 'block';
+    grid.innerHTML = '<div class="fav-empty">В избранном пока пусто.<br><a href="../../catalog.html">Перейти в каталог →</a></div>';
+    return;
+  }
+  grid.style.display = 'grid';
+  grid.innerHTML = favs.map(favCard).join('');
+}
+function renderFavs() {
+  if (window.__OBJECTS) { drawFavs(window.__OBJECTS); return; }
+  fetch('../../data/objects.json?v=20260609f').then(r => r.json()).then(drawFavs).catch(() => {});
+}
+renderFavs();
+
+function removeFav(id) {
+  if (typeof Favorites !== 'undefined') Favorites.remove(id);
+  const card = grid.querySelector(`[data-id="${id}"]`);
+  if (card) { card.style.opacity = .3; setTimeout(renderFavs, 250); }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260604n">
+</head>
+<body class="cabinet-page">
+
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="../../index.html" class="header__logo">
+        <img src="../../images/logo.svg" alt="" class="header__logo-img">
+        <span class="header__logo-text">ДЕЛИСЬ</span>
+      </a>
+    </div>
+    <div class="header__right">
+      <a href="register.html" class="btn btn--dark btn--sm">Регистрация</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="auth-card auth-card--login">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Вход в кабинет</h1>
+      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+
+    <form class="auth-form" id="login-form" onsubmit="handleLogin(event)">
+      <div class="auth-field">
+        <label class="auth-field__label" for="login-phone">Телефон или почта</label>
+        <input id="login-phone" name="phone" type="text" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <div class="auth-field">
+        <label class="auth-field__label" for="login-pass">Пароль</label>
+        <input id="login-pass" name="password" type="password" placeholder="Введите пароль" required>
+      </div>
+
+      <div class="auth-actions" style="justify-content:space-between;">
+        <a href="forgot.html" style="font-size:13px;color:var(--color-brand);font-weight:600;text-decoration:underline;">Забыли пароль?</a>
+        <button type="submit" class="btn btn--dark" id="btn-login">Войти</button>
+      </div>
+
+      <p class="auth-bottom-link">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+    </form>
+  </div>
+</main>
+
+<div class="snackbar" id="snackbar" role="status" aria-live="polite"></div>
+
+<script>
+function snackbar(msg, variant = '') {
+  const el = document.getElementById('snackbar');
+  el.textContent = msg;
+  el.className = 'snackbar snackbar--visible' + (variant ? ' snackbar--' + variant : '');
+  clearTimeout(snackbar._t);
+  snackbar._t = setTimeout(() => { el.className = 'snackbar'; }, 3000);
+}
+function handleLogin(e) {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const btn = document.getElementById('btn-login');
+  btn.classList.add('btn--loading');
+  setTimeout(() => {
+    btn.classList.remove('btn--loading');
+    localStorage.setItem('delis_user', JSON.stringify({
+      phone: data.get('phone'),
+      loginAt: new Date().toISOString()
+    }));
+    snackbar('Вход выполнен', 'success');
+    setTimeout(() => { location.href = '../../index.html'; }, 1200);
+  }, 700);
+}
+</script>
+</body>
+</html>

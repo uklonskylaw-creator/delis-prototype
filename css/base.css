@@ -1,0 +1,44 @@
+/* Reset & base */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  color: var(--color-black);
+  background: var(--color-gray-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--body16-size);
+  line-height: var(--body16-lh);
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; padding: 0; color: inherit; }
+input, textarea, select { font: inherit; color: inherit; }
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* Type utility classes */
+.t-h24 { font-size: var(--h24-size); line-height: var(--h24-lh); font-weight: 600; letter-spacing: -0.01em; }
+.t-h20 { font-size: var(--h20-size); line-height: var(--h20-lh); font-weight: 600; }
+.t-h18 { font-size: var(--h18-size); line-height: var(--h18-lh); font-weight: 600; }
+.t-h16 { font-size: var(--h16-size); line-height: var(--h16-lh); font-weight: 600; }
+.t-h14 { font-size: var(--h14-size); line-height: var(--h14-lh); font-weight: 600; }
+.t-h12 { font-size: var(--h12-size); line-height: var(--h12-lh); font-weight: 600; }
+
+.t-body20 { font-size: var(--body20-size); line-height: var(--body20-lh); font-weight: 400; }
+.t-body18 { font-size: var(--body18-size); line-height: var(--body18-lh); font-weight: 400; }
+.t-body16 { font-size: var(--body16-size); line-height: var(--body16-lh); font-weight: 400; }
+.t-body14 { font-size: var(--body14-size); line-height: var(--body14-lh); font-weight: 400; }
+.t-body12 { font-size: var(--body12-size); line-height: var(--body12-lh); font-weight: 400; }
+
+.section { padding-block: 80px; }
+.section-title { font-size: 40px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 32px; }

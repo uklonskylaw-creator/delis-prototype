@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Восстановление пароля — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260604n">
+</head>
+<body class="cabinet-page">
+
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="../../index.html" class="header__logo">
+        <img src="../../images/logo.svg" alt="" class="header__logo-img">
+        <span class="header__logo-text">ДЕЛИСЬ</span>
+      </a>
+    </div>
+    <div class="header__right">
+      <a href="login.html" class="btn btn--outline btn--sm">Вход</a>
+      <a href="register.html" class="btn btn--dark btn--sm">Регистрация</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Step 1: enter phone/email -->
+  <div class="auth-card auth-card--login auth-step auth-step--active" data-step="enter">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Восстановление пароля</h1>
+      <a href="login.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <p style="font-size:14px;color:var(--color-gray-500);margin-bottom:16px;">
+      Введите телефон или почту, на которые отправим код для сброса пароля.
+    </p>
+    <form class="auth-form" id="form-forgot" onsubmit="handleForgot(event)">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Телефон или почта</label>
+        <input type="text" name="login" placeholder="+7 (___) ___-__-__ или email" required>
+      </div>
+      <div class="auth-actions auth-actions--end">
+        <button type="submit" class="btn btn--dark">Отправить код</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Step 2: SMS / email code -->
+  <div class="auth-card auth-card--login auth-step" data-step="code">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Введите код</h1>
+      <a href="login.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <p style="font-size:14px;color:var(--color-gray-500);margin-bottom:16px;">
+      Код отправлен на <strong id="forgot-target">…</strong>
+    </p>
+    <div class="sms-code" id="forgot-code">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+      <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]">
+    </div>
+    <p class="sms-resend sms-resend--disabled">
+      Отправить код повторно через <span id="forgot-timer">60</span> сек
+    </p>
+    <div class="auth-actions auth-actions--end" style="margin-top:24px;">
+      <button class="btn btn--outline-brand" id="btn-forgot-code" disabled>Подтвердить</button>
+    </div>
+  </div>
+
+  <!-- Step 3: new password -->
+  <div class="auth-card auth-card--login auth-step" data-step="newpass">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Новый пароль</h1>
+      <a href="login.html" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+    <form class="auth-form" id="form-newpass" onsubmit="handleNewPass(event)">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Новый пароль</label>
+        <input type="password" name="p1" minlength="8" placeholder="Минимум 8 символов" required>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Повторите пароль</label>
+        <input type="password" name="p2" minlength="8" placeholder="Повторите пароль" required>
+        <span class="auth-field__error">Пароли не совпадают</span>
+      </div>
+      <div class="auth-actions auth-actions--end">
+        <button type="submit" class="btn btn--dark">Сохранить</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Step 4: success -->
+  <div class="auth-card auth-card--login auth-step" data-step="done">
+    <div class="auth-success">
+      <span class="auth-success__icon"></span>
+      <h2 class="auth-success__title">Пароль изменён</h2>
+      <p class="auth-success__text">Войдите в кабинет с новым паролем</p>
+      <a href="login.html" class="btn btn--dark">Войти</a>
+    </div>
+  </div>
+</main>
+
+<div class="snackbar" id="snackbar" role="status" aria-live="polite"></div>
+
+<script>
+function snackbar(msg, variant = '') {
+  const el = document.getElementById('snackbar');
+  el.textContent = msg;
+  el.className = 'snackbar snackbar--visible' + (variant ? ' snackbar--' + variant : '');
+  clearTimeout(snackbar._t);
+  snackbar._t = setTimeout(() => { el.className = 'snackbar'; }, 3000);
+}
+function setLoading(btn, on) { btn.classList.toggle('btn--loading', on); }
+
+const steps = document.querySelectorAll('.auth-step');
+function goStep(n) {
+  steps.forEach(s => s.classList.toggle('auth-step--active', s.dataset.step === n));
+}
+
+function handleForgot(e) {
+  e.preventDefault();
+  const v = e.target.login.value;
+  document.getElementById('forgot-target').textContent = v;
+  const btn = e.target.querySelector('button');
+  setLoading(btn, true);
+  setTimeout(() => {
+    setLoading(btn, false);
+    snackbar('Код отправлен', 'success');
+    goStep('code');
+    startTimer();
+  }, 700);
+}
+
+function startTimer() {
+  const wrap = document.querySelector('.sms-resend');
+  let t = 60;
+  wrap.classList.add('sms-resend--disabled');
+  wrap.innerHTML = `Отправить код повторно через <span id="forgot-timer">${t}</span> сек`;
+  clearInterval(startTimer._i);
+  startTimer._i = setInterval(() => {
+    t--; const s = document.getElementById('forgot-timer');
+    if (s) s.textContent = t;
+    if (t <= 0) {
+      clearInterval(startTimer._i);
+      wrap.classList.remove('sms-resend--disabled');
+      wrap.innerHTML = `<button onclick="snackbar('Код отправлен повторно','success');startTimer();">Отправить код повторно</button>`;
+    }
+  }, 1000);
+}
+
+const codeInputs = document.querySelectorAll('#forgot-code input');
+const btnCode = document.getElementById('btn-forgot-code');
+codeInputs.forEach((inp, i) => {
+  inp.addEventListener('input', () => {
+    inp.value = inp.value.replace(/\D/g, '').slice(0, 1);
+    if (inp.value && codeInputs[i + 1]) codeInputs[i + 1].focus();
+    btnCode.disabled = Array.from(codeInputs).map(x => x.value).join('').length !== 4;
+  });
+  inp.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && !inp.value && codeInputs[i - 1]) codeInputs[i - 1].focus();
+  });
+});
+btnCode.addEventListener('click', () => {
+  setLoading(btnCode, true);
+  setTimeout(() => {
+    setLoading(btnCode, false);
+    goStep('newpass');
+  }, 600);
+});
+
+function handleNewPass(e) {
+  e.preventDefault();
+  if (e.target.p1.value !== e.target.p2.value) {
+    e.target.p2.closest('.auth-field').classList.add('auth-field--error');
+    snackbar('Пароли не совпадают', 'error');
+    return;
+  }
+  const btn = e.target.querySelector('button');
+  setLoading(btn, true);
+  setTimeout(() => {
+    setLoading(btn, false);
+    goStep('done');
+  }, 700);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Объекты — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260611n">
+</head>
+<body class="cabinet-page cabinet-page--app">
+
+<div id="cab-header"></div>
+
+<main>
+  <div class="cabinet-shell">
+    <div class="cabinet-breadcrumbs"><a href="../../index.html">Главная</a> • Личный кабинет • Объекты</div>
+    <h1 class="cabinet-title">Личный кабинет</h1>
+
+    <div class="cabinet-layout">
+      <div id="cab-sidebar-slot"></div>
+
+      <div class="cab-main">
+        <div class="cab-bare">
+          <div class="cab-card__head">
+            <div class="cab-card__title">Объекты</div>
+          </div>
+
+          <div class="cab-text-tabs" id="obj-tabs">
+            <button class="cab-text-tab cab-text-tab--active" data-tab="active">Активные<sup class="cab-text-tab__count">10</sup></button>
+            <button class="cab-text-tab" data-tab="unpublished">Неопубликованные<sup class="cab-text-tab__count">10</sup></button>
+            <button class="cab-text-tab" data-tab="archive">Архив<sup class="cab-text-tab__count">10</sup></button>
+            <button class="cab-text-tab" data-tab="parser">Парсер<sup class="cab-text-tab__count">10</sup></button>
+          </div>
+
+          <!-- Тулбар: поиск + Все фильтры + Добавить объект -->
+          <div class="cab-toolbar-row">
+            <div class="cab-toolbar-row__search">
+              <input type="text" placeholder="Поиск">
+              <button class="cab-filter-toggle" onclick="toggleFilter()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/><circle cx="16" cy="6" r="2.5" fill="#fff"/><circle cx="9" cy="12" r="2.5" fill="#fff"/><circle cx="17" cy="18" r="2.5" fill="#fff"/></svg>
+                Все фильтры
+              </button>
+            </div>
+            <button class="btn btn--brand" type="button" onclick="openAddObject()">+ Добавить объект</button>
+
+            <!-- Раскрывающаяся панель фильтров (поверх) -->
+            <div class="cab-filter">
+            <div class="cab-filter__head">
+              <div class="cab-filter__title">Поиск</div>
+              <button onclick="toggleFilter()" style="background:none;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;cursor:pointer;color:#282828;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/><circle cx="16" cy="6" r="2.5" fill="#fff"/><circle cx="9" cy="12" r="2.5" fill="#fff"/><circle cx="17" cy="18" r="2.5" fill="#fff"/></svg>
+                Все фильтры
+              </button>
+            </div>
+            <div class="cab-filter__grid" id="filter-grid">
+              <div class="cab-filter__field">
+                <span class="cab-filter__field-label">ФИО клиента</span>
+                <input type="text">
+              </div>
+              <div class="cab-filter__field">
+                <span class="cab-filter__field-label">Где ищет:</span>
+                <select><option>Выбрать город</option><option>Санкт-Петербург</option><option>Москва</option></select>
+              </div>
+              <div class="cab-filter__field">
+                <span class="cab-filter__field-label">Где ищет:</span>
+                <select><option>Выбрать район</option><option>Центральный</option><option>Приморский</option></select>
+              </div>
+              <div class="cab-filter__field">
+                <span class="cab-filter__field-label">Цена объекта</span>
+                <div class="cab-filter__range"><input type="text" placeholder="от"><input type="text" placeholder="до"></div>
+              </div>
+              <div class="cab-filter__field">
+                <span class="cab-filter__field-label">Площадь, в м²</span>
+                <div class="cab-filter__range"><input type="text" placeholder="от"><input type="text" placeholder="до"></div>
+              </div>
+              <div class="cab-filter__field">
+                <span class="cab-filter__field-label">Площадь, в м²</span>
+                <div class="cab-filter__range"><input type="text" placeholder="от"><input type="text" placeholder="до"></div>
+              </div>
+            </div>
+            <div class="cab-filter__foot">
+              <button onclick="toggleFilter()">Свернуть ⌃</button>
+              <button onclick="resetFilter()">Сбросить ×</button>
+            </div>
+            </div>
+          </div>
+
+          <div class="cl-list obj-list">
+            <div class="cl-list__head obj-list__head">
+              <div class="cl-cell">Фото</div>
+              <div class="cl-cell">Лот</div>
+              <div class="cl-cell">Ответственный</div>
+              <div class="cl-cell">Тип</div>
+              <div class="cl-cell">Адрес</div>
+              <div class="cl-cell">Детали</div>
+              <div class="cl-cell">Цена <span style="opacity:.6;">↕</span></div>
+              <div class="cl-cell">Бонус <span style="opacity:.6;">↕</span></div>
+            </div>
+            <div id="obj-rows"></div>
+          </div>
+
+          <div class="cab-pagination" id="obj-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== Модалка: Добавить объект ===== -->
+<div class="cab-modal-backdrop" id="modal-obj">
+  <div class="cab-modal cab-modal--wide">
+    <div class="cab-modal__head">
+      <div class="cab-modal__tabs"><span class="cab-modal__tab cab-modal__tab--active">Добавить объект</span></div>
+      <button class="auth-card__close" onclick="closeAddObject()">×</button>
+    </div>
+    <form class="auth-form" id="form-obj" onsubmit="submitObject(event)">
+      <div class="auth-row">
+        <div class="auth-field"><label class="auth-field__label">Тип недвижимости</label>
+          <select name="type" required><option value="">Выбрать</option><option>Квартира</option><option>Студия</option><option>Комната</option><option>Коммерция</option><option>Загородная</option></select>
+        </div>
+        <div class="auth-field"><label class="auth-field__label">Лот №</label><input type="text" name="lot" placeholder="123456" required></div>
+      </div>
+      <div class="auth-field auth-field--full"><label class="auth-field__label">Адрес</label><input type="text" name="addr" placeholder="Санкт-Петербург, ..." required></div>
+      <div class="auth-row">
+        <div class="auth-field"><label class="auth-field__label">Площадь, м²</label><input type="text" name="area" placeholder="39.4" required></div>
+        <div class="auth-field"><label class="auth-field__label">Этаж</label><input type="text" name="floor" placeholder="10/12"></div>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field"><label class="auth-field__label">Цена, ₽</label><input type="text" name="price" placeholder="20 000 000" required></div>
+        <div class="auth-field"><label class="auth-field__label">Бонус, ₽</label><input type="text" name="bonus" placeholder="200 000"></div>
+      </div>
+      <div class="auth-actions" style="margin-top:18px;">
+        <button type="button" class="pf-modal__cancel" onclick="closeAddObject()">Отмена</button>
+        <button type="submit" class="btn btn--dark">Добавить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="snackbar" id="snackbar"></div>
+
+<script src="_layout.js"></script>
+<script>
+mountCabinet('objects');
+
+function toggleFilter() {
+  document.querySelector('.cab-filter').classList.toggle('is-open');
+}
+function resetFilter() {
+  document.querySelectorAll('.cab-filter input, .cab-filter select').forEach(x => x.value = '');
+}
+function snackbar(msg, variant='') {
+  const el = document.getElementById('snackbar');
+  el.textContent = msg;
+  el.className = 'snackbar snackbar--visible' + (variant ? ' snackbar--' + variant : '');
+  setTimeout(() => el.className = 'snackbar', 3000);
+}
+
+const OBJECTS = [
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'unpublished' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'archive' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'parser' }
+];
+OBJECTS.forEach((o, i) => o._id = i);
+let curTab = 'active';
+
+const SVG_EXT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>`;
+const SVG_EDIT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
+const SVG_PIN = `<svg viewBox="0 0 24 24" fill="none" stroke="#764FE9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+
+function render() {
+  const f = OBJECTS.filter(o => o.status === curTab);
+  const rows = document.getElementById('obj-rows');
+  if (!f.length) { rows.innerHTML = `<div class="cab-empty" style="padding:32px;text-align:center;color:#9A9A9F;">Нет объектов в этой категории</div>`; return; }
+  rows.innerHTML = f.map(o => `
+    <div class="obj-card" data-oid="${o._id}">
+      <div class="obj-card__main">
+      <div class="obj-card__photo"><img src="../../images/obj-1.png" alt=""></div>
+      <div class="obj-card__top">
+        <div class="obj-c-lot">
+          <div class="obj-c__num">${o.lot}</div>
+          <div class="obj-c__sub">Циан</div>
+        </div>
+        <div class="obj-c-resp">
+          <div class="obj-c__num">${o.agent}</div>
+          <div class="obj-c__sub">${o.agency}</div>
+        </div>
+        <div class="obj-c-type">${o.type}</div>
+        <div class="obj-c-addr">
+          <div><span>${o.addr}</span></div>
+        </div>
+        <div class="obj-c-details">
+          <div>Площадь: <strong>${o.area}</strong></div>
+          <div>Этаж: <strong>${o.floor}</strong></div>
+          <div>Год постройки: <strong>${o.year}</strong></div>
+        </div>
+        <div class="obj-c-price">
+          <div class="obj-c__num">${o.price}</div>
+          <div class="obj-c__sub">${o.pricePerM}</div>
+        </div>
+        <div class="obj-c-bonus">
+          <div class="obj-c__num">${o.bonus}</div>
+          <div class="obj-c__sub">(${o.bonusPct})</div>
+        </div>
+      </div>
+      </div>
+      <div class="obj-card__bottom">
+        <button class="obj-buyers-pill" type="button">${o.buyers} покупателей
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <select class="obj-select"><option>1</option><option>2</option><option>3</option></select>
+        <div class="obj-card__bottom-right">
+          <label class="obj-toggle">
+            <input type="checkbox" ${o.closed?'checked':''}>
+            <span class="obj-toggle__slider"></span>
+            <span>Закрытая продажа</span>
+          </label>
+          <span class="obj-days">Осталось 15 дней</span>
+          <a href="#" class="obj-more">Детали объекта</a>
+          <button class="obj-dots" type="button" aria-label="Ещё">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+document.querySelectorAll('#obj-tabs .cab-text-tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('#obj-tabs .cab-text-tab').forEach(x => x.classList.remove('cab-text-tab--active'));
+  t.classList.add('cab-text-tab--active');
+  curTab = t.dataset.tab;
+  render();
+}));
+document.getElementById('obj-pagination').innerHTML = `<button>‹</button><button class="is-active">1</button><button>2</button><button>3</button><button>›</button>`;
+render();
+
+// === Модалка добавления объекта ===
+function openAddObject()  { document.getElementById('modal-obj').classList.add('is-open'); }
+function closeAddObject() { document.getElementById('modal-obj').classList.remove('is-open'); }
+document.getElementById('modal-obj').addEventListener('click', (e) => { if (e.target.id === 'modal-obj') closeAddObject(); });
+
+function submitObject(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const price = f.get('price').replace(/[^\d]/g, '');
+  const area = parseFloat(String(f.get('area')).replace(',', '.')) || 0;
+  const perM = (price && area) ? Math.round(price / area).toLocaleString('ru-RU') + ' ₽/м²' : '—';
+  OBJECTS.unshift({
+    lot: f.get('lot'), cian: false,
+    agent: 'Уклонский Михаил', agency: 'Агент «Делись»',
+    type: f.get('type'),
+    addr: f.get('addr'),
+    area: f.get('area') + ' м²',
+    floor: f.get('floor') || '—',
+    year: '—',
+    price: Number(price).toLocaleString('ru-RU') + ' ₽',
+    pricePerM: perM,
+    bonus: f.get('bonus') ? Number(f.get('bonus').replace(/[^\d]/g,'')).toLocaleString('ru-RU') + ' ₽' : '—',
+    bonusPct: '—',
+    published: true, closed: false, buyers: 0, status: 'active'
+  });
+  // переключаемся на вкладку «Активные» и показываем новый объект
+  document.querySelectorAll('#obj-tabs .cab-text-tab').forEach(x => x.classList.toggle('cab-text-tab--active', x.dataset.tab === 'active'));
+  curTab = 'active';
+  render();
+  closeAddObject();
+  snackbar('Объект добавлен', 'success');
+  e.target.reset();
+}
+
+// === Меню действий по «•••» ===
+const objMenu = document.createElement('div');
+objMenu.className = 'obj-menu';
+objMenu.style.display = 'none';
+objMenu.innerHTML = `
+  <button class="obj-menu__item" type="button" data-act="edit">Редактировать</button>
+  <button class="obj-menu__item obj-menu__item--sold" type="button" data-act="sold">Продано</button>
+  <button class="obj-menu__item obj-menu__item--unpub" type="button" data-act="unpub">Снять с публикации</button>
+`;
+document.body.appendChild(objMenu);
+let menuOid = null;
+
+function openObjMenu(btn) {
+  const card = btn.closest('[data-oid]');
+  menuOid = card ? Number(card.dataset.oid) : null;
+  objMenu.style.display = 'block';
+  const r = btn.getBoundingClientRect();
+  const left = window.scrollX + r.right - objMenu.offsetWidth;
+  objMenu.style.left = Math.max(8, left) + 'px';
+  objMenu.style.top = (window.scrollY + r.bottom + 8) + 'px';
+}
+function closeObjMenu() { objMenu.style.display = 'none'; menuOid = null; }
+
+document.addEventListener('click', (e) => {
+  const dots = e.target.closest('.obj-dots');
+  if (dots) {
+    e.stopPropagation();
+    if (objMenu.style.display === 'block') closeObjMenu(); else openObjMenu(dots);
+    return;
+  }
+  const item = e.target.closest('.obj-menu__item');
+  if (item) {
+    const o = OBJECTS.find(x => x._id === menuOid);
+    const act = item.dataset.act;
+    if (o) {
+      if (act === 'edit') snackbar('Открыть редактирование объекта');
+      else if (act === 'sold') { o.status = 'archive'; render(); snackbar('Объект отмечен как проданный', 'success'); }
+      else if (act === 'unpub') { o.status = 'unpublished'; render(); snackbar('Объект снят с публикации'); }
+    }
+    closeObjMenu();
+    return;
+  }
+  if (!e.target.closest('.obj-menu')) closeObjMenu();
+});
+window.addEventListener('scroll', closeObjMenu, true);
+</script>
+</body>
+</html>
