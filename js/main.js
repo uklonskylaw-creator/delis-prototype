@@ -141,7 +141,7 @@ async function renderCatalog() {
     console.warn('Failed to load objects.json', e);
   }
 }
-let _regStatus = 'closed';   /* вкладка реестра: closed | live */
+let _regStatus = 'live';   /* вкладка реестра: live | closed */
 
 function byStatus(items) {
   return items.filter(o => (o.status || 'closed') === _regStatus);
@@ -177,6 +177,8 @@ function initSubmenu() {
 function initRegTabs() {
   const tabs = document.querySelectorAll('[data-reg-tab]');
   if (!tabs.length) return;
+  // подсветка всегда совпадает с тем, что показано
+  tabs.forEach(b => b.classList.toggle('is-active', b.dataset.regTab === _regStatus));
   tabs.forEach(btn => btn.addEventListener('click', () => {
     _regStatus = btn.dataset.regTab;
     tabs.forEach(b => b.classList.toggle('is-active', b === btn));
@@ -274,19 +276,16 @@ function objListRow(o) {
        ['Даты показов', o.showDates, ''],
        ['Комиссия за сделку', o.commission, ' cat-row__price-line--commission']];
 
-  const side = closed
-    ? `<div class="cat-row__result">
-         <div class="cat-row__result-title">Итоги аукциона</div>
-         <div class="cat-row__result-grid">
-           <div><b>${o.requests}</b><span>обращений</span></div>
-           <div><b>${o.shows}</b><span>показов</span></div>
-           <div><b>${o.offers}</b><span>предложений</span></div>
-         </div>
-       </div>`
-    : `<div class="cat-row__result">
-         <div class="cat-row__result-title">Аукцион идёт</div>
-         <a href="${href}" class="btn btn--dark cat-row__result-btn">Записаться на показ</a>
-       </div>`;
+  const b = o.broker || {};
+  const side = `
+    <div class="cat-row__broker">
+      <div class="cat-row__broker-avatar">${b.initials || '—'}</div>
+      <div class="cat-row__broker-info">
+        <div class="cat-row__broker-name">${b.name || ''}</div>
+        <div class="cat-row__broker-agency">${b.agency || ''}</div>
+        <div class="cat-row__broker-phone">${b.phone || ''}</div>
+      </div>
+    </div>`;
 
   row.innerHTML = `
     <a href="${href}" class="cat-row__photo">

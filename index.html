@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260912s">
-<link rel="stylesheet" href="css/base.css?v=20260912s">
-<link rel="stylesheet" href="css/main.css?v=20260912s">
+<link rel="stylesheet" href="css/tokens.css?v=20260912y">
+<link rel="stylesheet" href="css/base.css?v=20260912y">
+<link rel="stylesheet" href="css/main.css?v=20260912y">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -86,21 +86,21 @@
 
       <ul class="stats">
         <li class="stats__item stats__item--1">
-          <span class="stats__num">100<sup>+</sup></span>
-          <span class="stats__label">Звонков<br>за две недели<br>кампании</span>
+          <span class="stats__num">35 000<sup>+</sup></span>
+          <span class="stats__label">Аукционов закрыто<br>по методу Санкина<br>с 2013 года</span>
         </li>
         <li class="stats__item stats__item--2">
-          <span class="stats__num">50<sup>+</sup></span>
-          <span class="stats__label">Записей<br>на просмотр<br>объекта</span>
+          <span class="stats__num">280 <span class="stats__unit">млрд ₽</span></span>
+          <span class="stats__label">Недвижимости продано<br>во всех сегментах<br>рынка</span>
         </li>
         <li class="stats__item stats__item--3">
-          <span class="stats__num">25<sup>+</sup></span>
-          <span class="stats__label">Показов<br>за два дня<br>открытых дверей</span>
+          <span class="stats__num">110<sup>+</sup></span>
+          <span class="stats__label">Городов<br>в партнёрской сети<br>по России</span>
           <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
         </li>
         <li class="stats__item stats__item--4">
-          <span class="stats__num">8<sup>+</sup></span>
-          <span class="stats__label">Участников<br>торгов<br>за объект</span>
+          <span class="stats__num">14 <span class="stats__unit">дней</span></span>
+          <span class="stats__label">Наш средний срок<br>продажи объекта<br>на аукционе</span>
           <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
         </li>
       </ul>
@@ -114,117 +114,6 @@
   </div>
 </section>
 
-<!-- ========== SEARCH BAR (под hero) ========== -->
-<section class="searchbar-section">
-  <div class="searchbar-section__container">
-   <div class="searchbar-wrap">
-    <div class="searchbar">
-      <!-- Переключатель вида: карточки (3-полосы) / таблица (плитка) -->
-      <div class="view-toggle" id="view-toggle">
-        <button class="view-toggle__btn" data-view="cards" aria-label="Карточки">
-          <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="16">
-            <rect x="0" y="1" width="3" height="3" rx="1" fill="currentColor"/>
-            <rect x="0" y="6.5" width="3" height="3" rx="1" fill="currentColor"/>
-            <rect x="0" y="12" width="3" height="3" rx="1" fill="currentColor"/>
-            <rect x="5" y="1.5" width="15" height="2" rx="1" fill="currentColor"/>
-            <rect x="5" y="7" width="15" height="2" rx="1" fill="currentColor"/>
-            <rect x="5" y="12.5" width="15" height="2" rx="1" fill="currentColor"/>
-          </svg>
-        </button>
-        <button class="view-toggle__btn" data-view="table" aria-label="Таблица">
-          <svg viewBox="0 0 22 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="22" height="16">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 11.2c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2H2.35C1.05 16 0 15.1 0 14v-.8c0-1.1 1.05-2 2.35-2H8zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4H8c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4H2.35z"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3 11.2c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2h-5.65c-1.3 0-2.35-.9-2.35-2v-.8c0-1.1 1.05-2 2.35-2h5.65zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4h5.65c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4h-5.65z"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 5.6c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2H2.35C1.05 10.4 0 9.5 0 8.4v-.8c0-1.1 1.05-2 2.35-2H8zM2.35 7.2c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4H8c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4H2.35z"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3 5.6c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2h-5.65c-1.3 0-2.35-.9-2.35-2v-.8c0-1.1 1.05-2 2.35-2h5.65zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4h5.65c.26 0 .47-.18.47-.4v-.8c0-.22-.21-.4-.47-.4h-5.65z"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2H2.35C1.05 4.8 0 3.9 0 2.8V2C0 .9 1.05 0 2.35 0H8zM2.35 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4H8c.26 0 .47-.18.47-.4V2c0-.22-.21-.4-.47-.4H2.35z"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3 0c1.3 0 2.35.9 2.35 2v.8c0 1.1-1.05 2-2.35 2h-5.65c-1.3 0-2.35-.9-2.35-2V2c0-1.1 1.05-2 2.35-2h5.65zm-5.65 1.6c-.26 0-.47.18-.47.4v.8c0 .22.2.4.47.4h5.65c.26 0 .47-.18.47-.4V2c0-.22-.21-.4-.47-.4h-5.65z"/>
-          </svg>
-        </button>
-      </div>
-
-      <button class="searchbar__map" type="button">
-        <img src="images/icon-map.svg" alt="" width="24" height="24">
-        Показать на карте
-      </button>
-      <div class="searchbar__input">
-        <input type="text" id="search-input" placeholder="Поиск по базе: ID, метро, город, район, ЖК, улица, застройщик...">
-        <img src="images/icon-search.svg" alt="" width="22" height="22">
-      </div>
-
-      <!-- Сортировка — выпадающий список -->
-      <div class="searchbar__sort-wrap">
-        <button class="searchbar__sort" type="button" id="sort-btn" onclick="document.getElementById('sort-dropdown').classList.toggle('is-open'); this.classList.toggle('is-open')">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="16" height="16"><path d="M4 3v10M4 3l-2 2M4 3l2 2M12 13V3M12 13l-2-2M12 13l2-2"/></svg>
-          <span id="sort-label">С меньшей площадью</span>
-          <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="searchbar__sort-chevron"><path d="M1 1.5l5 5 5-5"/></svg>
-        </button>
-        <div class="searchbar__sort-dropdown" id="sort-dropdown">
-          <button type="button" data-sort="area-asc"   class="searchbar__sort-option is-active">С меньшей площадью</button>
-          <button type="button" data-sort="area-desc"  class="searchbar__sort-option">С большей площадью</button>
-          <button type="button" data-sort="price-asc"  class="searchbar__sort-option">С меньшей ценой</button>
-          <button type="button" data-sort="price-desc" class="searchbar__sort-option">С большей ценой</button>
-        </div>
-      </div>
-
-      <button class="searchbar__filters btn btn--dark" type="button" onclick="openFilters()">
-        <img src="images/icon-settings.svg" alt="" width="24" height="24">
-        Все фильтры
-      </button>
-    </div>
-
-    <!-- Список объектов под строкой поиска (внутри того же контейнера) -->
-    <div class="main-list" id="main-list" data-view="list" style="display:none;"></div>
-   </div>
-
-    <!-- Карта (открывается по клику «Показать на карте») -->
-    <div class="map-view" id="map-view" style="display:none;">
-      <div class="map-view__canvas">
-        <!-- Контейнер для Яндекс.Карты -->
-        <div id="ymap" class="map-view__ymap"></div>
-
-        <!-- Карточка объекта (показывается при клике на пин) -->
-        <article class="map-card" id="map-card">
-          <div class="map-card__photo">
-            <img src="images/obj-1.png" alt="" class="map-card__img">
-            <span class="map-card__badge">Объект «Делись»</span>
-            <button class="map-card__heart" type="button" aria-label="В избранное">
-              <img src="images/icon-heart-outline.svg" alt="" width="16" height="14">
-            </button>
-          </div>
-          <div class="map-card__body">
-            <div class="map-card__title-row">
-              <span class="map-card__type">Студия</span>
-              <span class="map-card__dot">·</span>
-              <span class="map-card__area">39.4 м²</span>
-            </div>
-            <div class="map-card__tags">
-              <span class="map-card__tag">Возможна ипотека</span>
-              <span class="map-card__tag">Вторичка</span>
-            </div>
-            <div class="map-card__addr">
-              <img src="images/icon-pin-purple.svg" alt="" width="12" height="14">
-              <span>Санкт-Петербург, наб. реки Кам…</span>
-            </div>
-            <div class="map-card__metro">
-              <img src="images/icon-metro.svg" alt="" width="13" height="10">
-              <span>Московская</span>
-              <img src="images/icon-walk.svg" alt="" width="9" height="13">
-              <span>10 мин.</span>
-            </div>
-            <div class="map-card__prices">
-              <div class="map-card__price-row"><span>Сумма</span><span class="map-card__dots"></span><b>5 205 000 ₽</b></div>
-              <div class="map-card__price-row"><span>Цена, ₽/м2</span><span class="map-card__dots"></span><b>206 951 ₽/м2</b></div>
-              <div class="map-card__price-row map-card__price-row--commission"><span>Комиссия за сделку</span><span class="map-card__dots"></span><b>1 000 000 ₽</b></div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ========== CATALOG ========== -->
 <section class="catalog">
   <div class="catalog__container">
@@ -232,12 +121,18 @@
     <div class="catalog__panel">
       <div class="catalog__head">
         <h2 class="section-title">Реестр аукционов</h2>
-        <a href="catalog.html" class="btn btn--outline">Весь реестр</a>
+        <div class="catalog__head-actions">
+          <button class="btn btn--outline catalog__filters-btn" type="button" onclick="openFilters()">
+            <img src="images/icon-settings.svg" alt="" width="20" height="20">
+            Все фильтры
+          </button>
+          <a href="catalog.html" class="btn btn--outline">Весь реестр</a>
+        </div>
       </div>
 
       <div class="reg-tabs">
-        <button type="button" class="reg-tab is-active" data-reg-tab="closed">Закрытые аукционы</button>
-        <button type="button" class="reg-tab" data-reg-tab="live">Идёт аукцион</button>
+        <button type="button" class="reg-tab is-active" data-reg-tab="live">Идёт аукцион</button>
+        <button type="button" class="reg-tab" data-reg-tab="closed">Закрытые аукционы</button>
       </div>
 
       <div class="catalog__grid" id="catalog-grid">
@@ -342,7 +237,11 @@
     <div class="form-banner form-banner--photo">
       <img src="images/form-banner-sankin.jpg" alt="Михаил Уклонский и Александр Санкин" class="form-banner__bg">
       <div class="form-banner__left">
-        <h2 class="form-banner__title">Продадим вашу<br>недвижимость за 14 дней<br>по методике Санкина</h2>
+        <h2 class="form-banner__title">Продадим вашу<br>недвижимость<br>за 14 дней</h2>
+      </div>
+      <div class="form-banner__names">
+        <span class="form-banner__name">Михаил Уклонский</span>
+        <span class="form-banner__name">Александр Санкин</span>
       </div>
     </div>
 
@@ -429,27 +328,14 @@
 
     <div class="filter-select" onclick="this.classList.toggle('is-open')">
       <div class="filter-select__head">
-        <span class="filter-select__placeholder">Выбрать район</span>
+        <span class="filter-select__placeholder">Выбрать город</span>
         <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="filter-select__chevron"><path d="M1 1.5l5 5 5-5"/></svg>
       </div>
       <div class="filter-select__dropdown" data-group="district" onclick="event.stopPropagation()">
-        <label class="filter-check"><input type="checkbox"><span>Московский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Калининский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Курортный</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Красногвардейский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Фрунзенский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Кронштадтский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Невский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Пушкинский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Красносельский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Приморский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Выборгский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Центральный</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Петродворцовый</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Василеостровский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Петроградский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Адмиралтейский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Колпинский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Санкт-Петербург</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Ленинградская область</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Москва</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Московская область</span></label>
       </div>
     </div>
 
@@ -540,8 +426,8 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/objects.js?v=20260912s"></script>
-<script src="js/favorites.js?v=20260912s"></script>
-<script src="js/main.js?v=20260912s"></script>
+<script src="data/objects.js?v=20260912y"></script>
+<script src="js/favorites.js?v=20260912y"></script>
+<script src="js/main.js?v=20260912y"></script>
 </body>
 </html>

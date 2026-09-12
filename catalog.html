@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260912s">
-<link rel="stylesheet" href="css/base.css?v=20260912s">
-<link rel="stylesheet" href="css/main.css?v=20260912s">
+<link rel="stylesheet" href="css/tokens.css?v=20260912y">
+<link rel="stylesheet" href="css/base.css?v=20260912y">
+<link rel="stylesheet" href="css/main.css?v=20260912y">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body class="page-catalog">
@@ -70,8 +70,8 @@
 <section class="searchbar-section">
   <div class="searchbar-section__container">
     <div class="reg-tabs">
-      <button type="button" class="reg-tab is-active" data-reg-tab="closed">Закрытые аукционы</button>
-      <button type="button" class="reg-tab" data-reg-tab="live">Идёт аукцион</button>
+      <button type="button" class="reg-tab is-active" data-reg-tab="live">Идёт аукцион</button>
+      <button type="button" class="reg-tab" data-reg-tab="closed">Закрытые аукционы</button>
     </div>
    <div class="searchbar-wrap">
     <div class="searchbar">
@@ -243,27 +243,14 @@
 
     <div class="filter-select" onclick="this.classList.toggle('is-open')">
       <div class="filter-select__head">
-        <span class="filter-select__placeholder">Выбрать район</span>
+        <span class="filter-select__placeholder">Выбрать город</span>
         <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="filter-select__chevron"><path d="M1 1.5l5 5 5-5"/></svg>
       </div>
       <div class="filter-select__dropdown" data-group="district" onclick="event.stopPropagation()">
-        <label class="filter-check"><input type="checkbox"><span>Московский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Калининский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Курортный</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Красногвардейский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Фрунзенский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Кронштадтский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Невский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Пушкинский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Красносельский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Приморский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Выборгский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Центральный</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Петродворцовый</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Василеостровский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Петроградский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Адмиралтейский</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Колпинский</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Санкт-Петербург</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Ленинградская область</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Москва</span></label>
+        <label class="filter-check"><input type="checkbox"><span>Московская область</span></label>
       </div>
     </div>
 
@@ -351,8 +338,8 @@ function openFilters() { document.getElementById('filter-overlay').classList.add
 function closeFilters() { document.getElementById('filter-overlay').classList.remove('is-open'); document.body.style.overflow=''; }
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFilters(); });
 </script>
-<script src="data/objects.js?v=20260912s"></script>
-<script src="js/favorites.js?v=20260912s"></script>
-<script src="js/main.js?v=20260912s"></script>
+<script src="data/objects.js?v=20260912y"></script>
+<script src="js/favorites.js?v=20260912y"></script>
+<script src="js/main.js?v=20260912y"></script>
 </body>
 </html>

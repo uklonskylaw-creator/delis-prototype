@@ -23,7 +23,13 @@ window.__OBJECTS = [
     "offers": 17,
     "price": "4 350 000 ₽",
     "pricePerM": "194 196",
-    "commission": "130 500 ₽"
+    "commission": "130 500 ₽",
+    "broker": {
+      "name": "Пирогова Елена Владимировна",
+      "agency": "Уклонский и Партнёры",
+      "phone": "+7 (999) 000-01-11",
+      "initials": "ПЕ"
+    }
   },
   {
     "id": "zakr-2",
@@ -48,7 +54,13 @@ window.__OBJECTS = [
     "offers": 22,
     "price": "9 150 000 ₽",
     "pricePerM": "166 971",
-    "commission": "274 500 ₽"
+    "commission": "274 500 ₽",
+    "broker": {
+      "name": "Верховых Александра Сергеевна",
+      "agency": "Квартирный клуб",
+      "phone": "+7 (999) 000-01-12",
+      "initials": "ВА"
+    }
   },
   {
     "id": "zakr-3",
@@ -73,7 +85,13 @@ window.__OBJECTS = [
     "offers": 14,
     "price": "4 980 000 ₽",
     "pricePerM": "150 453",
-    "commission": "149 400 ₽"
+    "commission": "149 400 ₽",
+    "broker": {
+      "name": "Мартынов Игорь Олегович",
+      "agency": "Северный вектор",
+      "phone": "+7 (999) 000-01-13",
+      "initials": "МИ"
+    }
   },
   {
     "id": "zakr-4",
@@ -98,7 +116,13 @@ window.__OBJECTS = [
     "offers": 19,
     "price": "14 700 000 ₽",
     "pricePerM": "187 261",
-    "commission": "441 000 ₽"
+    "commission": "441 000 ₽",
+    "broker": {
+      "name": "Соколова Марина Андреевна",
+      "agency": "Уклонский и Партнёры",
+      "phone": "+7 (999) 000-01-14",
+      "initials": "СМ"
+    }
   },
   {
     "id": "zakr-5",
@@ -123,7 +147,13 @@ window.__OBJECTS = [
     "offers": 11,
     "price": "11 200 000 ₽",
     "pricePerM": "78 873",
-    "commission": "336 000 ₽"
+    "commission": "336 000 ₽",
+    "broker": {
+      "name": "Ковалёв Дмитрий Петрович",
+      "agency": "Дом и ключи",
+      "phone": "+7 (999) 000-01-15",
+      "initials": "КД"
+    }
   },
   {
     "id": "zakr-6",
@@ -148,7 +178,13 @@ window.__OBJECTS = [
     "offers": 24,
     "price": "9 400 000 ₽",
     "pricePerM": "228 155",
-    "commission": "282 000 ₽"
+    "commission": "282 000 ₽",
+    "broker": {
+      "name": "Ефимова Ольга Николаевна",
+      "agency": "Невский стандарт",
+      "phone": "+7 (999) 000-01-16",
+      "initials": "ЕО"
+    }
   },
   {
     "id": "zakr-7",
@@ -173,7 +209,13 @@ window.__OBJECTS = [
     "offers": 9,
     "price": "18 600 000 ₽",
     "pricePerM": "193 750",
-    "commission": "558 000 ₽"
+    "commission": "558 000 ₽",
+    "broker": {
+      "name": "Гусев Артём Валерьевич",
+      "agency": "Уклонский и Партнёры",
+      "phone": "+7 (999) 000-01-17",
+      "initials": "ГА"
+    }
   },
   {
     "id": "zakr-8",
@@ -198,7 +240,13 @@ window.__OBJECTS = [
     "offers": 16,
     "price": "5 250 000 ₽",
     "pricePerM": "144 231",
-    "commission": "157 500 ₽"
+    "commission": "157 500 ₽",
+    "broker": {
+      "name": "Лапшина Ирина Борисовна",
+      "agency": "Квартирный клуб",
+      "phone": "+7 (999) 000-01-18",
+      "initials": "ЛИ"
+    }
   },
   {
     "id": "aukcion-1",
@@ -218,7 +266,13 @@ window.__OBJECTS = [
     "showDates": "18 и 20 сентября",
     "commission": "250 000 ₽",
     "price": "6 500 000 ₽",
-    "pricePerM": "111 684"
+    "pricePerM": "111 684",
+    "broker": {
+      "name": "Романов Сергей Ильич",
+      "agency": "Северный вектор",
+      "phone": "+7 (999) 000-01-19",
+      "initials": "РС"
+    }
   },
   {
     "id": "aukcion-2",
@@ -238,7 +292,13 @@ window.__OBJECTS = [
     "showDates": "19 и 21 сентября",
     "commission": "150 000 ₽",
     "price": "4 300 000 ₽",
-    "pricePerM": "150 877"
+    "pricePerM": "150 877",
+    "broker": {
+      "name": "Белова Татьяна Юрьевна",
+      "agency": "Уклонский и Партнёры",
+      "phone": "+7 (999) 000-01-20",
+      "initials": "БТ"
+    }
   },
   {
     "id": "aukcion-3",
@@ -258,7 +318,13 @@ window.__OBJECTS = [
     "showDates": "25 и 27 сентября",
     "commission": "180 000 ₽",
     "price": "4 800 000 ₽",
-    "pricePerM": "140 762"
+    "pricePerM": "140 762",
+    "broker": {
+      "name": "Зайцев Максим Андреевич",
+      "agency": "Дом и ключи",
+      "phone": "+7 (999) 000-01-21",
+      "initials": "ЗМ"
+    }
   },
   {
     "id": "aukcion-4",
@@ -278,6 +344,12 @@ window.__OBJECTS = [
     "showDates": "22 и 24 сентября",
     "commission": "400 000 ₽",
     "price": "12 000 000 ₽",
-    "pricePerM": "71 429"
+    "pricePerM": "71 429",
+    "broker": {
+      "name": "Носова Анна Дмитриевна",
+      "agency": "Невский стандарт",
+      "phone": "+7 (999) 000-01-22",
+      "initials": "НА"
+    }
   }
 ];

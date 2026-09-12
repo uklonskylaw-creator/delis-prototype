@@ -28,19 +28,37 @@
     const box = document.querySelector('[data-obj-panel]');
     if (!box) return;
     const closed = o.status === 'closed';
+    const b = o.broker || {};
+
+    const prices = closed
+      ? `<div class="obj-deal">
+           <div class="obj-deal__col">
+             <span class="obj-deal__label">Начальная цена</span>
+             <b class="obj-deal__start">${o.startPrice}</b>
+           </div>
+           <div class="obj-deal__col obj-deal__col--final">
+             <span class="obj-deal__label">Цена продажи</span>
+             <b class="obj-deal__final">${o.salePrice}</b>
+           </div>
+         </div>`
+      : `<div class="obj-deal">
+           <div class="obj-deal__col">
+             <span class="obj-deal__label">Начальная цена</span>
+             <b class="obj-deal__start">${o.startPrice}</b>
+           </div>
+           <div class="obj-deal__col obj-deal__col--final">
+             <span class="obj-deal__label">Комиссия за сделку</span>
+             <b class="obj-deal__final">${o.commission}</b>
+           </div>
+         </div>`;
 
     const rows = closed
-      ? [['Начальная цена', o.startPrice],
-         ['Цена продажи', o.salePrice, true],
-         ['Срок продажи', o.days + ' ' + plur(o.days, 'день', 'дня', 'дней')],
-         ['Площадь', o.area]]
-      : [['Начальная цена', o.startPrice],
-         ['Даты показов', o.showDates],
-         ['Комиссия за сделку', o.commission, true],
-         ['Площадь', o.area]];
+      ? [['Площадь', o.area]]
+      : [['Площадь', o.area], ['Даты показов', o.showDates]];
 
     const stats = closed
-      ? `<div class="obj-panel__stats">
+      ? `<div class="obj-panel__stats obj-panel__stats--four">
+           <div><b>${o.days}</b><span>${plur(o.days, 'день', 'дня', 'дней')} продажи</span></div>
            <div><b>${o.requests}</b><span>обращений</span></div>
            <div><b>${o.shows}</b><span>показов</span></div>
            <div><b>${o.offers}</b><span>предложений</span></div>
@@ -51,19 +69,32 @@
       ? ''
       : `<a href="../index.html#form" class="btn btn--dark obj-panel__btn">Записаться на показ</a>`;
 
+    const broker = `
+      <div class="obj-broker">
+        <div class="obj-broker__avatar">${b.initials || '—'}</div>
+        <div class="obj-broker__info">
+          <div class="obj-broker__role">Брокер объекта</div>
+          <div class="obj-broker__name">${b.name || ''}</div>
+          <div class="obj-broker__agency">${b.agency || ''}</div>
+          <a href="tel:${(b.phone || '').replace(/[^+\d]/g, '')}" class="obj-broker__phone">${b.phone || ''}</a>
+        </div>
+      </div>`;
+
     box.innerHTML = `
       <div class="obj-panel__status obj-panel__status--${closed ? 'sold' : 'live'}">
         ${closed ? 'Аукцион закрыт · ' + o.soldAt : 'Аукцион идёт'}
       </div>
+      ${prices}
       <div class="obj-prices">
-        ${rows.map(([k, v, accent]) => `
-          <div class="obj-prices__row${accent ? ' obj-prices__row--commission' : ''}">
+        ${rows.map(([k, v]) => `
+          <div class="obj-prices__row">
             <span class="obj-prices__label">${k}</span>
             <span class="obj-prices__dots"></span>
             <b class="obj-prices__val">${v}</b>
           </div>`).join('')}
       </div>
       ${stats}
+      ${broker}
       ${action}
     `;
   }
