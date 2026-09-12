@@ -47,7 +47,7 @@
              <b class="obj-deal__start">${o.startPrice}</b>
            </div>
            <div class="obj-deal__col obj-deal__col--final">
-             <span class="obj-deal__label">Комиссия за сделку</span>
+             <span class="obj-deal__label">Комиссия за сделку${o.commissionType === 'percent' ? ' (от цены продажи)' : ''}</span>
              <b class="obj-deal__final">${o.commission}</b>
            </div>
          </div>`;
@@ -65,9 +65,19 @@
          </div>`
       : '';
 
-    const action = closed
-      ? ''
-      : `<a href="../index.html#form" class="btn btn--dark obj-panel__btn">Записаться на показ</a>`;
+    const extra = `
+      <div class="obj-panel__links">
+        <button type="button" class="obj-link${o.video ? '' : ' obj-link--off'}"${o.video ? '' : ' disabled'}>
+          <img src="../images/icon-presentation.svg" alt="" width="18" height="18">
+          Видеообзор
+        </button>
+        <button type="button" class="obj-link${o.site ? '' : ' obj-link--off'}"${o.site ? '' : ' disabled'}>
+          <img src="../images/icon-external-link.svg" alt="" width="18" height="18">
+          Сайт объекта
+        </button>
+      </div>`;
+
+    const action = (closed ? '' : `<a href="../index.html#form" class="btn btn--brand btn--sm obj-panel__btn">Записаться на показ</a>`) + extra;
 
     const broker = `
       <div class="obj-broker">
@@ -85,6 +95,7 @@
 
     box.innerHTML = `
       <div class="obj-panel__status obj-panel__status--${closed ? 'sold' : 'live'}">
+        ${closed ? '' : '<i class="obj-panel__pulse"></i>'}
         ${closed ? 'Аукцион закрыт · ' + o.soldAt : 'Аукцион идёт'}
       </div>
       ${prices}

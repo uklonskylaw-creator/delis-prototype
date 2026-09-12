@@ -31,7 +31,12 @@ window.__OBJECTS = [
       "initials": "ПЕ",
       "photo": "images/broker-1.jpg",
       "logo": "images/agency-uip.jpg"
-    }
+    },
+    "lat": 59.945,
+    "lon": 30.372,
+    "mapLabel": "4,3 млн",
+    "video": false,
+    "site": false
   },
   {
     "id": "zakr-2",
@@ -64,7 +69,12 @@ window.__OBJECTS = [
       "initials": "ВА",
       "photo": "images/broker-2.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 59.866,
+    "lon": 30.321,
+    "mapLabel": "9,2 млн",
+    "video": true,
+    "site": false
   },
   {
     "id": "zakr-3",
@@ -97,7 +107,12 @@ window.__OBJECTS = [
       "initials": "МИ",
       "photo": "images/broker-3.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 60.047,
+    "lon": 30.445,
+    "mapLabel": "5 млн",
+    "video": false,
+    "site": false
   },
   {
     "id": "zakr-4",
@@ -130,7 +145,12 @@ window.__OBJECTS = [
       "initials": "СМ",
       "photo": "images/broker-4.jpg",
       "logo": "images/agency-uip.jpg"
-    }
+    },
+    "lat": 59.942,
+    "lon": 30.281,
+    "mapLabel": "14,7 млн",
+    "video": false,
+    "site": true
   },
   {
     "id": "zakr-5",
@@ -163,7 +183,12 @@ window.__OBJECTS = [
       "initials": "КД",
       "photo": "images/broker-1.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 60.018,
+    "lon": 30.648,
+    "mapLabel": "11,2 млн",
+    "video": false,
+    "site": false
   },
   {
     "id": "zakr-6",
@@ -196,7 +221,12 @@ window.__OBJECTS = [
       "initials": "ЕО",
       "photo": "images/broker-2.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 59.972,
+    "lon": 30.248,
+    "mapLabel": "9,4 млн",
+    "video": true,
+    "site": false
   },
   {
     "id": "zakr-7",
@@ -229,7 +259,12 @@ window.__OBJECTS = [
       "initials": "ГА",
       "photo": "images/broker-3.jpg",
       "logo": "images/agency-uip.jpg"
-    }
+    },
+    "lat": 59.931,
+    "lon": 30.36,
+    "mapLabel": "18,6 млн",
+    "video": false,
+    "site": false
   },
   {
     "id": "zakr-8",
@@ -262,7 +297,12 @@ window.__OBJECTS = [
       "initials": "ЛИ",
       "photo": "images/broker-4.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 59.907,
+    "lon": 30.509,
+    "mapLabel": "5,2 млн",
+    "video": false,
+    "site": false
   },
   {
     "id": "aukcion-1",
@@ -290,7 +330,13 @@ window.__OBJECTS = [
       "initials": "РС",
       "photo": "images/broker-1.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 60.013,
+    "lon": 30.396,
+    "mapLabel": "6,5 млн",
+    "commissionType": "fixed",
+    "video": true,
+    "site": true
   },
   {
     "id": "aukcion-2",
@@ -308,7 +354,7 @@ window.__OBJECTS = [
     "district": "Санкт-Петербург",
     "startPrice": "4 300 000 ₽",
     "showDates": "19 и 21 сентября",
-    "commission": "150 000 ₽",
+    "commission": "3 %",
     "price": "4 300 000 ₽",
     "pricePerM": "150 877",
     "broker": {
@@ -318,7 +364,13 @@ window.__OBJECTS = [
       "initials": "БТ",
       "photo": "images/broker-2.jpg",
       "logo": "images/agency-uip.jpg"
-    }
+    },
+    "lat": 59.972,
+    "lon": 30.251,
+    "mapLabel": "4,3 млн",
+    "commissionType": "percent",
+    "video": false,
+    "site": false
   },
   {
     "id": "aukcion-3",
@@ -346,7 +398,13 @@ window.__OBJECTS = [
       "initials": "ЗМ",
       "photo": "images/broker-3.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 59.988,
+    "lon": 30.313,
+    "mapLabel": "4,8 млн",
+    "commissionType": "fixed",
+    "video": true,
+    "site": false
   },
   {
     "id": "aukcion-4",
@@ -364,7 +422,7 @@ window.__OBJECTS = [
     "district": "Ленинградская область",
     "startPrice": "12 000 000 ₽",
     "showDates": "22 и 24 сентября",
-    "commission": "400 000 ₽",
+    "commission": "3 %",
     "price": "12 000 000 ₽",
     "pricePerM": "71 429",
     "broker": {
@@ -374,6 +432,12 @@ window.__OBJECTS = [
       "initials": "НА",
       "photo": "images/broker-4.jpg",
       "logo": "images/agency-sankin.jpg"
-    }
+    },
+    "lat": 60.152,
+    "lon": 30.515,
+    "mapLabel": "12 млн",
+    "commissionType": "percent",
+    "video": false,
+    "site": true
   }
 ];

@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260913b">
-<link rel="stylesheet" href="css/base.css?v=20260913b">
-<link rel="stylesheet" href="css/main.css?v=20260913b">
+<link rel="stylesheet" href="css/tokens.css?v=20260913g">
+<link rel="stylesheet" href="css/base.css?v=20260913g">
+<link rel="stylesheet" href="css/main.css?v=20260913g">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body class="page-catalog">
@@ -135,41 +135,7 @@
         <div id="ymap" class="map-view__ymap"></div>
 
         <!-- Карточка объекта (показывается при клике на пин) -->
-        <article class="map-card" id="map-card">
-          <div class="map-card__photo">
-            <img src="images/obj-1.png" alt="" class="map-card__img">
-            <span class="map-card__badge">Объект «Делись»</span>
-            <button class="map-card__heart" type="button" aria-label="В избранное">
-              <img src="images/icon-heart-outline.svg" alt="" width="16" height="14">
-            </button>
-          </div>
-          <div class="map-card__body">
-            <div class="map-card__title-row">
-              <span class="map-card__type">Студия</span>
-              <span class="map-card__dot">·</span>
-              <span class="map-card__area">39.4 м²</span>
-            </div>
-            <div class="map-card__tags">
-              <span class="map-card__tag">Возможна ипотека</span>
-              <span class="map-card__tag">Вторичка</span>
-            </div>
-            <div class="map-card__addr">
-              <img src="images/icon-pin-purple.svg" alt="" width="12" height="14">
-              <span>Санкт-Петербург, наб. реки Кам…</span>
-            </div>
-            <div class="map-card__metro">
-              <img src="images/icon-metro.svg" alt="" width="13" height="10">
-              <span>Московская</span>
-              <img src="images/icon-walk.svg" alt="" width="9" height="13">
-              <span>10 мин.</span>
-            </div>
-            <div class="map-card__prices">
-              <div class="map-card__price-row"><span>Сумма</span><span class="map-card__dots"></span><b>5 205 000 ₽</b></div>
-              <div class="map-card__price-row"><span>Цена, ₽/м2</span><span class="map-card__dots"></span><b>206 951 ₽/м2</b></div>
-              <div class="map-card__price-row map-card__price-row--commission"><span>Комиссия за сделку</span><span class="map-card__dots"></span><b>1 000 000 ₽</b></div>
-            </div>
-          </div>
-        </article>
+        <article class="map-card" id="map-card"></article>
 
       </div>
     </div>
@@ -333,8 +299,8 @@ function openFilters() { document.getElementById('filter-overlay').classList.add
 function closeFilters() { document.getElementById('filter-overlay').classList.remove('is-open'); document.body.style.overflow=''; }
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFilters(); });
 </script>
-<script src="data/objects.js?v=20260913b"></script>
-<script src="js/favorites.js?v=20260913b"></script>
-<script src="js/main.js?v=20260913b"></script>
+<script src="data/objects.js?v=20260913g"></script>
+<script src="js/favorites.js?v=20260913g"></script>
+<script src="js/main.js?v=20260913g"></script>
 </body>
 </html>

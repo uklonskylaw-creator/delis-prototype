@@ -174,6 +174,40 @@ function initSubmenu() {
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('is-open')));
 }
 
+/* Карточка объекта, которая открывается по метке на карте */
+function fillMapCard(id) {
+  const box = document.getElementById('map-card');
+  const o = _catalogItems.find(x => x.id === id);
+  if (!box || !o) return;
+  const closed = o.status === 'closed';
+  const rows = closed
+    ? [['Начальная цена', o.startPrice], ['Цена продажи', o.salePrice], ['Срок продажи', o.days + ' ' + plurDays(o.days)]]
+    : [['Начальная цена', o.startPrice], ['Даты показов', o.showDates], ['Комиссия за сделку', o.commission]];
+  box.innerHTML = `
+    <a href="${objectHref(o.id)}" class="map-card__photo">
+      <img src="${o.image}" alt="${o.title}" class="map-card__img">
+      <span class="map-card__badge">${closed ? 'Продан · ' + o.soldAt : 'Идёт аукцион'}</span>
+    </a>
+    <div class="map-card__body">
+      <div class="map-card__title-row">
+        <span class="map-card__type">${o.title}</span>
+      </div>
+      <div class="map-card__addr">
+        <img src="images/icon-pin-purple.svg" alt="" width="12" height="14">
+        <span>${o.city}, ${o.address}</span>
+      </div>
+      <div class="map-card__metro">
+        <img src="images/icon-metro.svg" alt="" width="13" height="10">
+        <span>${o.metro}</span>
+        <img src="images/icon-walk.svg" alt="" width="9" height="13">
+        <span>${o.walk}</span>
+      </div>
+      <div class="map-card__prices">
+        ${rows.map(([k, v]) => `<div class="map-card__price-row"><span>${k}</span><span class="map-card__dots"></span><b>${v}</b></div>`).join('')}
+      </div>
+    </div>`;
+}
+
 function initRegTabs() {
   const tabs = document.querySelectorAll('[data-reg-tab]');
   if (!tabs.length) return;
@@ -588,26 +622,26 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: ['zoomControl']
       }, { suppressMapOpenBlock: true });
 
-      // кастомный layout пина — пилюля с иконкой и текстом
+      // метка объекта: чёрная точка с ценой, остриё в точке адреса
       const PinLayout = ymaps.templateLayoutFactory.createClass(
         '<div class="map-pin">' +
-          '<img src="images/icon-map-pin.svg" alt="" width="14" height="14">' +
           '<span>{{ properties.label }}</span>' +
+          '<i class="map-pin__dot"></i>' +
         '</div>'
       );
 
-      const points = [
-        { coords: [59.985, 30.285], label: '3к мин.' },
-        { coords: [59.955, 30.405], label: '2к мин.' },
-        { coords: [59.925, 30.345], label: '1к мин.' }
-      ];
+      // точки берём из объектов текущей вкладки
+      const points = byStatus(_catalogItems)
+        .filter(o => o.lat && o.lon)
+        .map(o => ({ coords: [o.lat, o.lon], label: o.mapLabel || o.price, id: o.id }));
 
       points.forEach(p => {
         const pm = new ymaps.Placemark(p.coords, { label: p.label }, {
           iconLayout: PinLayout,
-          iconShape: { type: 'Rectangle', coordinates: [[-50, -30], [50, 0]] }
+          iconShape: { type: 'Rectangle', coordinates: [[-46, -44], [46, 0]] }
         });
         pm.events.add('click', () => {
+          fillMapCard(p.id);
           _ymapPlacemarks.forEach(other => {
             const el = other.getOverlay().then(o => {
               if (o && o.getLayout) o.getLayout().then(L => {

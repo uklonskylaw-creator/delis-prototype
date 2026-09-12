@@ -1527,42 +1527,66 @@ body { overflow-x: hidden; }
 .obj-card__badge--live { background: var(--color-brand); }
 
 /* ===== Баннер формы с фотографией ===== */
-/* Фото и форма стоят рядом: форма больше не перекрывает лица */
-.form-section__container--split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  gap: 24px;
-  align-items: stretch;
-}
+/* Баннер заявки: фотография во всю ширину, форма внутри слева */
 .form-banner--photo {
   overflow: hidden;
   border-radius: 20px;
-  height: 480px;
+  height: 520px;
 }
 .form-banner--photo .form-banner__bg {
-  width: 160%;
+  width: 100%;
   max-width: none;
-  left: -52%;
-  right: auto;
-  object-position: left center;
+  left: 0;
+  right: 0;
+  object-position: 72% center;
+}
+.form-banner--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(100deg, rgba(60, 16, 160, .96) 0%, rgba(76, 24, 190, .88) 34%, rgba(76, 24, 190, .28) 54%, rgba(76, 24, 190, 0) 68%);
 }
 .form-banner--photo .form-banner__left {
-  left: 36px;
-  width: 262px;
+  left: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 460px;
+  z-index: 2;
+  gap: 26px;
 }
-.form-banner--photo .form-banner__title { font-size: 27px; }
-
-.form-section__container--split .form-banner__right {
-  position: static;
-  transform: none;
-  width: auto;
-  display: flex;
+.form-banner--photo .form-banner__title {
+  font-size: 32px;
+  line-height: 1.14;
 }
-.form-section__container--split .form-banner__form {
+.form-banner--photo .form-banner__form {
   width: 100%;
-  padding: 32px;
-  justify-content: center;
+  padding: 22px;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+.form-banner--photo .form-banner__fields { gap: 10px; }
+.form-banner--photo .form-banner__fields input {
+  background: rgba(255, 255, 255, .96);
+  border: none;
+  height: 48px;
+}
+.form-banner--photo .form-banner__fields .btn { width: 100%; height: 50px; font-size: 16px; }
+.form-banner--photo .form-banner__check img { filter: brightness(0) invert(1); opacity: .9; }
+.form-banner--photo .form-banner__check u { color: #fff; }
+.form-banner--photo .form-banner__check {
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, .85);
+}
+.form-banner--photo .form-banner__check img { width: 16px; height: 16px; }
 
 /* ===== Панель карточки объекта: итоги аукциона ===== */
 .obj-panel { display: flex; flex-direction: column; gap: 18px; }
@@ -1752,6 +1776,58 @@ body { overflow-x: hidden; }
   white-space: nowrap;
   box-shadow: 0 6px 18px rgba(40, 20, 90, .18);
 }
+
+/* ===== Статус аукциона с живым индикатором ===== */
+.obj-panel__status { display: inline-flex; align-items: center; gap: 8px; }
+.obj-panel__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, .8);
+  animation: obj-pulse 1.8s ease-out infinite;
+}
+@keyframes obj-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, .75); }
+  70%  { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.obj-panel__status--live { animation: obj-glow 2.4s ease-in-out infinite; }
+@keyframes obj-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(118, 79, 233, 0); }
+  50%      { box-shadow: 0 0 18px rgba(118, 79, 233, .55); }
+}
+
+/* ===== Кнопки материалов объекта ===== */
+.obj-panel__links { display: flex; gap: 8px; flex-wrap: wrap; }
+.obj-link {
+  flex: 1 1 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 12px;
+  border-radius: 100px;
+  border: 1.5px solid var(--color-gray-300);
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-black);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.obj-link img { filter: brightness(0); opacity: .7; }
+.obj-link:hover { border-color: var(--color-black); }
+.obj-link--off { opacity: .45; cursor: not-allowed; }
+.obj-link--off:hover { border-color: var(--color-gray-300); }
+.obj-panel__btn { width: 100%; }
+
+/* ===== Анимация только у кликабельных карточек ===== */
+.obj-card:hover { transform: none; box-shadow: 0 0 20px rgba(118, 79, 233, .18); }
+.cat-row:hover { box-shadow: 0 0 18px rgba(118, 79, 233, .16); }
+.stats__item, .hero__pin, .obj-panel__stats { transition: none; }
 
 @media (max-width: 1600px) {
   .header__inner, .hero, .services__container, .catalog__container,
@@ -2444,21 +2520,41 @@ body { overflow-x: hidden; }
 .ymaps-2-1-79-placemark-overlay { z-index: 5; }
 /* Пины — пилюли с тенью (внутри ymaps-метки) */
 .map-pin {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 30px;
-  padding: 0 12px 0 10px;
+  padding: 7px 14px;
   border-radius: 100px;
-  background: #282828;
+  background: var(--color-black);
   color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  font-size: 13px;
+  font-weight: 600;
   white-space: nowrap;
-  transition: background .15s, box-shadow .15s;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .28);
+  transform: translate(-50%, -100%) translateY(-12px);
+}
+.map-pin__dot {
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-black);
+  border: 2px solid #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+}
+.map-pin::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-black);
+  border-radius: 2px;
+  transform: translateX(-50%) rotate(45deg);
 }
 .map-pin img { width: 12px; height: 14px; filter: brightness(0) invert(1); }
 .map-pin:hover { box-shadow: 0 6px 14px rgba(0,0,0,.25); }
@@ -2907,36 +3003,10 @@ body { overflow-x: hidden; }
 /* Реестр и блок формы на узких экранах */
 @media (max-width: 1100px) {
   .form-section__container--split { grid-template-columns: 1fr; }
-  .form-banner--photo { height: 380px; }
-  .form-banner--photo .form-banner__bg {
-    width: 100%;
-    left: 0;
-    object-position: 72% center;
-  }
   /* на узком экране заголовок уходит под фотографию, чтобы не закрывать лица */
-  .form-banner--photo .form-banner__left {
-    width: auto;
-    right: 40px;
-    top: auto;
-    bottom: 28px;
-    transform: none;
-  }
-  .form-banner--photo::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 60%;
-    background: linear-gradient(to top, rgba(46, 16, 92, .92), rgba(46, 16, 92, 0));
-    z-index: 1;
-  }
-  .form-banner--photo .form-banner__left { z-index: 2; }
   .cat-table--registry { overflow-x: auto; }
 }
 @media (max-width: 700px) {
-  .form-banner--photo { height: 320px; }
-  .form-banner--photo .form-banner__title { font-size: 21px; }
-  .form-banner--photo .form-banner__left { left: 20px; right: 20px; bottom: 62px; }
-  .form-banner--photo .form-banner__bg { object-position: 76% center; }
   .form-section__container--split .form-banner__form { padding: 20px; }
   .form-banner__check span { font-size: 11px; }
   .reg-tab { padding: 8px 14px; font-size: 14px; }
@@ -2977,5 +3047,33 @@ body { overflow-x: hidden; }
     font-size: 12px;
     padding: 6px 12px;
   }
-  .form-banner--photo .form-banner__left { bottom: 58px; }
+}
+
+/* Баннер заявки на планшете и телефоне: фото сверху, форма под ним */
+@media (max-width: 1100px) {
+  .form-banner--photo { height: auto; min-height: 0; }
+  .form-banner--photo .form-banner__bg {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-position: 72% center;
+  }
+  .form-banner--photo::before {
+    background: linear-gradient(180deg, rgba(46, 16, 120, .35) 0%, rgba(56, 18, 150, .92) 46%, rgba(56, 18, 150, .98) 100%);
+  }
+  .form-banner--photo .form-banner__left {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: auto;
+    z-index: 2;
+    padding: 220px 28px 28px;
+  }
+  .form-banner--photo .form-banner__title { font-size: 26px; }
+}
+@media (max-width: 700px) {
+  .form-banner--photo .form-banner__left { padding: 180px 18px 20px; }
+  .form-banner--photo .form-banner__title { font-size: 22px; }
+  .form-banner--photo .form-banner__form { padding: 16px; }
 }
