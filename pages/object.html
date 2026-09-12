@@ -7,11 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/tokens.css">
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/main.css?v=20260611f">
-<link rel="stylesheet" href="../css/object.css?v=20260609f">
-<link rel="stylesheet" href="../css/chat.css?v=20260605c">
+<link rel="stylesheet" href="../css/tokens.css?v=20260912s">
+<link rel="stylesheet" href="../css/base.css?v=20260912s">
+<link rel="stylesheet" href="../css/main.css?v=20260912s">
+<link rel="stylesheet" href="../css/object.css?v=20260912s">
+<link rel="stylesheet" href="../css/chat.css?v=20260912s">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -32,22 +32,23 @@
     </div>
 
     <nav class="header__nav">
-      <button class="header__nav-link" type="button">
-        Услуги
-        <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
-      </button>
+      <div class="header__submenu-wrap">
+        <button class="header__nav-link" type="button" data-submenu-btn>
+          Услуги
+          <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
+        </button>
+        <div class="header__submenu" data-submenu>
+          <a href="../index.html#form" class="header__submenu-link">Помощь в продаже</a>
+          <a href="../index.html#form" class="header__submenu-link">Заказать сайт</a>
+        </div>
+      </div>
+      <a href="../catalog.html" class="header__nav-link">Реестр</a>
       <a href="#" class="header__nav-link">О проекте</a>
       <a href="#" class="header__nav-link">Вакансии</a>
       <a href="#" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
-      <button class="header__icon-btn" aria-label="Поиск">
-        <img src="../images/icon-search-header.svg" alt="" width="22" height="22">
-      </button>
-      <a href="#" class="header__icon-btn" aria-label="Избранное">
-        <img src="../images/icon-heart.svg" alt="" width="22" height="22">
-      </a>
       <a href="#" class="header__icon-btn" aria-label="Сообщения">
         <img src="../images/icon-telegram-header.svg" alt="" width="22" height="22">
       </a>
@@ -64,7 +65,7 @@
     <nav class="obj-crumbs">
       <a href="../index.html" class="obj-crumbs__link">Главная</a>
       <span class="obj-crumbs__dot">·</span>
-      <a href="../index.html#top" class="obj-crumbs__link">Топ объекты «Делись»</a>
+      <a href="../catalog.html" class="obj-crumbs__link">Реестр аукционов</a>
       <span class="obj-crumbs__dot">·</span>
       <span class="obj-crumbs__current" data-field="id">ID123456789</span>
     </nav>
@@ -102,23 +103,9 @@
           <div class="obj-head__transport">
             <div class="obj-head__transport-item">
               <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-              <span data-field="metro">м. МЦД Курьяново</span>
+              <span data-field="metro">м. Парк Победы</span>
               <img src="../images/icon-walk.svg" alt="" width="10" height="14">
-              <span>5 мин.</span>
-            </div>
-            <span class="obj-head__transport-sep">·</span>
-            <div class="obj-head__transport-item">
-              <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-              <span data-field="metro">м. МЦД Курьяново</span>
-              <img src="../images/icon-bus.svg" alt="" width="14" height="14">
-              <span>5 мин.</span>
-            </div>
-            <span class="obj-head__transport-sep">·</span>
-            <div class="obj-head__transport-item">
-              <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-              <span data-field="metro">м. МЦД Курьяново</span>
-              <img src="../images/icon-car.svg" alt="" width="14" height="14">
-              <span>5 мин.</span>
+              <span data-field="walk">5 мин.</span>
             </div>
           </div>
         </div>
@@ -175,65 +162,10 @@
           </div>
 
           <!-- Инфо об агенте -->
-          <div class="obj-agent">
-            <div class="obj-agent__avatar">
-              <img src="../images/obj-agent.png" alt="" class="obj-agent__photo">
-              <span class="obj-agent__status"></span>
-            </div>
-            <div class="obj-agent__info">
-              <div class="obj-agent__name">Александра Верховых</div>
-              <div class="obj-agent__agency">ИНВЕСТROOM</div>
-              <div class="obj-agent__row"><span>Телефон:</span><span>+7 911 111 22 33</span></div>
-              <div class="obj-agent__row"><span>Почта:</span><span>p.e.realty@yandex.ru</span></div>
-            </div>
-          </div>
-
-          <!-- Цены с пунктирами -->
-          <div class="obj-prices">
-            <div class="obj-prices__row">
-              <span class="obj-prices__label">Сумма</span>
-              <span class="obj-prices__dots"></span>
-              <b class="obj-prices__val" data-field="price">5 205 000 ₽</b>
-            </div>
-            <div class="obj-prices__row">
-              <span class="obj-prices__label">Цена за м²</span>
-              <span class="obj-prices__dots"></span>
-              <b class="obj-prices__val" data-field="pricePerM">206 951 ₽/м²</b>
-            </div>
-            <div class="obj-prices__row obj-prices__row--commission">
-              <span class="obj-prices__label">Комиссия за сделку</span>
-              <span class="obj-prices__dots"></span>
-              <b class="obj-prices__val" data-field="commission">1 000 000 ₽</b>
-            </div>
-          </div>
-
-          <!-- Кнопки действий -->
-          <div class="obj-actions">
-            <button class="obj-actions__btn" type="button">Написать в чат</button>
-            <button class="obj-actions__btn" type="button" id="obj-book-btn">Забронировать</button>
-            <button class="obj-actions__btn obj-actions__btn--primary" type="button" id="obj-call-btn" data-phone="+7 911 111 22 33">Позвонить</button>
-          </div>
+          <!-- Итоги аукциона / данные идущего аукциона — заполняется из data -->
+          <div class="obj-panel" data-obj-panel></div>
         </div>
 
-        <!-- Промо «Фиксация на 15 дней» -->
-        <div class="obj-promo">
-          <img src="../images/obj-promo-check.svg" alt="" class="obj-promo__check">
-          <div class="obj-promo__body">
-            <h3 class="obj-promo__title">Фиксация на 15 дней</h3>
-            <p class="obj-promo__text">Закрепите клиента за собой и предлагайте наши объекты</p>
-            <div class="obj-promo__footer">
-              <button class="obj-promo__cta" type="button" id="obj-fix-btn">Зафиксировать клиента</button>
-              <div class="obj-promo__nav">
-                <button class="obj-promo__arrow" type="button" aria-label="Назад">
-                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 12L4 7l5-5"/></svg>
-                </button>
-                <button class="obj-promo__arrow obj-promo__arrow--active" type="button" aria-label="Вперёд">
-                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 2l5 5-5 5"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </aside>
 
     </div>
@@ -312,33 +244,15 @@
       <div class="obj-map__card">
         <div class="obj-map__addr">
           <img src="../images/icon-pin-purple.svg" alt="" width="14" height="16">
-          <span>Санкт-Петербург, наб. реки Каменки, 3к3</span>
+          <span data-map-addr>Санкт-Петербург</span>
         </div>
-        <p class="obj-map__desc">Жилой комплекс находится в Приморском районе Санкт-Петербурга Комплекс с 3 сторон</p>
+        <p class="obj-map__desc" data-map-desc></p>
         <div class="obj-map__transport">
           <div class="obj-map__transport-item">
             <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-            <span>Московская</span>
+            <span data-map-metro>Московская</span>
             <img src="../images/icon-walk.svg" alt="" width="10" height="14">
-            <span>10 мин.</span>
-          </div>
-          <div class="obj-map__transport-item">
-            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-            <span>Московская</span>
-            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
-            <span>10 мин.</span>
-          </div>
-          <div class="obj-map__transport-item">
-            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-            <span>Московская</span>
-            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
-            <span>10 мин.</span>
-          </div>
-          <div class="obj-map__transport-item">
-            <img src="../images/icon-metro.svg" alt="" width="14" height="11">
-            <span>Московская</span>
-            <img src="../images/icon-walk.svg" alt="" width="10" height="14">
-            <span>10 мин.</span>
+            <span data-map-walk>10 мин.</span>
           </div>
         </div>
       </div>
@@ -515,10 +429,10 @@
   </div>
 </div>
 
-<script src="../js/favorites.js?v=20260609f"></script>
-<script src="../js/main.js?v=20260611f"></script>
-<script src="../data/objects.js"></script>
-<script src="../js/object.js?v=20260609f"></script>
+<script src="../js/favorites.js?v=20260912s"></script>
+<script src="../js/main.js?v=20260912s"></script>
+<script src="../data/objects.js?v=20260912s"></script>
+<script src="../js/object.js?v=20260912s"></script>
 <script>
 (function() {
   const main = document.getElementById('obj-gallery-main');
@@ -745,11 +659,16 @@
       }, { suppressMapOpenBlock: true });
 
       const PinLayout = ymaps.templateLayoutFactory.createClass(
-        '<div class="obj-price-pin">{{ properties.label }}</div>'
+        '<div class="obj-price-pin">' +
+          '<img src="../images/logo.svg" alt="" class="obj-price-pin__logo">' +
+          '<span>{{ properties.label }}</span>' +
+          '<i class="obj-price-pin__tail"></i>' +
+          '<i class="obj-price-pin__dot"></i>' +
+        '</div>'
       );
-      const pin = new ymaps.Placemark([60.0205, 30.2756], { label: '7,4 млн.' }, {
+      const pin = new ymaps.Placemark([60.0205, 30.2756], { label: window.__OBJ_PIN || '' }, {
         iconLayout: PinLayout,
-        iconShape: { type: 'Rectangle', coordinates: [[-40, -32], [40, 0]] }
+        iconShape: { type: 'Rectangle', coordinates: [[-55, -52], [55, 0]] }
       });
       map.geoObjects.add(pin);
     });

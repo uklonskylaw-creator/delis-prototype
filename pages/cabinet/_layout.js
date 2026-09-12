@@ -11,7 +11,7 @@ function getUser() {
 const DEMO = {
   name: 'Алексеевский Михаил Александрович',
   role: 'Эксперт по недвижимости',
-  phone: '+7 (921) 587-12-29',
+  phone: '+7 (999) 000-00-03',
   email: 'mikhail@delis.ru',
   avatar: '../../images/form-person.png',
   agency: 'Делись',

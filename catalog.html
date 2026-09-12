@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Каталог объектов — Делись</title>
+<title>Реестр аукционов — Делись</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/main.css?v=20260611f">
+<link rel="stylesheet" href="css/tokens.css?v=20260912s">
+<link rel="stylesheet" href="css/base.css?v=20260912s">
+<link rel="stylesheet" href="css/main.css?v=20260912s">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body class="page-catalog">
@@ -28,22 +28,23 @@
     </div>
 
     <nav class="header__nav">
-      <button class="header__nav-link" type="button">
-        Услуги
-        <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
-      </button>
+      <div class="header__submenu-wrap">
+        <button class="header__nav-link" type="button" data-submenu-btn>
+          Услуги
+          <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
+        </button>
+        <div class="header__submenu" data-submenu>
+          <a href="index.html#form" class="header__submenu-link">Помощь в продаже</a>
+          <a href="index.html#form" class="header__submenu-link">Заказать сайт</a>
+        </div>
+      </div>
+      <a href="catalog.html" class="header__nav-link">Реестр</a>
       <a href="#" class="header__nav-link">О проекте</a>
       <a href="#" class="header__nav-link">Вакансии</a>
       <a href="#" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
-      <button class="header__icon-btn" aria-label="Поиск">
-        <img src="images/icon-search-header.svg" alt="" width="22" height="22">
-      </button>
-      <a href="#" class="header__icon-btn" aria-label="Избранное">
-        <img src="images/icon-heart.svg" alt="" width="22" height="22">
-      </a>
       <a href="#" class="header__icon-btn" aria-label="Сообщения">
         <img src="images/icon-telegram-header.svg" alt="" width="22" height="22">
       </a>
@@ -59,15 +60,19 @@
 <section class="catalog-page-head">
   <div class="searchbar-section__container">
     <nav class="cat-crumbs">
-      <a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Каталог объектов</span>
+      <a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Реестр аукционов</span>
     </nav>
-    <h1 class="section-title catalog-page-head__title">Каталог объектов</h1>
-    <p class="catalog-page-head__sub">Вся база вторичной недвижимости в Санкт-Петербурге и Ленинградской области. Используйте поиск и фильтры, чтобы найти подходящий объект.</p>
+    <h1 class="section-title catalog-page-head__title">Реестр аукционов</h1>
+    <p class="catalog-page-head__sub">Объекты, проданные аукционным способом, с итогами торгов, и аукционы, которые идут сейчас.</p>
   </div>
 </section>
 
 <section class="searchbar-section">
   <div class="searchbar-section__container">
+    <div class="reg-tabs">
+      <button type="button" class="reg-tab is-active" data-reg-tab="closed">Закрытые аукционы</button>
+      <button type="button" class="reg-tab" data-reg-tab="live">Идёт аукцион</button>
+    </div>
    <div class="searchbar-wrap">
     <div class="searchbar">
       <!-- Переключатель вида: карточки (3-полосы) / таблица (плитка) -->
@@ -346,8 +351,8 @@ function openFilters() { document.getElementById('filter-overlay').classList.add
 function closeFilters() { document.getElementById('filter-overlay').classList.remove('is-open'); document.body.style.overflow=''; }
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFilters(); });
 </script>
-<script src="data/objects.js"></script>
-<script src="js/favorites.js?v=20260609f"></script>
-<script src="js/main.js?v=20260611f"></script>
+<script src="data/objects.js?v=20260912s"></script>
+<script src="js/favorites.js?v=20260912s"></script>
+<script src="js/main.js?v=20260912s"></script>
 </body>
 </html>

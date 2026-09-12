@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/main.css?v=20260611f">
+<link rel="stylesheet" href="css/tokens.css?v=20260912s">
+<link rel="stylesheet" href="css/base.css?v=20260912s">
+<link rel="stylesheet" href="css/main.css?v=20260912s">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -31,22 +31,23 @@
     </div>
 
     <nav class="header__nav">
-      <button class="header__nav-link" type="button">
-        Услуги
-        <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
-      </button>
+      <div class="header__submenu-wrap">
+        <button class="header__nav-link" type="button" data-submenu-btn>
+          Услуги
+          <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
+        </button>
+        <div class="header__submenu" data-submenu>
+          <a href="index.html#form" class="header__submenu-link">Помощь в продаже</a>
+          <a href="index.html#form" class="header__submenu-link">Заказать сайт</a>
+        </div>
+      </div>
+      <a href="catalog.html" class="header__nav-link">Реестр</a>
       <a href="#" class="header__nav-link">О проекте</a>
       <a href="#" class="header__nav-link">Вакансии</a>
       <a href="#" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
-      <button class="header__icon-btn" aria-label="Поиск">
-        <img src="images/icon-search-header.svg" alt="" width="22" height="22">
-      </button>
-      <a href="#" class="header__icon-btn" aria-label="Избранное">
-        <img src="images/icon-heart.svg" alt="" width="22" height="22">
-      </a>
       <a href="#" class="header__icon-btn" aria-label="Сообщения">
         <img src="images/icon-telegram-header.svg" alt="" width="22" height="22">
       </a>
@@ -67,34 +68,39 @@
         <img src="images/hero-bg.svg" alt="" class="hero__offer-bg">
         <div class="hero__offer-content">
           <h1 class="hero__title">
-            Площадка для<br>
-            профессионалов<br>
-            рынка недвижимости
+            Реестр закрытых<br>
+            аукционных объектов
           </h1>
           <p class="hero__text">
-            Делись — информационный агентский агрегатор по вторичной недвижимости.
-            Ваши объекты видят тысячи риелторов, которые получат комиссию за приведённого покупателя.
+            Делись — информационная площадка по продаже недвижимости аукционным способом.
+            Ваш объект увидят тысячи риелторов, каждый получит комиссию за приведённого покупателя.
+            Объект можно привести самому или передать через своего агента.
           </p>
+          <ul class="hero__pins">
+            <li class="hero__pin">Аукционы</li>
+            <li class="hero__pin">Коммерческая недвижимость</li>
+            <li class="hero__pin">Элитная недвижимость</li>
+          </ul>
         </div>
       </div>
 
       <ul class="stats">
         <li class="stats__item stats__item--1">
-          <span class="stats__num">300<sup>+</sup></span>
-          <span class="stats__label">Партнёров<br>по Санкт-Петербургу</span>
+          <span class="stats__num">100<sup>+</sup></span>
+          <span class="stats__label">Звонков<br>за две недели<br>кампании</span>
         </li>
         <li class="stats__item stats__item--2">
-          <span class="stats__num">40<sup>+</sup></span>
-          <span class="stats__label">Запросов<br>на поиск<br>от партнёров</span>
+          <span class="stats__num">50<sup>+</sup></span>
+          <span class="stats__label">Записей<br>на просмотр<br>объекта</span>
         </li>
         <li class="stats__item stats__item--3">
-          <span class="stats__num">200<sup>+</sup></span>
-          <span class="stats__label">Обучающих<br>вебинаров<br>в течение года</span>
+          <span class="stats__num">25<sup>+</sup></span>
+          <span class="stats__label">Показов<br>за два дня<br>открытых дверей</span>
           <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
         </li>
         <li class="stats__item stats__item--4">
-          <span class="stats__num">50<sup>+</sup></span>
-          <span class="stats__label">Узкопрофильных<br>специалистов<br>в своей сфере</span>
+          <span class="stats__num">8<sup>+</sup></span>
+          <span class="stats__label">Участников<br>торгов<br>за объект</span>
           <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
         </li>
       </ul>
@@ -103,11 +109,6 @@
     <div class="hero__right">
       <img src="images/hero-top-object-map.jpg" alt="Карта России с отметками Санкт-Петербурга и Москвы" class="hero__right-photo">
       <div class="hero__right-overlay"></div>
-      <ul class="hero__pins">
-        <li class="hero__pin hero__pin--1">Аукционы</li>
-        <li class="hero__pin hero__pin--2">Коммерческая недвижимость</li>
-        <li class="hero__pin hero__pin--3">Элитная недвижимость</li>
-      </ul>
     </div>
 
   </div>
@@ -224,59 +225,19 @@
   </div>
 </section>
 
-<!-- ========== SERVICES ========== -->
-<section class="services">
-  <div class="services__container">
-    <h2 class="section-title">Услуги сервиса</h2>
-    <ul class="services__grid">
-      <li class="service-card service-card--shadow">
-        <img src="images/service-1-icon.svg" alt="" class="service-card__icon" width="40" height="36">
-        <img src="images/service-1-decor.svg" alt="" class="service-card__decor" width="260" height="233">
-        <h3 class="service-card__title">Запрос на поиск</h3>
-        <p class="service-card__text">Агенты будут предлагать объекты, соответствующие вашим параметрам</p>
-      </li>
-      <li class="service-card">
-        <img src="images/service-2-icon.svg" alt="" class="service-card__icon" width="42" height="36">
-        <img src="images/service-2-decor.svg" alt="" class="service-card__decor" width="264" height="228">
-        <h3 class="service-card__title">Межрегион<br><span class="service-card__sub">(в разработке)</span></h3>
-        <p class="service-card__text">Передать клиента под закрытие сделки в другом регионе</p>
-      </li>
-      <li class="service-card">
-        <img src="images/service-3-icon.svg" alt="" class="service-card__icon" width="30" height="36">
-        <img src="images/service-3-decor.svg" alt="" class="service-card__decor" width="192" height="234">
-        <h3 class="service-card__title">Сопровождение сделки</h3>
-        <p class="service-card__text">Проверить документы и безопасно провести сделку</p>
-      </li>
-      <li class="service-card">
-        <img src="images/service-4-icon.svg" alt="" class="service-card__icon" width="48" height="28">
-        <img src="images/service-4-decor.svg" alt="" class="service-card__decor" width="318" height="186">
-        <h3 class="service-card__title">Помощь в продаже</h3>
-        <p class="service-card__text">Продать объект через «Делись»</p>
-      </li>
-      <li class="service-card">
-        <img src="images/service-5-icon.svg" alt="" class="service-card__icon" width="33" height="36">
-        <img src="images/service-5-decor.svg" alt="" class="service-card__decor" width="234" height="258">
-        <h3 class="service-card__title">Юридическая помощь</h3>
-        <p class="service-card__text">Решить судебные споры</p>
-      </li>
-      <li class="service-card">
-        <img src="images/service-6-icon.svg" alt="" class="service-card__icon" width="41" height="36">
-        <img src="images/service-6-decor.svg" alt="" class="service-card__decor" width="252" height="222">
-        <h3 class="service-card__title">Помощь с ремонтом</h3>
-        <p class="service-card__text">Сделать качественный ремонт</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
 <!-- ========== CATALOG ========== -->
 <section class="catalog">
   <div class="catalog__container">
 
     <div class="catalog__panel">
       <div class="catalog__head">
-        <h2 class="section-title">Топ объекты от «Делись»</h2>
-        <a href="catalog.html" class="btn btn--outline">Все объекты</a>
+        <h2 class="section-title">Реестр аукционов</h2>
+        <a href="catalog.html" class="btn btn--outline">Весь реестр</a>
+      </div>
+
+      <div class="reg-tabs">
+        <button type="button" class="reg-tab is-active" data-reg-tab="closed">Закрытые аукционы</button>
+        <button type="button" class="reg-tab" data-reg-tab="live">Идёт аукцион</button>
       </div>
 
       <div class="catalog__grid" id="catalog-grid">
@@ -375,151 +336,15 @@
   </div>
 </section>
 
-<!-- ========== PARTNERS (бегущая строка) ========== -->
-<section class="partners">
-  <div class="partners__container">
-    <h2 class="section-title section-title--center">Наши партнёры</h2>
-    <div class="marquee">
-      <div class="marquee__track">
-        <ul class="marquee__group">
-          <li><img src="images/partner-1.svg" alt="Century 21"></li>
-          <li><img src="images/partner-3.svg" alt="Сбер"></li>
-          <li><img src="images/partner-4.svg" alt="Циан"></li>
-          <li><img src="images/partner-5.svg" alt="ПИК"></li>
-          <li><img src="images/partner-2.svg" alt="Century 21"></li>
-          <li><img src="images/partner-3.svg" alt="Сбер"></li>
-          <li><img src="images/partner-4.svg" alt="Циан"></li>
-          <li><img src="images/partner-5.svg" alt="ПИК"></li>
-        </ul>
-        <ul class="marquee__group" aria-hidden="true">
-          <li><img src="images/partner-1.svg" alt=""></li>
-          <li><img src="images/partner-3.svg" alt=""></li>
-          <li><img src="images/partner-4.svg" alt=""></li>
-          <li><img src="images/partner-5.svg" alt=""></li>
-          <li><img src="images/partner-2.svg" alt=""></li>
-          <li><img src="images/partner-3.svg" alt=""></li>
-          <li><img src="images/partner-4.svg" alt=""></li>
-          <li><img src="images/partner-5.svg" alt=""></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== NEWS ========== -->
-<section class="news">
-  <div class="news__container">
-    <h2 class="section-title section-title--center">Дайджест новостей</h2>
-
-    <div class="news__row">
-      <div class="news__main">
-        <div class="news__head">
-          <div class="tabs">
-            <button class="tabs__btn tabs__btn--active" type="button">Все новости</button>
-            <button class="tabs__btn" type="button">Платформа</button>
-            <button class="tabs__btn" type="button">Застройщики</button>
-            <button class="tabs__btn tabs__btn--muted" type="button">Обзоры</button>
-          </div>
-          <a href="#" class="btn btn--outline btn--sm">Все новости</a>
-        </div>
-
-        <article class="news-featured">
-          <img src="images/news-featured.png" alt="" class="news-featured__img">
-          <div class="news-featured__body">
-            <div class="news-featured__meta">
-              <span>22/11/23</span>
-              <img src="images/dot-separator.svg" alt="" width="4" height="4">
-              <span>11:36</span>
-              <img src="images/dot-separator.svg" alt="" width="4" height="4">
-              <img src="images/icon-clock.svg" alt="" width="16" height="16">
-              <span>5 мин.</span>
-            </div>
-            <h3 class="news-featured__title">Облигации в портфеле.<br>Вводная статья.</h3>
-            <p class="news-featured__lead">Вводная статья-ликбез про облигации. Тема огромная, все в одну статью не уместить, но самые основные принципы будут описаны тут. 1) Для начала разберемся с терминологией. Инвесторы часто употребляют клише под названием</p>
-            <a href="#" class="news-featured__link"><img src="images/icon-link.svg" alt="" width="36" height="36"></a>
-          </div>
-        </article>
-
-        <ul class="news-list">
-          <li class="news-card">
-            <img src="images/news-featured.png" alt="" class="news-card__img">
-            <div class="news-card__meta">
-              <span>22/11/23</span>
-              <span>11:36</span>
-            </div>
-            <img src="images/news-divider.svg" alt="" class="news-card__divider">
-            <div class="news-card__body">
-              <h4 class="news-card__title">Облигации в портфеле. Вводная статья</h4>
-              <p class="news-card__text">Облигации в портфеле. Вводная статья. Вводная статья-ликбез про облигации. Тема</p>
-            </div>
-            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
-          </li>
-          <li class="news-card">
-            <img src="images/news-featured.png" alt="" class="news-card__img">
-            <div class="news-card__meta">
-              <span>20/11/23</span>
-              <span>09:12</span>
-            </div>
-            <img src="images/news-divider.svg" alt="" class="news-card__divider">
-            <div class="news-card__body">
-              <h4 class="news-card__title">Изменения в законодательстве о недвижимости</h4>
-              <p class="news-card__text">Главные нововведения, которые коснутся риелторов и собственников в 2024 году</p>
-            </div>
-            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
-          </li>
-          <li class="news-card">
-            <img src="images/news-featured.png" alt="" class="news-card__img">
-            <div class="news-card__meta">
-              <span>18/11/23</span>
-              <span>15:48</span>
-            </div>
-            <img src="images/news-divider.svg" alt="" class="news-card__divider">
-            <div class="news-card__body">
-              <h4 class="news-card__title">Как оформить ипотеку на вторичку: гайд</h4>
-              <p class="news-card__text">Пошаговый разбор всех этапов сделки от заявки до получения ключей</p>
-            </div>
-            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
-          </li>
-          <li class="news-card">
-            <img src="images/news-featured.png" alt="" class="news-card__img">
-            <div class="news-card__meta">
-              <span>15/11/23</span>
-              <span>13:25</span>
-            </div>
-            <img src="images/news-divider.svg" alt="" class="news-card__divider">
-            <div class="news-card__body">
-              <h4 class="news-card__title">Рынок СПб: итоги октября</h4>
-              <p class="news-card__text">Цены, спрос и интересные тенденции на петербургской вторичке</p>
-            </div>
-            <a href="#" class="news-card__link"><img src="images/icon-link-card.svg" alt="" width="36" height="36"></a>
-          </li>
-        </ul>
-      </div>
-
-      <aside class="news__side">
-        <div class="news__side-head">
-          <h3>Акции</h3>
-          <a href="#" class="btn btn--outline btn--sm">Все акции</a>
-        </div>
-        <a href="#" class="promo-banner"><img src="images/promo-banner-1.svg" alt="Акция"></a>
-        <a href="#" class="promo-banner"><img src="images/promo-banner-2.svg" alt="Акция"></a>
-        <a href="#" class="promo-banner"><img src="images/promo-banner-3.svg" alt="Акция"></a>
-      </aside>
-    </div>
-  </div>
-</section>
-
 <!-- ========== FORM ========== -->
 <section class="form-section">
-  <div class="form-section__container">
-    <div class="form-banner">
-      <img src="images/form-banner-bg.svg" alt="" class="form-banner__bg">
-      <img src="images/form-person.png" alt="" class="form-banner__person">
+  <div class="form-section__container form-section__container--split" id="form">
+    <div class="form-banner form-banner--photo">
+      <img src="images/form-banner-sankin.jpg" alt="Михаил Уклонский и Александр Санкин" class="form-banner__bg">
       <div class="form-banner__left">
-        <h2 class="form-banner__title">Продадим вашу<br>недвижимость<br>за 30 дней!</h2>
-        <p class="form-banner__text">Благодаря нашему уникальному подходу вашу недвижимость будут предлагать своим реальным покупателям агентства и риелторы по всей стране</p>
-        <a href="#" class="btn btn--outline-white">Помощь в продаже</a>
+        <h2 class="form-banner__title">Продадим вашу<br>недвижимость за 14 дней<br>по методике Санкина</h2>
       </div>
+    </div>
 
       <div class="form-banner__right">
         <form class="form-banner__form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.')">
@@ -537,7 +362,6 @@
           </div>
         </form>
       </div>
-    </div>
   </div>
 </section>
 
@@ -716,8 +540,8 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/objects.js"></script>
-<script src="js/favorites.js?v=20260609f"></script>
-<script src="js/main.js?v=20260611f"></script>
+<script src="data/objects.js?v=20260912s"></script>
+<script src="js/favorites.js?v=20260912s"></script>
+<script src="js/main.js?v=20260912s"></script>
 </body>
 </html>

@@ -207,7 +207,7 @@ body { overflow-x: hidden; }
 .hero__left { display: flex; flex-direction: column; gap: 18px; }
 .hero__offer {
   position: relative;
-  height: 420px;
+  min-height: 420px;
   border-radius: 20px;
   background: linear-gradient(126deg, #7E34FA 14%, #4200D2 101%);
   overflow: hidden;
@@ -405,40 +405,35 @@ body { overflow-x: hidden; }
   color: rgba(255,255,255,.85);
   gap: 6px;
 }
-/* Плашки-категории поверх карты в hero — в стиле меток городов на картинке */
+/* Плашки направлений под текстом героя — в стиле меток на карте */
 .hero__pins {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
 }
 .hero__pin {
-  position: absolute;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  max-width: calc(100% - 48px);
-  background: var(--color-white);
+  background: rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .32);
   border-radius: 999px;
-  color: var(--color-black);
+  color: var(--color-white);
   font-weight: 600;
   font-size: 14px;
   line-height: 1.2;
-  white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(40, 20, 90, .16);
 }
 .hero__pin::before {
   content: '';
   flex: none;
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: var(--color-brand);
-  box-shadow: inset 0 0 0 3.5px var(--color-white);
+  background: var(--color-white);
+  box-shadow: inset 0 0 0 3px var(--color-brand);
 }
-.hero__pin--1 { top: 16%; left: 42%; }
-.hero__pin--2 { top: 46%; left: 24%; }
-.hero__pin--3 { top: 71%; left: 34%; }
 
 .hero__top-card-btn {
   position: absolute;
@@ -1450,6 +1445,180 @@ body { overflow-x: hidden; }
 .video__grid    { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
 
 /* Side padding scales down with viewport */
+
+/* ===== Вкладки реестра ===== */
+.reg-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.reg-tab {
+  padding: 10px 20px;
+  border: 1.5px solid var(--color-gray-300);
+  border-radius: 100px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.reg-tab:hover { border-color: var(--color-brand); color: var(--color-brand); }
+.reg-tab.is-active {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+}
+.catalog__empty {
+  padding: 40px 0;
+  color: var(--color-gray-700);
+  font-size: 16px;
+}
+
+/* ===== Раскрывающийся список «Услуги» в шапке ===== */
+.header__submenu-wrap { position: relative; }
+.header__submenu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 220px;
+  padding: 8px;
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(40, 20, 90, .16);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s, transform .18s, visibility .18s;
+  z-index: 60;
+}
+.header__submenu-wrap:hover .header__submenu,
+.header__submenu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.header__submenu-link {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-black);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.header__submenu-link:hover { background: var(--color-gray-200); color: var(--color-brand); }
+
+/* ===== Карточки реестра: ровная сетка ===== */
+.obj-card__rows { min-height: 104px; justify-content: flex-start; }
+.obj-card__title { min-height: 40px; }
+.obj-card__tags { min-height: 30px; align-content: flex-start; }
+.obj-card .obj-tag { white-space: nowrap; }
+.obj-row__val--accent { color: var(--color-brand); }
+.obj-card__badge--sold { background: var(--color-black); }
+.obj-card__badge--live { background: var(--color-brand); }
+
+/* ===== Баннер формы с фотографией ===== */
+/* Фото и форма стоят рядом: форма больше не перекрывает лица */
+.form-section__container--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.form-banner--photo {
+  overflow: hidden;
+  border-radius: 20px;
+  height: 480px;
+}
+.form-banner--photo .form-banner__bg {
+  width: 160%;
+  max-width: none;
+  left: -52%;
+  right: auto;
+  object-position: left center;
+}
+.form-banner--photo .form-banner__left {
+  left: 36px;
+  width: 262px;
+}
+.form-banner--photo .form-banner__title { font-size: 27px; }
+
+.form-section__container--split .form-banner__right {
+  position: static;
+  transform: none;
+  width: auto;
+  display: flex;
+}
+.form-section__container--split .form-banner__form {
+  width: 100%;
+  padding: 32px;
+  justify-content: center;
+}
+
+/* ===== Панель карточки объекта: итоги аукциона ===== */
+.obj-panel { display: flex; flex-direction: column; gap: 18px; }
+.obj-panel__status {
+  align-self: flex-start;
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+.obj-panel__status--sold { background: var(--color-black); }
+.obj-panel__status--live { background: var(--color-brand); }
+.obj-panel__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px;
+  background: var(--color-gray-200);
+  border-radius: 16px;
+}
+.obj-panel__stats div { display: flex; flex-direction: column; gap: 2px; }
+.obj-panel__stats b {
+  font-family: 'Unbounded', var(--font-family);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+.obj-panel__stats span { font-size: 13px; color: var(--color-gray-700); }
+.obj-panel__btn { align-self: stretch; text-align: center; }
+
+/* ===== Строка реестра: итоги справа ===== */
+.cat-row__result { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.cat-row__result-title { font-size: 14px; font-weight: 600; color: var(--color-gray-700); }
+.cat-row__result-grid { display: flex; gap: 16px; }
+.cat-row__result-grid div { display: flex; flex-direction: column; }
+.cat-row__result-grid b {
+  font-family: 'Unbounded', var(--font-family);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+.cat-row__result-grid span { font-size: 12px; color: var(--color-gray-700); }
+.cat-row__result-btn { font-size: 14px; padding: 10px 16px; }
+
+/* Таблица реестра: колонки под аукционы */
+.cat-table--registry .cat-table__head,
+.cat-table--registry .cat-table__row {
+  grid-template-columns: 1.7fr .8fr .9fr 1.5fr .5fr .7fr 1fr 1.1fr .9fr 40px;
+}
+.cat-table--registry .cat-table__metro { white-space: nowrap; }
+.cat-table--registry .cat-table__head > div,
+.cat-table--registry .cat-table__row > div { min-width: 0; }
+.cat-table--registry .cat-table__row { cursor: pointer; }
+.cat-table__accent { color: var(--color-brand); font-weight: 600; }
+.cat-table__link-cell a { display: inline-flex; opacity: .6; }
+.cat-table__link-cell a:hover { opacity: 1; }
+
 @media (max-width: 1600px) {
   .header__inner, .hero, .services__container, .catalog__container,
   .video__container, .partners__container, .news__container,
@@ -1492,10 +1661,7 @@ body { overflow-x: hidden; }
   .hero__offer { padding: 24px; }
   .hero__title { font-size: 20px; }
   .hero__pin { font-size: 12px; padding: 6px 12px; gap: 6px; }
-  .hero__pin::before { width: 14px; height: 14px; box-shadow: inset 0 0 0 3px var(--color-white); }
-  .hero__pin--1 { top: 14%; left: 34%; }
-  .hero__pin--2 { top: 45%; left: 8%; }
-  .hero__pin--3 { top: 72%; left: 20%; }
+  .hero__pin::before { width: 12px; height: 12px; box-shadow: inset 0 0 0 2.5px var(--color-brand); }
   .section-title { font-size: 28px; }
   .stats { grid-template-columns: 1fr; }
   .searchbar { flex-wrap: wrap; }
@@ -2602,4 +2768,62 @@ body { overflow-x: hidden; }
   .fix-page__container { padding: 0 16px; }
   .fix-card { flex-direction: column; align-items: flex-start; gap: 12px; }
   .fix-submit-row { flex-direction: column; align-items: stretch; }
+}
+
+/* Реестр и блок формы на узких экранах */
+@media (max-width: 1100px) {
+  .form-section__container--split { grid-template-columns: 1fr; }
+  .form-banner--photo { height: 380px; }
+  .form-banner--photo .form-banner__bg {
+    width: 100%;
+    left: 0;
+    object-position: 72% center;
+  }
+  /* на узком экране заголовок уходит под фотографию, чтобы не закрывать лица */
+  .form-banner--photo .form-banner__left {
+    width: auto;
+    right: 40px;
+    top: auto;
+    bottom: 28px;
+    transform: none;
+  }
+  .form-banner--photo::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(46, 16, 92, .92), rgba(46, 16, 92, 0));
+    z-index: 1;
+  }
+  .form-banner--photo .form-banner__left { z-index: 2; }
+  .cat-table--registry { overflow-x: auto; }
+}
+@media (max-width: 700px) {
+  .form-banner--photo { height: 320px; }
+  .form-banner--photo .form-banner__title { font-size: 21px; }
+  .form-banner--photo .form-banner__left { left: 20px; right: 20px; bottom: 22px; }
+  .form-banner--photo .form-banner__bg { object-position: 76% center; }
+  .form-section__container--split .form-banner__form { padding: 20px; }
+  .form-banner__check span { font-size: 11px; }
+  .reg-tab { padding: 8px 14px; font-size: 14px; }
+}
+
+/* Строка реестра на планшете и телефоне */
+@media (max-width: 1100px) {
+  .cat-row { grid-template-columns: 200px 1.4fr 1fr; }
+  .cat-row__result { grid-column: 2 / -1; }
+  .cat-row__actions { display: none; }
+}
+@media (max-width: 700px) {
+  .cat-row { grid-template-columns: 1fr; min-height: 0; }
+  .cat-row__photo { height: 200px; width: 100%; max-width: none; }
+  .cat-row__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .cat-row__main,
+  .cat-row__prices,
+  .cat-row__result { padding: 16px; }
+  .cat-row__prices,
+  .cat-row__result { border-top: 1px solid #EAEAEE; }
+  .cat-row__result { grid-column: auto; }
+  .cat-row__head { flex-wrap: wrap; }
+  .catalog-page-head__title { font-size: 30px; }
 }

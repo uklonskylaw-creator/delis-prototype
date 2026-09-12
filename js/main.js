@@ -141,12 +141,48 @@ async function renderCatalog() {
     console.warn('Failed to load objects.json', e);
   }
 }
+let _regStatus = 'closed';   /* вкладка реестра: closed | live */
+
+function byStatus(items) {
+  return items.filter(o => (o.status || 'closed') === _regStatus);
+}
+
 function drawCatalog(items) {
   const grid = document.getElementById('catalog-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  items.slice(0, 7).forEach(o => grid.appendChild(objCard(o)));
-  grid.appendChild(promoSlider());
+  const list = byStatus(items);
+  if (!list.length) {
+    grid.innerHTML = '<p class="catalog__empty">В этом разделе пока нет объектов.</p>';
+    return;
+  }
+  list.slice(0, 8).forEach(o => grid.appendChild(objCard(o)));
+}
+
+/* «Услуги» в шапке: наведение на десктопе, клик на сенсорных экранах */
+function initSubmenu() {
+  const btn = document.querySelector('[data-submenu-btn]');
+  const menu = document.querySelector('[data-submenu]');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.toggle('is-open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.header__submenu-wrap')) menu.classList.remove('is-open');
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('is-open')));
+}
+
+function initRegTabs() {
+  const tabs = document.querySelectorAll('[data-reg-tab]');
+  if (!tabs.length) return;
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    _regStatus = btn.dataset.regTab;
+    tabs.forEach(b => b.classList.toggle('is-active', b === btn));
+    drawCatalog(_catalogItems);
+    if (typeof refreshList === 'function' && _catalogView) refreshList();
+  }));
 }
 function drawMainList(items) {
   const container = document.getElementById('main-list');
@@ -174,59 +210,48 @@ function drawMainList(items) {
   } else if (_catalogView === 'cards') {
     items.forEach(o => container.appendChild(objListRow(o)));
   }
-  container.appendChild(catalogPagination());
+  if (items.length > 12) container.appendChild(catalogPagination());
 }
 
 function catalogTable(items) {
   const wrap = document.createElement('div');
-  wrap.className = 'cat-table';
+  wrap.className = 'cat-table cat-table--registry';
   const arrows = '<span class="cat-table__sort">↕</span>';
-  const SVG_LOCK = `<svg class="cat-table__bonus-lock" viewBox="0 0 18 22" fill="none" stroke="#282828" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="14" height="16"><rect x="3" y="10" width="12" height="10" rx="2" fill="#282828"/><path d="M6 10V6.5a3 3 0 0 1 6 0V10"/></svg>`;
-  // расширяем список: дублируем объекты, чтобы было ~20 строк
-  const extended = [...items, ...items, ...items].slice(0, 22);
-  const randId = () => Math.floor(100000 + Math.random() * 900000);
+  const closed = _regStatus === 'closed';
   wrap.innerHTML = `
     <div class="cat-table__head">
-      <div>Id</div>
+      <div>Объект</div>
       <div>Тип</div>
-      <div>Район</div>
+      <div>Город</div>
       <div>Метро</div>
       <div>Этаж ${arrows}</div>
-      <div>Год ${arrows}</div>
       <div>S, м² ${arrows}</div>
-      <div>Цена ${arrows}</div>
-      <div>Бонус ${arrows}</div>
+      <div>Начальная ${arrows}</div>
+      <div>${closed ? 'Продан за' : 'Показы'} ${closed ? arrows : ''}</div>
+      <div>${closed ? 'Срок' : 'Комиссия'} ${arrows}</div>
       <div></div>
     </div>
     <div class="cat-table__body">
-      ${extended.map((o, idx) => {
-        const idNum = /^\d+$/.test(String(o.id || '')) ? o.id : randId();
-        // каждая 3-я строка показывает замочек вместо суммы бонуса
-        const bonusCell = (idx % 3 === 2)
-          ? SVG_LOCK
-          : (o.commission || '100 000 000 ₽');
-        return `
-        <div class="cat-table__row">
-          <div>${idNum}</div>
-          <div>${o.type || 'Студия'}</div>
-          <div>${o.district || 'Лужский муниципальный район'}</div>
-          <div class="cat-table__metro"><img src="images/icon-metro.svg" alt="" width="13" height="10"><span>${o.metro || 'Московская'}</span><img src="images/icon-walk.svg" alt="" width="9" height="13"><span>${o.walk || '10 мин.'}</span></div>
-          <div>${o.floor || '20/20'}</div>
-          <div>${o.year || '2022'}</div>
-          <div>${o.area || '200.200'}</div>
-          <div>${o.price || '100 000 000 ₽'}</div>
-          <div class="cat-table__bonus-cell">${bonusCell}</div>
-          <div class="cat-table__heart-cell"><button class="cat-table__heart" aria-label="В избранное"><img src="images/icon-heart-outline.svg" alt="" width="17" height="15"></button></div>
+      ${items.map(o => `
+        <div class="cat-table__row" data-href="${objectHref(o.id)}">
+          <div>${o.title}</div>
+          <div>${o.type}</div>
+          <div>${shortCity(o.city)}</div>
+          <div class="cat-table__metro"><img src="images/icon-metro.svg" alt="" width="13" height="10"><span>${o.metro}</span><img src="images/icon-walk.svg" alt="" width="9" height="13"><span>${o.walk}</span></div>
+          <div>${o.floor}</div>
+          <div>${o.area}</div>
+          <div>${o.startPrice}</div>
+          <div>${closed ? o.salePrice : o.showDates}</div>
+          <div class="cat-table__accent">${closed ? o.days + ' ' + plurDays(o.days) : o.commission}</div>
+          <div class="cat-table__link-cell"><a href="${objectHref(o.id)}" aria-label="Открыть"><img src="images/icon-link.svg" alt="" width="16" height="16"></a></div>
         </div>
-      `;}).join('')}
+      `).join('')}
     </div>
   `;
-  wrap.querySelectorAll('.cat-table__heart').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      btn.classList.toggle('is-active');
-      const img = btn.querySelector('img');
-      if (img) img.src = btn.classList.contains('is-active') ? 'images/icon-heart-filled.svg' : 'images/icon-heart-outline.svg';
+  wrap.querySelectorAll('.cat-table__row').forEach(row => {
+    row.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      window.location.href = row.dataset.href;
     });
   });
   return wrap;
@@ -237,11 +262,32 @@ function objListRow(o) {
   const SVG_PIN = `<svg viewBox="0 0 14 14" fill="none" stroke="#7622D7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 6c0 4-5 7-5 7s-5-3-5-7a5 5 0 0 1 10 0z"/><circle cx="7" cy="6" r="1.6"/></svg>`;
   const SVG_METRO = `<img src="images/icon-metro.svg" alt="" width="15" height="12">`;
   const SVG_WALK = `<img src="images/icon-walk.svg" alt="" width="10" height="14">`;
-  const favOn = Favorites.has(o.id);
-  const SVG_HEART = `<img src="images/${favOn ? 'icon-heart-filled' : 'icon-heart-outline'}.svg" alt="" width="20" height="18" class="cat-row__act-img">`;
-  const SVG_PHONE = `<img src="images/icon-phone.svg" alt="" width="18" height="18" class="cat-row__act-img">`;
   const SVG_EXT = `<img src="images/icon-link.svg" alt="" width="18" height="18" class="cat-row__act-img">`;
   const href = objectHref(o.id);
+  const closed = o.status === 'closed';
+
+  const prices = closed
+    ? [['Начальная цена', o.startPrice, ''],
+       ['Цена продажи', o.salePrice, ' cat-row__price-line--commission'],
+       ['Срок продажи', o.days + ' ' + plurDays(o.days), '']]
+    : [['Начальная цена', o.startPrice, ''],
+       ['Даты показов', o.showDates, ''],
+       ['Комиссия за сделку', o.commission, ' cat-row__price-line--commission']];
+
+  const side = closed
+    ? `<div class="cat-row__result">
+         <div class="cat-row__result-title">Итоги аукциона</div>
+         <div class="cat-row__result-grid">
+           <div><b>${o.requests}</b><span>обращений</span></div>
+           <div><b>${o.shows}</b><span>показов</span></div>
+           <div><b>${o.offers}</b><span>предложений</span></div>
+         </div>
+       </div>`
+    : `<div class="cat-row__result">
+         <div class="cat-row__result-title">Аукцион идёт</div>
+         <a href="${href}" class="btn btn--dark cat-row__result-btn">Записаться на показ</a>
+       </div>`;
+
   row.innerHTML = `
     <a href="${href}" class="cat-row__photo">
       <img src="${o.image}" alt="${o.title}">
@@ -253,37 +299,26 @@ function objListRow(o) {
         <span class="cat-row__area">${o.area}</span>
       </div>
       <div class="cat-row__tags">
-        <span class="cat-row__tag">Возможна ипотека</span>
-        <span class="cat-row__tag">Вторичка</span>
-        <span class="cat-row__tag">Объект «Делись»</span>
+        <span class="cat-row__tag">${closed ? 'Продан · ' + o.soldAt : 'Идёт аукцион'}</span>
+        <span class="cat-row__tag">${o.type}</span>
       </div>
-      <div class="cat-row__loc"><span class="cat-row__icon">${SVG_PIN}</span><span>Санкт-Петербург, наб. реки Каменки, 3к3</span></div>
+      <div class="cat-row__loc"><span class="cat-row__icon">${SVG_PIN}</span><span>${o.city}, ${o.address}</span></div>
       <div class="cat-row__metro">
-        <span class="cat-row__icon">${SVG_METRO}</span><span>${o.metro || 'Московская'}</span>
-        <span class="cat-row__icon" style="margin-left:8px;">${SVG_WALK}</span><span>${o.walk || '10 мин.'}</span>
+        <span class="cat-row__icon">${SVG_METRO}</span><span>${o.metro}</span>
+        <span class="cat-row__icon" style="margin-left:8px;">${SVG_WALK}</span><span>${o.walk}</span>
       </div>
     </div>
     <div class="cat-row__prices">
-      <div class="cat-row__price-line"><span>Сумма</span><span class="cat-row__price-dots"></span><strong>${o.price}</strong></div>
-      <div class="cat-row__price-line"><span>Цена, ₽/м²</span><span class="cat-row__price-dots"></span><strong>${o.pricePerM}</strong></div>
-      <div class="cat-row__price-line cat-row__price-line--commission"><span><i>Комиссия за сделку</i></span><span class="cat-row__price-dots"></span><strong>${o.commission}</strong></div>
+      ${prices.map(([k, v, mod]) => `<div class="cat-row__price-line${mod}"><span>${k}</span><span class="cat-row__price-dots"></span><strong>${v}</strong></div>`).join('')}
     </div>
-    <div class="cat-row__agent">
-      <div class="cat-row__agent-avatar"><span>LOGO</span></div>
-      <div class="cat-row__agent-info">
-        <div class="cat-row__agent-name">Квартирный клуб</div>
-        <div class="cat-row__agent-line">Тел.: +7 911 111 22 33</div>
-        <div class="cat-row__agent-line">Почта: p.e.realty@yandex.ru</div>
-      </div>
-    </div>
+    ${side}
     <div class="cat-row__actions">
-      <button class="cat-row__act cat-row__act--heart ${favOn ? 'is-fav' : ''}" data-fav="${o.id}" data-fav-on="images/icon-heart-filled.svg" data-fav-off="images/icon-heart-outline.svg" aria-label="В избранное">${SVG_HEART}</button>
-      <button class="cat-row__act" aria-label="Позвонить">${SVG_PHONE}</button>
       <a href="${href}" class="cat-row__act" aria-label="Открыть">${SVG_EXT}</a>
     </div>
   `;
   return row;
 }
+
 function catalogPagination() {
   const wrap = document.createElement('div');
   wrap.className = 'cat-pagination';
@@ -346,7 +381,7 @@ function objectMatches(o) {
 }
 
 function getFiltered() {
-  let arr = _catalogItems.filter(objectMatches);
+  let arr = byStatus(_catalogItems).filter(objectMatches);
   const k = _sortKey;
   if (k === 'area-asc')  arr.sort((a, b) => _num(a.area)  - _num(b.area));
   if (k === 'area-desc') arr.sort((a, b) => _num(b.area)  - _num(a.area));
@@ -445,101 +480,51 @@ function enableRangeDrag(box) {
 
 function objCard(o) {
   const href = objectHref(o.id);
+  const closed = o.status === 'closed';
   const card = document.createElement('article');
-  card.className = 'obj-card';
+  card.className = 'obj-card' + (closed ? ' obj-card--closed' : ' obj-card--live');
+  const rows = closed
+    ? [['Площадь', o.area],
+       ['Начальная цена', o.startPrice],
+       ['Цена продажи', o.salePrice, 'accent'],
+       ['Срок продажи', o.days + ' ' + plurDays(o.days)]]
+    : [['Площадь', o.area],
+       ['Начальная цена', o.startPrice],
+       ['Даты показов', o.showDates],
+       ['Комиссия за сделку', o.commission, 'accent']];
   card.innerHTML = `
     <div class="obj-card__head">
       <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
-      <button class="obj-card__heart ${Favorites.has(o.id) ? 'is-fav' : ''}" data-fav="${o.id}" data-fav-on="images/icon-heart-filled.svg" data-fav-off="images/icon-heart.svg" aria-label="В избранное" style="position:relative;">
-        <img src="${Favorites.has(o.id) ? 'images/icon-heart-filled.svg' : 'images/icon-heart.svg'}" alt="" width="24" height="24">
-        ${o.likes ? `<span class="obj-card__heart-count">${o.likes}</span>` : ''}
-      </button>
     </div>
     <div class="obj-card__tags">
-      <span class="obj-tag"><img src="images/icon-metro.svg" alt="" width="16" height="16">${o.metro}</span>
-      <span class="obj-tag"><img src="images/icon-walk.svg" alt="" width="16" height="16">${o.walk}</span>
+      <span class="obj-tag"><img src="images/icon-pin-purple.svg" alt="" width="14" height="16">${shortCity(o.city)}</span>
     </div>
     <div class="obj-card__rows">
-      <div class="obj-row"><span class="obj-row__key">Объект</span><span class="obj-row__dots"></span><span class="obj-row__val">Ст. ${o.area}</span></div>
-      <div class="obj-row"><span class="obj-row__key">Сумма</span><span class="obj-row__dots"></span><span class="obj-row__val">${o.price}</span></div>
-      <div class="obj-row"><span class="obj-row__key">Цена, ₽/м²</span><span class="obj-row__dots"></span><span class="obj-row__val">${o.pricePerM}</span></div>
-      <div class="obj-row"><span class="obj-row__key">Комиссия за сделку</span><span class="obj-row__dots"></span><span class="obj-row__val">${o.commission}</span></div>
+      ${rows.map(([k, v, mod]) => `<div class="obj-row"><span class="obj-row__key">${k}</span><span class="obj-row__dots"></span><span class="obj-row__val${mod ? ' obj-row__val--' + mod : ''}">${v}</span></div>`).join('')}
     </div>
     <a href="${href}" class="obj-card__media">
       <img src="${o.image}" alt="${o.title}">
-      <span class="obj-card__badge">Объект «Делись»</span>
+      <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : ' obj-card__badge--live'}">${closed ? 'Продан · ' + o.soldAt : 'Идёт аукцион'}</span>
     </a>
   `;
-  // Вся карточка кликабельна, кроме «сердечка» и вложенных ссылок
   card.addEventListener('click', (e) => {
-    if (e.target.closest('.obj-card__heart') || e.target.closest('a')) return;
+    if (e.target.closest('a')) return;
     window.location.href = href;
   });
   return card;
 }
 
-// ---------- Promo "Преимущества" slider ----------
-const PROMO_SLIDES = [
-  {
-    title: 'Фиксация на 15 дней',
-    text: 'Закрепите клиента за собой и предлагайте наши объекты',
-    cta: 'Зафиксировать клиента',
-    href: 'pages/fix-request.html',
-    decor: 'images/promo-slide-1.svg'
-  },
-  {
-    title: 'Безопасная сделка',
-    text: 'Юридическая проверка документов и сопровождение от начала до конца',
-    cta: 'Подключить проверку',
-    decor: 'images/promo-slide-2.svg'
-  },
-  {
-    title: 'Показ объекта для клиента',
-    text: 'При необходимости проведём показ вашему клиенту самостоятельно — всё по договорённости',
-    cta: 'Заказать показ',
-    decor: 'images/promo-slide-3.svg'
-  }
-];
-
-function promoSlider() {
-  const el = document.createElement('div');
-  el.className = 'promo-fixation';
-  el.dataset.slide = '0';
-
-  const render = () => {
-    const i = +el.dataset.slide;
-    const s = PROMO_SLIDES[i];
-    const isFirst = i === 0;
-    const isLast = i === PROMO_SLIDES.length - 1;
-    el.innerHTML = `
-      <span class="promo-fixation__flag">Преимущества</span>
-      <img src="${s.decor || 'images/promo-decor.svg'}" alt="" class="promo-fixation__decor">
-      <div class="promo-fixation__body">
-        <h3 class="promo-fixation__title">${s.title}</h3>
-        <p class="promo-fixation__text">${s.text}</p>
-      </div>
-      <div class="promo-fixation__bottom">
-        <a href="${s.href ? rootPrefix() + s.href : '#'}" class="btn btn--outline-white promo-fixation__cta">${s.cta}</a>
-        <div class="slider-arrows promo-fixation__arrows">
-          ${!isFirst ? `<button class="slider-arrows__btn" data-dir="-1" aria-label="Назад"><img src="images/arrow-right.svg" alt="" width="16" height="16" style="transform:scaleX(-1)"></button>` : ''}
-          ${!isLast  ? `<button class="slider-arrows__btn slider-arrows__btn--active" data-dir="1" aria-label="Вперёд"><img src="images/arrow-right.svg" alt="" width="16" height="16"></button>` : ''}
-        </div>
-      </div>
-    `;
-    el.querySelectorAll('[data-dir]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const dir = +btn.dataset.dir;
-        const next = Math.max(0, Math.min(PROMO_SLIDES.length - 1, +el.dataset.slide + dir));
-        el.dataset.slide = String(next);
-        render();
-      });
-    });
-  };
-
-  render();
-  return el;
+function shortCity(city) {
+  return String(city || '').replace('Ленинградская область', 'Ленобласть');
 }
+
+function plurDays(n) {
+  const d = n % 10, dd = n % 100;
+  if (d === 1 && dd !== 11) return 'день';
+  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return 'дня';
+  return 'дней';
+}
+
 
 // ---------- Tabs: simple active swap ----------
 document.addEventListener('click', (e) => {
@@ -556,6 +541,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderNav();
   initBurger();
   initFavorites();
+  initRegTabs();
+  initSubmenu();
   // ---------- Switch header buttons when user is logged in ----------
   try {
     const user = JSON.parse(localStorage.getItem('delis_user') || 'null');
