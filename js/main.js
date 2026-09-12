@@ -279,7 +279,10 @@ function objListRow(o) {
   const b = o.broker || {};
   const side = `
     <div class="cat-row__broker">
-      <div class="cat-row__broker-avatar">${b.initials || '—'}</div>
+      <div class="broker-ava">
+        ${b.photo ? `<img src="${b.photo}" alt="" class="broker-ava__photo">` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
+        ${b.logo ? `<img src="${b.logo}" alt="" class="broker-ava__logo">` : ''}
+      </div>
       <div class="cat-row__broker-info">
         <div class="cat-row__broker-name">${b.name || ''}</div>
         <div class="cat-row__broker-agency">${b.agency || ''}</div>

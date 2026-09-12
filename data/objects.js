@@ -28,7 +28,9 @@ window.__OBJECTS = [
       "name": "Пирогова Елена Владимировна",
       "agency": "Уклонский и Партнёры",
       "phone": "+7 (999) 000-01-11",
-      "initials": "ПЕ"
+      "initials": "ПЕ",
+      "photo": "images/broker-1.jpg",
+      "logo": "images/agency-uip.jpg"
     }
   },
   {
@@ -59,7 +61,9 @@ window.__OBJECTS = [
       "name": "Верховых Александра Сергеевна",
       "agency": "Квартирный клуб",
       "phone": "+7 (999) 000-01-12",
-      "initials": "ВА"
+      "initials": "ВА",
+      "photo": "images/broker-2.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -90,7 +94,9 @@ window.__OBJECTS = [
       "name": "Мартынов Игорь Олегович",
       "agency": "Северный вектор",
       "phone": "+7 (999) 000-01-13",
-      "initials": "МИ"
+      "initials": "МИ",
+      "photo": "images/broker-3.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -121,7 +127,9 @@ window.__OBJECTS = [
       "name": "Соколова Марина Андреевна",
       "agency": "Уклонский и Партнёры",
       "phone": "+7 (999) 000-01-14",
-      "initials": "СМ"
+      "initials": "СМ",
+      "photo": "images/broker-4.jpg",
+      "logo": "images/agency-uip.jpg"
     }
   },
   {
@@ -152,7 +160,9 @@ window.__OBJECTS = [
       "name": "Ковалёв Дмитрий Петрович",
       "agency": "Дом и ключи",
       "phone": "+7 (999) 000-01-15",
-      "initials": "КД"
+      "initials": "КД",
+      "photo": "images/broker-1.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -183,7 +193,9 @@ window.__OBJECTS = [
       "name": "Ефимова Ольга Николаевна",
       "agency": "Невский стандарт",
       "phone": "+7 (999) 000-01-16",
-      "initials": "ЕО"
+      "initials": "ЕО",
+      "photo": "images/broker-2.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -214,7 +226,9 @@ window.__OBJECTS = [
       "name": "Гусев Артём Валерьевич",
       "agency": "Уклонский и Партнёры",
       "phone": "+7 (999) 000-01-17",
-      "initials": "ГА"
+      "initials": "ГА",
+      "photo": "images/broker-3.jpg",
+      "logo": "images/agency-uip.jpg"
     }
   },
   {
@@ -245,7 +259,9 @@ window.__OBJECTS = [
       "name": "Лапшина Ирина Борисовна",
       "agency": "Квартирный клуб",
       "phone": "+7 (999) 000-01-18",
-      "initials": "ЛИ"
+      "initials": "ЛИ",
+      "photo": "images/broker-4.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -271,7 +287,9 @@ window.__OBJECTS = [
       "name": "Романов Сергей Ильич",
       "agency": "Северный вектор",
       "phone": "+7 (999) 000-01-19",
-      "initials": "РС"
+      "initials": "РС",
+      "photo": "images/broker-1.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -297,7 +315,9 @@ window.__OBJECTS = [
       "name": "Белова Татьяна Юрьевна",
       "agency": "Уклонский и Партнёры",
       "phone": "+7 (999) 000-01-20",
-      "initials": "БТ"
+      "initials": "БТ",
+      "photo": "images/broker-2.jpg",
+      "logo": "images/agency-uip.jpg"
     }
   },
   {
@@ -323,7 +343,9 @@ window.__OBJECTS = [
       "name": "Зайцев Максим Андреевич",
       "agency": "Дом и ключи",
       "phone": "+7 (999) 000-01-21",
-      "initials": "ЗМ"
+      "initials": "ЗМ",
+      "photo": "images/broker-3.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   },
   {
@@ -349,7 +371,9 @@ window.__OBJECTS = [
       "name": "Носова Анна Дмитриевна",
       "agency": "Невский стандарт",
       "phone": "+7 (999) 000-01-22",
-      "initials": "НА"
+      "initials": "НА",
+      "photo": "images/broker-4.jpg",
+      "logo": "images/agency-sankin.jpg"
     }
   }
 ];

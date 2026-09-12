@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260912y">
-<link rel="stylesheet" href="css/base.css?v=20260912y">
-<link rel="stylesheet" href="css/main.css?v=20260912y">
+<link rel="stylesheet" href="css/tokens.css?v=20260913b">
+<link rel="stylesheet" href="css/base.css?v=20260913b">
+<link rel="stylesheet" href="css/main.css?v=20260913b">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -23,11 +23,6 @@
         <img src="images/logo.svg" alt="" class="header__logo-img">
         <span class="header__logo-text">ДЕЛИСЬ</span>
       </a>
-      <button class="header__location" type="button">
-        <img src="images/icon-location.svg" alt="" width="24" height="24">
-        <span>Ленинградская область</span>
-        <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
-      </button>
     </div>
 
     <nav class="header__nav">
@@ -74,12 +69,9 @@
           <p class="hero__text">
             Делись — информационная площадка по продаже недвижимости аукционным способом.
             Ваш объект увидят тысячи риелторов, каждый получит комиссию за приведённого покупателя.
-            Объект можно привести самому или передать через своего агента.
           </p>
           <ul class="hero__pins">
-            <li class="hero__pin">Аукционы</li>
-            <li class="hero__pin">Коммерческая недвижимость</li>
-            <li class="hero__pin">Элитная недвижимость</li>
+            <li class="hero__pin">Скоростная продажа недвижимости</li>
           </ul>
         </div>
       </div>
@@ -114,6 +106,37 @@
   </div>
 </section>
 
+<!-- ========== PARTNERS (бегущая строка) ========== -->
+<section class="partners">
+  <div class="partners__container">
+    <h2 class="section-title section-title--center">Наши партнёры</h2>
+    <div class="marquee">
+      <div class="marquee__track">
+        <ul class="marquee__group">
+          <li><img src="images/partner-1.svg" alt="Century 21"></li>
+          <li><img src="images/partner-3.svg" alt="Сбер"></li>
+          <li><img src="images/partner-4.svg" alt="Циан"></li>
+          <li><img src="images/partner-5.svg" alt="ПИК"></li>
+          <li><img src="images/partner-2.svg" alt="Century 21"></li>
+          <li><img src="images/partner-3.svg" alt="Сбер"></li>
+          <li><img src="images/partner-4.svg" alt="Циан"></li>
+          <li><img src="images/partner-5.svg" alt="ПИК"></li>
+        </ul>
+        <ul class="marquee__group" aria-hidden="true">
+          <li><img src="images/partner-1.svg" alt=""></li>
+          <li><img src="images/partner-3.svg" alt=""></li>
+          <li><img src="images/partner-4.svg" alt=""></li>
+          <li><img src="images/partner-5.svg" alt=""></li>
+          <li><img src="images/partner-2.svg" alt=""></li>
+          <li><img src="images/partner-3.svg" alt=""></li>
+          <li><img src="images/partner-4.svg" alt=""></li>
+          <li><img src="images/partner-5.svg" alt=""></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== CATALOG ========== -->
 <section class="catalog">
   <div class="catalog__container">
@@ -122,16 +145,16 @@
       <div class="catalog__head">
         <h2 class="section-title">Реестр аукционов</h2>
         <div class="catalog__head-actions">
-          <button class="btn btn--outline catalog__filters-btn" type="button" onclick="openFilters()">
-            <img src="images/icon-settings.svg" alt="" width="20" height="20">
+          <button class="btn btn--dark btn--sm catalog__filters-btn" type="button" onclick="openFilters()">
+            <img src="images/icon-settings.svg" alt="" width="18" height="18">
             Все фильтры
           </button>
-          <a href="catalog.html" class="btn btn--outline">Весь реестр</a>
+          <a href="catalog.html" class="btn btn--outline btn--sm">Весь реестр</a>
         </div>
       </div>
 
       <div class="reg-tabs">
-        <button type="button" class="reg-tab is-active" data-reg-tab="live">Идёт аукцион</button>
+        <button type="button" class="reg-tab is-active" data-reg-tab="live">Активные аукционы</button>
         <button type="button" class="reg-tab" data-reg-tab="closed">Закрытые аукционы</button>
       </div>
 
@@ -426,8 +449,8 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/objects.js?v=20260912y"></script>
-<script src="js/favorites.js?v=20260912y"></script>
-<script src="js/main.js?v=20260912y"></script>
+<script src="data/objects.js?v=20260913b"></script>
+<script src="js/favorites.js?v=20260913b"></script>
+<script src="js/main.js?v=20260913b"></script>
 </body>
 </html>

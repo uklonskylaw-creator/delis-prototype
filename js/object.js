@@ -71,7 +71,10 @@
 
     const broker = `
       <div class="obj-broker">
-        <div class="obj-broker__avatar">${b.initials || '—'}</div>
+        <div class="broker-ava broker-ava--lg">
+          ${b.photo ? `<img src="../${b.photo}" alt="" class="broker-ava__photo">` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
+          ${b.logo ? `<img src="../${b.logo}" alt="" class="broker-ava__logo">` : ''}
+        </div>
         <div class="obj-broker__info">
           <div class="obj-broker__role">Брокер объекта</div>
           <div class="obj-broker__name">${b.name || ''}</div>
