@@ -97,7 +97,7 @@
     box.innerHTML = `
       <div class="obj-panel__status obj-panel__status--${closed ? 'sold' : 'live'}">
         ${closed ? '' : '<i class="obj-panel__pulse"></i>'}
-        ${closed ? 'Продано · ' + o.soldAt : (o.format === 'direct' ? 'Прямая продажа' : 'Активный аукцион')}
+        ${closed ? 'Продано · ' + o.soldAt : (o.format === 'direct' ? 'Прямая продажа' : 'Аукцион')}
       </div>
       ${prices}
       <div class="obj-prices">

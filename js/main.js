@@ -154,7 +154,7 @@ function objSold(o) { return (o.status || 'closed') === 'closed'; }
 /* Ярлык формата для карточки и карты */
 function objBadge(o) {
   if (objSold(o)) return 'Продано' + (o.soldAt ? ' · ' + o.soldAt : '');
-  return objFormat(o) === 'direct' ? 'Прямая продажа' : 'Активный аукцион';
+  return objFormat(o) === 'direct' ? 'Прямая продажа' : 'Аукцион';
 }
 
 function byStatus(items) {
