@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>О проекте — Делись</title>
+<title>Как это работает — Делись</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260913i">
-<link rel="stylesheet" href="css/base.css?v=20260913i">
-<link rel="stylesheet" href="css/main.css?v=20260913i">
+<link rel="stylesheet" href="css/tokens.css?v=20260914i">
+<link rel="stylesheet" href="css/base.css?v=20260914i">
+<link rel="stylesheet" href="css/main.css?v=20260914i">
 </head>
 <body>
 <header class="header">
@@ -22,20 +22,12 @@
     </div>
 
     <nav class="header__nav">
-      <div class="header__submenu-wrap">
-        <button class="header__nav-link" type="button" data-submenu-btn>
-          Услуги
-          <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
-        </button>
-        <div class="header__submenu" data-submenu>
-          <a href="index.html#form" class="header__submenu-link">Помощь в продаже</a>
-          <a href="index.html#form" class="header__submenu-link">Заказать сайт</a>
-        </div>
-      </div>
-      <a href="catalog.html" class="header__nav-link">Реестр</a>
-      <a href="#" class="header__nav-link">О проекте</a>
-      <a href="#" class="header__nav-link">Вакансии</a>
-      <a href="#" class="header__nav-link">Контакты</a>
+      <a href="catalog.html" class="header__nav-link">Объекты</a>
+      <a href="agents.html" class="header__nav-link">Агентам</a>
+      <a href="owners.html" class="header__nav-link">Собственникам</a>
+      <a href="about.html" class="header__nav-link">Как это работает</a>
+      <a href="vacancies.html" class="header__nav-link">Вакансии</a>
+      <a href="contacts.html" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
@@ -52,35 +44,75 @@
 
 <section class="catalog-page-head">
   <div class="searchbar-section__container">
-    <nav class="cat-crumbs"><a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">О проекте</span></nav>
-    <h1 class="section-title">О проекте</h1>
+    <nav class="cat-crumbs"><a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Как это работает</span></nav>
+    <h1 class="section-title">Как работает «Делись»</h1>
   </div>
 </section>
 <section class="static-section">
   <div class="static-wrap">
-    <p class="static-lead">«Делись» — агрегатор и помощник по вторичной недвижимости в Санкт-Петербурге и Ленинградской области. Мы собираем проверенные объекты в одном месте и помогаем риелторам и покупателям безопасно проводить сделки.</p>
+    <p class="static-lead">«Делись» — площадка объектов недвижимости, где сторона продавца платит встречную комиссию агенту, приведшему покупателя. Объект продаётся аукционом или прямой продажей, размер комиссии известен заранее и указан в карточке объекта.</p>
 
-    <div class="static-stats">
-      <div class="static-stat"><div class="static-stat__num">148</div><div class="static-stat__label">объектов в базе</div></div>
-      <div class="static-stat"><div class="static-stat__num">300+</div><div class="static-stat__label">партнёров</div></div>
-      <div class="static-stat"><div class="static-stat__num">40+</div><div class="static-stat__label">застройщиков</div></div>
-      <div class="static-stat"><div class="static-stat__num">200+</div><div class="static-stat__label">сделок за год</div></div>
+    <div class="how-cols">
+      <div class="how-col">
+        <h3 class="how-col__title">Размещаю объект</h3>
+        <ol class="how-col__list">
+          <li>Регистрируетесь как агентство или частный агент.</li>
+          <li>Публикуете объект и указываете встречную комиссию, не менее 2 % от цены продажи.</li>
+          <li>Выбираете формат: аукцион или прямая продажа.</li>
+          <li>Указываете срок фиксации клиента за агентом, который приведёт покупателя.</li>
+          <li>Принимаете покупателей от агентов всей сети и выходите на сделку.</li>
+        </ol>
+      </div>
+      <div class="how-col">
+        <h3 class="how-col__title">Привожу покупателя</h3>
+        <ol class="how-col__list">
+          <li>Находите объект в каталоге. Размер комиссии указан в карточке.</li>
+          <li>Фиксируете за собой клиента. Фиксация видна всем участникам, спорить о том, кто первым привёл покупателя, не придётся. Срок фиксации указан в карточке.</li>
+          <li>Показываете объект. Показ может провести сторона продавца, если вам неудобно.</li>
+          <li>Сделка проходит с юридическим сопровождением.</li>
+          <li>Комиссию выплачивает сторона, разместившая объект, по условиям из карточки и договора.</li>
+        </ol>
+      </div>
     </div>
 
-    <h2>Зачем мы нужны</h2>
-    <p>Рынок вторичной недвижимости разрознен: объекты разбросаны по десяткам площадок, контакты теряются, а договорённости сложно зафиксировать. «Делись» решает это — единая база, прозрачные условия и удобная коммуникация между всеми участниками сделки.</p>
+    <h2>Аукцион или прямая продажа</h2>
+    <p><b>Аукцион.</b> Объект выставляется по цене ниже рыночной, чтобы собрать максимум обращений за короткий срок. Покупатели конкурируют и делают предложения, продавец выбирает лучшее. Резервная цена фиксируется в договоре до старта кампании, ниже неё продажи не будет.</p>
+    <p><b>Прямая продажа.</b> Объект продаётся по заявленной цене, без кампании и конкуренции предложений. Встречная комиссия работает так же.</p>
+    <p>Оба формата доступны всем участникам, ограничений по типу объекта нет.</p>
 
-    <h2>Что мы делаем</h2>
+    <h2>Что гарантирует площадка, а что нет</h2>
+    <p>Площадка:</p>
     <ul>
-      <li>Собираем и проверяем объекты вторичной недвижимости СПб и ЛО</li>
-      <li>Помогаем зафиксировать клиента за риелтором на 15 дней</li>
-      <li>Проводим юридическую проверку документов и сопровождаем сделку</li>
-      <li>Обеспечиваем безопасную коммуникацию и гарантируем выплату комиссии</li>
-      <li>При необходимости проводим показ объекта вашему клиенту</li>
+      <li>проверяет участников при регистрации;</li>
+      <li>фиксирует условия сделки и размер встречной комиссии до начала работы;</li>
+      <li>фиксирует клиента за агентом и хранит историю;</li>
+      <li>хранит переписку и договорённости по объекту;</li>
+      <li>сопровождает сделку юридически.</li>
     </ul>
+    <p>Площадка не выступает стороной расчётов по чужим объектам: комиссию платит тот, кто разместил объект. По объектам, размещённым самой площадкой, стороной продавца выступает «Делись».</p>
 
-    <h2>Кому подходит</h2>
-    <p>Риелторам, агентствам и частным специалистам, которые хотят работать с надёжной базой объектов и проводить сделки без рисков, а также покупателям, которые ищут квартиру на вторичном рынке.</p>
+    <h2>Вопросы и ответы</h2>
+    <dl class="faq">
+      <dt>Сколько стоит участие агенту, который приводит покупателя</dt>
+      <dd>Ничего. Комиссию платит сторона продавца.</dd>
+      <dt>Какая минимальная комиссия</dt>
+      <dd>2 % от цены продажи. Больше можно, меньше нельзя.</dd>
+      <dt>Кто может размещать объекты</dt>
+      <dd>Любой агент или агентство, принявшее правило встречной комиссии.</dd>
+      <dt>Что если объект не продан на аукционе</dt>
+      <dd>Кампания продолжается или объект переводится в прямую продажу. Решение принимает продавец.</dd>
+      <dt>Кто проводит показ</dt>
+      <dd>Агент покупателя или сторона продавца, по договорённости.</dd>
+      <dt>Когда выплачивается комиссия</dt>
+      <dd>После регистрации перехода права и расчётов по сделке.</dd>
+      <dt>В каких городах работает площадка</dt>
+      <dd>Во всех городах сети. Город выбирается в каталоге объектов.</dd>
+    </dl>
+
+    <div class="static-cta">
+      <a href="catalog.html" class="btn btn--dark">Смотреть объекты</a>
+      <a href="agents.html" class="btn btn--outline-brand">Условия для агентов</a>
+    </div>
   </div>
 </section>
 
@@ -95,10 +127,11 @@
 
     <nav class="footer__nav">
       <ul>
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Карьера</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="vacancies.html">Карьера</a></li>
         <li><a href="#">Документы</a></li>
         <li><a href="#">Счета и реквизиты</a></li>
+        <li><a href="index.html#form">Заказать сайт</a></li>
       </ul>
       <ul>
         <li><a href="#">Торговая марка</a></li>
@@ -120,7 +153,6 @@
       </a>
       <div class="footer__socials">
         <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
-        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
         <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
@@ -129,6 +161,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20260913i"></script>
+<script src="js/main.js?v=20260914i"></script>
 </body>
 </html>

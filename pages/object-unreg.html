@@ -7,10 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/tokens.css?v=20260913i">
-<link rel="stylesheet" href="../css/base.css?v=20260913i">
-<link rel="stylesheet" href="../css/main.css?v=20260913i">
-<link rel="stylesheet" href="../css/object.css?v=20260913i">
+<link rel="stylesheet" href="../css/tokens.css?v=20260914i">
+<link rel="stylesheet" href="../css/base.css?v=20260914i">
+<link rel="stylesheet" href="../css/main.css?v=20260914i">
+<link rel="stylesheet" href="../css/object.css?v=20260914i">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -26,20 +26,12 @@
     </div>
 
     <nav class="header__nav">
-      <div class="header__submenu-wrap">
-        <button class="header__nav-link" type="button" data-submenu-btn>
-          Услуги
-          <img src="../images/icon-arrow-down.svg" alt="" width="14" height="8">
-        </button>
-        <div class="header__submenu" data-submenu>
-          <a href="../index.html#form" class="header__submenu-link">Помощь в продаже</a>
-          <a href="../index.html#form" class="header__submenu-link">Заказать сайт</a>
-        </div>
-      </div>
-      <a href="../catalog.html" class="header__nav-link">Реестр</a>
-      <a href="#" class="header__nav-link">О проекте</a>
-      <a href="#" class="header__nav-link">Вакансии</a>
-      <a href="#" class="header__nav-link">Контакты</a>
+      <a href="../catalog.html" class="header__nav-link">Объекты</a>
+      <a href="../agents.html" class="header__nav-link">Агентам</a>
+      <a href="../owners.html" class="header__nav-link">Собственникам</a>
+      <a href="../about.html" class="header__nav-link">Как это работает</a>
+      <a href="../vacancies.html" class="header__nav-link">Вакансии</a>
+      <a href="../contacts.html" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
@@ -60,7 +52,7 @@
     <nav class="obj-crumbs">
       <a href="../index.html" class="obj-crumbs__link">Главная</a>
       <span class="obj-crumbs__dot">·</span>
-      <a href="../catalog.html" class="obj-crumbs__link">Реестр аукционов</a>
+      <a href="../catalog.html" class="obj-crumbs__link">Объекты</a>
       <span class="obj-crumbs__dot">·</span>
       <span class="obj-crumbs__current" data-field="id">ID123456789</span>
     </nav>
@@ -170,7 +162,7 @@
           <p>В проекте предложено множество планировочных решений: в наличии квартиры, как классического типа, так и европланировки. В них предусмотрены нестандартные широкие балконы с увеличенной площадью и панорамным остеклением.</p>
           <p>В состав комплекса входит 3 детских сада на 140 мест и школа на 825 мест. Территория комплекса благоустроена: выполнено авторское озеленение, проложены лесные дорожки, предусмотрены площадки для отдыха и спорта. На первых этажах предусмотрены коммерческие помещения. Для автовладельцев спроектировано 4 отдельностоящих паркинга и 6 пристроенных.</p>
           <p>Жилой комплекс находится в Приморском районе Санкт-Петербурга Комплекс с 3 сторон окружают лесные массивы. Рядом с ЖК расположены Суздальские озера и Шуваловский парк, а в 10 минутах езды — Юнтоловский заповедник. Метро «Проспект Просвещения» находится в 15 минутах езды.</p>
-          <p>Торг обсуждается. Звоните, будем рады помочь</p>
+          <p>Цена обсуждается. Звоните, будем рады помочь</p>
         </div>
         <div class="obj-show-more">
           <button type="button" class="obj-show-more__btn" data-target="obj-text">
@@ -246,10 +238,11 @@
 
     <nav class="footer__nav">
       <ul>
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Карьера</a></li>
+        <li><a href="../about.html">О нас</a></li>
+        <li><a href="../vacancies.html">Карьера</a></li>
         <li><a href="#">Документы</a></li>
         <li><a href="#">Счета и реквизиты</a></li>
+        <li><a href="../index.html#form">Заказать сайт</a></li>
       </ul>
       <ul>
         <li><a href="#">Торговая марка</a></li>
@@ -271,7 +264,6 @@
       </a>
       <div class="footer__socials">
         <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
-        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
         <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
@@ -280,10 +272,10 @@
   </div>
 </footer>
 
-<script src="../js/favorites.js?v=20260913i"></script>
-<script src="../js/main.js?v=20260913i"></script>
-<script src="../data/objects.js?v=20260913i"></script>
-<script src="../js/object.js?v=20260913i"></script>
+<script src="../js/favorites.js?v=20260914i"></script>
+<script src="../js/main.js?v=20260914i"></script>
+<script src="../data/objects.js?v=20260914i"></script>
+<script src="../js/object.js?v=20260914i"></script>
 <script>
 // Заблокированные элементы (кнопки и скрытая комиссия) → ведут на регистрацию
 document.addEventListener('click', (e) => {

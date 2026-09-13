@@ -23,17 +23,18 @@
     return many;
   }
 
-  /* Правая панель: у закрытого аукциона — итоги, у идущего — условия и запись на показ */
+  /* Правая панель: у проданного объекта — итоги, у активного — условия и запись на показ */
   function renderPanel(o) {
     const box = document.querySelector('[data-obj-panel]');
     if (!box) return;
     const closed = o.status === 'closed';
+    const direct = o.format === 'direct';
     const b = o.broker || {};
 
     const prices = closed
       ? `<div class="obj-deal">
            <div class="obj-deal__col">
-             <span class="obj-deal__label">Начальная цена</span>
+             <span class="obj-deal__label">${direct ? 'Цена в продаже' : 'Начальная цена'}</span>
              <b class="obj-deal__start">${o.startPrice}</b>
            </div>
            <div class="obj-deal__col obj-deal__col--final">
@@ -43,18 +44,18 @@
          </div>`
       : `<div class="obj-deal">
            <div class="obj-deal__col">
-             <span class="obj-deal__label">Начальная цена</span>
-             <b class="obj-deal__start">${o.startPrice}</b>
+             <span class="obj-deal__label">${direct ? 'Цена' : 'Начальная цена'}</span>
+             <b class="obj-deal__start">${direct ? o.price : o.startPrice}</b>
            </div>
            <div class="obj-deal__col obj-deal__col--final">
-             <span class="obj-deal__label">Комиссия за сделку${o.commissionType === 'percent' ? ' (от цены продажи)' : ''}</span>
+             <span class="obj-deal__label">Встречная комиссия${o.commissionType === 'percent' ? ' (от цены продажи)' : ''}</span>
              <b class="obj-deal__final">${o.commission}</b>
            </div>
          </div>`;
 
     const rows = closed
       ? [['Площадь', o.area]]
-      : [['Площадь', o.area], ['Даты показов', o.showDates]];
+      : [['Площадь', o.area], ['Даты показов', o.showDates || 'по договорённости']];
 
     const stats = closed
       ? `<div class="obj-panel__stats obj-panel__stats--four">
@@ -96,7 +97,7 @@
     box.innerHTML = `
       <div class="obj-panel__status obj-panel__status--${closed ? 'sold' : 'live'}">
         ${closed ? '' : '<i class="obj-panel__pulse"></i>'}
-        ${closed ? 'Аукцион закрыт · ' + o.soldAt : 'Аукцион идёт'}
+        ${closed ? 'Продано · ' + o.soldAt : (o.format === 'direct' ? 'Прямая продажа' : 'Активный аукцион')}
       </div>
       ${prices}
       <div class="obj-prices">
@@ -140,9 +141,12 @@
     setTxt('[data-map-addr]', `${o.city}, ${o.address}`);
     setTxt('[data-map-metro]', o.metro);
     setTxt('[data-map-walk]', o.walk);
+    const isDirect = o.format === 'direct';
     setTxt('[data-map-desc]', o.status === 'closed'
-      ? `Продан аукционным способом за ${o.days} ${plur(o.days, 'день', 'дня', 'дней')}: ${o.requests} обращений, ${o.shows} показов, ${o.offers} предложений.`
-      : `Аукцион идёт. Показы ${o.showDates}. Начальная цена ${o.startPrice}.`);
+      ? `Продан ${isDirect ? 'прямой продажей' : 'аукционным способом'} за ${o.days} ${plur(o.days, 'день', 'дня', 'дней')}: ${o.requests} обращений, ${o.shows} показов, ${o.offers} предложений.`
+      : isDirect
+        ? `Прямая продажа. Цена ${o.price}. Показы по договорённости.`
+        : `Аукцион идёт. Показы ${o.showDates}. Начальная цена ${o.startPrice}.`);
 
     // Текстовые поля
     document.querySelectorAll('[data-field]').forEach(el => {

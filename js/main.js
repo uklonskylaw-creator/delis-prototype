@@ -60,8 +60,10 @@ function initBurger() {
       <button class="mobile-menu__close" type="button" aria-label="Закрыть">&times;</button>
       <nav class="mobile-menu__nav">
         <a href="${base}index.html">Главная</a>
-        <a href="${base}catalog.html">Каталог объектов</a>
-        <a href="${base}about.html">О проекте</a>
+        <a href="${base}catalog.html">Объекты</a>
+        <a href="${base}agents.html">Агентам</a>
+        <a href="${base}owners.html">Собственникам</a>
+        <a href="${base}about.html">Как это работает</a>
         <a href="${base}vacancies.html">Вакансии</a>
         <a href="${base}contacts.html">Контакты</a>
       </nav>
@@ -137,14 +139,32 @@ async function renderCatalog() {
       drawMainList(_catalogItems);
     }
     updateApplyCount();
+    initCitySelect();
   } catch (e) {
     console.warn('Failed to load objects.json', e);
   }
 }
-let _regStatus = 'live';   /* вкладка реестра: live | closed */
+let _regStatus = 'auction';   /* вкладка каталога: all | auction | direct | sold */
+let _city = (() => { try { return localStorage.getItem('delis_city') || ''; } catch (e) { return ''; } })();
+
+/* Формат объекта: аукцион или прямая продажа */
+function objFormat(o) { return (o.format === 'direct') ? 'direct' : 'auction'; }
+function objSold(o) { return (o.status || 'closed') === 'closed'; }
+
+/* Ярлык формата для карточки и карты */
+function objBadge(o) {
+  if (objSold(o)) return 'Продано' + (o.soldAt ? ' · ' + o.soldAt : '');
+  return objFormat(o) === 'direct' ? 'Прямая продажа' : 'Активный аукцион';
+}
 
 function byStatus(items) {
-  return items.filter(o => (o.status || 'closed') === _regStatus);
+  return items.filter(o => {
+    if (_city && o.city !== _city) return false;
+    if (_regStatus === 'all')     return true;
+    if (_regStatus === 'sold')    return objSold(o);
+    if (_regStatus === 'direct')  return !objSold(o) && objFormat(o) === 'direct';
+    return !objSold(o) && objFormat(o) === 'auction';   /* auction */
+  });
 }
 
 function drawCatalog(items) {
@@ -182,11 +202,13 @@ function fillMapCard(id) {
   const closed = o.status === 'closed';
   const rows = closed
     ? [['Начальная цена', o.startPrice], ['Цена продажи', o.salePrice], ['Срок продажи', o.days + ' ' + plurDays(o.days)]]
-    : [['Начальная цена', o.startPrice], ['Даты показов', o.showDates], ['Комиссия за сделку', o.commission]];
+    : objFormat(o) === 'direct'
+      ? [['Цена', o.price], ['Встречная комиссия', o.commission]]
+      : [['Начальная цена', o.startPrice], ['Даты показов', o.showDates], ['Встречная комиссия', o.commission]];
   box.innerHTML = `
     <a href="${objectHref(o.id)}" class="map-card__photo">
       <img src="${o.image}" alt="${o.title}" class="map-card__img">
-      <span class="map-card__badge">${closed ? 'Продан · ' + o.soldAt : 'Идёт аукцион'}</span>
+      <span class="map-card__badge">${objBadge(o)}</span>
     </a>
     <div class="map-card__body">
       <div class="map-card__title-row">
@@ -206,6 +228,78 @@ function fillMapCard(id) {
         ${rows.map(([k, v]) => `<div class="map-card__price-row"><span>${k}</span><span class="map-card__dots"></span><b>${v}</b></div>`).join('')}
       </div>
     </div>`;
+}
+
+
+/* ---------- Селектор города рядом с кнопкой «Все фильтры» ---------- */
+function initCitySelect() {
+  const wrap = document.getElementById('city-select');
+  if (!wrap) return;
+  const btn = document.getElementById('city-btn');
+  const label = document.getElementById('city-btn-label');
+  const drop = document.getElementById('city-dropdown');
+  const search = document.getElementById('city-search');
+  const list = document.getElementById('city-list');
+
+  const cities = [...new Set((_catalogItems || []).map(o => o.city).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, 'ru'));
+
+  // город из сохранённого выбора мог исчезнуть из выдачи
+  if (_city && !cities.includes(_city)) _city = '';
+  label.textContent = _city || 'Все города';
+  wrap.classList.toggle('city-select--set', !!_city);
+
+  function draw(q) {
+    const needle = (q || '').trim().toLowerCase();
+    const rows = cities.filter(c => !needle || c.toLowerCase().includes(needle));
+    list.innerHTML = '';
+    const mk = (value, text) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'city-select__option' + (value === _city ? ' is-active' : '');
+      b.textContent = text;
+      b.addEventListener('click', () => {
+        _city = value;
+        try { localStorage.setItem('delis_city', value); } catch (e) {}
+        label.textContent = value || 'Все города';
+        wrap.classList.toggle('city-select--set', !!value);
+        close();
+        drawCatalog(_catalogItems);
+        if (_catalogView) refreshList(); else updateApplyCount();
+      });
+      return b;
+    };
+    if (!needle) list.appendChild(mk('', 'Все города'));
+    if (!rows.length) {
+      const p = document.createElement('p');
+      p.className = 'city-select__empty';
+      p.textContent = 'Город не найден';
+      list.appendChild(p);
+    }
+    rows.forEach(c => list.appendChild(mk(c, c)));
+  }
+
+  function open() {
+    drop.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    draw('');
+    search.value = '';
+    search.focus();
+  }
+  function close() {
+    drop.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    drop.classList.contains('is-open') ? close() : open();
+  });
+  search.addEventListener('input', () => draw(search.value));
+  drop.addEventListener('click', (e) => e.stopPropagation());
+  document.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  draw('');
 }
 
 function initRegTabs() {
@@ -253,7 +347,10 @@ function catalogTable(items) {
   const wrap = document.createElement('div');
   wrap.className = 'cat-table cat-table--registry';
   const arrows = '<span class="cat-table__sort">↕</span>';
-  const closed = _regStatus === 'closed';
+  const soldTab = _regStatus === 'sold';
+  const allTab  = _regStatus === 'all';
+  const col7 = soldTab ? 'Продан за' : (allTab || _regStatus === 'direct' ? 'Цена' : 'Начальная');
+  const col8 = soldTab ? 'Срок' : (allTab ? 'Формат' : 'Показы');
   wrap.innerHTML = `
     <div class="cat-table__head">
       <div>Объект</div>
@@ -262,13 +359,19 @@ function catalogTable(items) {
       <div>Метро</div>
       <div>Этаж ${arrows}</div>
       <div>S, м² ${arrows}</div>
-      <div>Начальная ${arrows}</div>
-      <div>${closed ? 'Продан за' : 'Показы'} ${closed ? arrows : ''}</div>
-      <div>${closed ? 'Срок' : 'Комиссия'} ${arrows}</div>
+      <div>${col7} ${arrows}</div>
+      <div>${col8} ${soldTab ? arrows : ''}</div>
+      <div>Комиссия ${arrows}</div>
       <div></div>
     </div>
     <div class="cat-table__body">
-      ${items.map(o => `
+      ${items.map(o => {
+        const sold = objSold(o);
+        const dir = objFormat(o) === 'direct';
+        const v7 = sold ? o.salePrice : (dir ? o.price : o.startPrice);
+        const v8 = sold ? (allTab ? objBadge(o) : o.days + ' ' + plurDays(o.days))
+                        : (allTab ? objBadge(o) : (dir ? 'По договорённости' : o.showDates));
+        return `
         <div class="cat-table__row" data-href="${objectHref(o.id)}">
           <div>${o.title}</div>
           <div>${o.type}</div>
@@ -276,12 +379,12 @@ function catalogTable(items) {
           <div class="cat-table__metro"><img src="images/icon-metro.svg" alt="" width="13" height="10"><span>${o.metro}</span><img src="images/icon-walk.svg" alt="" width="9" height="13"><span>${o.walk}</span></div>
           <div>${o.floor}</div>
           <div>${o.area}</div>
-          <div>${o.startPrice}</div>
-          <div>${closed ? o.salePrice : o.showDates}</div>
-          <div class="cat-table__accent">${closed ? o.days + ' ' + plurDays(o.days) : o.commission}</div>
+          <div>${v7}</div>
+          <div>${v8}</div>
+          <div class="cat-table__accent">${o.commission}</div>
           <div class="cat-table__link-cell"><a href="${objectHref(o.id)}" aria-label="Открыть"><img src="images/icon-link.svg" alt="" width="16" height="16"></a></div>
-        </div>
-      `).join('')}
+        </div>`;
+      }).join('')}
     </div>
   `;
   wrap.querySelectorAll('.cat-table__row').forEach(row => {
@@ -302,13 +405,17 @@ function objListRow(o) {
   const href = objectHref(o.id);
   const closed = o.status === 'closed';
 
+  const isDirect = objFormat(o) === 'direct';
   const prices = closed
-    ? [['Начальная цена', o.startPrice, ''],
+    ? [[isDirect ? 'Цена в продаже' : 'Начальная цена', o.startPrice, ''],
        ['Цена продажи', o.salePrice, ' cat-row__price-line--commission'],
        ['Срок продажи', o.days + ' ' + plurDays(o.days), '']]
-    : [['Начальная цена', o.startPrice, ''],
-       ['Даты показов', o.showDates, ''],
-       ['Комиссия за сделку', o.commission, ' cat-row__price-line--commission']];
+    : isDirect
+      ? [['Цена', o.price, ''],
+         ['Встречная комиссия', o.commission, ' cat-row__price-line--commission']]
+      : [['Начальная цена', o.startPrice, ''],
+         ['Даты показов', o.showDates, ''],
+         ['Встречная комиссия', o.commission, ' cat-row__price-line--commission']];
 
   const b = o.broker || {};
   const side = `
@@ -335,7 +442,7 @@ function objListRow(o) {
         <span class="cat-row__area">${o.area}</span>
       </div>
       <div class="cat-row__tags">
-        <span class="cat-row__tag">${closed ? 'Продан · ' + o.soldAt : 'Идёт аукцион'}</span>
+        <span class="cat-row__tag">${objBadge(o)}</span>
         <span class="cat-row__tag">${o.type}</span>
       </div>
       <div class="cat-row__loc"><span class="cat-row__icon">${SVG_PIN}</span><span>${o.city}, ${o.address}</span></div>
@@ -519,15 +626,20 @@ function objCard(o) {
   const closed = o.status === 'closed';
   const card = document.createElement('article');
   card.className = 'obj-card' + (closed ? ' obj-card--closed' : ' obj-card--live');
+  const direct = objFormat(o) === 'direct';
   const rows = closed
     ? [['Площадь', o.area],
-       ['Начальная цена', o.startPrice],
+       [direct ? 'Цена в продаже' : 'Начальная цена', o.startPrice],
        ['Цена продажи', o.salePrice, 'accent'],
        ['Срок продажи', o.days + ' ' + plurDays(o.days)]]
-    : [['Площадь', o.area],
-       ['Начальная цена', o.startPrice],
-       ['Даты показов', o.showDates],
-       ['Комиссия за сделку', o.commission, 'accent']];
+    : direct
+      ? [['Площадь', o.area],
+         ['Цена', o.price],
+         ['Встречная комиссия', o.commission, 'accent']]
+      : [['Площадь', o.area],
+         ['Начальная цена', o.startPrice],
+         ['Даты показов', o.showDates],
+         ['Встречная комиссия', o.commission, 'accent']];
   card.innerHTML = `
     <div class="obj-card__head">
       <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
@@ -540,7 +652,7 @@ function objCard(o) {
     </div>
     <a href="${href}" class="obj-card__media">
       <img src="${o.image}" alt="${o.title}">
-      <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : ' obj-card__badge--live'}">${closed ? 'Продан · ' + o.soldAt : 'Идёт аукцион'}</span>
+      <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : (objFormat(o) === 'direct' ? ' obj-card__badge--direct' : ' obj-card__badge--live')}">${objBadge(o)}</span>
     </a>
   `;
   card.addEventListener('click', (e) => {

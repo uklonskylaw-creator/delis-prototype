@@ -36,7 +36,8 @@ window.__OBJECTS = [
     "lon": 30.372,
     "mapLabel": "4,3 млн",
     "video": false,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "zakr-2",
@@ -74,7 +75,8 @@ window.__OBJECTS = [
     "lon": 30.321,
     "mapLabel": "9,2 млн",
     "video": true,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "zakr-3",
@@ -112,7 +114,8 @@ window.__OBJECTS = [
     "lon": 30.445,
     "mapLabel": "5 млн",
     "video": false,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "zakr-4",
@@ -150,7 +153,8 @@ window.__OBJECTS = [
     "lon": 30.281,
     "mapLabel": "14,7 млн",
     "video": false,
-    "site": true
+    "site": true,
+    "format": "auction"
   },
   {
     "id": "zakr-5",
@@ -188,7 +192,8 @@ window.__OBJECTS = [
     "lon": 30.648,
     "mapLabel": "11,2 млн",
     "video": false,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "zakr-6",
@@ -226,7 +231,8 @@ window.__OBJECTS = [
     "lon": 30.248,
     "mapLabel": "9,4 млн",
     "video": true,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "zakr-7",
@@ -264,7 +270,8 @@ window.__OBJECTS = [
     "lon": 30.36,
     "mapLabel": "18,6 млн",
     "video": false,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "zakr-8",
@@ -302,7 +309,8 @@ window.__OBJECTS = [
     "lon": 30.509,
     "mapLabel": "5,2 млн",
     "video": false,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "aukcion-1",
@@ -336,7 +344,8 @@ window.__OBJECTS = [
     "mapLabel": "6,5 млн",
     "commissionType": "fixed",
     "video": true,
-    "site": true
+    "site": true,
+    "format": "auction"
   },
   {
     "id": "aukcion-2",
@@ -370,7 +379,8 @@ window.__OBJECTS = [
     "mapLabel": "4,3 млн",
     "commissionType": "percent",
     "video": false,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "aukcion-3",
@@ -404,7 +414,8 @@ window.__OBJECTS = [
     "mapLabel": "4,8 млн",
     "commissionType": "fixed",
     "video": true,
-    "site": false
+    "site": false,
+    "format": "auction"
   },
   {
     "id": "aukcion-4",
@@ -438,6 +449,149 @@ window.__OBJECTS = [
     "mapLabel": "12 млн",
     "commissionType": "percent",
     "video": false,
-    "site": true
+    "site": true,
+    "format": "auction"
+  },
+  {
+    "id": "pryam-1",
+    "status": "live",
+    "title": "Трёхкомнатная в сталинке на Соколе",
+    "city": "Москва",
+    "address": "Ленинградский пр-т, 75",
+    "metro": "Сокол",
+    "walk": "6 мин",
+    "area": "78.2 м²",
+    "image": "images/obj-3.png",
+    "type": "Квартира",
+    "rooms": "3",
+    "floor": 5,
+    "district": "Москва",
+    "startPrice": "27 400 000 ₽",
+    "commission": "822 000 ₽",
+    "price": "27 400 000 ₽",
+    "pricePerM": "350 384",
+    "broker": {
+      "name": "Романов Сергей Ильич",
+      "agency": "Северный вектор",
+      "phone": "+7 (999) 000-01-19",
+      "initials": "РС",
+      "photo": "images/broker-1.jpg",
+      "logo": "images/agency-sankin.jpg"
+    },
+    "lat": 55.805,
+    "lon": 37.514,
+    "mapLabel": "27,4 млн",
+    "commissionType": "fixed",
+    "video": true,
+    "site": true,
+    "format": "direct"
+  },
+  {
+    "id": "pryam-2",
+    "status": "live",
+    "title": "Двухкомнатная у парка Маяковского",
+    "city": "Екатеринбург",
+    "address": "ул. Мичурина, 21",
+    "metro": "Динамо",
+    "walk": "12 мин",
+    "area": "54.6 м²",
+    "image": "images/obj-5.png",
+    "type": "Квартира",
+    "rooms": "2",
+    "floor": 9,
+    "district": "Екатеринбург",
+    "startPrice": "8 900 000 ₽",
+    "commission": "267 000 ₽",
+    "price": "8 900 000 ₽",
+    "pricePerM": "163 003",
+    "broker": {
+      "name": "Белова Татьяна Юрьевна",
+      "agency": "Уклонский и Партнёры",
+      "phone": "+7 (999) 000-01-20",
+      "initials": "БТ",
+      "photo": "images/broker-2.jpg",
+      "logo": "images/agency-uip.jpg"
+    },
+    "lat": 56.833,
+    "lon": 60.632,
+    "mapLabel": "8,9 млн",
+    "commissionType": "percent",
+    "video": false,
+    "site": false,
+    "format": "direct"
+  },
+  {
+    "id": "pryam-3",
+    "status": "closed",
+    "title": "Однокомнатная у Кировского завода",
+    "city": "Санкт-Петербург",
+    "address": "пр. Стачек, 67",
+    "metro": "Кировский завод",
+    "walk": "4 мин",
+    "area": "33.1 м²",
+    "image": "images/obj-4.png",
+    "type": "Квартира",
+    "rooms": "1",
+    "floor": 6,
+    "district": "Санкт-Петербург",
+    "soldAt": "февраль 2026",
+    "startPrice": "6 100 000 ₽",
+    "salePrice": "6 100 000 ₽",
+    "days": 41,
+    "requests": 22,
+    "shows": 9,
+    "offers": 2,
+    "price": "6 100 000 ₽",
+    "pricePerM": "184 290",
+    "commission": "183 000 ₽",
+    "broker": {
+      "name": "Пирогова Елена Владимировна",
+      "agency": "Уклонский и Партнёры",
+      "phone": "+7 (999) 000-01-11",
+      "initials": "ПЕ",
+      "photo": "images/broker-1.jpg",
+      "logo": "images/agency-uip.jpg"
+    },
+    "lat": 59.879,
+    "lon": 30.262,
+    "mapLabel": "6,1 млн",
+    "video": false,
+    "site": false,
+    "format": "direct"
+  },
+  {
+    "id": "auk-kzn-1",
+    "status": "live",
+    "title": "Квартира с видом на Казанку",
+    "city": "Казань",
+    "address": "ул. Сибгата Хакима, 35",
+    "metro": "Козья слобода",
+    "walk": "15 мин",
+    "area": "63.4 м²",
+    "image": "images/obj-7.png",
+    "type": "Квартира",
+    "rooms": "2",
+    "floor": 14,
+    "district": "Казань",
+    "startPrice": "9 400 000 ₽",
+    "showDates": "25 и 27 сентября",
+    "commission": "336 000 ₽",
+    "price": "11 200 000 ₽",
+    "pricePerM": "176 656",
+    "broker": {
+      "name": "Зайцев Максим Андреевич",
+      "agency": "Дом и ключи",
+      "phone": "+7 (999) 000-01-21",
+      "initials": "ЗМ",
+      "photo": "images/broker-3.jpg",
+      "logo": "images/agency-sankin.jpg"
+    },
+    "lat": 55.818,
+    "lon": 49.107,
+    "mapLabel": "11,2 млн",
+    "commissionType": "fixed",
+    "video": true,
+    "site": false,
+    "format": "auction"
   }
 ];

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Реестр аукционов — Делись</title>
+<title>Объекты — Делись</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260913i">
-<link rel="stylesheet" href="css/base.css?v=20260913i">
-<link rel="stylesheet" href="css/main.css?v=20260913i">
+<link rel="stylesheet" href="css/tokens.css?v=20260914i">
+<link rel="stylesheet" href="css/base.css?v=20260914i">
+<link rel="stylesheet" href="css/main.css?v=20260914i">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body class="page-catalog">
@@ -23,20 +23,12 @@
     </div>
 
     <nav class="header__nav">
-      <div class="header__submenu-wrap">
-        <button class="header__nav-link" type="button" data-submenu-btn>
-          Услуги
-          <img src="images/icon-arrow-down.svg" alt="" width="14" height="8">
-        </button>
-        <div class="header__submenu" data-submenu>
-          <a href="index.html#form" class="header__submenu-link">Помощь в продаже</a>
-          <a href="index.html#form" class="header__submenu-link">Заказать сайт</a>
-        </div>
-      </div>
-      <a href="catalog.html" class="header__nav-link">Реестр</a>
-      <a href="#" class="header__nav-link">О проекте</a>
-      <a href="#" class="header__nav-link">Вакансии</a>
-      <a href="#" class="header__nav-link">Контакты</a>
+      <a href="catalog.html" class="header__nav-link">Объекты</a>
+      <a href="agents.html" class="header__nav-link">Агентам</a>
+      <a href="owners.html" class="header__nav-link">Собственникам</a>
+      <a href="about.html" class="header__nav-link">Как это работает</a>
+      <a href="vacancies.html" class="header__nav-link">Вакансии</a>
+      <a href="contacts.html" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
@@ -55,18 +47,20 @@
 <section class="catalog-page-head">
   <div class="searchbar-section__container">
     <nav class="cat-crumbs">
-      <a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Реестр аукционов</span>
+      <a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Объекты</span>
     </nav>
-    <h1 class="section-title catalog-page-head__title">Реестр аукционов</h1>
-    <p class="catalog-page-head__sub">Объекты, проданные аукционным способом, с итогами торгов, и аукционы, которые идут сейчас.</p>
+    <h1 class="section-title catalog-page-head__title">Объекты</h1>
+    <p class="catalog-page-head__sub">Объекты сети: активные аукционы, прямые продажи и результаты завершённых сделок. По каждому объекту указана встречная комиссия агенту, который приведёт покупателя.</p>
   </div>
 </section>
 
 <section class="searchbar-section">
   <div class="searchbar-section__container">
     <div class="reg-tabs">
-      <button type="button" class="reg-tab is-active" data-reg-tab="live">Активные аукционы</button>
-      <button type="button" class="reg-tab" data-reg-tab="closed">Закрытые аукционы</button>
+      <button type="button" class="reg-tab" data-reg-tab="all">Все объекты</button>
+      <button type="button" class="reg-tab is-active" data-reg-tab="auction">Активный аукцион</button>
+      <button type="button" class="reg-tab" data-reg-tab="direct">Прямая продажа</button>
+      <button type="button" class="reg-tab" data-reg-tab="sold">Продано</button>
     </div>
    <div class="searchbar-wrap">
     <div class="searchbar">
@@ -118,6 +112,18 @@
         </div>
       </div>
 
+      <div class="city-select" id="city-select">
+        <button class="city-select__btn" type="button" id="city-btn" aria-haspopup="listbox" aria-expanded="false">
+          <img src="images/icon-pin-purple.svg" alt="" width="14" height="16">
+          <span id="city-btn-label">Все города</span>
+          <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="city-select__chevron"><path d="M1 1.5l5 5 5-5"/></svg>
+        </button>
+        <div class="city-select__dropdown" id="city-dropdown" role="listbox">
+          <input type="text" class="city-select__search" id="city-search" placeholder="Поиск города" autocomplete="off">
+          <div class="city-select__list" id="city-list"></div>
+        </div>
+      </div>
+
       <button class="searchbar__filters btn btn--dark" type="button" onclick="openFilters()">
         <img src="images/icon-settings.svg" alt="" width="24" height="24">
         Все фильтры
@@ -153,10 +159,11 @@
 
     <nav class="footer__nav">
       <ul>
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Карьера</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="vacancies.html">Карьера</a></li>
         <li><a href="#">Документы</a></li>
         <li><a href="#">Счета и реквизиты</a></li>
+        <li><a href="index.html#form">Заказать сайт</a></li>
       </ul>
       <ul>
         <li><a href="#">Торговая марка</a></li>
@@ -178,7 +185,6 @@
       </a>
       <div class="footer__socials">
         <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
-        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1c0 1 1 2 2 3s2 2 3 2h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" stroke-linecap="round"/></svg></a>
         <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
@@ -201,19 +207,6 @@
       <span class="filter-toggle__slider"></span>
       <span>Только объекты от «Делись»</span>
     </label>
-
-    <div class="filter-select" onclick="this.classList.toggle('is-open')">
-      <div class="filter-select__head">
-        <span class="filter-select__placeholder">Выбрать город</span>
-        <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="12" height="8" class="filter-select__chevron"><path d="M1 1.5l5 5 5-5"/></svg>
-      </div>
-      <div class="filter-select__dropdown" data-group="district" onclick="event.stopPropagation()">
-        <label class="filter-check"><input type="checkbox"><span>Санкт-Петербург</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Ленинградская область</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Москва</span></label>
-        <label class="filter-check"><input type="checkbox"><span>Московская область</span></label>
-      </div>
-    </div>
 
     <div class="filter-group">
       <div class="filter-group__label">Тип недвижимости</div>
@@ -299,8 +292,8 @@ function openFilters() { document.getElementById('filter-overlay').classList.add
 function closeFilters() { document.getElementById('filter-overlay').classList.remove('is-open'); document.body.style.overflow=''; }
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFilters(); });
 </script>
-<script src="data/objects.js?v=20260913i"></script>
-<script src="js/favorites.js?v=20260913i"></script>
-<script src="js/main.js?v=20260913i"></script>
+<script src="data/objects.js?v=20260914i"></script>
+<script src="js/favorites.js?v=20260914i"></script>
+<script src="js/main.js?v=20260914i"></script>
 </body>
 </html>
