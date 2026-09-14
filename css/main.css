@@ -1943,8 +1943,9 @@ body { overflow-x: hidden; }
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-height: 62px;
+  min-height: 82px;
 }
+.obj-card__facts li:first-child span { color: var(--color-black); font-weight: 600; }
 .obj-card__facts li {
   display: flex;
   align-items: flex-start;
