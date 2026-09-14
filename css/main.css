@@ -757,8 +757,8 @@ body { overflow-x: hidden; }
 
 .catalog__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   align-items: stretch;  /* все карточки одной высоты в ряду */
 }
 
@@ -1435,7 +1435,6 @@ body { overflow-x: hidden; }
 /* Auto-fit grids — карточки сами раскладываются под ширину контейнера.
    Минимумы подобраны так, чтобы на 1280px помещалось 6 услуг / 4 каталога / 6 видео — как в Figma */
 .services__grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-.catalog__grid  { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .video__grid    { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
 
 /* Side padding scales down with viewport */
@@ -3183,4 +3182,20 @@ body { overflow-x: hidden; }
   .form-banner--photo .form-banner__left { padding: 180px 18px 20px; }
   .form-banner--photo .form-banner__title { font-size: 22px; }
   .form-banner--photo .form-banner__form { padding: 16px; }
+}
+
+/* Сетка объектов: три колонки, при нехватке места меньше.
+   Ширина колонки постоянная, поэтому одна-две карточки не растягиваются. */
+@media (max-width: 1100px) {
+  .catalog__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .catalog__grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* Шесть пунктов меню перестают помещаться раньше телефона — прячем их в бургер */
+@media (max-width: 1150px) {
+  .header__nav { display: none; }
+  .header__right { display: none; }
+  .header__burger { display: inline-flex; }
 }

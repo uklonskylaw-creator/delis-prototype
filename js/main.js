@@ -176,7 +176,7 @@ function drawCatalog(items) {
     grid.innerHTML = '<p class="catalog__empty">В этом разделе пока нет объектов.</p>';
     return;
   }
-  list.slice(0, 8).forEach(o => grid.appendChild(objCard(o)));
+  list.slice(0, 6).forEach(o => grid.appendChild(objCard(o)));
 }
 
 /* «Услуги» в шапке: наведение на десктопе, клик на сенсорных экранах */
