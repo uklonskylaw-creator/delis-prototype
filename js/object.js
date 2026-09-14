@@ -4,8 +4,8 @@
     id:        o => 'ID' + o.id,
     title:     o => o.title,
     area:      o => o.area,
-    floor:     o => o.floor + ' эт.',
-    floorOnly: o => String(o.floor),
+    floor:     o => o.floors ? `${o.floor}/${o.floors} эт.` : o.floor + ' эт.',
+    floorOnly: o => o.floors ? `${o.floor}/${o.floors}` : String(o.floor),
     rooms:     o => (o.rooms === 'С' ? 'Студия' : o.rooms),
     type:      o => o.type,
     address:   o => `${o.city}, ${o.address} · рядом с м. ${o.metro}`,
@@ -82,6 +82,10 @@
 
     const broker = `
       <div class="obj-broker">
+        ${b.deals ? `<span class="obj-broker__rating" title="Закрытых сделок на площадке">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M8 1.6l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.4 4.2 13.4l.7-4.3-3.1-3 4.3-.6L8 1.6z"/></svg>
+          ${b.deals}
+        </span>` : ''}
         <div class="broker-ava broker-ava--lg">
           ${b.photo ? `<img src="../${b.photo}" alt="" class="broker-ava__photo">` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
           ${b.logo ? `<img src="../${b.logo}" alt="" class="broker-ava__logo">` : ''}

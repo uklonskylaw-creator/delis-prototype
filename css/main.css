@@ -1517,8 +1517,6 @@ body { overflow-x: hidden; }
 .obj-card__badge--sold { background: var(--color-black); }
 .obj-card__badge--direct { background: var(--color-success); }
 
-}
-
 /* ===== Селектор города рядом с «Все фильтры» ===== */
 .city-select { position: relative; flex-shrink: 0; }
 .city-select__btn {
@@ -3390,3 +3388,19 @@ body { overflow-x: hidden; }
   0%   { box-shadow: 0 0 0 0 rgba(55, 164, 106, .65); }
   70%  { box-shadow: 0 0 0 7px rgba(55, 164, 106, 0); }
   100% { box-shadow: 0 0 0 0 rgba(55, 164, 106, 0); }
+}
+
+/* Рейтинг брокера: закрытые сделки на площадке */
+.obj-broker { position: relative; }
+.obj-broker__rating {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-black);
+}
+.obj-broker__rating svg { color: var(--color-warning); }

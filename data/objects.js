@@ -30,14 +30,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-11",
       "initials": "ПЕ",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 74
     },
     "lat": 59.945,
     "lon": 30.372,
     "mapLabel": "4,3 млн",
     "video": false,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 11
   },
   {
     "id": "zakr-2",
@@ -69,14 +71,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-12",
       "initials": "ВА",
       "photo": "images/broker-2.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 61
     },
     "lat": 59.866,
     "lon": 30.321,
     "mapLabel": "9,2 млн",
     "video": true,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 14
   },
   {
     "id": "zakr-3",
@@ -108,14 +112,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-13",
       "initials": "МИ",
       "photo": "images/broker-3.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 74
     },
     "lat": 60.047,
     "lon": 30.445,
     "mapLabel": "5 млн",
     "video": false,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 12
   },
   {
     "id": "zakr-4",
@@ -147,14 +153,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-14",
       "initials": "СМ",
       "photo": "images/broker-4.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 86
     },
     "lat": 59.942,
     "lon": 30.281,
     "mapLabel": "14,7 млн",
     "video": false,
     "site": true,
-    "format": "auction"
+    "format": "auction",
+    "floors": 22
   },
   {
     "id": "zakr-5",
@@ -186,14 +194,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-15",
       "initials": "КД",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 31
     },
     "lat": 60.018,
     "lon": 30.648,
     "mapLabel": "11,2 млн",
     "video": false,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 2
   },
   {
     "id": "zakr-6",
@@ -225,14 +235,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-16",
       "initials": "ЕО",
       "photo": "images/broker-2.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 74
     },
     "lat": 59.972,
     "lon": 30.248,
     "mapLabel": "9,4 млн",
     "video": true,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 5
   },
   {
     "id": "zakr-7",
@@ -264,14 +276,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-17",
       "initials": "ГА",
       "photo": "images/broker-3.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 95
     },
     "lat": 59.931,
     "lon": 30.36,
     "mapLabel": "18,6 млн",
     "video": false,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 2
   },
   {
     "id": "zakr-8",
@@ -303,14 +317,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-18",
       "initials": "ЛИ",
       "photo": "images/broker-4.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 23
     },
     "lat": 59.907,
     "lon": 30.509,
     "mapLabel": "5,2 млн",
     "video": false,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 9
   },
   {
     "id": "aukcion-1",
@@ -337,7 +353,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-19",
       "initials": "РС",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 61
     },
     "lat": 60.013,
     "lon": 30.396,
@@ -345,7 +362,8 @@ window.__OBJECTS = [
     "commissionType": "fixed",
     "video": true,
     "site": true,
-    "format": "auction"
+    "format": "auction",
+    "floors": 8
   },
   {
     "id": "aukcion-2",
@@ -372,7 +390,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-20",
       "initials": "БТ",
       "photo": "images/broker-2.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 23
     },
     "lat": 59.972,
     "lon": 30.251,
@@ -380,7 +399,8 @@ window.__OBJECTS = [
     "commissionType": "percent",
     "video": false,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 14
   },
   {
     "id": "aukcion-3",
@@ -407,7 +427,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-21",
       "initials": "ЗМ",
       "photo": "images/broker-3.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 74
     },
     "lat": 59.988,
     "lon": 30.313,
@@ -415,7 +436,8 @@ window.__OBJECTS = [
     "commissionType": "fixed",
     "video": true,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 3
   },
   {
     "id": "aukcion-4",
@@ -442,7 +464,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-22",
       "initials": "НА",
       "photo": "images/broker-4.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 108
     },
     "lat": 60.152,
     "lon": 30.515,
@@ -450,7 +473,8 @@ window.__OBJECTS = [
     "commissionType": "percent",
     "video": false,
     "site": true,
-    "format": "auction"
+    "format": "auction",
+    "floors": 2
   },
   {
     "id": "pryam-1",
@@ -476,7 +500,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-19",
       "initials": "РС",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 61
     },
     "lat": 55.805,
     "lon": 37.514,
@@ -484,7 +509,8 @@ window.__OBJECTS = [
     "commissionType": "fixed",
     "video": true,
     "site": true,
-    "format": "direct"
+    "format": "direct",
+    "floors": 13
   },
   {
     "id": "pryam-2",
@@ -510,7 +536,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-20",
       "initials": "БТ",
       "photo": "images/broker-2.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 23
     },
     "lat": 56.833,
     "lon": 60.632,
@@ -518,7 +545,8 @@ window.__OBJECTS = [
     "commissionType": "percent",
     "video": false,
     "site": false,
-    "format": "direct"
+    "format": "direct",
+    "floors": 10
   },
   {
     "id": "pryam-3",
@@ -550,14 +578,16 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-11",
       "initials": "ПЕ",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 74
     },
     "lat": 59.879,
     "lon": 30.262,
     "mapLabel": "6,1 млн",
     "video": false,
     "site": false,
-    "format": "direct"
+    "format": "direct",
+    "floors": 12
   },
   {
     "id": "auk-kzn-1",
@@ -584,7 +614,8 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-21",
       "initials": "ЗМ",
       "photo": "images/broker-3.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 74
     },
     "lat": 55.818,
     "lon": 49.107,
@@ -592,7 +623,8 @@ window.__OBJECTS = [
     "commissionType": "fixed",
     "video": true,
     "site": false,
-    "format": "auction"
+    "format": "auction",
+    "floors": 18
   },
   {
     "id": "aukcion-5",
@@ -623,11 +655,13 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-11",
       "initials": "ПЕ",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 74
     },
     "mapLabel": "96 млн",
     "price": "96 000 000 ₽",
-    "pricePerM": "77 419"
+    "pricePerM": "77 419",
+    "floors": 2
   },
   {
     "id": "aukcion-6",
@@ -658,11 +692,13 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-12",
       "initials": "ВА",
       "photo": "images/broker-2.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 61
     },
     "mapLabel": "31,5 млн",
     "price": "31 500 000 ₽",
-    "pricePerM": "167 553"
+    "pricePerM": "167 553",
+    "floors": 3
   },
   {
     "id": "direct-3",
@@ -692,10 +728,12 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-13",
       "initials": "МИ",
       "photo": "images/broker-3.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 74
     },
     "mapLabel": "48,5 млн",
-    "pricePerM": "226 636"
+    "pricePerM": "226 636",
+    "floors": 2
   },
   {
     "id": "direct-4",
@@ -725,10 +763,12 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-14",
       "initials": "СМ",
       "photo": "images/broker-4.jpg",
-      "logo": "images/agency-uip.jpg"
+      "logo": "images/agency-uip.jpg",
+      "deals": 86
     },
     "mapLabel": "78,9 млн",
-    "pricePerM": "818 465"
+    "pricePerM": "818 465",
+    "floors": 13
   },
   {
     "id": "zakr-9",
@@ -762,11 +802,13 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-15",
       "initials": "КД",
       "photo": "images/broker-1.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 31
     },
     "mapLabel": "7,2 млн",
     "price": "7 150 000 ₽",
-    "pricePerM": "116 260"
+    "pricePerM": "116 260",
+    "floors": 12
   },
   {
     "id": "zakr-10",
@@ -800,10 +842,12 @@ window.__OBJECTS = [
       "phone": "+7 (999) 000-01-16",
       "initials": "ЕО",
       "photo": "images/broker-2.jpg",
-      "logo": "images/agency-sankin.jpg"
+      "logo": "images/agency-sankin.jpg",
+      "deals": 74
     },
     "mapLabel": "26 млн",
     "price": "26 000 000 ₽",
-    "pricePerM": "183 099"
+    "pricePerM": "183 099",
+    "floors": 3
   }
 ];
