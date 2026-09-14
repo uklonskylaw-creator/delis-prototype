@@ -1840,3 +1840,18 @@
   .auth-actions .btn { width: 100%; }
   .sms-code input { width: 48px; height: 56px; font-size: 24px; }
 }
+
+/* Поля в окне редактирования профиля */
+.pf-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-gray-300);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-black);
+  resize: vertical;
+  min-height: 78px;
+}
+.pf-field textarea:focus { outline: none; border-color: var(--color-brand); }
+.pf-modal__panel { max-height: 86vh; overflow-y: auto; }

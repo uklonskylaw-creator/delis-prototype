@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20260915k">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260915m">
 </head>
 <body class="cabinet-page cabinet-page--app">
 
@@ -42,7 +42,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
               </button>
             </div>
-            <span class="agent-role">Директор</span>
+            <span class="agent-role" id="pf-role">Директор</span>
             <div class="agent-stats">
               <div class="status-cell"><div class="status-cell__num">10</div><div class="status-cell__label">Активных<br>объектов</div></div>
               <div class="status-cell"><div class="status-cell__num">26</div><div class="status-cell__label">Количество<br>сотрудников</div></div>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="profile-card__section-title">Специализация</div>
-            <div class="profile-card__tags">
+            <div class="profile-card__tags" id="pf-tags">
               <span class="profile-tag">Юрист по недвижимости</span>
               <span class="profile-tag">Основатель проекта</span>
               <span class="profile-tag">Стаж 10+ лет</span>
@@ -76,7 +76,7 @@
             </div>
 
             <div class="profile-card__section-title">О себе</div>
-            <p class="agency-desc agent-about-short">
+            <p class="agency-desc agent-about-short" id="pf-short">
               Руководитель агентства недвижимости «Делись». Более 10 лет на рынке вторичной
               недвижимости Санкт-Петербурга и Ленинградской области. Юридическое сопровождение
               сделок и развитие партнёрской сети.
@@ -104,8 +104,8 @@
             <div class="agency-id__info">
               <div class="agency-id__name">Делись</div>
               <ul class="agency-id__list">
-                <li>Циан ID: <strong>96092136</strong> <a href="#" class="agency-id__ext" aria-label="Открыть на Циан"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a></li>
-                <li>ИНН <strong>123456789123456789</strong></li>
+                <li>Циан ID: <strong id="pf-cian">—</strong> <a href="#" class="agency-id__ext" aria-label="Открыть на Циан"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a></li>
+                <li>ИНН <strong id="pf-inn">—</strong></li>
                 <li>Дата регистрации: <strong>01.01.25</strong></li>
                 <li class="agency-id__verified">
                   <span>Подтверждённое агентство</span>
@@ -154,8 +154,9 @@
   </div>
 </main>
 
+<script src="../../js/auth.js?v=20260915m"></script>
 <script src="_layout.js"></script>
-<script src="profile.js?v=20260915k"></script>
+<script src="profile.js?v=20260915m"></script>
 <script>mountCabinet('profile'); initProfileEdit();</script>
 <script>
 /* Профиль заполняем данными вошедшего пользователя, а не примером из вёрстки */

@@ -15,6 +15,16 @@ function initProfileEdit() {
   }
 
   const user = getUserSafe();
+  const put0 = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+  put0('pf-role', user.role);
+  put0('pf-short', user.about);
+  put0('pf-about', user.about);
+  put0('pf-inn', user.inn);
+  if (user.tags) {
+    const tb = document.getElementById('pf-tags');
+    if (tb) tb.innerHTML = user.tags.split(',').map(t => t.trim()).filter(Boolean)
+      .map(t => `<span class="profile-tag">${t}</span>`).join('');
+  }
   if (user.name  && nameEl)  nameEl.textContent  = user.name;
   if (user.phone && phoneEl) phoneEl.textContent = user.phone;
   if (user.email && emailEl) emailEl.textContent = user.email;
@@ -33,8 +43,14 @@ function initProfileEdit() {
       </div>
       <form class="pf-form" id="pf-form">
         <label class="pf-field"><span>ФИО</span><input name="name" type="text" required></label>
-        <label class="pf-field"><span>Телефон</span><input name="phone" type="text" required></label>
+        <label class="pf-field"><span>Должность</span><input name="role" type="text" placeholder="Директор, риелтор, руководитель отдела"></label>
+        <label class="pf-field"><span>Телефон</span><input name="phone" type="text" data-phone required></label>
         <label class="pf-field"><span>Почта</span><input name="email" type="email" required></label>
+        <label class="pf-field"><span>Специализация</span><input name="tags" type="text" placeholder="Через запятую: вторичка, загородная, коммерция"></label>
+        <label class="pf-field"><span>О себе</span><textarea name="about" rows="3" placeholder="С какими объектами работаете, чем полезны коллегам"></textarea></label>
+        <div class="pf-divider"><span>Агентство</span></div>
+        <label class="pf-field"><span>Название</span><input name="agency" type="text" placeholder="Название агентства"></label>
+        <label class="pf-field"><span>ИНН</span><input name="inn" type="text" inputmode="numeric" placeholder="10 или 12 цифр"></label>
         <div class="pf-divider"><span>Сменить пароль</span></div>
         <label class="pf-field"><span>Новый пароль</span><input name="pass" type="password" minlength="6" placeholder="Оставьте пустым, чтобы не менять"></label>
         <label class="pf-field"><span>Повторите пароль</span><input name="pass2" type="password" minlength="6" placeholder="Повторите новый пароль"></label>
@@ -50,9 +66,17 @@ function initProfileEdit() {
   const form = modal.querySelector('#pf-form');
   const passErr = modal.querySelector('#pf-pass-error');
   const open = () => {
+    const txt = (id) => document.getElementById(id)?.textContent.trim() || '';
     form.name.value  = nameEl  ? nameEl.textContent.trim()  : '';
     form.phone.value = phoneEl ? phoneEl.textContent.trim() : '';
     form.email.value = emailEl ? emailEl.textContent.trim() : '';
+    form.role.value = txt('pf-role');
+    form.about.value = txt('pf-short') || txt('pf-about');
+    form.agency.value = getUserSafe().agency || '';
+    const innTxt = txt('pf-inn');
+    form.inn.value = innTxt === '—' ? '' : innTxt;
+    const tagsBox = document.getElementById('pf-tags');
+    form.tags.value = tagsBox ? [...tagsBox.querySelectorAll('.profile-tag')].map(t => t.textContent.trim()).join(', ') : '';
     form.pass.value = ''; form.pass2.value = '';
     passErr.classList.remove('is-visible');
     modal.classList.add('is-open');
@@ -78,7 +102,21 @@ function initProfileEdit() {
     if (nameEl)  nameEl.textContent  = form.name.value;
     if (phoneEl) phoneEl.textContent = form.phone.value;
     if (emailEl) emailEl.textContent = form.email.value;
-    const patch = { name: form.name.value, phone: form.phone.value, email: form.email.value };
+    const put = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    put('pf-role', form.role.value);
+    put('pf-short', form.about.value);
+    put('pf-about', form.about.value);
+    put('pf-inn', form.inn.value);
+    const tagsBox = document.getElementById('pf-tags');
+    if (tagsBox && form.tags.value.trim()) {
+      tagsBox.innerHTML = form.tags.value.split(',').map(t => t.trim()).filter(Boolean)
+        .map(t => `<span class="profile-tag">${t}</span>`).join('');
+    }
+    const patch = {
+      name: form.name.value, phone: form.phone.value, email: form.email.value,
+      role: form.role.value, about: form.about.value, agency: form.agency.value,
+      inn: form.inn.value, tags: form.tags.value
+    };
     if (form.pass.value) patch.hasCustomPassword = true; // пароль в демо не храним в открытом виде
     saveUser(patch);
     close();

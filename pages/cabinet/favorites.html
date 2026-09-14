@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20260915k">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260915m">
 </head>
 <body class="cabinet-page cabinet-page--app">
 
@@ -37,7 +37,7 @@
 </main>
 
 <script src="../../data/objects.js"></script>
-<script src="../../js/favorites.js?v=20260915k"></script>
+<script src="../../js/favorites.js?v=20260915m"></script>
 <script src="_layout.js"></script>
 <script>
 mountCabinet('favorites');
@@ -78,7 +78,7 @@ function drawFavs(items) {
 }
 function renderFavs() {
   if (window.__OBJECTS) { drawFavs(window.__OBJECTS); return; }
-  fetch('../../data/objects.json?v=20260915k').then(r => r.json()).then(drawFavs).catch(() => {});
+  fetch('../../data/objects.json?v=20260915m').then(r => r.json()).then(drawFavs).catch(() => {});
 }
 renderFavs();
 
