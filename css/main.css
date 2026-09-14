@@ -1945,7 +1945,7 @@ body { overflow-x: hidden; }
   gap: 6px;
   min-height: 82px;
 }
-.obj-card__facts li:first-child span { color: var(--color-black); font-weight: 600; }
+.obj-card__kind span { color: var(--color-black); font-weight: 600; }
 .obj-card__facts li {
   display: flex;
   align-items: flex-start;

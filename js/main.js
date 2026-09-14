@@ -680,9 +680,9 @@ function objCard(o) {
     <div class="obj-card__body">
       <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
       <ul class="obj-card__facts">
-        <li><img src="images/icon-home.svg" alt="" width="14" height="14"><span>${objKind(o)}${o.floors ? `, ${o.floor}/${o.floors} эт.` : ''}</span></li>
         <li><img src="images/icon-pin-purple.svg" alt="" width="13" height="15"><span>${shortCity(o.city)}, ${o.address || ''}</span></li>
         <li><img src="images/icon-metro.svg" alt="" width="14" height="11"><span>${o.metro} · ${o.walk}</span></li>
+        <li class="obj-card__kind"><img src="images/icon-home.svg" alt="" width="14" height="14"><span>${objKind(o)}${o.floors ? `, ${o.floor}/${o.floors} эт.` : ''}</span></li>
         <li><img src="images/icon-area.svg" alt="" width="14" height="14"><span>${o.area}</span></li>
       </ul>
       <div class="obj-card__rows">
