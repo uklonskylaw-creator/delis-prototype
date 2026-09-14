@@ -624,36 +624,52 @@ function enableRangeDrag(box) {
 function objCard(o) {
   const href = objectHref(o.id);
   const closed = o.status === 'closed';
+  const direct = objFormat(o) === 'direct';
+  const b = o.broker || {};
   const card = document.createElement('article');
   card.className = 'obj-card' + (closed ? ' obj-card--closed' : ' obj-card--live');
-  const direct = objFormat(o) === 'direct';
+
   const rows = closed
-    ? [['Площадь', o.area],
-       [direct ? 'Цена в продаже' : 'Начальная цена', o.startPrice],
+    ? [[direct ? 'Цена в продаже' : 'Начальная цена', o.startPrice],
        ['Цена продажи', o.salePrice, 'accent'],
        ['Срок продажи', o.days + ' ' + plurDays(o.days)]]
     : direct
       ? [['Площадь', o.area],
-         ['Цена', o.price],
-         ['Встречная комиссия', o.commission, 'accent']]
-      : [['Площадь', o.area],
-         ['Начальная цена', o.startPrice],
-         ['Даты показов', o.showDates],
-         ['Встречная комиссия', o.commission, 'accent']];
+         ['Цена', o.price, 'accent']]
+      : [['Начальная цена', o.startPrice],
+         ['Даты показов', o.showDates]];
+
+  const comm = closed ? '' : o.commission;
+
   card.innerHTML = `
-    <div class="obj-card__head">
-      <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
-    </div>
-    <div class="obj-card__tags">
-      <span class="obj-tag"><img src="images/icon-pin-purple.svg" alt="" width="14" height="16">${shortCity(o.city)}</span>
-    </div>
-    <div class="obj-card__rows">
-      ${rows.map(([k, v, mod]) => `<div class="obj-row"><span class="obj-row__key">${k}</span><span class="obj-row__dots"></span><span class="obj-row__val${mod ? ' obj-row__val--' + mod : ''}">${v}</span></div>`).join('')}
-    </div>
     <a href="${href}" class="obj-card__media">
       <img src="${o.image}" alt="${o.title}">
-      <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : (objFormat(o) === 'direct' ? ' obj-card__badge--direct' : ' obj-card__badge--live')}">${objBadge(o)}</span>
+      <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : (direct ? ' obj-card__badge--direct' : ' obj-card__badge--live')}">${objBadge(o)}</span>
     </a>
+    <div class="obj-card__body">
+      <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
+      <ul class="obj-card__facts">
+        <li><img src="images/icon-pin-purple.svg" alt="" width="13" height="15"><span>${shortCity(o.city)}, ${o.address || ''}</span></li>
+        <li><img src="images/icon-metro.svg" alt="" width="14" height="11"><span>${o.metro} · ${o.walk}</span></li>
+        <li><img src="images/icon-area.svg" alt="" width="14" height="14"><span>${o.area}</span></li>
+      </ul>
+      <div class="obj-card__rows">
+        ${rows.map(([k, v, mod]) => `<div class="obj-row"><span class="obj-row__key">${k}</span><span class="obj-row__dots"></span><span class="obj-row__val${mod ? ' obj-row__val--' + mod : ''}">${v}</span></div>`).join('')}
+      </div>
+      <div class="obj-card__foot">
+        <div class="obj-card__agent">
+          <div class="broker-ava broker-ava--sm">
+            ${b.photo ? `<img src="${b.photo}" alt="" class="broker-ava__photo">` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
+            ${b.logo ? `<img src="${b.logo}" alt="" class="broker-ava__logo">` : ''}
+          </div>
+          <div class="obj-card__agent-info">
+            <span class="obj-card__agent-name">${b.name || ''}</span>
+            <span class="obj-card__agent-agency">${b.agency || ''}</span>
+          </div>
+        </div>
+        ${comm ? `<span class="obj-card__comm" title="Встречная комиссия">${comm}</span>` : ''}
+      </div>
+    </div>
   `;
   card.addEventListener('click', (e) => {
     if (e.target.closest('a')) return;
