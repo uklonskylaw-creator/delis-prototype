@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20260915d">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260915k">
 </head>
 <body class="cabinet-page cabinet-page--app" data-lk="agent">
 
@@ -95,15 +95,7 @@
         <!-- ===== Об агенте ===== -->
         <div class="cab-card agent-block">
           <div class="cab-card__sub-title">Об агенте</div>
-          <p class="agency-desc">
-            Но акционеры крупнейших компаний объективно рассмотрены соответствующими инстанциями.
-            С учётом сложившейся международной обстановки, высококачественный прототип будущего
-            проекта не даёт нам много выбора, кроме определения экономической целесообразности
-            принимаемых решений. Приятно, граждане, наблюдать, как активно развивающиеся страны
-            третьего мира являются только методом политического участия и обнародованы. Учитывая
-            ключевые сценарии поведения, разбавленное изрядной долей эмпатии, рациональное
-            мышление способствует повышению качества форм воздействия.
-          </p>
+          <p class="agency-desc" id="pf-about">Расскажите о себе: с какими объектами работаете, в каких районах, чем можете быть полезны коллегам. Текст виден агентам сети в карточках ваших объектов.</p>
           <div class="agency-tags-row" style="margin-top:16px;">
             <span class="profile-tag">Вторичка</span>
             <span class="profile-tag">Апартаменты</span>
@@ -133,7 +125,22 @@
 </main>
 
 <script src="_layout.js"></script>
-<script src="profile.js?v=20260915d"></script>
+<script src="profile.js?v=20260915k"></script>
 <script>mountCabinet('profile'); initProfileEdit();</script>
+<script>
+/* Профиль заполняем данными вошедшего пользователя, а не примером из вёрстки */
+(function () {
+  const u = (function () { try { return JSON.parse(localStorage.getItem('delis_user') || 'null'); } catch (e) { return null; } })();
+  if (!u) return;
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+  set('pf-name', u.name);
+  set('pf-phone', u.phone);
+  set('pf-email', u.email);
+  const role = document.getElementById('pf-role');
+  if (role && u.role) role.textContent = u.role;
+  const agency = document.getElementById('pf-agency');
+  if (agency && u.agency) agency.textContent = u.agency;
+})();
+</script>
 </body>
 </html>

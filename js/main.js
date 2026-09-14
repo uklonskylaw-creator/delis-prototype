@@ -320,9 +320,12 @@ function initSlider() {
   if (!wrap) return;
   wrap.querySelectorAll('.catalog__arrow').forEach(btn => {
     btn.addEventListener('click', () => {
+      // листаем страницей: сколько карточек видно, столько и прокручиваем
       const card = grid.querySelector('.obj-card');
-      const step = card ? card.getBoundingClientRect().width + 24 : grid.clientWidth / 3;
-      grid.scrollBy({ left: step * Number(btn.dataset.slide), behavior: 'smooth' });
+      const gap = parseFloat(getComputedStyle(grid).gap) || 24;
+      const cardW = card ? card.getBoundingClientRect().width + gap : grid.clientWidth;
+      const perView = Math.max(1, Math.round(grid.clientWidth / cardW));
+      grid.scrollBy({ left: cardW * perView * Number(btn.dataset.slide), behavior: 'smooth' });
     });
   });
   grid.addEventListener('scroll', updateArrows, { passive: true });

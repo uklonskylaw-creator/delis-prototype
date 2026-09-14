@@ -1515,8 +1515,9 @@ body { overflow-x: hidden; }
 .obj-card .obj-tag { white-space: nowrap; }
 .obj-row__val--accent { color: var(--color-brand); }
 .obj-card__badge--sold { background: var(--color-black); }
-.obj-card__badge--live { background: var(--color-brand); }
 .obj-card__badge--direct { background: var(--color-success); }
+
+}
 
 /* ===== Селектор города рядом с «Все фильтры» ===== */
 .city-select { position: relative; flex-shrink: 0; }
@@ -3336,3 +3337,56 @@ body { overflow-x: hidden; }
   .catalog__slider .obj-card { flex: 0 0 86%; }
   .catalog__arrow { display: none; }
 }
+
+/* Строка табов: основные слева, «Все объекты» справа */
+.reg-tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.reg-tabs-bar .reg-tabs { margin-bottom: 0; }
+
+/* Пароль, присланный при регистрации */
+.auth-note { font-size: 14px; line-height: 1.45; color: var(--color-gray-700); margin-bottom: 8px; }
+.auth-passbox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--color-gray-200);
+  margin-bottom: 8px;
+}
+.auth-passbox__label { font-size: 12px; color: var(--color-gray-700); }
+.auth-passbox__value {
+  font-family: 'Unbounded', var(--font-family);
+  font-size: 22px;
+  letter-spacing: .02em;
+  color: var(--color-black);
+}
+.auth-passbox__hint { font-size: 12px; color: var(--color-gray-500); }
+
+/* Идущий аукцион: светлая плашка с живой зелёной точкой */
+.obj-card__badge--live {
+  background: rgba(255, 255, 255, .94);
+  color: var(--color-black);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 4px 14px rgba(40, 20, 90, .16);
+}
+.obj-card__badge--live::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: badge-pulse 1.8s ease-out infinite;
+}
+@keyframes badge-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(55, 164, 106, .65); }
+  70%  { box-shadow: 0 0 0 7px rgba(55, 164, 106, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(55, 164, 106, 0); }

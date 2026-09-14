@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20260915d">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260915k">
 </head>
 <body class="cabinet-page">
 
@@ -37,7 +37,7 @@
 
     <form class="auth-form" id="login-form" onsubmit="handleLogin(event)">
       <div class="auth-field">
-        <label class="auth-field__label" for="login-phone">Телефон или почта</label>
+        <label class="auth-field__label" for="login-phone">Телефон или адрес электронной почты</label>
         <input id="login-phone" name="phone" type="text" placeholder="+7 (___) ___-__-__" required>
       </div>
       <div class="auth-field">
@@ -69,17 +69,26 @@ function handleLogin(e) {
   e.preventDefault();
   const data = new FormData(e.target);
   const btn = document.getElementById('btn-login');
+  const login = String(data.get('phone') || '').trim().toLowerCase();
+  const pass = String(data.get('password') || '');
   btn.classList.add('btn--loading');
   setTimeout(() => {
     btn.classList.remove('btn--loading');
+    const D = window.DelisAuth;
+    const acc = D.accounts().find(a =>
+      a.email.toLowerCase() === login || D.digits(a.phone) === D.digits(login));
+    if (!acc) { snackbar('Такой почты или телефона нет в базе', 'error'); return; }
+    if (acc.password !== pass) { snackbar('Неверный пароль', 'error'); return; }
     localStorage.setItem('delis_user', JSON.stringify({
-      phone: data.get('phone'),
+      email: acc.email, phone: acc.phone, name: acc.name,
+      agency: acc.agency, region: acc.region, role: acc.role,
       loginAt: new Date().toISOString()
     }));
     snackbar('Вход выполнен', 'success');
-    setTimeout(() => { location.href = '../../index.html'; }, 1200);
+    setTimeout(() => { location.href = 'objects.html'; }, 1000);
   }, 700);
 }
 </script>
+<script src="../../js/auth.js?v=20260915k"></script>
 </body>
 </html>

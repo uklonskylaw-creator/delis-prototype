@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20260915d">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260915k">
 </head>
 <body class="cabinet-page">
 
@@ -69,7 +69,15 @@
     <form class="auth-form" id="form-agency-1">
       <div class="auth-field auth-field--full">
         <label class="auth-field__label">Регион</label>
-        <select required><option value="">Москва</option><option>Санкт-Петербург</option><option>Ленинградская область</option></select>
+        <select name="region" required data-region>
+          <option value="Санкт-Петербург и ЛО">Санкт-Петербург и ЛО</option>
+          <option value="Москва и МО">Москва и МО</option>
+          <option value="other">Другой город</option>
+        </select>
+      </div>
+      <div class="auth-field auth-field--full" data-other-city hidden>
+        <label class="auth-field__label">Город</label>
+        <input type="text" name="city" list="ru-cities" placeholder="Начните вводить название" autocomplete="address-level2">
       </div>
       <div class="auth-field auth-field--full">
         <label class="auth-field__label">Название агентства</label>
@@ -85,7 +93,7 @@
         </div>
         <div class="auth-field">
           <label class="auth-field__label">ИНН</label>
-          <input type="text" placeholder="777444111455" required>
+          <input type="text" placeholder="" required>
         </div>
       </div>
       <div class="auth-field auth-field--full">
@@ -119,11 +127,11 @@
       </div>
       <div class="auth-field auth-field--full">
         <label class="auth-field__label">Телефон для входа в аккаунт</label>
-        <input type="tel" placeholder="+7 (___) ___-__-__" required>
+        <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" data-phone required>
       </div>
       <div class="auth-field auth-field--full">
-        <label class="auth-field__label">Почта</label>
-        <input type="email" placeholder="adress@index.ru" required>
+        <label class="auth-field__label">Адрес электронной почты для получения и восстановления пароля</label>
+        <input type="email" placeholder="name@example.ru" required>
       </div>
 
       <div class="auth-actions" style="margin-top:32px;">
@@ -147,7 +155,15 @@
     <form class="auth-form" id="form-agent" onsubmit="handleRegister(event, 'agent')">
       <div class="auth-field auth-field--full">
         <label class="auth-field__label">Регион</label>
-        <select required><option>Москва</option><option>Санкт-Петербург</option><option>Ленинградская область</option></select>
+        <select name="region" required data-region>
+          <option value="Санкт-Петербург и ЛО">Санкт-Петербург и ЛО</option>
+          <option value="Москва и МО">Москва и МО</option>
+          <option value="other">Другой город</option>
+        </select>
+      </div>
+      <div class="auth-field auth-field--full" data-other-city hidden>
+        <label class="auth-field__label">Город</label>
+        <input type="text" name="city" list="ru-cities" placeholder="Начните вводить название" autocomplete="address-level2">
       </div>
       <div class="auth-field auth-field--full">
         <label class="auth-field__label">Название агентства</label>
@@ -163,7 +179,7 @@
         </div>
         <div class="auth-field" data-name="ИНН">
           <label class="auth-field__label">ИНН</label>
-          <input type="text" name="inn" placeholder="777444111455" required>
+          <input type="text" name="inn" placeholder="" required>
           <span class="auth-field__error">Введите другое значение, пользователь с таким ИНН уже существует</span>
         </div>
       </div>
@@ -178,12 +194,12 @@
         </div>
         <div class="auth-field">
           <label class="auth-field__label">Телефон для входа в аккаунт</label>
-          <input type="tel" placeholder="+7 (___) ___-__-__" required>
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" data-phone required>
         </div>
       </div>
       <div class="auth-field auth-field--full">
-        <label class="auth-field__label">Почта</label>
-        <input type="email" placeholder="adress@index.ru" required>
+        <label class="auth-field__label">Адрес электронной почты для получения и восстановления пароля</label>
+        <input type="email" placeholder="name@example.ru" required>
       </div>
 
       <label class="auth-check" style="margin-top:24px;">
@@ -225,24 +241,23 @@
   <!-- ===== STEP: Создание пароля ===== -->
   <div class="auth-card auth-card--narrow auth-step" data-step="create-pass">
     <div class="auth-card__head">
-      <h1 class="auth-card__title">Придумайте пароль</h1>
+      <h1 class="auth-card__title">Пароль отправлен на почту</h1>
       <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
-    <form class="auth-form" id="form-pass" onsubmit="handleCreatePass(event)">
-      <div class="auth-field auth-field--full">
-        <label class="auth-field__label">Пароль</label>
-        <input type="password" name="pass" minlength="8" placeholder="Минимум 8 символов" required>
-        <span class="auth-field__error">Пароль должен быть не короче 8 символов</span>
-      </div>
-      <div class="auth-field auth-field--full" data-name="pass2">
-        <label class="auth-field__label">Повторите пароль</label>
-        <input type="password" name="pass2" minlength="8" placeholder="Повторите пароль" required>
-        <span class="auth-field__error">Пароли не совпадают</span>
+    <div class="auth-form">
+      <p class="auth-note">
+        Пароль для входа отправлен на <b id="pass-email">вашу почту</b>.
+        Его можно сменить в кабинете, а если письмо потеряется — восстановить по кнопке «Забыли пароль?».
+      </p>
+      <div class="auth-passbox">
+        <span class="auth-passbox__label">Ваш пароль</span>
+        <b class="auth-passbox__value" id="pass-value">—</b>
+        <span class="auth-passbox__hint">В прототипе письма не уходят, поэтому пароль показан здесь.</span>
       </div>
       <div class="auth-actions auth-actions--end" style="margin-top:8px;">
-        <button type="submit" class="btn btn--dark">Создать пароль</button>
+        <button type="button" class="btn btn--dark" onclick="finishRegister()">Войти в кабинет</button>
       </div>
-    </form>
+    </div>
   </div>
 
   <!-- ===== STEP: Success ===== -->
@@ -373,6 +388,15 @@ function handleRegister(e, type) {
     regState.name = e.target.querySelector('input[name="fullname"]')?.value || '';
     regState.phone = e.target.querySelector('input[type="tel"]')?.value || '+7 (___) ___-__-__';
     regState.email = e.target.querySelector('input[type="email"]')?.value || 'your@email.com';
+    // регион и агентство собираем со всех шагов формы
+    const card = document.querySelector('[data-step="' + (type === 'agent' ? 'agent-1' : 'agency-1') + '"]');
+    const regionSel = card?.querySelector('[data-region]');
+    const otherCity = card?.querySelector('[data-other-city] input');
+    regState.region = regionSel
+      ? (regionSel.value === 'other' ? (otherCity?.value || 'Другой город') : regionSel.value)
+      : '';
+    regState.agency = card?.querySelector('input[type="text"]')?.value || '';
+    regState.password = window.DelisAuth.randomPassword();
     const numEl = document.getElementById('confirm-phone-num');
     if (numEl) numEl.textContent = regState.phone;
     const emailEl = document.getElementById('confirm-email-addr');
@@ -412,6 +436,10 @@ btnConfirmPhone?.addEventListener('click', () => {
     if (code === '1234' || code.length === 4) {
       document.getElementById('sms-code').classList.remove('sms-code--error');
       snackbar('Телефон подтверждён', 'success');
+      const pe = document.getElementById('pass-email');
+      const pv = document.getElementById('pass-value');
+      if (pe) pe.textContent = regState.email;
+      if (pv) pv.textContent = regState.password;
       goStep('create-pass');
     } else {
       document.getElementById('sms-code').classList.add('sms-code--error');
@@ -445,37 +473,85 @@ function resendSms() {
 }
 
 // === Создание пароля ===
-function handleCreatePass(e) {
-  e.preventDefault();
-  const pass = e.target.pass.value;
-  const pass2 = e.target.pass2.value;
-  const wrap2 = e.target.pass2.closest('.auth-field');
-  if (pass !== pass2) {
-    wrap2.classList.add('auth-field--error');
-    snackbar('Пароли не совпадают', 'error');
-    return;
-  }
-  wrap2.classList.remove('auth-field--error');
-  const btn = e.target.querySelector('button[type="submit"]');
-  setLoading(btn, true);
-  setTimeout(() => {
-    setLoading(btn, false);
-    localStorage.setItem('delis_user', JSON.stringify({
-      type: regState.type,
-      name: regState.name,
-      phone: regState.phone,
-      email: regState.email,
-      registeredAt: new Date().toISOString()
-    }));
-    // Куда вести: агентство → profile.html, частный агент → profile-private.html
-    const dest = regState.type === 'agent' ? 'profile-private.html' : 'profile.html';
-    const goBtn = document.getElementById('btn-go-cabinet');
-    if (goBtn) goBtn.setAttribute('onclick', `location.href='${dest}'`);
-    goStep('success');
-    snackbar('Регистрация завершена', 'success');
-    setTimeout(() => { location.href = dest; }, 1800);
-  }, 700);
+function finishRegister() {
+  const D = window.DelisAuth;
+  const acc = {
+    email: regState.email,
+    phone: regState.phone,
+    password: regState.password,
+    name: regState.name,
+    agency: regState.agency || '',
+    region: regState.region || '',
+    role: regState.type === 'agent' ? 'Частный агент' : 'Агентство'
+  };
+  D.saveAccount(acc);
+  localStorage.setItem('delis_user', JSON.stringify({
+    type: regState.type, name: acc.name, phone: acc.phone, email: acc.email,
+    agency: acc.agency, region: acc.region, role: acc.role,
+    registeredAt: new Date().toISOString()
+  }));
+  const dest = regState.type === 'agent' ? 'profile-private.html' : 'profile.html';
+  const goBtn = document.getElementById('btn-go-cabinet');
+  if (goBtn) goBtn.setAttribute('onclick', `location.href='${dest}'`);
+  goStep('success');
+  snackbar('Регистрация завершена', 'success');
+  setTimeout(() => { location.href = dest; }, 1600);
 }
 </script>
+<datalist id="ru-cities">
+  <option value="Новосибирск">
+  <option value="Екатеринбург">
+  <option value="Казань">
+  <option value="Нижний Новгород">
+  <option value="Челябинск">
+  <option value="Красноярск">
+  <option value="Самара">
+  <option value="Уфа">
+  <option value="Ростов-на-Дону">
+  <option value="Омск">
+  <option value="Краснодар">
+  <option value="Воронеж">
+  <option value="Пермь">
+  <option value="Волгоград">
+  <option value="Саратов">
+  <option value="Тюмень">
+  <option value="Тольятти">
+  <option value="Ижевск">
+  <option value="Барнаул">
+  <option value="Ульяновск">
+  <option value="Иркутск">
+  <option value="Хабаровск">
+  <option value="Ярославль">
+  <option value="Владивосток">
+  <option value="Махачкала">
+  <option value="Томск">
+  <option value="Оренбург">
+  <option value="Кемерово">
+  <option value="Новокузнецк">
+  <option value="Рязань">
+  <option value="Астрахань">
+  <option value="Пенза">
+  <option value="Липецк">
+  <option value="Тула">
+  <option value="Киров">
+  <option value="Чебоксары">
+  <option value="Калининград">
+  <option value="Курск">
+  <option value="Сочи">
+  <option value="Ставрополь">
+  <option value="Севастополь">
+  <option value="Симферополь">
+  <option value="Тверь">
+  <option value="Магнитогорск">
+  <option value="Иваново">
+  <option value="Брянск">
+  <option value="Белгород">
+  <option value="Сургут">
+  <option value="Владимир">
+  <option value="Архангельск">
+  <option value="Калуга">
+  <option value="Смоленск">
+</datalist>
+<script src="../../js/auth.js?v=20260915k"></script>
 </body>
 </html>
