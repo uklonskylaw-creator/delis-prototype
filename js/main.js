@@ -176,7 +176,8 @@ function drawCatalog(items) {
     grid.innerHTML = '<p class="catalog__empty">В этом разделе пока нет объектов.</p>';
     return;
   }
-  list.slice(0, 6).forEach(o => grid.appendChild(objCard(o)));
+  list.slice(0, 12).forEach(o => grid.appendChild(objCard(o)));
+  updateArrows();
 }
 
 /* «Услуги» в шапке: наведение на десктопе, клик на сенсорных экранах */
@@ -300,6 +301,33 @@ function initCitySelect() {
   document.addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
   draw('');
+}
+
+/* Лента объектов: листание стрелками по одной карточке */
+function updateArrows() {
+  const grid = document.getElementById('catalog-grid');
+  const wrap = grid && grid.closest('.catalog__slider');
+  if (!wrap) return;
+  const max = grid.scrollWidth - grid.clientWidth - 2;
+  wrap.querySelector('.catalog__arrow--prev').disabled = grid.scrollLeft <= 2;
+  wrap.querySelector('.catalog__arrow--next').disabled = grid.scrollLeft >= max;
+  wrap.classList.toggle('is-static', max <= 0);
+}
+
+function initSlider() {
+  const grid = document.getElementById('catalog-grid');
+  const wrap = grid && grid.closest('.catalog__slider');
+  if (!wrap) return;
+  wrap.querySelectorAll('.catalog__arrow').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = grid.querySelector('.obj-card');
+      const step = card ? card.getBoundingClientRect().width + 24 : grid.clientWidth / 3;
+      grid.scrollBy({ left: step * Number(btn.dataset.slide), behavior: 'smooth' });
+    });
+  });
+  grid.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
 }
 
 function initRegTabs() {
@@ -706,6 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBurger();
   initFavorites();
   initRegTabs();
+  initSlider();
   initSubmenu();
   // ---------- Switch header buttons when user is logged in ----------
   try {
