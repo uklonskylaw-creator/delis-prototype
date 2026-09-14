@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260915q">
-<link rel="stylesheet" href="css/base.css?v=20260915q">
-<link rel="stylesheet" href="css/main.css?v=20260915q">
+<link rel="stylesheet" href="css/tokens.css?v=20260915r">
+<link rel="stylesheet" href="css/base.css?v=20260915r">
+<link rel="stylesheet" href="css/main.css?v=20260915r">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -175,84 +175,20 @@
     <div class="video__head">
       <div class="video__head-left">
         <h2 class="section-title">Видео</h2>
-        <div class="tabs">
-          <button class="tabs__btn tabs__btn--active" type="button">Все видео</button>
-          <button class="tabs__btn" type="button">Вебинары</button>
-          <button class="tabs__btn" type="button">Новости</button>
-          <button class="tabs__btn" type="button">Платформа</button>
-          <button class="tabs__btn" type="button">Застройщики</button>
-          <button class="tabs__btn tabs__btn--muted" type="button">Обзоры</button>
-        </div>
       </div>
       <div class="video__head-right">
-        <div class="slider-arrows">
-          <button class="slider-arrows__btn" aria-label="Назад">
-            <img src="images/arrow-left-inactive.svg" alt="" width="36" height="36">
-          </button>
-          <button class="slider-arrows__btn slider-arrows__btn--active" aria-label="Вперёд">
-            <img src="images/arrow-right.svg" alt="" width="36" height="36">
-          </button>
-        </div>
-        <a href="#" class="btn btn--outline btn--sm">Все видео</a>
+        <a href="https://cloud.mail.ru/public/Aq5t/vz1rkKkjw" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Все видео</a>
       </div>
     </div>
 
-    <ul class="video__grid">
-      <li class="video-card">
-        <a href="#" class="video-card__media">
-          <img src="images/video-1.png" alt="">
-          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-        </a>
-        <time class="video-card__time">01:01:57</time>
-        <h3 class="video-card__title">Обучение застройщика You&Co (ОАЭ)</h3>
-      </li>
-      <li class="video-card">
-        <a href="#" class="video-card__media">
-          <img src="images/video-2.png" alt="">
-          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-        </a>
-        <time class="video-card__time">12:34</time>
-        <h3 class="video-card__title">Как работать с базой объектов</h3>
-      </li>
-      <li class="video-card">
-        <a href="#" class="video-card__media">
-          <img src="images/video-3.png" alt="">
-          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-        </a>
-        <time class="video-card__time">07:12</time>
-        <h3 class="video-card__title">Платформа «Делись» — обзор</h3>
-      </li>
-      <li class="video-card">
-        <a href="#" class="video-card__media">
-          <img src="images/video-4.png" alt="">
-          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-        </a>
-        <time class="video-card__time">18:40</time>
-        <h3 class="video-card__title">Юридические тонкости вторички</h3>
-      </li>
-      <li class="video-card">
-        <a href="#" class="video-card__media">
-          <img src="images/video-2.png" alt="">
-          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-        </a>
-        <time class="video-card__time">22:01</time>
-        <h3 class="video-card__title">Сделка по ипотеке от и до</h3>
-      </li>
-      <li class="video-card">
-        <a href="#" class="video-card__media">
-          <img src="images/video-3.png" alt="">
-          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-        </a>
-        <time class="video-card__time">09:50</time>
-        <h3 class="video-card__title">Что нового в марте</h3>
-      </li>
-    </ul>
-
-    <div class="pagination">
-      <span class="pagination__dot pagination__dot--active"></span>
-      <span class="pagination__dot"></span>
-      <span class="pagination__dot"></span>
-      <span class="pagination__dot"></span>
+    <div class="video__slider">
+      <button class="catalog__arrow catalog__arrow--prev" type="button" aria-label="Назад" data-vslide="-1">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 12L4 7l5-5"/></svg>
+      </button>
+      <ul class="video__grid" id="video-grid"></ul>
+      <button class="catalog__arrow catalog__arrow--next" type="button" aria-label="Вперёд" data-vslide="1">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 2l5 5-5 5"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -425,8 +361,9 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/objects.js?v=20260915q"></script>
-<script src="js/favorites.js?v=20260915q"></script>
-<script src="js/main.js?v=20260915q"></script>
+<script src="data/videos.js?v=20260915r"></script>
+<script src="data/objects.js?v=20260915r"></script>
+<script src="js/favorites.js?v=20260915r"></script>
+<script src="js/main.js?v=20260915r"></script>
 </body>
 </html>

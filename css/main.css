@@ -3405,3 +3405,29 @@ body { overflow-x: hidden; }
   color: var(--color-black);
 }
 .obj-broker__rating svg { color: var(--color-warning); }
+
+/* Лента видео со стрелками */
+.video__slider { position: relative; }
+.video__slider .video__grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.video__slider .video__grid::-webkit-scrollbar { display: none; }
+.video__slider .video-card {
+  flex: 0 0 calc((100% - 64px) / 5);
+  scroll-snap-align: start;
+}
+.video-card__title a { color: inherit; text-decoration: none; }
+.video-card__title a:hover { color: var(--color-brand); }
+.video__slider.is-static .catalog__arrow { display: none; }
+@media (max-width: 1100px) {
+  .video__slider .video-card { flex: 0 0 calc((100% - 32px) / 3); }
+}
+@media (max-width: 700px) {
+  .video__slider .video-card { flex: 0 0 74%; }
+  .video__slider .catalog__arrow { display: none; }
+}

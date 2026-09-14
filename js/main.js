@@ -333,6 +333,41 @@ function initSlider() {
   updateArrows();
 }
 
+/* Лента видео: карточки ведут в плеер облака, файлы на сайте не лежат */
+function initVideos() {
+  const grid = document.getElementById('video-grid');
+  if (!grid || !window.__VIDEOS) return;
+  grid.innerHTML = window.__VIDEOS.map(v => `
+    <li class="video-card">
+      <a href="${v.url}" target="_blank" rel="noopener" class="video-card__media">
+        <img src="${v.cover}" alt="">
+        <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+      </a>
+      <h3 class="video-card__title"><a href="${v.url}" target="_blank" rel="noopener">${v.title}</a></h3>
+    </li>`).join('');
+
+  const wrap = grid.closest('.video__slider');
+  if (!wrap) return;
+  const refresh = () => {
+    const max = grid.scrollWidth - grid.clientWidth - 2;
+    wrap.querySelector('[data-vslide="-1"]').disabled = grid.scrollLeft <= 2;
+    wrap.querySelector('[data-vslide="1"]').disabled = grid.scrollLeft >= max;
+    wrap.classList.toggle('is-static', max <= 0);
+  };
+  wrap.querySelectorAll('[data-vslide]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = grid.querySelector('.video-card');
+      const gap = parseFloat(getComputedStyle(grid).gap) || 16;
+      const w = card ? card.getBoundingClientRect().width + gap : grid.clientWidth;
+      const perView = Math.max(1, Math.round(grid.clientWidth / w));
+      grid.scrollBy({ left: w * perView * Number(btn.dataset.vslide), behavior: 'smooth' });
+    });
+  });
+  grid.addEventListener('scroll', refresh, { passive: true });
+  window.addEventListener('resize', refresh);
+  refresh();
+}
+
 function initRegTabs() {
   const tabs = document.querySelectorAll('[data-reg-tab]');
   if (!tabs.length) return;
@@ -757,6 +792,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFavorites();
   initRegTabs();
   initSlider();
+  initVideos();
   initSubmenu();
   // ---------- Switch header buttons when user is logged in ----------
   try {
