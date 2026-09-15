@@ -337,7 +337,8 @@ function initSlider() {
 function initVideos() {
   const grid = document.getElementById('video-grid');
   if (!grid || !window.__VIDEOS) return;
-  grid.innerHTML = window.__VIDEOS.map(v => `
+  function drawVideos() {
+    grid.innerHTML = window.__VIDEOS.map(v => `
     <li class="video-card">
       <a href="${v.url}" target="_blank" rel="noopener" class="video-card__media">
         <img src="${v.cover}" alt="">
@@ -345,15 +346,29 @@ function initVideos() {
       </a>
       <h3 class="video-card__title"><a href="${v.url}" target="_blank" rel="noopener">${v.title}</a></h3>
     </li>`).join('');
+  }
+  drawVideos();
+
+  // вкладки: наполнен курс Санкина, остальные разделы пока пустые
+  const tabs = document.querySelectorAll('[data-vtab]');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('tabs__btn--active', b === btn));
+    if (btn.dataset.vtab === 'sankin') {
+      drawVideos();
+    } else {
+      grid.innerHTML = '<li class="video__empty">В этом разделе пока нет роликов.</li>';
+    }
+    refresh();
+  }));
 
   const wrap = grid.closest('.video__slider');
   if (!wrap) return;
-  const refresh = () => {
+  function refresh() {
     const max = grid.scrollWidth - grid.clientWidth - 2;
     wrap.querySelector('[data-vslide="-1"]').disabled = grid.scrollLeft <= 2;
     wrap.querySelector('[data-vslide="1"]').disabled = grid.scrollLeft >= max;
     wrap.classList.toggle('is-static', max <= 0);
-  };
+  }
   wrap.querySelectorAll('[data-vslide]').forEach(btn => {
     btn.addEventListener('click', () => {
       const card = grid.querySelector('.video-card');
