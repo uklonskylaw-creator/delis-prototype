@@ -105,6 +105,8 @@
   flex-direction: column;
   gap: 24px;
   min-width: 0;
+  /* Заголовок раздела встаёт на одну линию с первым пунктом меню */
+  padding-top: 12px;
 }
 
 /* Cards inside cabinet — серая заливка на белой странице, тонкая обводка */
