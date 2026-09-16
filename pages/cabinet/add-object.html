@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новый объект — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260916">
+<link rel="stylesheet" href="../../css/add-object.css?v=20260916">
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body class="cabinet-page cabinet-page--app">
+
+<div id="cab-header"></div>
+
+<main>
+  <div class="ao-shell">
+    <div class="cabinet-breadcrumbs">
+      <a href="../../index.html">Главная</a> • <a href="objects.html">Объекты</a> • Новый объект
+    </div>
+
+    <div class="ao-layout">
+
+      <aside class="ao-side">
+        <div class="ao-side__kicker" id="ao-kicker">Новый объект</div>
+        <div class="ao-side__step" id="ao-side-step">Новое объявление</div>
+        <div class="ao-progress"><div class="ao-progress__bar" id="ao-bar" style="width:0%"></div></div>
+
+        <div class="ao-hint">
+          <div class="ao-hint__title" id="ao-hint-title">С чего начнём</div>
+          <div class="ao-hint__text" id="ao-hint-text">Выберите тип сделки и категорию.</div>
+        </div>
+      </aside>
+
+      <section class="ao-card">
+        <div id="ao-body"></div>
+
+        <div class="ao-foot">
+          <span class="ao-foot__note">Сохраняем все заполненные поля</span>
+          <div class="ao-foot__actions">
+            <button type="button" class="ao-back" id="ao-back" onclick="aoBack()">Назад</button>
+            <button type="button" class="btn btn--brand" id="ao-next" onclick="aoNext()">Создать</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<script src="../../js/auth.js"></script>
+<script src="_layout.js"></script>
+<script>mountCabinet('objects');</script>
+<script src="add-object.js?v=20260916"></script>
+</body>
+</html>
