@@ -1025,7 +1025,7 @@ body { overflow-x: hidden; }
 .marquee__track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 14s linear infinite;
+  animation: marquee-scroll 13.6s linear infinite; /* ~129 px/с */
 }
 .marquee__group {
   display: flex;
@@ -1041,6 +1041,12 @@ body { overflow-x: hidden; }
   object-fit: contain;
   opacity: .7;
   filter: grayscale(.3);
+}
+/* Логотипы сети (УиП, Санкин, Ассоциация): круглые и детальные, в 60px не читаются */
+.marquee__group img.marquee__logo-lg {
+  height: 90px;
+  opacity: 1;
+  filter: none;
 }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 
