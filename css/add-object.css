@@ -323,3 +323,59 @@
   .ao-hint { display: none; }
   .ao-card { padding: 24px; border-radius: var(--radius-lg); }
 }
+
+/* --- Подсказка адреса --- */
+.ao-suggest {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.ao-suggest:empty { display: none; }
+.ao-suggest__item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: var(--body14-size);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+.ao-suggest__item:last-child { border-bottom: none; }
+.ao-suggest__item:hover { background: rgba(118, 79, 233, 0.06); }
+.ao-suggest__title { color: var(--color-black); }
+.ao-suggest__note {
+  font-size: var(--body12-size);
+  color: var(--color-gray-500);
+  margin-left: auto;
+  white-space: nowrap;
+}
+.ao-suggest__item--wait {
+  color: var(--color-gray-500);
+  cursor: default;
+}
+.ao-suggest__item--wait:hover { background: none; }
+
+/* --- Чип станции метро --- */
+.ao-chip--metro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ao-metro-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.ao-chip__note {
+  font-style: normal;
+  font-size: var(--body12-size);
+  color: var(--color-gray-500);
+}
+.ao-chip--on .ao-chip__note { color: var(--color-brand); }

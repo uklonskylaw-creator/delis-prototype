@@ -10,9 +10,6 @@ const KINDS = {
          'Производство', 'Склад', 'Бизнес', 'Коммерческая земля']
 };
 
-const METRO_SPB = ['Проспект Славы', 'Международная', 'Ломоносовская', 'Бухарестская', 'Волковская',
-                   'Обводный канал', 'Звёздная', 'Купчино', 'Электросила', 'Московская'];
-
 let aoStep = 0;
 let aoData = aoLoad();
 
@@ -38,11 +35,14 @@ function fChips(f) {
 }
 function fInput(f) {
   const v = aoGet(f.k, '');
+  const isAddr = f.k === 'address';
   return `<div class="ao-input-wrap">
     <input class="ao-input${f.u ? ' ao-input--unit' : ''}" placeholder="${f.ph || ''}"
       value="${esc(v)}" ${f.max ? `maxlength="${f.max}"` : ''}
-      oninput="aoSet('${f.k}', this.value)${f.max ? `; aoCnt(this,${f.max})` : ''}">
+      ${isAddr ? 'id="ao-addr" autocomplete="off" oninput="aoSuggest(this.value)" onblur="setTimeout(aoHideSuggest,150)"'
+               : `oninput="aoSet('${f.k}', this.value)${f.max ? `; aoCnt(this,${f.max})` : ''}"`}>
     ${f.u ? `<span class="ao-unit">${f.u}</span>` : ''}
+    ${isAddr ? '<div class="ao-suggest" id="ao-suggest"></div>' : ''}
   </div>${f.max ? `<div class="ao-counter">${String(v).length}/${f.max}</div>` : ''}`;
 }
 function fSelect(f) {
@@ -80,9 +80,14 @@ function fPhotos(f) {
 }
 function fMetro(f) {
   const cur = aoGet(f.k, '');
-  return `<div class="ao-chips">${METRO_SPB.map(m =>
-    `<button type="button" class="ao-chip${cur === m ? ' ao-chip--on' : ''}"
-      onclick="aoPick('${f.k}','${esc(m)}',false)">${m}</button>`).join('')}</div>`;
+  const list = aoGet('metroList', []);
+  if (!list.length) return `<div class="ao-sub">Станции появятся, когда вы выберете адрес из подсказки</div>`;
+  return `<div class="ao-chips">${list.map(m =>
+    `<button type="button" class="ao-chip ao-chip--metro${cur === m.name ? ' ao-chip--on' : ''}"
+      onclick="aoPick('${f.k}','${esc(m.name)}',false)">
+      <i class="ao-metro-dot" style="background:${METRO_LINE_COLOR[m.line] || '#999'}"></i>${m.name}
+      <em class="ao-chip__note">${m.label}</em>
+    </button>`).join('')}</div>`;
 }
 
 function fieldHTML(f) {
@@ -245,16 +250,33 @@ function aoWarn(msg) {
 }
 
 // ---------- Карта ----------
-let aoMapDone = false;
+/* aoRender() пересоздаёт разметку шага, поэтому карту привязываем к текущему
+   контейнеру: если прежний узел выпал из документа — строим карту заново. */
 function aoMap() {
-  if (aoMapDone || !window.ymaps) return;
+  if (!window.ymaps) return;
   ymaps.ready(() => {
     const el = document.getElementById('ao-map');
     if (!el) return;
-    const map = new ymaps.Map(el, { center: [59.9386, 30.3141], zoom: 11, controls: ['zoomControl'] });
-    map.behaviors.disable('scrollZoom');
-    aoMapDone = true;
+    if (aoMapObj) {
+      if (aoMapObj.container.getElement().isConnected) { aoMapPin(); return; }
+      aoMapObj.destroy();
+      aoMapObj = null;
+      aoPlacemark = null;
+    }
+    aoMapObj = new ymaps.Map(el, { center: [59.9386, 30.3141], zoom: 11, controls: ['zoomControl'] });
+    aoMapObj.behaviors.disable('scrollZoom');
+    aoMapPin();
   });
+}
+
+/* Показывает метку по сохранённым координатам */
+function aoMapPin() {
+  const coords = aoGet('coords');
+  if (!aoMapObj || !coords) return;
+  aoMapObj.setCenter(coords, 16);
+  if (aoPlacemark) aoMapObj.geoObjects.remove(aoPlacemark);
+  aoPlacemark = new ymaps.Placemark(coords, {}, { preset: 'islands#violetDotIcon' });
+  aoMapObj.geoObjects.add(aoPlacemark);
 }
 
 function aoFromHash() {
@@ -265,3 +287,94 @@ function aoFromHash() {
 }
 window.addEventListener('hashchange', () => { aoFromHash(); aoRender(); });
 document.addEventListener('DOMContentLoaded', () => { aoFromHash(); aoRender(); });
+
+// ---------- Подсказка адреса, метка и ближайшее метро ----------
+/* Адреса ищем в OpenStreetMap (Nominatim): подсказки Яндекса требуют платный ключ.
+   Метро считаем сами по справочнику metro-spb.js — так быстрее и без запросов. */
+const AO_GEO_URL = 'https://nominatim.openstreetmap.org/search';
+const AO_SPB_BOX = '29.45,60.25,30.90,59.63';   // рамка города и ближайших пригородов
+
+let aoSuggestTimer = null;
+let aoSuggestSeq = 0;
+let aoPlacemark = null;
+let aoMapObj = null;
+let aoSuggestCache = {};
+
+function aoSuggest(q) {
+  aoSet('address', q);
+  clearTimeout(aoSuggestTimer);
+  const box = document.getElementById('ao-suggest');
+  if (!box) return;
+  const query = (q || '').trim();
+  if (query.length < 3) { box.innerHTML = ''; return; }
+  aoSuggestTimer = setTimeout(() => aoFetchSuggest(query, box), 350);
+}
+
+function aoFetchSuggest(query, box) {
+  if (aoSuggestCache[query]) { aoDrawSuggest(aoSuggestCache[query], box); return; }
+  const seq = ++aoSuggestSeq;
+  const url = AO_GEO_URL + '?format=jsonv2&limit=7&addressdetails=1&accept-language=ru'
+    + '&countrycodes=ru&viewbox=' + AO_SPB_BOX + '&bounded=1'
+    + '&q=' + encodeURIComponent(query);
+  box.innerHTML = '<div class="ao-suggest__item ao-suggest__item--wait">Ищем адрес…</div>';
+  fetch(url)
+    .then(r => r.json())
+    .then(list => {
+      if (seq !== aoSuggestSeq) return;            // пришёл ответ на старый запрос
+      const seen = {};
+      const items = list.map(aoAddrItem).filter(function (it) {
+        /* Nominatim отдаёт и дом, и магазины в нём — оставляем адрес один раз */
+        if (!it || seen[it.value]) return false;
+        seen[it.value] = 1;
+        return true;
+      });
+      aoSuggestCache[query] = items;
+      aoDrawSuggest(items, box);
+    })
+    .catch(() => { if (seq === aoSuggestSeq) box.innerHTML = ''; });
+}
+
+/* Из ответа Nominatim делаем короткий адрес: улица, дом */
+function aoAddrItem(r) {
+  const a = r.address || {};
+  const street = a.road || a.pedestrian || a.neighbourhood || a.suburb;
+  if (!street) return null;
+  const city = a.city || a.town || a.village || a.municipality || 'Санкт-Петербург';
+  const short = street + (a.house_number ? ', ' + a.house_number : '');
+  return {
+    title: short,
+    note: city + (a.city_district ? ', ' + a.city_district : ''),
+    value: city + ', ' + short,
+    lat: Number(r.lat),
+    lon: Number(r.lon)
+  };
+}
+
+function aoDrawSuggest(items, box) {
+  if (!items.length) {
+    box.innerHTML = '<div class="ao-suggest__item ao-suggest__item--wait">Ничего не нашли — уточните адрес</div>';
+    return;
+  }
+  box.innerHTML = items.map((it, i) =>
+    `<div class="ao-suggest__item" onmousedown="aoPickAddr(${i})">
+       <span class="ao-suggest__title">${it.title}</span>
+       <span class="ao-suggest__note">${it.note}</span>
+     </div>`).join('');
+  box._items = items;
+}
+
+function aoHideSuggest() {
+  const box = document.getElementById('ao-suggest');
+  if (box) box.innerHTML = '';
+}
+
+function aoPickAddr(i) {
+  const box = document.getElementById('ao-suggest');
+  const it = box && box._items && box._items[i];
+  if (!it) return;
+  aoSet('address', it.value);
+  aoSet('coords', [it.lat, it.lon]);
+  aoSet('metroList', typeof metroNearby === 'function' ? metroNearby(it.lat, it.lon, 5) : []);
+  aoHideSuggest();
+  aoRender();
+}
