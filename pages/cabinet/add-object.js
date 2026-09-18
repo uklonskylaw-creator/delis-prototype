@@ -146,11 +146,6 @@ function startHTML() {
   return `
     <div class="ao-card__title">Новое объявление</div>
     <div class="ao-card__note">Выберите категорию, в которой разместить объект</div>
-    <div class="ao-group"><span class="ao-label">Сделка</span>
-      <div class="ao-chips">${['Аренда', 'Продажа'].map(d =>
-        `<button type="button" class="ao-chip${aoGet('deal', 'Продажа') === d ? ' ao-chip--on' : ''}"
-          onclick="aoPick('deal','${d}',false)">${d}</button>`).join('')}</div>
-    </div>
     <div class="ao-group"><span class="ao-label">Жилая недвижимость</span>
       <div class="ao-chips">${KINDS.live.map(k => chip(k)).join('')}</div></div>
     <div class="ao-group"><span class="ao-label">Коммерческая</span>
@@ -177,7 +172,7 @@ function aoRender() {
   const st = isStart ? null : aoSteps()[aoStep - 1];
 
   document.getElementById('ao-kicker').textContent =
-    isStart ? 'Новый объект' : `${aoGet('deal', 'Продажа')} · ${aoGet('kind')}`;
+    isStart ? 'Новый объект' : `Продажа · ${aoGet('kind')}`;
   document.getElementById('ao-side-step').textContent = isStart ? 'Новое объявление' : st.t;
   document.getElementById('ao-bar').style.width =
     Math.round((aoStep / Math.max(1, aoTotal() - 1)) * 100) + '%';
@@ -185,7 +180,7 @@ function aoRender() {
   const hint = document.getElementById('ao-hint');
   if (isStart) {
     hint.innerHTML = `<div class="ao-hint__title">С чего начнём</div>
-      <div class="ao-hint__text">Выберите тип сделки и категорию объекта. Дальше состав полей
+      <div class="ao-hint__text">Выберите категорию объекта. Дальше состав полей
       подстроится под выбранный тип.</div>`;
   } else {
     const done = aoStep, total = aoTotal() - 1;
