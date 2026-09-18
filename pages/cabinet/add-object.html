@@ -30,14 +30,12 @@
         <div class="ao-side__step" id="ao-side-step">Новое объявление</div>
         <div class="ao-progress"><div class="ao-progress__bar" id="ao-bar" style="width:0%"></div></div>
 
-        <div class="ao-hint">
-          <div class="ao-hint__title" id="ao-hint-title">С чего начнём</div>
-          <div class="ao-hint__text" id="ao-hint-text">Выберите тип сделки и категорию.</div>
-        </div>
+        <div class="ao-hint" id="ao-hint"></div>
       </aside>
 
       <section class="ao-card">
         <div id="ao-body"></div>
+        <div id="ao-warn" style="display:none;margin-top:16px;padding:12px 16px;border-radius:12px;background:var(--color-danger-bg);color:var(--color-danger-hover);font-size:14px;"></div>
 
         <div class="ao-foot">
           <span class="ao-foot__note">Сохраняем все заполненные поля</span>
@@ -55,6 +53,7 @@
 <script src="../../js/auth.js"></script>
 <script src="_layout.js"></script>
 <script>mountCabinet('objects');</script>
-<script src="add-object.js?v=20260916"></script>
+<script src="add-object-data.js?v=20260918"></script>
+<script src="add-object.js?v=20260918"></script>
 </body>
 </html>
