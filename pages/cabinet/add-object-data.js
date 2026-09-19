@@ -24,6 +24,17 @@ const V = {
   heatingHouse:['Центральное', 'Газовое', 'Электрическое', 'Печь', 'Камин', 'Твердотопливный котёл',
                 'Дизельное', 'Автономное', 'Нет отопления'],
   extraHouse:  ['Гараж', 'Терраса', 'Погреб', 'Бассейн', 'Баня', 'Охрана'],
+  readiness:   ['Построен', 'Недостроен', 'Построим на заказ'],
+  transport:   ['Асфальтированная дорога', 'Остановка транспорта', 'Ж/д станция'],
+  nearby:      ['Магазин', 'Аптека', 'Детский сад', 'Школа'],
+
+  furniture:   ['Кухня', 'Хранение одежды', 'Спальные места'],
+  appliances:  ['Кондиционер', 'Холодильник', 'Стиральная машина',
+                'Посудомоечная машина', 'Водонагреватель'],
+  comfort:     ['Тёплый пол', 'Гардеробная', 'Панорамные окна'],
+  yardLive:    ['Закрытая территория', 'Детская площадка', 'Спортивная площадка'],
+  parkingLive: ['Подземная', 'Многоуровневая', 'Открытая во дворе',
+                'За шлагбаумом во дворе', 'Гостевая', 'Нет парковки'],
 
   garageType:  ['Машиноместо', 'Гараж', 'Бокс'],
   garageStatus:['Кооператив', 'Собственность', 'По доверенности'],
@@ -153,7 +164,8 @@ const S = {
     { k: 'flatNo', l: 'Номер квартиры', hint: 'Не покажем номер квартиры в объявлении' },
     { k: 'year', l: 'Год постройки', group: 'О здании' },
     { k: 'ceiling', l: 'Высота потолков', u: 'м', group: 'О здании' },
-    { k: 'houseType', l: 'Тип дома', type: 'chips', o: V.houseType, group: 'О здании' }
+    { k: 'houseType', l: 'Тип дома', type: 'chips', o: V.houseType, group: 'О здании' },
+    { k: 'renovation', l: 'Реновация', type: 'chips', o: ['Нет', 'Запланирован снос'], group: 'О здании' }
   ]},
   locPlain: (label, extra) => ({ t: 'Расположение', f: [
     { k: 'address', l: 'Адрес', ph: label || 'Укажите улицу и номер дома',
@@ -195,11 +207,14 @@ const BRANCHES = {
       { k: 'wcComb', l: 'Санузел совмещённый', type: 'counter' },
       { k: 'repair', l: 'Ремонт', type: 'chips', o: V.repairFull },
       { k: 'redev', l: 'Перепланировка', type: 'chips', o: ['Нет', 'Есть'] },
-      { k: 'furniture', l: 'Мебель', type: 'chips', o: ['С мебелью', 'Без мебели'] },
+      { k: 'furniture', l: 'Мебель', type: 'chips', o: V.furniture, multi: true },
+      { k: 'appliances', l: 'Техника', type: 'chips', o: V.appliances, multi: true },
+      { k: 'comfort', l: 'Дополнительно', type: 'chips', o: V.comfort, multi: true },
       { k: 'lift', l: 'Лифты', type: 'counter' },
+      { k: 'liftCargo', l: 'Грузовой лифт', type: 'counter' },
       { k: 'porch', l: 'Подъезд', type: 'chips', o: ['Обычный', 'С консьержем'] },
-      { k: 'yard', l: 'Придомовая территория', type: 'chips', o: ['Закрытая', 'Открытая'] },
-      { k: 'parking', l: 'Парковка', type: 'chips', o: V.parking },
+      { k: 'yard', l: 'Придомовая территория', type: 'chips', o: V.yardLive, multi: true },
+      { k: 'parking', l: 'Парковка', type: 'chips', o: V.parkingLive },
       { k: 'minors', l: 'Несовершеннолетние собственники', type: 'chips', o: ['Нет', 'Есть'], group: 'Юридические особенности' },
       { k: 'matcap', l: 'Материнский капитал при покупке', type: 'chips', o: ['Нет', 'Да'], group: 'Юридические особенности' }
     ]},
@@ -241,8 +256,8 @@ const BRANCHES = {
       { k: 'wcSep', l: 'Санузел раздельный', type: 'counter' },
       { k: 'wcComb', l: 'Санузел совмещённый', type: 'counter' },
       { k: 'repair', l: 'Ремонт', type: 'chips', o: V.repairFull, req: true, err: 'Укажите состояние квартиры' },
-      { k: 'furniture', l: 'Мебель', type: 'chips', o: ['С мебелью', 'Без мебели'] },
-      { k: 'parking', l: 'Парковка', type: 'chips', o: V.parking }
+      { k: 'furniture', l: 'Мебель', type: 'chips', o: V.furniture, multi: true },
+      { k: 'parking', l: 'Парковка', type: 'chips', o: V.parkingLive }
     ]},
     S.descr('Описание квартиры и комнаты'),
     { t: 'Цена и условия сделки', f: [
@@ -267,12 +282,16 @@ const BRANCHES = {
     ]},
     { t: 'О доме', f: [
       { k: 'houseKind', l: 'Тип дома', type: 'chips', o: V.houseKind, req: true, err: 'Укажите тип дома' },
+      { k: 'readiness', l: 'Готовность', type: 'chips', o: V.readiness },
       { k: 'area', l: 'Площадь дома', u: 'м²' },
       { k: 'bedrooms', l: 'Количество спален' },
       { k: 'floors', l: 'Количество этажей' },
       { k: 'year', l: 'Год постройки' },
       { k: 'material', l: 'Материал', type: 'chips', o: V.houseMat },
-      { k: 'state', l: 'Состояние', type: 'chips', o: V.houseState }
+      { k: 'state', l: 'Состояние', type: 'chips', o: V.houseState },
+      { k: 'transport', l: 'Транспортная доступность', type: 'chips', o: V.transport,
+        multi: true, group: 'Вокруг дома' },
+      { k: 'nearby', l: 'Что рядом', type: 'chips', o: V.nearby, multi: true, group: 'Вокруг дома' }
     ]},
     { t: 'Коммуникации и удобства', f: [
       { k: 'wc', l: 'Санузел', type: 'chips', o: V.wc, req: true },
