@@ -161,12 +161,12 @@ function snackbar(msg, variant='') {
 }
 
 const OBJECTS = [
-  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
-  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
-  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
-  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'unpublished' },
-  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'archive' },
-  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'parser' }
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', kind:'Офис', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', kind:'Офис', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', kind:'Офис', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'active' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', kind:'Офис', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'unpublished' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', kind:'Офис', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'archive' },
+  { lot:'123456', cian:true, agent:'Уклонский Михаил', agency:'Агент «Делись»', type:'Коммерция', kind:'Офис', addr:'Санкт-Петербург, наб. реки Каменки, 3к3', area:'39.4 м²', floor:'10/12', year:'1972', price:'20 000 000 ₽', pricePerM:'120 000 ₽/м²', bonus:'200 000 ₽', bonusPct:'20 %', published:true, closed:false, buyers:1, status:'parser' }
 ];
 OBJECTS.forEach((o, i) => o._id = i);
 let curTab = 'active';
@@ -298,6 +298,34 @@ function openObjMenu(btn) {
 }
 function closeObjMenu() { objMenu.style.display = 'none'; menuOid = null; }
 
+/* Переносим объект в мастер: он читает черновик из localStorage
+   и открывается сразу на первом шаге нужной ветки. */
+function openEdit(o) {
+  const num = v => String(v || '').replace(/[^0-9.,]/g, '').replace(',', '.');
+  const floors = String(o.floor || '').split('/');
+  localStorage.setItem('delis_edit_object', JSON.stringify({
+    kind:   o.kind || 'Офис',
+    lot:    o.lot,
+    address: o.addr,
+    area:   num(o.area),
+    floor:  floors[0] || '',
+    floors: floors[1] || '',
+    year:   o.year,
+    price:  num(o.price),
+    bonus:  num(o.bonus)
+  }));
+  location.href = 'add-object.html#edit=' + o._id;
+}
+
+/* Вернулись из мастера после сохранения правок */
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('delis_edit_saved');
+  if (saved !== null) {
+    localStorage.removeItem('delis_edit_saved');
+    snackbar(`Изменения по лоту ${saved} сохранены`, 'success');
+  }
+});
+
 document.addEventListener('click', (e) => {
   const dots = e.target.closest('.obj-dots');
   if (dots) {
@@ -310,7 +338,7 @@ document.addEventListener('click', (e) => {
     const o = OBJECTS.find(x => x._id === menuOid);
     const act = item.dataset.act;
     if (o) {
-      if (act === 'edit') snackbar('Открыть редактирование объекта');
+      if (act === 'edit') { openEdit(o); return; }
       else if (act === 'sold') { o.status = 'archive'; render(); snackbar('Объект отмечен как проданный', 'success'); }
       else if (act === 'unpub') { o.status = 'unpublished'; render(); snackbar('Объект снят с публикации'); }
     }

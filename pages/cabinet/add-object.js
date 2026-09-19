@@ -1,7 +1,14 @@
 /* ===== Мастер добавления объекта =====
    Набор шагов и полей берётся из add-object-data.js по выбранному типу. */
 
-const AO_KEY = 'delis_draft_object';
+const AO_KEY = 'delis_draft_object';   // черновик нового объекта
+const AO_EDIT_KEY = 'delis_edit_object';   // объект, открытый на редактирование
+
+/* Режим редактирования включается ссылкой add-object.html#edit=<id объекта>.
+   Черновик нового объявления при этом не трогаем — у него свой ключ. */
+const aoEditId = (location.hash.match(/edit=(\d+)/) || [])[1] || null;
+const aoIsEdit = aoEditId !== null;
+const aoKey = () => (aoIsEdit ? AO_EDIT_KEY : AO_KEY);
 
 const KINDS = {
   live: ['Квартира', 'Квартира в новостройке', 'Комната или доля', 'Дом/Дача',
@@ -13,8 +20,15 @@ const KINDS = {
 let aoStep = 0;
 let aoData = aoLoad();
 
-function aoLoad() { try { return JSON.parse(localStorage.getItem(AO_KEY) || '{}'); } catch { return {}; } }
-function aoSave() { localStorage.setItem(AO_KEY, JSON.stringify(aoData)); }
+function aoLoad() { try { return JSON.parse(localStorage.getItem(aoKey()) || '{}'); } catch { return {}; } }
+function aoSave() {
+  try {
+    localStorage.setItem(aoKey(), JSON.stringify(aoData));
+  } catch (e) {
+    /* превью фотографий переполнили хранилище — держим их только в этой вкладке */
+    aoWarn('Фотографий слишком много, чтобы сохранить черновик — не закрывайте страницу');
+  }
+}
 function aoSet(k, v) { aoData[k] = v; aoSave(); }
 function aoGet(k, d) { return aoData[k] !== undefined ? aoData[k] : d; }
 
@@ -76,7 +90,15 @@ function fPhotos(f) {
         <input type="file" multiple hidden onchange="aoFiles('${f.k}', this)"></label>
       <span>или перетащите их сюда JPG, PNG или GIF до 10 Мб каждый</span>
     </div>
-    <div class="ao-thumbs">${list.map(n => `<div class="ao-thumb">${n}</div>`).join('')}</div>`;
+    <div class="ao-thumbs">${list.map((ph, i) => {
+      const name = typeof ph === 'string' ? ph : ph.n;
+      const src = typeof ph === 'string' ? '' : ph.src;
+      return `<div class="ao-thumb">
+        ${src ? `<img src="${src}" alt="${esc(name)}">` : esc(name)}
+        <button type="button" class="ao-thumb__del" title="Удалить"
+          onclick="aoDropPhoto('${f.k}', ${i})">×</button>
+      </div>`;
+    }).join('')}</div>`;
 }
 function fMetro(f) {
   const cur = aoGet(f.k, '');
@@ -171,8 +193,9 @@ function aoRender() {
   const isStart = aoStep === 0;
   const st = isStart ? null : aoSteps()[aoStep - 1];
 
-  document.getElementById('ao-kicker').textContent =
-    isStart ? 'Новый объект' : `Продажа · ${aoGet('kind')}`;
+  document.getElementById('ao-kicker').textContent = aoIsEdit
+    ? `Лот ${aoGet('lot', '')} · ${aoGet('kind')}`
+    : (isStart ? 'Новый объект' : `Продажа · ${aoGet('kind')}`);
   document.getElementById('ao-side-step').textContent = isStart ? 'Новое объявление' : st.t;
   document.getElementById('ao-bar').style.width =
     Math.round((aoStep / Math.max(1, aoTotal() - 1)) * 100) + '%';
@@ -185,14 +208,18 @@ function aoRender() {
   } else {
     const done = aoStep, total = aoTotal() - 1;
     hint.innerHTML = `<div class="ao-hint__title">Шаг ${done} из ${total}</div>
-      <div class="ao-hint__text">Заполненные поля сохраняются автоматически — можно закрыть
-      страницу и вернуться позже.</div>`;
+      <div class="ao-hint__text">${aoIsEdit
+        ? 'Правки сохраняются сразу. Объект остаётся опубликованным — менять можно любой шаг.'
+        : 'Заполненные поля сохраняются автоматически — можно закрыть страницу и вернуться позже.'}</div>`;
   }
 
   document.getElementById('ao-body').innerHTML = isStart ? startHTML() : stepBodyHTML(st);
-  document.getElementById('ao-back').style.visibility = isStart ? 'hidden' : 'visible';
-  document.getElementById('ao-next').textContent =
-    isStart ? 'Создать' : (aoStep === aoTotal() - 1 ? 'Разместить объект' : 'Дальше');
+  const back = document.getElementById('ao-back');
+  back.style.visibility = isStart ? 'hidden' : 'visible';
+  back.textContent = (aoIsEdit && aoStep === 1) ? 'Отмена' : 'Назад';
+  document.getElementById('ao-next').textContent = aoIsEdit
+    ? (aoStep === aoTotal() - 1 ? 'Сохранить изменения' : 'Дальше')
+    : (isStart ? 'Создать' : (aoStep === aoTotal() - 1 ? 'Разместить объект' : 'Дальше'));
 
   if (st && st.f.some(f => f.type === 'map')) setTimeout(aoMap, 60);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -215,8 +242,43 @@ function aoCnt(el, max) {
   const c = el.closest('.ao-group')?.querySelector('.ao-counter');
   if (c) c.textContent = `${el.value.length}/${max}`;
 }
+/* Фото храним миниатюрами: полные снимки в localStorage не поместятся,
+   а превью в 320 px хватает, чтобы видеть, что именно загружено. */
 function aoFiles(k, inp) {
-  aoSet(k, [...(aoGet(k, []) || []), ...Array.from(inp.files).map(f => f.name)]);
+  const files = Array.from(inp.files);
+  Promise.all(files.map(aoThumb)).then(shots => {
+    aoSet(k, [...(aoGet(k, []) || []), ...shots]);
+    aoRender();
+  });
+}
+
+function aoThumb(file) {
+  return new Promise(resolve => {
+    if (!/^image\//.test(file.type)) { resolve({ n: file.name, src: '' }); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const max = 320;
+        const scale = Math.min(1, max / Math.max(img.width, img.height));
+        const cv = document.createElement('canvas');
+        cv.width = Math.round(img.width * scale);
+        cv.height = Math.round(img.height * scale);
+        cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+        resolve({ n: file.name, src: cv.toDataURL('image/jpeg', 0.72) });
+      };
+      img.onerror = () => resolve({ n: file.name, src: '' });
+      img.src = reader.result;
+    };
+    reader.onerror = () => resolve({ n: file.name, src: '' });
+    reader.readAsDataURL(file);
+  });
+}
+
+function aoDropPhoto(k, i) {
+  const list = (aoGet(k, []) || []).slice();
+  list.splice(i, 1);
+  aoSet(k, list);
   aoRender();
 }
 
@@ -231,13 +293,21 @@ function aoNext() {
   if (miss) { aoWarn(miss.err || `Заполните поле «${miss.l}»`); return; }
 
   if (aoStep === aoTotal() - 1) {
-    localStorage.removeItem(AO_KEY);
+    if (aoIsEdit) {
+      localStorage.setItem('delis_edit_saved', aoGet('lot', ''));
+      localStorage.removeItem(AO_EDIT_KEY);
+    } else {
+      localStorage.removeItem(AO_KEY);
+    }
     location.href = 'objects.html';
     return;
   }
   aoStep++; aoRender();
 }
-function aoBack() { if (aoStep > 0) { aoStep--; aoRender(); } }
+function aoBack() {
+  if (aoIsEdit && aoStep <= 1) { location.href = 'objects.html'; return; }
+  if (aoStep > 0) { aoStep--; aoRender(); }
+}
 function aoWarn(msg) {
   const el = document.getElementById('ao-warn');
   el.textContent = msg; el.style.display = 'block';
@@ -279,6 +349,8 @@ function aoFromHash() {
   if (k) aoSet('kind', decodeURIComponent(k[1]));
   const m = location.hash.match(/step=(\d+)/);
   if (m) aoStep = Math.min(aoTotal() - 1, Math.max(0, Number(m[1])));
+  /* при правке категория уже выбрана — стартовый экран пропускаем */
+  if (aoIsEdit && aoStep === 0) aoStep = 1;
 }
 window.addEventListener('hashchange', () => { aoFromHash(); aoRender(); });
 document.addEventListener('DOMContentLoaded', () => { aoFromHash(); aoRender(); });
