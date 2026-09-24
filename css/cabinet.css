@@ -1857,3 +1857,121 @@
 }
 .pf-field textarea:focus { outline: none; border-color: var(--color-brand); }
 .pf-modal__panel { max-height: 86vh; overflow-y: auto; }
+
+/* ===================================================================
+   МОБИЛЬНАЯ ВЕРСИЯ КАБИНЕТА (до 600 px)
+   Таблицы объектов и клиентов не влезают в телефон по определению:
+   на узком экране они превращаются в карточки, где каждое значение
+   подписано, а шапка с названиями колонок убирается.
+   =================================================================== */
+@media (max-width: 600px) {
+
+  /* --- Объекты: карточка вместо строки таблицы --- */
+  .obj-list__head { display: none; }
+
+  .obj-card {
+    padding: 0;
+    border-radius: 16px;
+  }
+  .obj-card__photo {
+    position: static;
+    width: 100%;
+    height: 190px;
+    border-radius: 16px 16px 0 0;
+  }
+  .obj-card__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 12px;
+    padding: 16px;
+  }
+  /* адрес и детали занимают всю ширину — они длиннее остальных */
+  .obj-c-addr, .obj-c-details { grid-column: 1 / -1; }
+  .obj-card__top > div { font-size: 13px; }
+
+  /* каждому полю — подпись, иначе непонятно, что за число */
+  .obj-card__top > div::before {
+    display: block;
+    font-size: 11px;
+    line-height: 1.2;
+    color: rgba(5, 6, 11, 0.4);
+    margin-bottom: 3px;
+  }
+  .obj-c-lot::before     { content: 'Лот'; }
+  .obj-c-resp::before    { content: 'Ответственный'; }
+  .obj-c-type::before    { content: 'Тип'; }
+  .obj-c-addr::before    { content: 'Адрес'; }
+  .obj-c-details::before { content: 'Детали'; }
+  .obj-c-price::before   { content: 'Цена'; }
+  .obj-c-bonus::before   { content: 'Бонус'; }
+
+  .obj-card__bottom {
+    padding: 0 16px 16px;
+    margin-top: 0;
+    gap: 12px;
+  }
+  .obj-card__bottom-right {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .obj-card__bottom-right .obj-days { order: -1; }
+
+  /* --- Клиенты: строка раскладывается в две колонки --- */
+  .cl-list__head { display: none; }
+  .cl-cell { white-space: normal; overflow: visible; text-overflow: clip; }
+  .cl-row {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 10px 14px;
+    padding: 16px;
+  }
+  .cl-row > *:nth-child(1) { font-weight: 500; font-size: 15px; }
+  .cl-row > *:nth-child(2),
+  .cl-row > *:nth-child(3) { grid-column: 1 / -1; font-size: 13px; }
+  .cl-row > *:nth-child(4) { grid-column: 1 / -1; }
+  .cl-row > *:nth-child(5),
+  .cl-edit-btn { grid-row: 1; grid-column: 2; justify-self: end; }
+  .cl-match-tag { max-width: 100%; white-space: normal; display: inline-block; }
+
+  /* --- Вкладки разделов: горизонтальная прокрутка вместо наезда --- */
+  .cab-text-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 18px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cab-text-tabs::-webkit-scrollbar { display: none; }
+  .cab-text-tab { white-space: nowrap; flex: none; }
+
+  /* --- Профиль агента: в одну колонку ---
+     На 900 px боковая колонка встаёт в ряд с аватаром, и её минимальная
+     ширина (аватар + статусы) распирает страницу. На телефоне возвращаем
+     вертикальную укладку и уменьшаем поля карточки. */
+  .agent-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 22px;
+  }
+  .agent-card__aside {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .agent-card__aside, .agent-card__body { width: auto; max-width: 100%; min-width: 0; }
+  .agent-card__top { flex-direction: column; gap: 14px; }
+  .agent-stats { width: 100%; }
+  .status-cell { flex-wrap: wrap; gap: 8px 12px; }
+  .agent-gallery { grid-template-columns: repeat(2, 1fr); }
+  .profile-card__socials { flex-wrap: wrap; }
+
+  /* --- Шапка раздела: поиск и кнопка друг под другом --- */
+  .cab-toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .cab-toolbar-row .btn { width: 100%; justify-content: center; }
+}
