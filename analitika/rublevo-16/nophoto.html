@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Рублёво: дома без фото — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="delis.css">
+<style>
+.hero{display:grid;gap:10px;padding-block:8px 20px}
+.hero h1{font:700 clamp(22px,3vw,32px)/1.15 var(--f-logo)}
+.hero p{font:15px/1.55 var(--f-text);color:var(--ink-2);max-width:85ch}
+.tbl-wrap{overflow-x:auto;background:#fff;border-radius:20px;margin-bottom:48px}
+table{border-collapse:collapse;width:100%;min-width:980px;font-size:13.5px}
+th{text-align:left;font:600 12px var(--f-ui);color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em;padding:14px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px;border-bottom:1px dashed rgba(40,40,40,.12);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr{scroll-margin-top:90px}
+tbody tr:hover{background:#FAF9FD}
+tr.flash{background:var(--brand-soft)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+td b{font-weight:700}
+.tel{display:block;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tel:hover{color:var(--brand)}
+.who{font-size:12px;color:var(--ink-3)}
+.links a{display:inline-block;margin:0 6px 4px 0;color:var(--brand);font-weight:500;white-space:nowrap}
+.links a:hover{text-decoration:underline}
+.go{color:var(--brand-deep);font-weight:600;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><nav><a href="index.html">Конкуренты дома 16</a><span>·</span><b>Без фото</b></nav><a class="pill-btn" href="index.html">← Дома с фото</a></div>
+  <section class="hero">
+    <h1>Дома без фото</h1>
+    <p id="lead"></p>
+  </section>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>№</th><th>Объект</th><th>Цена</th><th>На рынке</th><th>Кто размещал</th><th>Объявления</th><th>Прозвон</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</main>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+function init(D) {
+  document.getElementById('hdr').innerHTML = headerHtml('Конкурентный анализ · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
+  var eb = document.getElementById('exportBtn'); if (eb) eb.onclick = function () { exportCalls(D.houses) };
+  if (PUBLIC) document.querySelectorAll('th')[6].hidden = true;
+  var list = D.houses.filter(function (h) { return !h.photos.length });
+  document.getElementById('lead').textContent = list.length + ' ' + plural(list.length, 'дом', 'дома', 'домов') + ' из старых объявлений ЦИАН: фото удалены вместе с ними, а сами объявления сняты. ' + (PUBLIC ? 'Цены, сроки экспозиции, продавцы и ссылки сохранились.' : 'Цена, телефоны и ссылки сохранились, по ним можно звонить и узнавать, чем закончилась продажа.');
+  document.getElementById('rows').innerHTML = list.map(function (h) {
+    var c = call(h), fp = factPrice(h), url = 'object.html?id=' + h.id;
+    var drop = h.price_max !== h.price_last ? '<div class="who">было ' + mln(h.price_max) + '</div>' : '';
+    return '<tr id="' + h.id + '"><td class="n"><b>№ ' + h.num + '</b></td>' +
+      '<td><a href="' + url + '"><b>' + esc(kindLabel(h)) + '</b></a><div class="who n">' + h.area + ' м² · ' + plotTxt(h.plot) + '</div></td>' +
+      '<td class="n"><b>' + mln(h.price_last) + '</b>' + drop + (fp ? '<div style="color:var(--ok);font-weight:600">продан за ' + mln(fp) + '</div>' : '') + '</td>' +
+      '<td class="n">' + dmy(h.first_seen) + ' — ' + dmy(h.last_seen) + '<div class="who">' + exposure(h.days_on) + '</div></td>' +
+      '<td>' + (PUBLIC ? sellerGroups(h).map(function (s) { return '<div><b>' + esc(s.name) + '</b> ' + authorTag(s.type, true) + '</div>' }).join('') : '') + h.contacts.map(function (p) { return '<a class="tel" href="' + telHref(p.phone) + '">' + esc(phoneFmt(p.phone)) + '</a><div class="who">' + esc(p.name || 'имя скрыто') + ' ' + authorTag(p.type, true) + '</div>' }).join('') + '</td>' +
+      '<td class="links">' + h.links.map(function (l) { return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.site) + ' ' + dmy(l.date) + ' ↗</a>' }).join('') + '</td>' +
+      (PUBLIC ? '' : '<td>') + (PUBLIC ? '' : c.status !== 'todo' ? '<span class="tag tag--' + c.status + '">' + STATUS[c.status] + '</span>' : '<span class="who">не звонили</span>') + (PUBLIC ? '' : '</td>') +
+      '<td><a class="go" href="' + url + '">Подробнее →</a></td></tr>';
+  }).join('');
+  if (location.hash) { var r = document.getElementById(location.hash.slice(1)); if (r) { r.scrollIntoView({ block: 'center' }); r.classList.add('flash') } }
+}
+init(window.DATA);
+</script>
+</body>
+</html>

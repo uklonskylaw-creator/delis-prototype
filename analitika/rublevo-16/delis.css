@@ -1,0 +1,152 @@
+/* Конкурентный анализ в оформлении сайта «Делись» (токены и приёмы из delis-prototype: tokens.css, object.css) */
+:root{
+  --brand:#764FE9; --brand-hover:#5632BF; --brand-deep:#7911B8; --brand-soft:#F0F1FF; --tag:rgba(162,137,191,.12);
+  --ink:#282828; --ink-2:rgba(40,40,40,.65); --ink-3:rgba(40,40,40,.5); --line:#EAEAEE; --dash:#C8C8C8;
+  --page:#F7F7F8; --card:#fff;
+  --ok:#2A7E51; --ok-bg:rgba(55,164,106,.14); --warn:#B77600; --warn-bg:rgba(255,179,25,.14);
+  --bad:#CF0105; --bad-bg:rgba(227,82,85,.14); --ours:#B77600; --ours-bg:rgba(255,179,25,.18);
+  --f-ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  --f-text:'Manrope','Inter',-apple-system,sans-serif;
+  --f-logo:'Unbounded','Inter',sans-serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font:14px/1.45 var(--f-ui);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+img{max-width:100%;display:block}
+h1,h2,h3,p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* Шапка как на сайте */
+.header{background:#fff;border-radius:0 0 40px 40px;box-shadow:0 -1px 24px rgba(139,112,172,.25);position:sticky;top:0;z-index:50}
+.header__inner{max-width:1600px;margin:0 auto;padding:14px 60px;display:flex;align-items:center;gap:24px}
+.header__logo{display:inline-flex;align-items:center;gap:8px}
+.header__logo img{width:44px;height:44px}
+.header__logo span{font:700 20px var(--f-logo);letter-spacing:.02em;background:linear-gradient(90deg,#46265D 0%,#9E67D8 78%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.header__title{flex:1;font-weight:500;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill-btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:100px;background:#fff;border:1.5px solid var(--line);font-size:13px;font-weight:500;white-space:nowrap}
+.pill-btn:hover{border-color:var(--ink)}
+.pill-btn--dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill-btn--dark:hover{background:#000}
+
+.wrap{max-width:1600px;margin:0 auto;padding-inline:60px}
+.crumbs{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px 14px}
+.crumbs nav{display:flex;flex-wrap:wrap;gap:10px;font-size:14px;color:var(--ink-3)}
+.crumbs nav a:hover{color:var(--ink)}
+.crumbs nav b{color:var(--ink);font-weight:500}
+
+.card{background:var(--card);border-radius:20px;padding:24px;min-width:0}
+.section-title{font:600 22px/1.2 var(--f-text);margin-bottom:18px}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 12px;background:var(--tag);color:#28103C;font:500 13px var(--f-text);border-radius:100px;white-space:nowrap}
+.tag--ours{background:#FFAC05;color:var(--ink)}
+.tag--active{background:var(--brand);color:#fff}
+.tag--gone{background:#fff;color:var(--ink-2);border:1px solid var(--line)}
+.tag--sold{background:var(--ok-bg);color:var(--ok)}
+.tag--selling{background:var(--warn-bg);color:var(--warn)}
+.tag--withdrawn,.tag--noanswer{background:var(--bad-bg);color:var(--bad)}
+
+/* Строка «подпись …… значение» с пунктиром, как в параметрах объекта */
+.row{display:flex;align-items:baseline;gap:6px;font:14px var(--f-text);color:var(--ink-2);padding:4px 0}
+.row__l{white-space:nowrap}
+.row__dots{flex:1;border-bottom:1px dashed var(--dash);transform:translateY(-4px);min-width:12px}
+.row__v{color:var(--ink);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.row--big .row__v{font-size:20px;font-weight:700}
+.row--fact .row__v{color:var(--ok);font-size:20px;font-weight:700}
+.row--accent .row__v{color:var(--brand-deep);font-style:italic;font-weight:700}
+
+/* Телефоны продавцов */
+.agent{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(40,40,40,.12)}
+.agent:last-child{border-bottom:0}
+.agent__ava{width:44px;height:44px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font:700 15px var(--f-ui);flex:none}
+.agent__info{min-width:0;flex:1;display:grid;gap:2px}
+.agent__tel{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.agent__tel:hover{color:var(--brand)}
+.agent__name{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.02em;overflow-wrap:anywhere}
+.copy{border:1.5px solid var(--line);background:#fff;border-radius:100px;height:30px;padding:0 12px;font-size:12px;font-weight:500;color:var(--ink-2)}
+.copy:hover{border-color:var(--ink);color:var(--ink)}
+
+/* Форма прозвона */
+.callform{display:grid;gap:10px}
+.callform .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.callform label{display:grid;gap:4px;font-size:12px;color:var(--ink-3)}
+.callform select,.callform input,.callform textarea{font:14px var(--f-text);color:var(--ink);background:var(--page);border:1.5px solid transparent;border-radius:12px;padding:9px 12px;width:100%}
+.callform select:focus,.callform input:focus,.callform textarea:focus{border-color:var(--brand);outline:0;background:#fff}
+.callform textarea{resize:vertical;min-height:44px}
+.callform .saved{font-size:12px;color:var(--ink-3);min-height:1em}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 22px;border-radius:100px;border:0;font:500 13px var(--f-ui);white-space:nowrap}
+.btn--brand{background:var(--brand-deep);color:#fff}
+.btn--brand:hover{background:#6710A0}
+.btn--soft{background:var(--brand-soft);color:var(--ink-2)}
+.btn--soft:hover{background:#E2E5FF;color:var(--ink)}
+.btn--outline{background:transparent;border:2px solid #7622D7;color:var(--brand)}
+.btn--outline:hover{background:#7622D7;color:#fff}
+
+/* Полноэкранный просмотр фото */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(18,12,28,.95);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(10px + env(safe-area-inset-bottom,0px))}
+.lb-top{display:flex;justify-content:space-between;align-items:center;color:#fff;gap:12px;font-size:14px}
+.lb-stage{position:relative;display:grid;place-items:center;min-height:0}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.lb button{border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;border-radius:50%;width:44px;height:44px;font-size:22px;line-height:1}
+.lb .lb-prev{position:absolute;left:4px;top:50%;transform:translateY(-50%)}
+.lb .lb-next{position:absolute;right:4px;top:50%;transform:translateY(-50%)}
+.lb-strip{display:flex;gap:6px;overflow-x:auto;padding-top:10px}
+.lb-strip img{height:56px;width:76px;object-fit:cover;border-radius:8px;opacity:.45;cursor:pointer;flex:none}
+.lb-strip img.on{opacity:1;outline:2px solid #fff}
+
+.toast{position:fixed;right:24px;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:120;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(70,38,93,.22);padding:14px 18px;font-weight:600;font-size:14px}
+
+@media (max-width:1280px){.wrap,.header__inner{padding-inline:32px}}
+@media (max-width:700px){
+  .wrap,.header__inner{padding-inline:16px}
+  .header{border-radius:0 0 24px 24px}
+  .header__title{display:none}
+  .card{padding:16px}
+  .toast{left:16px;right:16px}
+}
+
+/* Кто разместил объявление */
+.tag--owner{background:var(--ok);color:#fff}
+.tag--broker{background:var(--warn-bg);color:var(--warn)}
+.tag--agency{background:var(--tag);color:#28103C}
+.tag--sm{height:22px;padding:0 9px;font-size:12px}
+
+/* Карта (Leaflet + OpenStreetMap) */
+.map{height:460px;border-radius:12px;overflow:hidden;background:#E8EEEB;z-index:0}
+.map--sm{height:260px}
+.map-note{font:13px/1.5 var(--f-text);color:var(--ink-2);margin-top:10px}
+.pin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-ui);border:2px solid #fff;box-shadow:0 4px 12px rgba(40,20,90,.3);color:#fff}
+.pin--ours{background:#FFAC05;color:var(--ink);width:36px;height:36px;font-size:13px}
+.pin--active{background:var(--brand)}
+.pin--gone{background:#fff;color:var(--ink);border-color:#999}
+.pin--sold{background:var(--ok)}
+.pop{display:grid;gap:6px;width:220px;font-family:var(--f-ui)}
+.pop img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+.pop b{font-size:14px}
+.pop a{color:var(--brand-deep);font-weight:600}
+.geo-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.map{position:relative}
+.map-fail{position:absolute;left:12px;right:12px;top:12px;z-index:500;background:#fff;border-radius:12px;padding:10px 14px;font-size:13px;box-shadow:var(--shadow-md,0 8px 24px rgba(40,40,40,.08))}
+.nogeo{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:13px var(--f-text);color:var(--ink-2)}
+.nogeo b{color:var(--ink);margin-right:4px}
+.nogeo a{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:100px;background:var(--page);border:1px solid var(--line);font-weight:500;color:var(--ink)}
+.nogeo a:hover{border-color:var(--brand);color:var(--brand)}
+.seller{padding:12px 0;border-bottom:1px dashed rgba(40,40,40,.12);display:grid;gap:4px}
+.seller:last-child{border-bottom:0}
+.seller__head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:15px}
+.seller__meta{font:13px/1.45 var(--f-text);color:var(--ink-2)}
+.seller__tels{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:2px}
+.seller__tel{display:inline-flex;align-items:center;gap:6px}
+.seller__tel a{font-weight:600;font-variant-numeric:tabular-nums}
+.seller__tel a:hover{color:var(--brand)}
+.merge-note{background:var(--warn-bg);border-radius:12px;padding:10px 14px;font:13px/1.5 var(--f-text);color:#6B4500}
+.author{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:#fff;border-radius:20px;padding:16px 20px;max-width:900px}
+.author__ava{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#46265D,#9E67D8);color:#fff;display:grid;place-items:center;font:700 17px var(--f-logo);flex:none}
+.author__body{display:grid;gap:2px;flex:1;min-width:200px}
+.author__label{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
+.author__body b{font:700 18px var(--f-ui)}
+.author__role{font:13px var(--f-text);color:var(--ink-2)}
+.author__contact{display:grid;gap:4px;justify-items:center;font-size:12px;color:var(--ink-3)}

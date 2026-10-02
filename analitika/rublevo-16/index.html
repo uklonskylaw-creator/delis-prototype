@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Рублёво: конкуренты дома 16 — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="vendor/maplibre/maplibre-gl.js"></script>
+<script src="vendor/maplibre/leaflet-maplibre-gl.js"></script>
+<link rel="stylesheet" href="delis.css">
+<style>
+.hero{display:grid;gap:10px;padding-block:8px 20px}
+.hero h1{font:700 clamp(24px,3.2vw,36px)/1.15 var(--f-logo);letter-spacing:-.01em;text-wrap:balance;max-width:28ch}
+.hero p{font:15px/1.55 var(--f-text);color:var(--ink-2);max-width:80ch}
+.summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;margin-bottom:16px}
+@media (max-width:1000px){.summary{grid-template-columns:minmax(0,1fr)}}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}
+.fact{background:#fff;border-radius:20px;padding:18px 20px;display:grid;gap:4px}
+.fact b{font:700 26px var(--f-ui);font-variant-numeric:tabular-nums}
+.fact span{font:13px/1.4 var(--f-text);color:var(--ink-2)}
+.fact--wide{grid-column:1/-1}
+.fact--ours{background:linear-gradient(180deg,#F4F1F7 0%,#EAE7FF 100%)}
+.fact--ours b{color:var(--brand-deep)}
+.chart-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;align-items:baseline;margin-bottom:8px}
+.chart-head h2{font:600 18px var(--f-text)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#chart{width:100%;height:auto;display:block}
+#chart text{fill:var(--ink-3);font:11px var(--f-ui)}
+#chart .pt{cursor:pointer}
+#chart .pt:hover circle{stroke-width:3}
+.promo{background:linear-gradient(180deg,#F4F1F7 0%,#EAE7FF 100%);border-radius:20px;padding:22px 28px;margin-bottom:16px;display:grid;gap:6px}
+.promo h2{font:700 18px var(--f-logo)}
+.promo p{font:14px/1.5 var(--f-text);color:var(--ink-2);max-width:95ch}
+.toolbar{position:sticky;top:72px;z-index:20;background:var(--page);padding-block:12px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{height:38px;padding:0 16px;border-radius:100px;background:#fff;border:1.5px solid var(--line);font-size:13px;font-weight:500}
+.seg button:hover{border-color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.seg .c{opacity:.6;margin-left:6px}
+.toolbar .spacer{flex:1}
+.toolbar select{height:38px;border-radius:100px;border:1.5px solid var(--line);background:#fff;padding:0 14px;font:500 13px var(--f-ui)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;padding-bottom:40px}
+@media (max-width:400px){.grid{grid-template-columns:minmax(0,1fr)}}
+.obj{background:#fff;border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:12px;min-width:0;transition:box-shadow .2s;scroll-margin-top:140px}
+.obj:hover{box-shadow:0 16px 48px rgba(86,50,191,.16)}
+.obj.is-ours{box-shadow:0 0 0 2px #FFAC05}
+.obj.flash{box-shadow:0 0 0 3px var(--brand)}
+.obj__photo{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#EFECF4;max-width:100%;display:block}
+.obj__photo img{width:100%;height:100%;object-fit:cover}
+.obj__nophoto{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-3);font-size:13px;text-align:center;padding:16px}
+.obj__tags{position:absolute;top:10px;left:10px;right:10px;display:flex;flex-wrap:wrap;gap:6px}
+.obj__num{background:var(--ink);color:#fff}
+.obj__count{position:absolute;bottom:10px;right:10px;background:rgba(40,40,40,.6);color:#fff;font:600 12px var(--f-ui);padding:4px 10px;border-radius:100px;font-variant-numeric:tabular-nums}
+.obj__arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:2px solid #DBDBDB;background:rgba(247,244,255,.75);display:grid;place-items:center;font-size:18px;color:var(--ink)}
+.obj__arrow--l{left:10px}.obj__arrow--r{right:10px}
+.obj__body{padding:0 8px 6px;display:grid;gap:8px}
+.obj__title{display:flex;justify-content:space-between;gap:4px 10px;flex-wrap:wrap;align-items:baseline}
+.obj__title h3{font:600 17px var(--f-ui)}
+.obj__title h3 a:hover{color:var(--brand)}
+.obj__title span{font-size:13px;color:var(--ink-3);white-space:nowrap}
+.obj__specs{font:13.5px var(--f-text);color:var(--ink-2)}
+.obj__delta{font-size:12.5px;font-weight:600}
+.obj__delta.down{color:var(--ok)}.obj__delta.up{color:var(--bad)}
+.obj__who{font:12.5px/1.45 var(--f-text);color:var(--ink-2)}
+.obj__who b{color:var(--ink);font-weight:600}
+.obj__tel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+.obj__tel a{font-size:15px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.obj__tel a:hover{color:var(--brand)}
+.obj__foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);padding-top:4px}
+.obj .btn{height:38px}
+.empty{padding:40px 0;text-align:center;color:var(--ink-3)}
+footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max-width:100ch}
+@media (max-width:700px){.toolbar{top:64px}}
+</style>
+</head>
+<body>
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><nav><span>Делись</span><span>·</span><span>Объекты на реализации</span><span>·</span><b>Резиденция Рублёво, дом 16</b></nav></div>
+  <section class="hero">
+    <h1>Кто продаёт рядом с домом 16 и за сколько</h1>
+    <p id="lead">Загружаю объявления…</p>
+    <div id="author"></div>
+  </section>
+  <section class="summary">
+    <div class="facts" id="facts"></div>
+    <div class="card">
+      <div class="chart-head">
+        <h2>Цена и площадь</h2>
+        <div class="legend">
+          <span><i style="background:#FFAC05"></i>дом 16</span>
+          <span><i style="background:#764FE9"></i>в продаже</span>
+          <span><i style="background:#fff;border:2px solid #999"></i>ушли с рынка</span>
+          <span><i style="background:#37A46A"></i>продан, факт</span>
+        </div>
+      </div>
+      <svg id="chart" viewBox="0 0 640 330" role="img" aria-label="Цена в объявлении против площади дома"></svg>
+    </div>
+  </section>
+  <section class="card" style="margin-bottom:16px">
+    <div class="chart-head"><h2>Где стоят дома</h2>
+      <div class="legend"><span><i style="background:#FFAC05"></i>дом 16</span><span><i style="background:#764FE9"></i>в продаже</span><span><i style="background:#fff;border:2px solid #999"></i>ушли с рынка</span><span><i style="background:#37A46A"></i>продан</span></div></div>
+    <div class="map" id="map"></div>
+    <p class="map-note" id="mapNote"></p>
+    <div class="nogeo" id="noGeo"></div>
+  </section>
+
+  <section class="promo" id="promoCalls">
+    <h2>Узнаём фактические цены сделок</h2>
+    <p>Дом, который пропал с площадок, либо продан, либо снят. Звоним по номеру из объявления и узнаём, продан ли он, за сколько на самом деле и когда. Итог вносим на странице дома. Номера ЦИАН подменные: у старых объявлений номер мог отвязаться, тогда ищем агентство по названию.</p>
+  </section>
+  <div class="toolbar">
+    <div class="seg" id="filters" role="group" aria-label="Отбор"></div>
+    <div class="spacer"></div>
+    <label for="sort" style="font-size:13px;color:var(--ink-3)">Порядок</label>
+    <select id="sort">
+      <option value="status">по номеру</option>
+      <option value="price_desc">цена ↓</option>
+      <option value="price_asc">цена ↑</option>
+      <option value="ppm_desc">₽ за м² ↓</option>
+      <option value="area_desc">площадь ↓</option>
+      <option value="gone_recent">недавно ушли с рынка</option>
+      <option value="drop">сильнее всего снизили цену</option>
+      <option value="sellers">больше всего агентств</option>
+    </select>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>В этом отборе домов нет.</div>
+  <a class="promo" id="nophotoLink" href="nophoto.html" style="margin-bottom:24px"></a>
+  <footer id="foot"></footer>
+</main>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+var DATA = window.DATA || null, STATE = { filter: 'all', sort: 'status' };
+try { var saved = JSON.parse(sessionStorage.getItem('rublevo_list') || '{}'); if (saved.filter) STATE = saved } catch (e) {}
+function keepState() { try { sessionStorage.setItem('rublevo_list', JSON.stringify(STATE)) } catch (e) {} }
+
+function withPhotos() { return DATA.houses.filter(function (h) { return h.photos.length }) }
+function renderFacts() {
+  var H = DATA.houses, ours = H.filter(function (h) { return h.ours })[0];
+  var act = H.filter(function (h) { return !h.ours && h.market === 'active' });
+  var gone = H.filter(function (h) { return h.market === 'gone' });
+  var sold = H.filter(function (h) { return factPrice(h) > 0 });
+  var done = H.filter(function (h) { return !h.ours && call(h).status !== 'todo' }).length;
+  var ppmGone = median(gone.map(function (h) { return h.ppm }).filter(Boolean));
+  var drops = gone.filter(function (h) { return h.price_max > h.price_last });
+  var ppmSold = median(sold.map(function (h) { return factPrice(h) / h.area }));
+  var photos = H.reduce(function (s, h) { return s + h.photos.length }, 0);
+  document.getElementById('lead').textContent = 'Выгрузка от ' + dmy(DATA.built) + ': ' + DATA.listings_total + ' объявлений на ЦИАН, Яндексе, Авито и Юле. Одни и те же дома выставляют разные агентства и переподают каждый месяц. Мы склеили их по параметрам и по совпадающим фото в ' + H.length + ' ' + plural(H.length, 'дом', 'дома', 'домов') + ', у каждого видно всех, кто его размещал. В продаже сейчас ' + (act.length + 1) + ', включая дом 16. Фото: ' + photos + '.';
+  var f = [
+    ['fact--wide fact--ours', mln(ours.price_last), 'Дом 16 в объявлении «Аллеи недвижимости», ' + rub(ours.ppm / 1000) + ' тыс. ₽ за м²'],
+    ['', String(act.length), plural(act.length, 'конкурент', 'конкурента', 'конкурентов') + ' в продаже сейчас'],
+    ['', String(gone.length), PUBLIC ? 'ушли с рынка (вместе с домами без фото): проданы или сняты' : 'ушли с рынка, вместе с домами без фото: продан или снят, нужно звонить'],
+    ['', rub(ppmGone / 1000) + ' тыс. ₽', 'за м², медиана последней цены ушедших'],
+    ['', drops.length + ' из ' + gone.length, 'ушедших перед уходом снизили цену'],
+    ['fact--wide', sold.length ? rub(ppmSold / 1000) + ' тыс. ₽/м²' : 'Пока нет данных', PUBLIC ? 'фактическая цена сделки, медиана · узнали по ' + sold.length + ' ' + plural(sold.length, 'дому', 'домам', 'домам') + ', дополняется' : 'фактическая цена сделки, медиана · прозвонено ' + done + ' из ' + (H.length - 1)]
+  ];
+  document.getElementById('facts').innerHTML = f.map(function (x) { return '<div class="fact ' + x[0] + '"><b>' + esc(x[1]) + '</b><span>' + esc(x[2]) + '</span></div>' }).join('');
+}
+
+function bucket(h) { if (h.ours) return 'ours'; if (call(h).status === 'sold') return 'sold'; return h.market === 'active' ? 'active' : 'gone' }
+function renderChart() {
+  var W = 640, Hh = 330, L = 48, R = 14, T = 14, B = 36, xmax = 1600, ymax = 600;
+  var X = function (v) { return L + (v / xmax) * (W - L - R) }, Y = function (v) { return T + (1 - v / ymax) * (Hh - T - B) };
+  var s = '';
+  [0, 100, 200, 300, 400, 500, 600].forEach(function (v) { s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#EAEAEE"/><text x="' + (L - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + v + '</text>' });
+  [0, 400, 800, 1200, 1600].forEach(function (v) { s += '<text x="' + X(v) + '" y="' + (Hh - B + 16) + '" text-anchor="middle">' + v + '</text>' });
+  s += '<text x="' + (W - R) + '" y="' + (Hh - 4) + '" text-anchor="end">площадь дома, м²</text><text x="' + (L + 6) + '" y="' + (T + 14) + '">млн ₽</text>';
+  var rank = { gone: 0, sold: 1, active: 2, ours: 3 };
+  DATA.houses.filter(function (h) { return h.area && h.price_last }).sort(function (a, b) { return rank[bucket(a)] - rank[bucket(b)] }).forEach(function (h) {
+    var b = bucket(h), x = X(h.area), y = Y(h.price_last / 1e6), fp = factPrice(h);
+    var col = { ours: '#FFAC05', active: '#764FE9', gone: '#999', sold: '#999' }[b];
+    s += '<g class="pt" tabindex="0" data-id="' + h.id + '"><title>' + esc('№ ' + h.num + ' · ' + kindLabel(h) + ', ' + h.area + ' м², ' + mln(h.price_last) + (fp ? ' → продан за ' + mln(fp) : '')) + '</title>';
+    if (fp) { var y2 = Y(fp / 1e6); s += '<line x1="' + x + '" x2="' + x + '" y1="' + y + '" y2="' + y2 + '" stroke="#37A46A" stroke-dasharray="3 3"/><circle cx="' + x + '" cy="' + y2 + '" r="5.5" fill="#37A46A" stroke="#fff" stroke-width="1.5"/>' }
+    var r = b === 'ours' ? 8 : (b === 'active' ? 6.5 : 5);
+    s += '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + (b === 'gone' || b === 'sold' ? '#fff' : col) + '" stroke="' + col + '" stroke-width="2"/></g>';
+  });
+  var svg = document.getElementById('chart'); svg.innerHTML = s;
+  svg.querySelectorAll('.pt').forEach(function (g) {
+    var go = function () { location.href = 'object.html?id=' + g.getAttribute('data-id') };
+    g.addEventListener('click', go); g.addEventListener('keydown', function (e) { if (e.key === 'Enter') go() });
+  });
+}
+
+var FILTERS = [['all', 'Все'], ['active', 'В продаже'], ['gone', 'Ушли с рынка'], ['owner', 'От собственника'], ['todo', 'Не звонили'], ['sold', 'Проданы']].filter(function (f) { return !(PUBLIC && f[0] === 'todo') });
+function match(h, f) {
+  if (f === 'all') return true;
+  if (f === 'active') return h.market === 'active';
+  if (f === 'gone') return h.market === 'gone';
+  if (f === 'todo') return !h.ours && call(h).status === 'todo';
+  if (f === 'sold') return call(h).status === 'sold';
+  if (f === 'owner') return h.owner_listed;
+}
+function renderMap() {
+  var withGeo = DATA.houses.filter(function (h) { return h.geo });
+  var noGeo = DATA.houses.filter(function (h) { return !h.geo });
+  var noGeoListings = noGeo.reduce(function (s, h) { return s + h.listings }, 0);
+  document.getElementById('mapNote').textContent = 'На карте ' + withGeo.length + ' из ' + DATA.houses.length + ' домов: только те, где площадка передала точку самого дома (обычно указан номер дома). Номер на метке = номер в реестре, клик открывает карточку.';
+  document.getElementById('noGeo').innerHTML = '<b>Без точки дома: ' + noGeo.length + ' ' + plural(noGeo.length, 'дом', 'дома', 'домов') + ', ' + noGeoListings + ' ' + plural(noGeoListings, 'объявление', 'объявления', 'объявлений') + '.</b> Площадки ставят им центр посёлка, поэтому на карте их нет:' +
+    noGeo.map(function (h) { return '<a href="object.html?id=' + h.id + '" title="' + esc(kindLabel(h) + ', ' + h.area + ' м², ' + mln(h.price_last)) + '">№ ' + h.num + '</a>' }).join('');
+  var m = makeMap(document.getElementById('map'), VILLAGE, 17); if (!m) return;
+  var b = [];
+  withGeo.sort(function (a, c) { return (a.ours ? 1 : 0) - (c.ours ? 1 : 0) }).forEach(function (h) {
+    b.push(h.geo);
+    L.marker(h.geo, { icon: housePin(h), zIndexOffset: h.ours ? 1000 : 0 }).addTo(m).bindPopup('<div class="pop">' + (h.photos[0] ? '<img src="' + esc(h.photos[0]) + '" alt="">' : '') +
+      '<b>№ ' + h.num + ' · ' + esc(kindLabel(h)) + '</b><span>' + h.area + ' м² · ' + plotTxt(h.plot) + ' · ' + mln(h.price_last) + '</span><a href="object.html?id=' + h.id + '">Подробнее →</a></div>');
+  });
+  if (b.length) m.fitBounds(b, { padding: [30, 30], maxZoom: 18 });
+}
+function renderFilters() {
+  document.getElementById('filters').innerHTML = FILTERS.map(function (f) {
+    var n = withPhotos().filter(function (h) { return match(h, f[0]) }).length;
+    return '<button type="button" data-f="' + f[0] + '" aria-pressed="' + (STATE.filter === f[0]) + '">' + f[1] + '<span class="c num">' + n + '</span></button>';
+  }).join('');
+  document.querySelectorAll('#filters button').forEach(function (b) { b.onclick = function () { STATE.filter = b.dataset.f; keepState(); renderFilters(); renderGrid() } });
+}
+function sellers(h) { var o = {}; h.links.forEach(function (l) { o[orgName(l.agent) || ('продавец ' + phoneFmt(l.phone))] = 1 }); return Object.keys(o) }
+function sorted(list) {
+  var k = STATE.sort, a = list.slice();
+  var by = function (f, dir) { a.sort(function (x, y) { if (x.ours !== y.ours) return x.ours ? -1 : 1; return dir * (f(x) - f(y)) }) };
+  if (k === 'status') by(function (h) { return h.num }, 1);
+  if (k === 'price_desc') by(function (h) { return h.price_last }, -1);
+  if (k === 'price_asc') by(function (h) { return h.price_last }, 1);
+  if (k === 'ppm_desc') by(function (h) { return h.ppm }, -1);
+  if (k === 'area_desc') by(function (h) { return h.area }, -1);
+  if (k === 'gone_recent') by(function (h) { return h.market === 'gone' ? -h.silent : -1e9 }, -1);
+  if (k === 'drop') by(function (h) { return (h.price_max - h.price_last) / h.price_max }, -1);
+  if (k === 'sellers') by(function (h) { return sellers(h).length }, -1);
+  return a;
+}
+
+function card(h) {
+  var c = call(h), fp = factPrice(h), url = 'object.html?id=' + h.id;
+  var tags = '<span class="tag obj__num">№ ' + h.num + '</span>' + (h.ours ? '<span class="tag tag--ours">Наш дом</span>' : '') +
+    (h.market === 'active' ? '<span class="tag tag--active">В продаже</span>' : '<span class="tag tag--gone">Ушёл с рынка ' + dmy(h.last_seen) + '</span>') +
+    (h.owner_listed ? '<span class="tag tag--owner">Есть от собственника</span>' : '') +
+    (!h.ours && c.status !== 'todo' ? '<span class="tag tag--' + c.status + '">' + STATUS[c.status] + '</span>' : '');
+  var photo = h.photos.length
+    ? '<img src="' + esc(h.photos[0]) + '" alt="' + esc(kindLabel(h)) + ', фото 1" loading="lazy">' +
+      (h.photos.length > 1 ? '<button class="obj__arrow obj__arrow--l" type="button" aria-label="Предыдущее фото">‹</button><button class="obj__arrow obj__arrow--r" type="button" aria-label="Следующее фото">›</button>' : '') +
+      '<span class="obj__count">1 / ' + h.photos.length + '</span>'
+    : '<div class="obj__nophoto">Фото удалены вместе с объявлением на ЦИАН</div>';
+  var delta = '';
+  if (h.price_max !== h.price_last) { var p = Math.round((h.price_last - h.price_max) / h.price_max * 100); delta = '<span class="obj__delta ' + (p < 0 ? 'down' : 'up') + '">' + (p > 0 ? '+' : '−') + Math.abs(p) + ' % от ' + mln(h.price_max) + '</span>' }
+  var who = sellers(h);
+  var tel = !PUBLIC && h.contacts[0] ? '<div class="obj__tel"><a href="' + telHref(h.contacts[0].phone) + '">' + esc(phoneFmt(h.contacts[0].phone)) + '</a><button class="copy" type="button" data-copy="' + esc(phoneFmt(h.contacts[0].phone)) + '">Копировать</button>' + (h.contacts.length > 1 ? '<span>ещё ' + (h.contacts.length - 1) + ' ' + plural(h.contacts.length - 1, 'номер', 'номера', 'номеров') + '</span>' : '') + '</div>' : '';
+  return '<article class="obj' + (h.ours ? ' is-ours' : '') + '" id="' + h.id + '" data-i="0">' +
+    '<a class="obj__photo" href="' + url + '">' + photo + '<div class="obj__tags">' + tags + '</div></a>' +
+    '<div class="obj__body">' +
+    '<div class="obj__title"><h3><a href="' + url + '">' + esc(kindLabel(h)) + '</a></h3><span class="num">' + rub(h.ppm / 1000) + ' тыс. ₽/м²</span></div>' +
+    '<div class="obj__specs num">' + h.area + ' м² · участок ' + plotTxt(h.plot) + (h.floors && h.floors !== '0' ? ' · ' + esc(h.floors) + ' эт.' : '') + '</div>' +
+    '<div><div class="row row--big"><span class="row__l">Цена в объявлении</span><span class="row__dots"></span><span class="row__v">' + mln(h.price_last) + '</span></div>' + delta + '</div>' +
+    '<div class="row ' + (fp ? 'row--fact' : '') + '"><span class="row__l">Фактическая продажа</span><span class="row__dots"></span><span class="row__v">' + (fp ? mln(fp) : (h.ours ? 'идёт продажа' : (PUBLIC ? 'уточняется' : 'узнать звонком'))) + '</span></div>' +
+    '<div class="obj__who">Размещали (' + who.length + '): <b>' + esc(who.slice(0, 4).join(', ')) + '</b>' + (who.length > 4 ? ' и ещё ' + (who.length - 4) : '') + '</div>' +
+    tel +
+    '<div class="obj__foot"><span>' + h.listings + ' ' + plural(h.listings, 'объявление', 'объявления', 'объявлений') + ' · ' + exposure(h.days_on) + '</span><a class="btn btn--brand" href="' + url + '">Подробнее</a></div>' +
+    '</div></article>';
+}
+
+function renderGrid() {
+  var list = sorted(withPhotos().filter(function (h) { return match(h, STATE.filter) }));
+  var g = document.getElementById('grid');
+  g.innerHTML = list.map(card).join('');
+  document.getElementById('empty').hidden = list.length > 0;
+  bindCopy(g);
+  g.querySelectorAll('.obj').forEach(function (el) {
+    var h = DATA.houses.filter(function (x) { return x.id === el.id })[0];
+    var img = el.querySelector('.obj__photo img'); if (!img) return;
+    var show = function (i) { var n = h.photos.length; i = (i + n) % n; el.dataset.i = i; img.src = h.photos[i]; img.alt = kindLabel(h) + ', фото ' + (i + 1); el.querySelector('.obj__count').textContent = (i + 1) + ' / ' + n };
+    var l = el.querySelector('.obj__arrow--l'), r = el.querySelector('.obj__arrow--r');
+    if (l) { l.onclick = function (e) { e.preventDefault(); show(+el.dataset.i - 1) }; r.onclick = function (e) { e.preventDefault(); show(+el.dataset.i + 1) } }
+  });
+}
+
+function init(d) {
+  DATA = d;
+  document.getElementById('hdr').innerHTML = headerHtml('Конкурентный анализ · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
+  var eb = document.getElementById('exportBtn'); if (eb) eb.onclick = function () { exportCalls(DATA.houses) };
+  document.getElementById('author').innerHTML = authorHtml();
+  document.getElementById('promoCalls').hidden = PUBLIC;
+  var sel = document.getElementById('sort'); sel.value = STATE.sort;
+  sel.onchange = function (e) { STATE.sort = e.target.value; keepState(); renderGrid() };
+  renderFacts(); renderChart(); renderFilters(); renderGrid(); renderMap();
+  var np = DATA.houses.length - withPhotos().length;
+  document.getElementById('nophotoLink').innerHTML = '<h2>Ещё ' + np + ' ' + plural(np, 'дом', 'дома', 'домов') + ' без фото →</h2><p>Старые объявления ЦИАН, снимки удалены вместе с ними. Цены, сроки и ссылки собраны в таблицу на отдельной странице' + (PUBLIC ? '.' : ', их тоже стоит прозвонить.') + '</p>';
+  if (location.hash) { var c = document.getElementById(location.hash.slice(1)); if (c) { c.scrollIntoView({ block: 'start' }); c.classList.add('flash'); setTimeout(function () { c.classList.remove('flash') }, 1600) } }
+  document.getElementById('foot').textContent = 'Источник: выгрузка ' + d.source + ' от ' + dmy(d.built) + '. «В продаже» значит, что объявление видели за последние 30 дней. Дубли склеены автоматически: по одинаковой площади и участку и по совпадению минимум двух фото. Разные номера домов не склеиваем.' + (PUBLIC ? ' Фактические цены сделок мы узнаём у продавцов и дополняем страницу по мере поступления.' : ' Итоги звонков хранятся в этом браузере, пока вы не пришлёте их в чат.');
+}
+(DATA ? Promise.resolve(DATA) : fetch('data.json').then(function (r) { return r.json() })).then(init).catch(function () { document.getElementById('lead').textContent = 'Не удалось загрузить данные.' });
+</script>
+</body>
+</html>
