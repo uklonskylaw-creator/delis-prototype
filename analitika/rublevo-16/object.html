@@ -162,7 +162,8 @@ function render() {
       '<button class="gal__full" type="button" id="gfull">На весь экран</button><span class="gal__count" id="gcount"></span></div>' +
       '<div class="gal__thumbs" id="gthumbs">' + h.photos.map(function (p, i) { return '<button class="thumb" type="button" data-i="' + i + '" aria-label="Фото ' + (i + 1) + '"><img src="' + esc(p) + '" alt="" loading="lazy"></button>' }).join('') + '</div></div>'
     : '<div class="gal__empty">Фото удалены вместе с объявлениями на ЦИАН. Посмотреть дом можно было только по ссылкам ниже, пока их не сняли.</div>';
-  var latest = h.links[0];
+  var seenLive = {}, liveLinks = h.links.filter(function (l) { if (l.live !== 'on' || seenLive[l.url]) return false; seenLive[l.url] = 1; return true });
+  var latest = liveLinks[0] || h.links[0];
   var idx = DATA.houses.indexOf(h), prev = DATA.houses[idx - 1], next = DATA.houses[idx + 1];
   var navLink = function (x, dir) { return x ? '<a class="pill-btn" href="object.html?id=' + x.id + '">' + (dir < 0 ? '← ' : '') + '№ ' + x.num + ' · ' + esc(kindLabel(x)) + ', ' + mln(x.price_last) + (dir > 0 ? ' →' : '') + '</a>' : '<span></span>' };
 
@@ -174,13 +175,15 @@ function render() {
         '<div class="head__addr"><img src="img/icon-pin-purple.svg" alt="">КП «Резиденция Рублёво»' + (h.no ? ', дом ' + esc(h.no) : '') + ', Красногорск, 1-й км Новорижского шоссе</div>' +
         '<div class="head__tags">' + tags + '</div>' + (h.manual ? '<div class="merge-note">Склеено вручную: это один дом, но агентства указывали ' + (h.no.indexOf(',') > -1 ? 'разные номера (' + esc(h.no) + ')' : 'разные параметры') + ' и площадь от ' + Math.min.apply(null, h.links.map(function (l) { return l.area || 1e9 })) + ' до ' + Math.max.apply(null, h.links.map(function (l) { return l.area })) + ' м².</div>' : '') + '</div>' + gal + '</div>' +
         '<div class="card"><h2 class="section-title">Описание объекта</h2><div class="text-src">Самый подробный текст из ' + h.listings + ' ' + plural(h.listings, 'объявления', 'объявлений', 'объявлений') + '</div><div class="text" id="desc">' + esc(h.desc || 'Описания нет.') + '</div><div class="more"><button type="button" id="moreBtn">Показать полностью</button></div></div>' +
-        '<div class="card"><h2 class="section-title">Все объявления · ' + h.links.length + '</h2>' + h.links.map(listingHtml).join('') + '</div>' +
+        '<div class="card"><h2 class="section-title">Все объявления · ' + h.links.length + '</h2>' + liveLinks.concat(h.links.filter(function (l) { return l.live !== 'on' })).map(listingHtml).join('') + '</div>' +
       '</div>' +
       '<aside class="side">' +
-        '<div class="card"><h2>Цена</h2><div class="prices">' + priceRows(h) + '</div></div>' +
+        '<div class="card"><h2>Цена</h2><div class="prices">' + priceRows(h) + '</div>' +
+          (liveLinks.length ? '<div class="live-links"><span>Действующее объявление' + (liveLinks.length > 1 ? ' (' + liveLinks.length + ')' : '') + ':</span>' + liveLinks.map(function (l) { return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.site) + ', ' + mln(l.live_price || l.price) + ' ↗</a>' }).join('') + '</div>'
+            : '<div class="live-links live-links--off">Действующих объявлений нет: все сняты с продажи' + (h.removed ? ', последнее ' + dmy(h.removed) : '') + '.</div>') + '</div>' +
         (function () { var sg = sellerGroups(h); return '<div class="card"><h2>Кто размещал · ' + sg.length + ' ' + plural(sg.length, 'продавец', 'продавца', 'продавцов') + (PUBLIC ? '' : ', ' + h.contacts.length + ' ' + plural(h.contacts.length, 'номер', 'номера', 'номеров')) + '</h2>' + sg.map(sellerGroupHtml).join('') + '</div>' })() +
         (h.ours || PUBLIC ? '' : '<div class="card"><h2>Итог прозвона</h2>' + callFormHtml(h) + '</div>') +
-        '<div class="actions">' + (latest ? '<a class="btn btn--brand" href="' + esc(latest.url) + '" target="_blank" rel="noopener">Открыть последнее объявление на ' + esc(latest.site) + ' ↗</a>' : '') +
+        '<div class="actions">' + (latest ? '<a class="btn btn--brand" href="' + esc(latest.url) + '" target="_blank" rel="noopener">' + (liveLinks.length ? 'Открыть действующее объявление' : 'Последнее объявление (снято)') + ' на ' + esc(latest.site) + ' ↗</a>' : '') +
         (PUBLIC ? '<a class="btn btn--soft" href="' + AUTHOR_TEL + '">Обсудить с ' + AUTHOR_NAME.split(' ')[0] + 'ом: ' + AUTHOR_PHONE + '</a>' : '<button class="btn btn--soft" type="button" id="exportBtn">Скопировать итоги прозвона</button>') + '</div>' +
         (h.geo ? '' : '<div class="card"><h2>Где находится</h2><p class="map-note" style="margin-top:0">Площадки не передали точку этого дома: во всех ' + h.listings + ' ' + plural(h.listings, 'объявлении', 'объявлениях', 'объявлениях') + ' стоит центр посёлка. Номер дома' + (h.no ? ' ' + esc(h.no) + ' известен из адреса' : ' тоже не указан') + '.</p></div>') +
         '<div class="card"><h2 class="section-title">Параметры</h2>' + paramRows(h) + '</div>' +

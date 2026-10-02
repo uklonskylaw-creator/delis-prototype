@@ -214,3 +214,8 @@ function countUp(el, ms) {
   };
   requestAnimationFrame(step);
 }
+
+/* высота шапки для липких элементов под ней */
+function syncHeaderHeight() { var h = document.querySelector('#hdr .header'); if (h) document.documentElement.style.setProperty('--hdr-h', Math.round(h.getBoundingClientRect().height) + 'px') }
+window.addEventListener('resize', syncHeaderHeight);
+window.addEventListener('load', syncHeaderHeight);

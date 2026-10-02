@@ -38,7 +38,7 @@
 .promo{background:linear-gradient(180deg,#F4F1F7 0%,#EAE7FF 100%);border-radius:20px;padding:22px 28px;margin-bottom:16px;display:grid;gap:6px}
 .promo h2{font:700 18px var(--f-logo)}
 .promo p{font:14px/1.5 var(--f-text);color:var(--ink-2);max-width:95ch}
-.toolbar{position:sticky;top:72px;z-index:20;background:var(--page);padding-block:12px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.toolbar{position:sticky;top:var(--hdr-h,72px);z-index:20;background:var(--page);padding-block:12px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
 .seg{display:flex;flex-wrap:wrap;gap:6px}
 .seg button{height:38px;padding:0 16px;border-radius:100px;background:#fff;border:1.5px solid var(--line);font-size:13px;font-weight:500}
 .seg button:hover{border-color:var(--ink)}
@@ -77,7 +77,7 @@
 .obj .btn{height:38px}
 .empty{padding:40px 0;text-align:center;color:var(--ink-3)}
 footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max-width:100ch}
-@media (max-width:700px){.toolbar{top:64px}}
+
 </style>
 </head>
 <body>
@@ -89,6 +89,13 @@ footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max
       <span class="eyebrow">КП «Резиденция Рублёво», дом 16 · <span id="asOf"></span></span>
       <h1>Рыночная аналитика продажной стоимости</h1>
       <p>Оценка дома 16 на текущий момент: из чего складывается стоимость, с кем дом конкурирует у города и в посёлке, за сколько и как долго продаются соседние дома.</p>
+      <ul class="pros">
+        <li>Локация: 1 км от МКАД, Новорижское шоссе</li>
+        <li>Отличный дизайнерский ремонт и мебель</li>
+        <li>Тихая часть посёлка</li>
+        <li>Хорошее состояние дома, готов к жизни</li>
+        <li>Прозрачные документы</li>
+      </ul>
     </div>
     <a class="hero2__result" href="#verdict"><small>Вывод: реалистичная цена сделки</small><b id="heroFork"></b><span id="heroForkSub"></span><em>Как получилась вилка ↓</em></a>
   </section>
@@ -271,12 +278,12 @@ function bindRivals() {
 
 /* Затратная формула: коробка + участок + ремонт + наружные работы (затратный_расчёт.txt, разбор оценки АЛС) */
 var COST = [
-  { k: 'Коробка', sub: 'дом без ремонта', lo: 426085 * 360.3, mid: 426085 * (360.3 + 450) / 2, hi: 426085 * 450,
-    how: '426 тыс. ₽ за м² по оценке АЛС Консалтинг. Нижняя граница по площади ЕГРН 360 м², верхняя с верандами 450 м²' },
-  { k: 'Участок', sub: '5,28 сотки', lo: 12.4e6, mid: 12.4e6, hi: 12.4e6,
-    how: 'по оценке АЛС, 2,3 млн ₽ за сотку. Для закрытого посёлка на первом километре это скорее нижняя граница' },
-  { k: 'Ремонт и мебель', sub: 'премиум под ключ', lo: 300e3 * 360, mid: 500e3 * 360, hi: 600e3 * 360,
-    how: '300–600 тыс. ₽ за м² на 360 м². Ремонт дома 16 оценён в 500 тыс.: первый этаж и мастер-блок на верхней границе, остальное на уровне хорошего среднего' },
+  { k: 'Коробка', sub: 'дом без ремонта', lo: 426085 * 405, mid: 426085 * 405, hi: 426085 * 405,
+    how: '426 тыс. ₽ за м² по оценке АЛС Консалтинг на 405 м²: середина между площадью по ЕГРН (360 м²) и площадью с верандами (450 м²)' },
+  { k: 'Участок', sub: '5,28 сотки × 8 млн', lo: 5.28 * 8e6, mid: 5.28 * 8e6, hi: 5.28 * 8e6,
+    how: 'застройщик «Снегири» продаёт в посёлке участки по 14 соток за 84 млн, это 6 млн за сотку, но у самого МКАД. Участок дома 16 в тихой части посёлка, поэтому 8 млн за сотку' },
+  { k: 'Ремонт и мебель', sub: 'премиум под ключ', lo: 460e3 * 360, mid: 500e3 * 360, hi: 600e3 * 360,
+    how: '460–600 тыс. ₽ за м² на 360 м². Первый этаж, кухня FENDI и мастер-блок на уровне 600 тыс., остальные комнаты на уровне хорошего среднего, в среднем около 500 тыс.' },
   { k: 'Наружные работы', sub: 'фасад, окна, веранды', lo: 18.5e6, mid: 18.5e6, hi: 18.5e6,
     how: 'по списку собственницы в сегодняшних ценах: фасад из термоясеня, окна, купол, монолит веранд, кровля, благоустройство' }
 ];
@@ -284,7 +291,7 @@ function costTotal(w) { return COST.reduce(function (s, c) { return s + c[w] }, 
 function renderFormula() {
   var m = function (v) { var x = v / 1e6; return x >= 50 || Math.abs(x - Math.round(x)) < 0.05 ? String(Math.round(x)) : x.toFixed(1).replace('.', ',') };
   document.getElementById('formula').innerHTML =
-    '<div class="formula__head"><h2 class="section-title" style="margin:0">Из чего складывается стоимость дома 16</h2><p>Затратный подход: во что обошлось бы получить такой же дом сегодня. Каждая часть посчитана с разбросом.</p></div>' +
+    '<div class="formula__head"><h2 class="section-title" style="margin:0">Из чего складывается стоимость дома 16</h2><p>Затратный подход: сколько стоило бы получить такой же дом сегодня. Коробка + участок + ремонт + наружные работы.</p></div>' +
     '<div class="formula__row">' + COST.map(function (c, i) {
       return (i ? '<span class="formula__op">+</span>' : '') + '<div class="term"><small>' + c.k + '</small><b>' + (c.lo === c.hi ? m(c.mid) : m(c.lo) + '–' + m(c.hi)) + ' млн</b><span class="term__sub">' + c.sub + '</span><p>' + c.how + '</p></div>';
     }).join('') + '<span class="formula__op">=</span><div class="term term--total"><small>Итого</small><b>≈ ' + m(costTotal('mid')) + ' млн</b><span class="term__sub">разброс ' + m(costTotal('lo')) + '–' + m(costTotal('hi')) + ' млн</span><p>' + rub(costTotal('mid') / 360 / 1000) + ' тыс. ₽ за м² по ЕГРН</p></div></div>';
@@ -399,7 +406,7 @@ function init(d) {
   document.getElementById('hdr').innerHTML = headerHtml('Рыночная аналитика · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
   var eb = document.getElementById('exportBtn'); if (eb) eb.onclick = function () { exportCalls(DATA.houses) };
   document.getElementById('author').innerHTML = authorHtml();
-  renderHero(); renderFormula();
+  renderHero(); renderFormula(); syncHeaderHeight();
   document.getElementById('promoCalls').hidden = PUBLIC;
   var sel = document.getElementById('sort'); sel.value = STATE.sort;
   sel.onchange = function (e) { STATE.sort = e.target.value; keepState(); renderGrid() };
