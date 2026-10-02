@@ -97,7 +97,7 @@ footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max
         <li>Прозрачные документы</li>
       </ul>
     </div>
-    <a class="hero2__result" href="#verdict"><small>Вывод: реалистичная цена сделки</small><b id="heroFork"></b><span id="heroForkSub"></span><em>Как получилась вилка ↓</em></a>
+    <a class="hero2__result" href="#verdict"><small>Вывод: реалистичная цена сделки</small><b id="heroFork"></b><span id="heroForkSub"></span><span class="hero2__mid">Наиболее вероятная цена: <strong id="heroMid"></strong></span><em>Как получилась вилка ↓</em></a>
   </section>
 
   <section class="formula" id="formula"></section>
@@ -282,8 +282,8 @@ var COST = [
     how: '426 тыс. ₽ за м² по оценке АЛС Консалтинг на 405 м²: середина между площадью по ЕГРН (360 м²) и площадью с верандами (450 м²)' },
   { k: 'Участок', sub: '5,28 сотки × 8 млн', lo: 5.28 * 8e6, mid: 5.28 * 8e6, hi: 5.28 * 8e6,
     how: 'застройщик «Снегири» продаёт в посёлке участки по 14 соток за 84 млн, это 6 млн за сотку, но у самого МКАД. Участок дома 16 в тихой части посёлка, поэтому 8 млн за сотку' },
-  { k: 'Ремонт и мебель', sub: 'премиум под ключ', lo: 460e3 * 360, mid: 500e3 * 360, hi: 600e3 * 360,
-    how: '460–600 тыс. ₽ за м² на 360 м². Первый этаж, кухня FENDI и мастер-блок на уровне 600 тыс., остальные комнаты на уровне хорошего среднего, в среднем около 500 тыс.' },
+  { k: 'Ремонт и мебель', sub: 'премиум под ключ', lo: 380e3 * 360, mid: 449e3 * 360, hi: 519e3 * 360,
+    how: 'около 380–520 тыс. ₽ за м² на 360 м², в среднем 450 тыс. Первый этаж, кухня FENDI и мастер-блок на верхнем уровне, остальные комнаты на уровне хорошего среднего, с учётом износа за 6–7 лет' },
   { k: 'Наружные работы', sub: 'фасад, окна, веранды', lo: 18.5e6, mid: 18.5e6, hi: 18.5e6,
     how: 'по списку собственницы в сегодняшних ценах: фасад из термоясеня, окна, купол, монолит веранд, кровля, благоустройство' }
 ];
@@ -300,10 +300,11 @@ function renderHero() {
   document.getElementById('asOf').textContent = 'на ' + dmy(DATA.built);
   document.getElementById('heroFork').textContent = Math.round(FORK.lo / 1e6) + '–' + Math.round(FORK.hi / 1e6) + ' млн ₽';
   document.getElementById('heroForkSub').textContent = rub(FORK.lo / FORK.area / 1000) + '–' + rub(FORK.hi / FORK.area / 1000) + ' тыс. ₽ за м², до вычета комиссии';
+  document.getElementById('heroMid').textContent = Math.round(FORK.mid / 1e6) + ' млн ₽';
 }
 
 /* Вывод: вилка цены сделки (решение Михаила 02.10.2026) и три опоры, посчитанные из данных */
-var FORK = { lo: 370e6, hi: 420e6, area: 360 };
+var FORK = { lo: 370e6, hi: 420e6, mid: 395e6, area: 360 };
 function renderVerdict() {
   var H = DATA.houses, ours = H.filter(function (h) { return h.ours })[0];
   var same = H.filter(function (h) { return !h.ours && h.area >= 330 && h.area <= 420 && h.price_last < 400e6 });
@@ -314,14 +315,14 @@ function renderVerdict() {
   var discLo = Math.round((1 - FORK.hi / ours.price_last) * 100), discHi = Math.round((1 - FORK.lo / ours.price_last) * 100);
   document.getElementById('verdict').innerHTML =
     '<div class="verdict__top"><small>Вывод аналитики</small><b>' + Math.round(FORK.lo / 1e6) + '–' + Math.round(FORK.hi / 1e6) + ' млн ₽</b>' +
-    '<p>Реалистичная цена сделки по дому 16: ' + rub(ppmLo / 1000) + '–' + rub(ppmHi / 1000) + ' тыс. ₽ за м² при 360 м² по ЕГРН. Сумма до вычета комиссии. Вилка опирается на четыре независимых расчёта ниже.</p></div>' +
+    '<p>Реалистичная цена сделки по дому 16: ' + rub(ppmLo / 1000) + '–' + rub(ppmHi / 1000) + ' тыс. ₽ за м² при 360 м² по ЕГРН. Наиболее вероятная цена, середина вилки: <b>' + Math.round(FORK.mid / 1e6) + ' млн ₽</b>. Сумма до вычета комиссии. Вилка опирается на четыре независимых расчёта ниже.</p></div>' +
     '<div class="anchors anchors--4">' +
       (function () { var R = window.MAIN_RIVALS || []; if (!R.length) return ''; var pr = R.map(function (x) { return x.price }); return '<div class="anchor"><span class="anchor__n">Опора 1 · рынок у города</span><h3>Главные конкуренты вне посёлка</h3><b class="big">' + Math.round(Math.min.apply(null, pr) / 1e6) + '–' + mln(Math.max.apply(null, pr)) + '</b>' +
         '<p>' + R.length + ' готовых домов на Рублёвке, Новой Риге и в Сколково, которые покупатель будет смотреть вместе с домом 16. Вилка 370–420 млн стоит на той же ценовой полке. Они больше по площади и участку, но находятся в 4–12 км от МКАД, а дом 16 в 1 км.</p></div>' })() +
       '<div class="anchor"><span class="anchor__n">Опора 2 · рынок посёлка</span><h3>Дома той же площади в посёлке</h3><b class="big">' + Math.round(Math.min.apply(null, sp) / 1e6) + '–' + mln(Math.max.apply(null, sp)) + '</b>' +
         '<p>' + same.length + ' ' + plural(same.length, 'дом', 'дома', 'домов') + ' площадью 330–420 м² в посёлке за период анализа, ' + rub(Math.min.apply(null, spp) / 1000) + '–' + rub(Math.max.apply(null, spp) / 1000) + ' тыс. ₽ за м² в объявлениях. Это ориентир цены метра в посёлке. Дом 16 продаётся готовым к жизни, с дизайнерским ремонтом и мебелью, поэтому стоит заметно выше этого ориентира.</p></div>' +
       '<div class="anchor"><span class="anchor__n">Опора 3 · затратный расчёт</span><h3>Коробка, участок, ремонт</h3><b class="big">≈ ' + Math.round(costTotal('mid') / 1e6) + ' млн ₽</b>' +
-        '<p>Формула в начале страницы: в среднем ' + Math.round(costTotal('mid') / 1e6) + ' млн, разброс ' + Math.round(costTotal('lo') / 1e6) + '–' + Math.round(costTotal('hi') / 1e6) + ' млн. Покупатель редко платит за чужой ремонт полную стоимость, поэтому это ориентир сверху.</p></div>' +
+        '<p>Формула в начале страницы: коробка, участок, ремонт и наружные работы дают в среднем ' + Math.round(costTotal('mid') / 1e6) + ' млн, разброс ' + Math.round(costTotal('lo') / 1e6) + '–' + Math.round(costTotal('hi') / 1e6) + ' млн. Это совпадает с рыночной вилкой.</p></div>' +
       '<div class="anchor"><span class="anchor__n">Опора 4 · срок продажи</span><h3>Что рынок делает с ценой от 400 млн</h3><b class="big">' + months(median(dd)) + '</b>' +
         (function () { var still = dear.filter(function (h) { return h.market === 'active' }), left = dear.filter(function (h) { return h.market !== 'active' });
           return '<p>Медианный срок на площадках у ' + dear.length + ' ' + plural(dear.length, 'дома', 'домов', 'домов') + ', выставленных за 400 млн и дороже. ' +
