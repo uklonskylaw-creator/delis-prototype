@@ -178,8 +178,12 @@ function sellerGroupHtml(s) {
 var PUBLIC = !!window.PUBLIC_MODE;
 var AUTHOR_NAME = 'Михаил Уклонский', AUTHOR_PHONE = '+7 (995) 590-59-00', AUTHOR_TEL = 'tel:+79955905900';
 function authorHtml() {
-  return '<div class="author"><div class="author__ava">МУ</div><div class="author__body"><span class="author__label">Аналитика подготовлена</span>' +
+  return '<div class="author"><img class="author__ava" src="img/mikhail.jpg" alt="' + AUTHOR_NAME + '"><div class="author__body"><span class="author__label">Аналитика подготовлена</span>' +
     '<b>' + AUTHOR_NAME + '</b><span class="author__role">«Делись» · партнёрские продажи недвижимости</span></div>' +
     '<div class="author__contact"><a class="btn btn--brand" href="' + AUTHOR_TEL + '">' + AUTHOR_PHONE + '</a><span>Telegram, MAX</span></div></div>';
 }
 function headerRight(workBtnHtml) { return PUBLIC ? '<a class="pill-btn pill-btn--dark" href="' + AUTHOR_TEL + '">Связаться: ' + AUTHOR_PHONE + '</a>' : workBtnHtml }
+
+function months(days) { var m = days / 30.4; return m < 1 ? Math.max(1, Math.round(days / 7)) + ' нед.' : (m < 10 ? m.toFixed(1).replace('.0', '').replace('.', ',') : Math.round(m)) + ' мес.' }
+var MONTHS_RU = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+function monthYear(iso) { var p = iso.split('-'); return MONTHS_RU[+p[1] - 1] + ' ' + p[0] }

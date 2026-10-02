@@ -177,17 +177,23 @@ function render() {
         (h.ours || PUBLIC ? '' : '<div class="card"><h2>Итог прозвона</h2>' + callFormHtml(h) + '</div>') +
         '<div class="actions">' + (latest ? '<a class="btn btn--brand" href="' + esc(latest.url) + '" target="_blank" rel="noopener">Открыть последнее объявление на ' + esc(latest.site) + ' ↗</a>' : '') +
         (PUBLIC ? '<a class="btn btn--soft" href="' + AUTHOR_TEL + '">Обсудить с ' + AUTHOR_NAME.split(' ')[0] + 'ом: ' + AUTHOR_PHONE + '</a>' : '<button class="btn btn--soft" type="button" id="exportBtn">Скопировать итоги прозвона</button>') + '</div>' +
-        '<div class="card"><h2>Где находится</h2>' + (h.geo ? '<div class="map map--sm" id="omap"></div>' + mapLinks(h.geo) :
-          '<p class="map-note" style="margin-top:0">Площадки не передали точку этого дома: во всех ' + h.listings + ' ' + plural(h.listings, 'объявлении', 'объявлениях', 'объявлениях') + ' стоит центр посёлка. Номер дома' + (h.no ? ' ' + esc(h.no) + ' известен из адреса' : ' тоже не указан') + '.</p>') + '</div>' +
+        (h.geo ? '' : '<div class="card"><h2>Где находится</h2><p class="map-note" style="margin-top:0">Площадки не передали точку этого дома: во всех ' + h.listings + ' ' + plural(h.listings, 'объявлении', 'объявлениях', 'объявлениях') + ' стоит центр посёлка. Номер дома' + (h.no ? ' ' + esc(h.no) + ' известен из адреса' : ' тоже не указан') + '.</p></div>') +
         '<div class="card"><h2 class="section-title">Параметры</h2>' + paramRows(h) + '</div>' +
         '<div class="card hist"><h2 class="section-title">История цены</h2>' + histSvg(h) +
           h.hist.slice().reverse().map(function (x) { return '<div class="row"><span class="row__l">' + dmy(x.date) + ' · ' + esc(x.site) + '</span><span class="row__dots"></span><span class="row__v">' + mln(x.price) + '</span></div>' }).join('') + '</div>' +
       '</aside>' +
     '</section>' +
+    (h.geo ? '<section class="map-wide"><div class="map map--wide" id="omap"></div><div class="map-card"><h3>Где находится</h3><div class="map-card__addr">КП «Резиденция Рублёво»' + (h.no ? ', дом ' + esc(h.no) : '') + '<br>Красногорск, 1-й км Новорижского шоссе</div><p>Точку дома передала площадка. Рядом на карте остальные дома посёлка с известной точкой: номер на метке = номер в реестре.</p>' + mapLinks(h.geo) + '</div></section>' : '') +
     '<div class="pager">' + navLink(prev, -1) + navLink(next, 1) + '</div>' + '<div style="padding-bottom:48px">' + authorHtml() + '</div>';
 
   bindCopy(document.getElementById('app'));
-  if (h.geo) { var om = makeMap(document.getElementById('omap'), h.geo, 18); if (om) L.marker(h.geo, { icon: housePin(h) }).addTo(om) }
+  if (h.geo) {
+    var om = makeMap(document.getElementById('omap'), h.geo, 17);
+    if (om) {
+      DATA.houses.forEach(function (x) { if (x.geo && x.id !== h.id) L.marker(x.geo, { icon: L.divIcon({ className: '', html: '<div class="pin pin--' + pinClass(x) + '" style="opacity:.55;transform:scale(.8)">' + x.num + '</div>', iconSize: [30, 30], iconAnchor: [15, 15] }) }).addTo(om).on('click', function () { location.href = 'object.html?id=' + x.id }) });
+      L.marker(h.geo, { icon: L.divIcon({ className: '', html: '<div class="pin pin--here">' + h.num + '</div>', iconSize: [44, 44], iconAnchor: [22, 22] }), zIndexOffset: 1000 }).addTo(om);
+    }
+  }
   var eb = document.getElementById('exportBtn'); if (eb) eb.onclick = function () { exportCalls(DATA.houses) };
   var form = document.querySelector('[data-call]'); if (form) bindCallForm(form, h, null);
   var desc = document.getElementById('desc'), mb = document.getElementById('moreBtn');
