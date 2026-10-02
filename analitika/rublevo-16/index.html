@@ -243,14 +243,14 @@ function renderAlts() {
   var ours = DATA.houses.filter(function (h) { return h.ours })[0];
   var all = []; A.forEach(function (g) { g.items.forEach(function (x) { all.push(x.price / x.area) }) });
   var R = window.MAIN_RIVALS || [];
-  var rivals = R.length ? '<div class="alts__head"><h2 class="section-title" style="margin:0">Главные конкуренты вне посёлка</h2><p>Готовые дома, которые покупатель с бюджетом 330–450 млн будет смотреть вместе с домом 16. Они больше по площади и участку, но находятся в 4–12 км от МКАД. Дом 16 стоит в 1 км.</p></div>' +
+  var rivals = R.length ? '<div class="alts__head"><h2 class="section-title" style="margin:0">Главные конкуренты вне посёлка</h2><p>Готовые дома, которые покупатель с бюджетом 330–450 млн будет смотреть вместе с домом 16. Большинство из них больше по площади и участку, но стоят в 4–12 км от МКАД. Таунхаус в Москве ближе к центру, но это таунхаус на 2,85 сотки. Дом 16 стоит в 1 км от МКАД, отдельным домом.</p></div>' +
     '<div class="grid rivals">' + R.map(function (x, i) {
       return '<article class="obj" data-r="' + i + '" data-i="0"><div class="obj__photo">' + (x.photos.length ? '<img src="' + esc(x.photos[0]) + '" alt="' + esc(x.name) + '" loading="lazy">' +
         (x.photos.length > 1 ? '<button class="obj__arrow obj__arrow--l" type="button" aria-label="Предыдущее фото">‹</button><button class="obj__arrow obj__arrow--r" type="button" aria-label="Следующее фото">›</button>' : '') + '<span class="obj__count">1 / ' + x.photos.length + '</span>' : '') +
         '<div class="obj__tags"><span class="tag tag--active">В продаже</span></div></div><div class="obj__body"><div class="obj__title"><h3>' + esc(x.name) + '</h3><span class="num">' + rub(x.price / x.area / 1000) + ' тыс. ₽/м²</span></div>' +
-        '<div class="obj__specs num">' + esc(x.kind) + ' ' + String(x.area).replace('.', ',') + ' м² · участок ' + plotTxt(x.plot) + ' · ' + esc(x.km) + ' от МКАД</div>' +
+        '<div class="obj__specs num">' + esc(x.kind) + ' ' + String(x.area).replace('.', ',') + ' м² · участок ' + plotTxt(x.plot) + ' · ' + esc(x.km) + (/Москв/.test(x.km) ? '' : ' от МКАД') + '</div>' +
         '<div class="row row--big"><span class="row__l">Цена в объявлении</span><span class="row__dots"></span><span class="row__v">' + mln(x.price) + '</span></div>' +
-        '<div class="obj__who">' + esc(x.finish) + '</div><div class="obj__foot"><span>ЦИАН</span><a class="btn btn--brand" href="' + esc(x.url) + '" target="_blank" rel="noopener">Объявление ↗</a></div></div></article>' }).join('') + '</div>' : '';
+        (x.loc ? '<div class="rival__loc"><b>Локация:</b> ' + esc(x.loc) + '</div>' : '') + '<div class="obj__who">' + esc(x.finish) + '</div><div class="obj__foot"><span>ЦИАН</span><a class="btn btn--brand" href="' + esc(x.url) + '" target="_blank" rel="noopener">Объявление ↗</a></div></div></article>' }).join('') + '</div>' : '';
   document.getElementById('rivals').innerHTML = rivals;
   document.getElementById('alts').innerHTML =
     '<div class="alts__head"><h2 class="section-title" style="margin:0">Что ещё купит покупатель у города</h2>' +
@@ -318,7 +318,7 @@ function renderVerdict() {
     '<p>Реалистичная цена сделки по дому 16: ' + rub(ppmLo / 1000) + '–' + rub(ppmHi / 1000) + ' тыс. ₽ за м² при 360 м² по ЕГРН. Наиболее вероятная цена, середина вилки: <b>' + Math.round(FORK.mid / 1e6) + ' млн ₽</b>. Сумма до вычета комиссии. Вилка опирается на четыре независимых расчёта ниже.</p></div>' +
     '<div class="anchors anchors--4">' +
       (function () { var R = window.MAIN_RIVALS || []; if (!R.length) return ''; var pr = R.map(function (x) { return x.price }); return '<div class="anchor"><span class="anchor__n">Опора 1 · рынок у города</span><h3>Главные конкуренты вне посёлка</h3><b class="big">' + Math.round(Math.min.apply(null, pr) / 1e6) + '–' + mln(Math.max.apply(null, pr)) + '</b>' +
-        '<p>' + R.length + ' готовых домов на Рублёвке, Новой Риге и в Сколково, которые покупатель будет смотреть вместе с домом 16. Вилка 370–420 млн стоит на той же ценовой полке. Они больше по площади и участку, но находятся в 4–12 км от МКАД, а дом 16 в 1 км.</p></div>' })() +
+        '<p>' + R.length + ' готовых домов на Рублёвке, Новой Риге, в Сколково и в Москве, которые покупатель будет смотреть вместе с домом 16. Вилка 370–420 млн стоит на той же ценовой полке. Загородные больше по площади и участку, но в 4–12 км от МКАД; городской вариант — таунхаус на 2,85 сотки. Дом 16 в 1 км от МКАД.</p></div>' })() +
       '<div class="anchor"><span class="anchor__n">Опора 2 · рынок посёлка</span><h3>Дома той же площади в посёлке</h3><b class="big">' + Math.round(Math.min.apply(null, sp) / 1e6) + '–' + mln(Math.max.apply(null, sp)) + '</b>' +
         '<p>' + same.length + ' ' + plural(same.length, 'дом', 'дома', 'домов') + ' площадью 330–420 м² в посёлке за период анализа, ' + rub(Math.min.apply(null, spp) / 1000) + '–' + rub(Math.max.apply(null, spp) / 1000) + ' тыс. ₽ за м² в объявлениях. Это ориентир цены метра в посёлке. Дом 16 продаётся готовым к жизни, с дизайнерским ремонтом и мебелью, поэтому стоит заметно выше этого ориентира.</p></div>' +
       '<div class="anchor"><span class="anchor__n">Опора 3 · затратный расчёт</span><h3>Коробка, участок, ремонт</h3><b class="big">≈ ' + Math.round(costTotal('mid') / 1e6) + ' млн ₽</b>' +

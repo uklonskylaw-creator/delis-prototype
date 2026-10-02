@@ -304,3 +304,5 @@ h1,h2,h3,p{margin:0}
   .toolbar .spacer{display:none}
   .toolbar select{flex:1;min-width:0}
 }
+.rival__loc{font:13px/1.45 var(--f-text);color:var(--ink);background:var(--brand-soft);border-radius:10px;padding:8px 10px}
+.rival__loc b{color:var(--brand-deep);font-weight:600}
