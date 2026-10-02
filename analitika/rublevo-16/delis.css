@@ -143,7 +143,7 @@ h1,h2,h3,p{margin:0}
 .seller__tel a{font-weight:600;font-variant-numeric:tabular-nums}
 .seller__tel a:hover{color:var(--brand)}
 .merge-note{background:var(--warn-bg);border-radius:12px;padding:10px 14px;font:13px/1.5 var(--f-text);color:#6B4500}
-.author{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:#fff;border-radius:20px;padding:16px 20px;max-width:900px}
+.author{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:#fff;border-radius:20px;padding:16px 20px}
 .author__ava{width:84px;height:84px;object-fit:cover;border-radius:50%;background:linear-gradient(135deg,#46265D,#9E67D8);color:#fff;display:grid;place-items:center;font:700 17px var(--f-logo);flex:none}
 .author__body{display:grid;gap:2px;flex:1;min-width:200px}
 .author__label{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
@@ -200,3 +200,73 @@ h1,h2,h3,p{margin:0}
 .map-card .geo-links{margin-top:0}
 .pin--here{width:44px;height:44px;font-size:15px;background:var(--brand-deep);color:#fff;border:3px solid #fff;box-shadow:0 8px 20px rgba(121,17,184,.45)}
 @media (max-width:700px){.map--wide{height:380px}.map-card{position:static;width:auto;margin-top:12px;box-shadow:none}}
+
+/* Первый экран: заголовок слева, вывод справа */
+.hero2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:stretch;padding-block:8px 16px}
+@media (max-width:1000px){.hero2{grid-template-columns:minmax(0,1fr)}}
+.hero2__text{background:#fff;border-radius:20px;padding:28px 32px;display:grid;gap:12px;align-content:center}
+.eyebrow{font:600 12px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+.hero2__text h1{font:700 clamp(26px,3.4vw,42px)/1.12 var(--f-logo);letter-spacing:-.01em;text-wrap:balance}
+.hero2__text p{font:15px/1.55 var(--f-text);color:var(--ink-2);max-width:70ch}
+.hero2__result{background:linear-gradient(135deg,#46265D 0%,#764FE9 100%);color:#fff;border-radius:20px;padding:28px 32px;display:grid;gap:6px;align-content:center}
+.hero2__result small{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.hero2__result b{font:700 clamp(28px,3.2vw,44px)/1.05 var(--f-logo);white-space:nowrap}
+.hero2__result span{font:14px var(--f-text);opacity:.9}
+.hero2__result em{font:600 13px var(--f-ui);font-style:normal;margin-top:8px;opacity:.95}
+.hero2__result:hover em{text-decoration:underline}
+.section-head{display:grid;gap:8px;margin:8px 0 16px}
+.section-head p{font:15px/1.55 var(--f-text);color:var(--ink-2);max-width:95ch}
+/* Формула */
+.formula{background:#fff;border-radius:20px;padding:24px 28px;margin-bottom:16px;display:grid;gap:16px}
+.formula__head{display:grid;gap:6px}
+.formula__head p{font:14px/1.5 var(--f-text);color:var(--ink-2)}
+.formula__row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.1fr);gap:10px;align-items:stretch}
+.formula__op{align-self:center;font:700 26px var(--f-ui);color:var(--brand)}
+.term{background:var(--page);border-radius:16px;padding:16px;display:grid;gap:4px;align-content:start}
+.term small{font:600 12px var(--f-ui);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3)}
+.term b{font:700 22px var(--f-ui);font-variant-numeric:tabular-nums;white-space:nowrap}
+.term__sub{font:500 13px var(--f-text);color:var(--ink)}
+.term p{font:12.5px/1.45 var(--f-text);color:var(--ink-2);margin-top:4px}
+.term--total{background:linear-gradient(180deg,#F4F1F7 0%,#EAE7FF 100%)}
+.term--total b{color:var(--brand-deep);font-size:26px}
+@media (max-width:1200px){.formula__row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.formula__op{display:none}.term--total{grid-column:1/-1}}
+@media (max-width:600px){.formula__row{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== Движение ===== */
+@media (prefers-reduced-motion:no-preference){
+  /* появление при прокрутке: прячем только когда скрипт готов показать (класс на html) */
+  .motion .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .motion .reveal.in{opacity:1;transform:none}
+  /* формула: части по очереди */
+  .motion .formula__row>*{opacity:0;transform:translateY(10px) scale(.98);transition:opacity .5s ease,transform .5s ease}
+  .motion .formula.in .formula__row>*{opacity:1;transform:none}
+  .motion .formula.in .formula__row>*:nth-child(1){transition-delay:.05s}
+  .motion .formula.in .formula__row>*:nth-child(2){transition-delay:.15s}
+  .motion .formula.in .formula__row>*:nth-child(3){transition-delay:.25s}
+  .motion .formula.in .formula__row>*:nth-child(4){transition-delay:.35s}
+  .motion .formula.in .formula__row>*:nth-child(5){transition-delay:.45s}
+  .motion .formula.in .formula__row>*:nth-child(6){transition-delay:.55s}
+  .motion .formula.in .formula__row>*:nth-child(7){transition-delay:.65s}
+  .motion .formula.in .formula__row>*:nth-child(8){transition-delay:.75s}
+  .motion .formula.in .formula__row>*:nth-child(9){transition-delay:.9s}
+  /* первый экран */
+  .hero2__text,.hero2__result{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+  .hero2__result{animation-delay:.12s;background-size:200% 200%;animation:rise .8s .12s cubic-bezier(.2,.7,.2,1) both,glow 9s ease-in-out 1s infinite}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  /* карточки */
+  .obj,.anchor,.term,.fact,.alt{transition:transform .25s ease,box-shadow .25s ease}
+  .obj:hover,.anchor:hover,.fact:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(86,50,191,.16)}
+  .obj__photo img{transition:transform .6s ease}
+  .obj:hover .obj__photo img{transform:scale(1.04)}
+  .btn,.pill-btn,.to-verdict{transition:background .2s,border-color .2s,transform .15s}
+  .btn:active,.pill-btn:active{transform:scale(.97)}
+  /* точки графика */
+  .motion #chart .pt circle{transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.2,.9,.3,1.4) both}
+  @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+  .pin--here{animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 8px 20px rgba(121,17,184,.45),0 0 0 0 rgba(121,17,184,.35)}50%{box-shadow:0 8px 20px rgba(121,17,184,.45),0 0 0 14px rgba(121,17,184,0)}}
+}
+.hero2__result{background:linear-gradient(120deg,#46265D 0%,#764FE9 45%,#9E67D8 70%,#46265D 100%)}
+.rivals{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.rivals .obj__photo{aspect-ratio:4/3.2}

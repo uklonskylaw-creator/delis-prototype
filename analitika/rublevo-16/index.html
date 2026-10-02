@@ -84,12 +84,20 @@ footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max
 <div id="hdr"></div>
 <main class="wrap">
   <div class="crumbs"><nav><span>Делись</span><span>·</span><span>Объекты на реализации</span><span>·</span><b>Резиденция Рублёво, дом 16</b></nav></div>
-  <section class="hero">
-    <h1>Кто продаёт рядом с домом 16 и за сколько</h1>
-    <p id="lead">Загружаю объявления…</p>
-    <a class="to-verdict" href="#verdict">Вывод: цена сделки 370–420 млн ₽ ↓</a>
-    <div id="author"></div>
+  <section class="hero2">
+    <div class="hero2__text">
+      <span class="eyebrow">КП «Резиденция Рублёво», дом 16 · <span id="asOf"></span></span>
+      <h1>Рыночная аналитика продажной стоимости</h1>
+      <p>Оценка дома 16 на текущий момент: из чего складывается стоимость, с кем дом конкурирует у города и в посёлке, за сколько и как долго продаются соседние дома.</p>
+    </div>
+    <a class="hero2__result" href="#verdict"><small>Вывод: реалистичная цена сделки</small><b id="heroFork"></b><span id="heroForkSub"></span><em>Как получилась вилка ↓</em></a>
   </section>
+
+  <section class="formula" id="formula"></section>
+
+  <section class="alts" id="rivals"></section>
+
+  <div class="section-head"><h2 class="section-title" style="margin:0">Рынок посёлка за два года</h2><p id="lead">Загружаю объявления…</p></div>
   <section class="summary">
     <div class="facts" id="facts"></div>
     <div class="card">
@@ -137,6 +145,7 @@ footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max
   <a class="promo" id="nophotoLink" href="nophoto.html" style="margin-bottom:24px"></a>
   <section class="alts" id="alts"></section>
   <section class="verdict" id="verdict"></section>
+  <div id="author" style="margin-bottom:24px"></div>
   <footer id="foot"></footer>
 </main>
 <script src="data.js"></script>
@@ -160,7 +169,7 @@ function renderFacts() {
   var ppmSold = median(sold.map(function (h) { return factPrice(h) / h.area }));
   var photos = H.reduce(function (s, h) { return s + h.photos.length }, 0);
   var allDates = []; H.forEach(function (h) { h.links.forEach(function (l) { allDates.push(l.date) }) }); allDates.sort();
-  document.getElementById('lead').textContent = 'Период анализа: ' + monthYear(allDates[0]) + ' — ' + monthYear(allDates[allDates.length - 1]) + '. Выгрузка от ' + dmy(DATA.built) + ': ' + DATA.listings_total + ' объявлений на ЦИАН, Яндексе, Авито и Юле. Одни и те же дома выставляют разные агентства и переподают каждый месяц. Мы склеили их по параметрам и по совпадающим фото в ' + H.length + ' ' + plural(H.length, 'дом', 'дома', 'домов') + ', у каждого видно всех, кто его размещал. В продаже сейчас ' + (act.length + 1) + ', включая дом 16. Фото: ' + photos + '.';
+  document.getElementById('lead').textContent = 'Период анализа: ' + monthYear(allDates[0]) + ' — ' + monthYear(allDates[allDates.length - 1]) + '. Выгрузка от ' + dmy(DATA.built) + ': ' + DATA.listings_total + ' объявлений на ЦИАН, Яндексе, Авито и Юле; статус и последние цены сверены с ЦИАН ' + dmy(DATA.built) + '. Одни и те же дома выставляют разные агентства и переподают каждый месяц. Мы склеили их по параметрам и по совпадающим фото в ' + H.length + ' ' + plural(H.length, 'дом', 'дома', 'домов') + ', у каждого видно всех, кто его размещал. В продаже сейчас ' + (act.length + 1) + ', включая дом 16. Фото: ' + photos + '.';
   var f = [
     ['fact--wide fact--ours', mln(ours.price_last), 'Дом 16 в объявлении «Аллеи недвижимости», ' + rub(ours.ppm / 1000) + ' тыс. ₽ за м²'],
     ['', String(act.length), plural(act.length, 'конкурент', 'конкурента', 'конкурентов') + ' в продаже сейчас'],
@@ -227,7 +236,7 @@ function renderAlts() {
   var ours = DATA.houses.filter(function (h) { return h.ours })[0];
   var all = []; A.forEach(function (g) { g.items.forEach(function (x) { all.push(x.price / x.area) }) });
   var R = window.MAIN_RIVALS || [];
-  var rivals = R.length ? '<div class="alts__head"><h2 class="section-title" style="margin:0">Главные конкуренты вне посёлка</h2><p>Готовые дома, которые покупатель с бюджетом 330–450 млн будет смотреть вместе с домом 16. Отобраны вручную из текущих объявлений ЦИАН.</p></div>' +
+  var rivals = R.length ? '<div class="alts__head"><h2 class="section-title" style="margin:0">Главные конкуренты вне посёлка</h2><p>Готовые дома, которые покупатель с бюджетом 330–450 млн будет смотреть вместе с домом 16. Они больше по площади и участку, но находятся в 4–12 км от МКАД. Дом 16 стоит в 1 км.</p></div>' +
     '<div class="grid rivals">' + R.map(function (x, i) {
       return '<article class="obj" data-r="' + i + '" data-i="0"><div class="obj__photo">' + (x.photos.length ? '<img src="' + esc(x.photos[0]) + '" alt="' + esc(x.name) + '" loading="lazy">' +
         (x.photos.length > 1 ? '<button class="obj__arrow obj__arrow--l" type="button" aria-label="Предыдущее фото">‹</button><button class="obj__arrow obj__arrow--r" type="button" aria-label="Следующее фото">›</button>' : '') + '<span class="obj__count">1 / ' + x.photos.length + '</span>' : '') +
@@ -235,7 +244,8 @@ function renderAlts() {
         '<div class="obj__specs num">' + esc(x.kind) + ' ' + String(x.area).replace('.', ',') + ' м² · участок ' + plotTxt(x.plot) + ' · ' + esc(x.km) + ' от МКАД</div>' +
         '<div class="row row--big"><span class="row__l">Цена в объявлении</span><span class="row__dots"></span><span class="row__v">' + mln(x.price) + '</span></div>' +
         '<div class="obj__who">' + esc(x.finish) + '</div><div class="obj__foot"><span>ЦИАН</span><a class="btn btn--brand" href="' + esc(x.url) + '" target="_blank" rel="noopener">Объявление ↗</a></div></div></article>' }).join('') + '</div>' : '';
-  document.getElementById('alts').innerHTML = rivals +
+  document.getElementById('rivals').innerHTML = rivals;
+  document.getElementById('alts').innerHTML =
     '<div class="alts__head"><h2 class="section-title" style="margin:0">Что ещё купит покупатель у города</h2>' +
     '<p>Посёлки, которые покупатель сравнит с «Резиденцией Рублёво»: Сколково и Заречье, Silver Place, первые километры Рублёвки и Новой Риги. Дома и таунхаусы, которые сейчас продаются. Медиана по выборке ' + rub(median(all) / 1000) + ' тыс. ₽ за м²; дом 16 в объявлении стоит ' + rub(ours.ppm / 1000) + ' тыс. ₽ за м².</p></div>' +
     A.map(function (g) {
@@ -259,6 +269,32 @@ function bindRivals() {
   });
 }
 
+/* Затратная формула: коробка + участок + ремонт + наружные работы (затратный_расчёт.txt, разбор оценки АЛС) */
+var COST = [
+  { k: 'Коробка', sub: 'дом без ремонта', lo: 426085 * 360.3, mid: 426085 * (360.3 + 450) / 2, hi: 426085 * 450,
+    how: '426 тыс. ₽ за м² по оценке АЛС Консалтинг. Нижняя граница по площади ЕГРН 360 м², верхняя с верандами 450 м²' },
+  { k: 'Участок', sub: '5,28 сотки', lo: 12.4e6, mid: 12.4e6, hi: 12.4e6,
+    how: 'по оценке АЛС, 2,3 млн ₽ за сотку. Для закрытого посёлка на первом километре это скорее нижняя граница' },
+  { k: 'Ремонт и мебель', sub: 'премиум под ключ', lo: 300e3 * 360, mid: 500e3 * 360, hi: 600e3 * 360,
+    how: '300–600 тыс. ₽ за м² на 360 м². Ремонт дома 16 оценён в 500 тыс.: первый этаж и мастер-блок на верхней границе, остальное на уровне хорошего среднего' },
+  { k: 'Наружные работы', sub: 'фасад, окна, веранды', lo: 18.5e6, mid: 18.5e6, hi: 18.5e6,
+    how: 'по списку собственницы в сегодняшних ценах: фасад из термоясеня, окна, купол, монолит веранд, кровля, благоустройство' }
+];
+function costTotal(w) { return COST.reduce(function (s, c) { return s + c[w] }, 0) }
+function renderFormula() {
+  var m = function (v) { var x = v / 1e6; return x >= 50 || Math.abs(x - Math.round(x)) < 0.05 ? String(Math.round(x)) : x.toFixed(1).replace('.', ',') };
+  document.getElementById('formula').innerHTML =
+    '<div class="formula__head"><h2 class="section-title" style="margin:0">Из чего складывается стоимость дома 16</h2><p>Затратный подход: во что обошлось бы получить такой же дом сегодня. Каждая часть посчитана с разбросом.</p></div>' +
+    '<div class="formula__row">' + COST.map(function (c, i) {
+      return (i ? '<span class="formula__op">+</span>' : '') + '<div class="term"><small>' + c.k + '</small><b>' + (c.lo === c.hi ? m(c.mid) : m(c.lo) + '–' + m(c.hi)) + ' млн</b><span class="term__sub">' + c.sub + '</span><p>' + c.how + '</p></div>';
+    }).join('') + '<span class="formula__op">=</span><div class="term term--total"><small>Итого</small><b>≈ ' + m(costTotal('mid')) + ' млн</b><span class="term__sub">разброс ' + m(costTotal('lo')) + '–' + m(costTotal('hi')) + ' млн</span><p>' + rub(costTotal('mid') / 360 / 1000) + ' тыс. ₽ за м² по ЕГРН</p></div></div>';
+}
+function renderHero() {
+  document.getElementById('asOf').textContent = 'на ' + dmy(DATA.built);
+  document.getElementById('heroFork').textContent = Math.round(FORK.lo / 1e6) + '–' + Math.round(FORK.hi / 1e6) + ' млн ₽';
+  document.getElementById('heroForkSub').textContent = rub(FORK.lo / FORK.area / 1000) + '–' + rub(FORK.hi / FORK.area / 1000) + ' тыс. ₽ за м², до вычета комиссии';
+}
+
 /* Вывод: вилка цены сделки (решение Михаила 02.10.2026) и три опоры, посчитанные из данных */
 var FORK = { lo: 370e6, hi: 420e6, area: 360 };
 function renderVerdict() {
@@ -277,10 +313,14 @@ function renderVerdict() {
         '<p>' + R.length + ' готовых домов на Рублёвке, Новой Риге и в Сколково, которые покупатель будет смотреть вместе с домом 16. Вилка 370–420 млн стоит на той же ценовой полке. Они больше по площади и участку, но находятся в 4–12 км от МКАД, а дом 16 в 1 км.</p></div>' })() +
       '<div class="anchor"><span class="anchor__n">Опора 2 · рынок посёлка</span><h3>Дома той же площади в посёлке</h3><b class="big">' + Math.round(Math.min.apply(null, sp) / 1e6) + '–' + mln(Math.max.apply(null, sp)) + '</b>' +
         '<p>' + same.length + ' ' + plural(same.length, 'дом', 'дома', 'домов') + ' площадью 330–420 м² в посёлке за период анализа, ' + rub(Math.min.apply(null, spp) / 1000) + '–' + rub(Math.max.apply(null, spp) / 1000) + ' тыс. ₽ за м² в объявлениях. Это ориентир цены метра в посёлке. Дом 16 продаётся готовым к жизни, с дизайнерским ремонтом и мебелью, поэтому стоит заметно выше этого ориентира.</p></div>' +
-      '<div class="anchor"><span class="anchor__n">Опора 3 · затратный расчёт</span><h3>Во что обошлось бы повторить дом сегодня</h3><b class="big">≈ 399 млн ₽</b>' +
-        '<p>Дом с участком без ремонта около 200 млн (по оценке АЛС Консалтинг), премиум-ремонт с мебелью около 500 тыс. ₽ за м², то есть 180 млн на 360 м², и наружные работы около 18,5 млн. Это верхняя граница: покупатель редко платит за чужой ремонт полную стоимость.</p></div>' +
-      '<div class="anchor"><span class="anchor__n">Опора 4 · срок продажи</span><h3>Что рынок делает с ценой от 400 млн</h3><b class="big">' + months(Math.min.apply(null, dd)).replace(' мес.', '') + '–' + months(Math.max.apply(null, dd)) + '</b>' +
-        '<p>' + dear.length + ' ' + plural(dear.length, 'дом', 'дома', 'домов') + ' в посёлке выставлялись за 400 млн и дороже. Они стояли на площадках столько, медиана: ' + months(median(dd)) + ' Типичный дом уходит с рынка за ' + months(median(DATA.houses.filter(function (h) { return h.market === 'gone' && h.listings > 1 && h.days_on > 0 }).map(function (h) { return h.days_on }))) + ' Дорогой дом продаётся дольше: на верхней границе вилки закладывайте несколько месяцев.</p></div>' +
+      '<div class="anchor"><span class="anchor__n">Опора 3 · затратный расчёт</span><h3>Коробка, участок, ремонт</h3><b class="big">≈ ' + Math.round(costTotal('mid') / 1e6) + ' млн ₽</b>' +
+        '<p>Формула в начале страницы: в среднем ' + Math.round(costTotal('mid') / 1e6) + ' млн, разброс ' + Math.round(costTotal('lo') / 1e6) + '–' + Math.round(costTotal('hi') / 1e6) + ' млн. Покупатель редко платит за чужой ремонт полную стоимость, поэтому это ориентир сверху.</p></div>' +
+      '<div class="anchor"><span class="anchor__n">Опора 4 · срок продажи</span><h3>Что рынок делает с ценой от 400 млн</h3><b class="big">' + months(median(dd)) + '</b>' +
+        (function () { var still = dear.filter(function (h) { return h.market === 'active' }), left = dear.filter(function (h) { return h.market !== 'active' });
+          return '<p>Медианный срок на площадках у ' + dear.length + ' ' + plural(dear.length, 'дома', 'домов', 'домов') + ', выставленных за 400 млн и дороже. ' +
+            (still.length ? still.length + ' из них до сих пор в продаже, самый долгий уже ' + months(Math.max.apply(null, still.map(function (h) { return h.days_on }))) + ' ' : '') +
+            (left.length ? 'Остальные ушли с площадок через ' + months(median(left.map(function (h) { return h.days_on }))) + ' (медиана). ' : '') +
+            'Дорогой дом продаётся дольше: на верхней границе вилки закладывайте несколько месяцев.</p></div>' })() +
     '</div>' +
     '<div class="verdict__rec"><h3>Что это значит для продажи</h3><ul>' +
       '<li>Сейчас дом выставлен за ' + mln(ours.price_last) + '. Цена сделки ' + Math.round(FORK.lo / 1e6) + '–' + Math.round(FORK.hi / 1e6) + ' млн означает торг ' + discLo + '–' + discHi + ' % от цены в объявлении. Это нормальный запас для дома такого уровня, но выходить выше 450 млн не стоит: покупатель сравнит с соседними объявлениями.</li>' +
@@ -356,13 +396,20 @@ function renderGrid() {
 
 function init(d) {
   DATA = d;
-  document.getElementById('hdr').innerHTML = headerHtml('Конкурентный анализ · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
+  document.getElementById('hdr').innerHTML = headerHtml('Рыночная аналитика · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
   var eb = document.getElementById('exportBtn'); if (eb) eb.onclick = function () { exportCalls(DATA.houses) };
   document.getElementById('author').innerHTML = authorHtml();
+  renderHero(); renderFormula();
   document.getElementById('promoCalls').hidden = PUBLIC;
   var sel = document.getElementById('sort'); sel.value = STATE.sort;
   sel.onchange = function (e) { STATE.sort = e.target.value; keepState(); renderGrid() };
   renderFacts(); renderChart(); renderFilters(); renderGrid(); renderMap(); renderAlts(); bindRivals(); renderVerdict();
+  markReveal('.formula, .alts__head, .rivals .obj, .section-head, .summary > *, #map, .promo, .alt, .grid#grid .obj, .verdict__top, .anchor, .verdict__rec, #author');
+  document.getElementById('formula').classList.add('reveal');
+  initMotion();
+  countUp(document.querySelector('.hero2__result b'), 1100);
+  document.querySelectorAll('.fact b').forEach(function (b) { countUp(b, 1000) });
+  document.querySelectorAll('#chart .pt circle').forEach(function (c, i) { c.style.animationDelay = (0.3 + i * 0.02) + 's' });
   var np = DATA.houses.length - withPhotos().length;
   document.getElementById('nophotoLink').innerHTML = '<h2>Ещё ' + np + ' ' + plural(np, 'дом', 'дома', 'домов') + ' без фото →</h2><p>Старые объявления ЦИАН, снимки удалены вместе с ними. Цены, сроки и ссылки собраны в таблицу на отдельной странице' + (PUBLIC ? '.' : ', их тоже стоит прозвонить.') + '</p>';
   if (location.hash) { var c = document.getElementById(location.hash.slice(1)); if (c) { c.scrollIntoView({ block: 'start' }); c.classList.add('flash'); setTimeout(function () { c.classList.remove('flash') }, 1600) } }

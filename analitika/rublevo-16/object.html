@@ -86,7 +86,12 @@
 <script>
 var DATA = window.DATA || null, H = null, GI = 0;
 function qid() { var m = location.search.match(/[?&]id=([\w-]+)/); return m ? m[1] : '' }
-function isLive(l) { return (new Date(DATA.built) - new Date(l.date)) / 864e5 <= 30 }
+function isLive(l) { return l.live ? l.live === 'on' : (new Date(DATA.built) - new Date(l.date)) / 864e5 <= 30 }
+function liveTag(l) {
+  if (l.live === 'on') return '<span class="tag tag--on">в продаже · сверено с ЦИАН</span>';
+  if (l.live === 'off') return '<span class="tag tag--off">снято' + (l.live_edit ? ' ' + dmy(l.live_edit) : '') + '</span>';
+  return isLive(l) ? '<span class="tag tag--on">актуально</span>' : '<span class="tag tag--off">снято</span>';
+}
 function backHref() { return (H && !H.photos.length ? 'nophoto.html' : 'index.html') + (H ? '#' + H.id : '') }
 
 function priceRows(h) {
@@ -133,7 +138,7 @@ function listingHtml(l) {
   var live = isLive(l);
   return '<div class="listing">' +
     '<div class="listing__top"><span class="listing__site">' + esc(l.site) + '</span><span class="listing__price">' + mln(l.price) + '</span><span class="listing__date">' + dmy(l.date) + '</span>' +
-    (live ? '<span class="tag tag--on">актуально</span>' : '<span class="tag tag--off">снято</span>') + authorTag(l.author) +
+    liveTag(l) + (l.live_price && Math.abs(l.live_price - l.price) > 0.3e6 ? '<span class="listing__date">последняя цена на ЦИАН: <b>' + mln(l.live_price) + '</b></span>' : '') + authorTag(l.author) +
     '<span class="listing__date">' + (l.geo ? 'точка дома передана' : 'только посёлок, без точки') + '</span></div>' +
     (l.title ? '<div class="listing__title">' + esc(l.title) + '</div>' : '') +
     '<div class="listing__meta"><span>' + esc(l.agent && l.agent !== 'Циан' && l.agent !== 'недоступно' ? l.agent : 'имя скрыто') + '</span>' +
@@ -187,6 +192,7 @@ function render() {
     '<div class="pager">' + navLink(prev, -1) + navLink(next, 1) + '</div>' + '<div style="padding-bottom:48px">' + authorHtml() + '</div>';
 
   bindCopy(document.getElementById('app'));
+  markReveal('#app .card, .map-wide, .pager, .author'); initMotion();
   if (h.geo) {
     var om = makeMap(document.getElementById('omap'), h.geo, 17);
     if (om) {
@@ -218,7 +224,7 @@ function render() {
 function init(d) {
   DATA = d;
   H = DATA.houses.filter(function (x) { return x.id === qid() })[0];
-  document.getElementById('hdr').innerHTML = headerHtml('Конкурентный анализ · КП «Резиденция Рублёво»', headerRight('<a class="pill-btn pill-btn--dark" href="index.html">Все дома</a>'));
+  document.getElementById('hdr').innerHTML = headerHtml('Рыночная аналитика · КП «Резиденция Рублёво»', headerRight('<a class="pill-btn pill-btn--dark" href="index.html">Все дома</a>'));
   if (!H) { document.getElementById('app').innerHTML = '<p class="notfound">Дом не найден. <a href="index.html" style="color:var(--brand)">Вернуться к списку</a></p>'; return }
   render();
 }

@@ -187,3 +187,30 @@ function headerRight(workBtnHtml) { return PUBLIC ? '<a class="pill-btn pill-btn
 function months(days) { var m = days / 30.4; return m < 1 ? Math.max(1, Math.round(days / 7)) + ' нед.' : (m < 10 ? m.toFixed(1).replace('.0', '').replace('.', ',') : Math.round(m)) + ' мес.' }
 var MONTHS_RU = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
 function monthYear(iso) { var p = iso.split('-'); return MONTHS_RU[+p[1] - 1] + ' ' + p[0] }
+
+/* ===== Движение: появление при прокрутке и счётчики. Без анимаций, если человек их отключил ===== */
+var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function initMotion(selector) {
+  if (REDUCED || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('motion');
+  var els = document.querySelectorAll(selector || '.reveal');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  els.forEach(function (el) { io.observe(el) });
+  // страховка: всё, что не показалось за 2,5 с (печать, превью), показываем
+  setTimeout(function () { els.forEach(function (el) { el.classList.add('in') }) }, 2500);
+}
+function markReveal(selector) { document.querySelectorAll(selector).forEach(function (el) { el.classList.add('reveal') }) }
+/* Счётчик: анимирует первое число в тексте элемента от 0 до значения, формат сохраняется */
+function countUp(el, ms) {
+  if (REDUCED || !el) return;
+  var final = el.textContent, m = final.match(/\d+(?:[\s\u00a0]\d{3})*/); if (!m) return;
+  var target = parseInt(m[0].replace(/\D/g, ''), 10), t0 = null; if (!target) return;
+  var step = function (t) {
+    if (!t0) t0 = t; var p = Math.min(1, (t - t0) / (ms || 900)), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = final.replace(m[0], rub(Math.round(target * e)));
+    if (p < 1) requestAnimationFrame(step); else el.textContent = final;
+  };
+  requestAnimationFrame(step);
+}

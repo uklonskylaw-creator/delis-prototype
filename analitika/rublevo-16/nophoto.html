@@ -50,7 +50,7 @@ td b{font-weight:700}
 <script src="common.js"></script>
 <script>
 function init(D) {
-  document.getElementById('hdr').innerHTML = headerHtml('Конкурентный анализ · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
+  document.getElementById('hdr').innerHTML = headerHtml('Рыночная аналитика · КП «Резиденция Рублёво»', headerRight('<button class="pill-btn pill-btn--dark" type="button" id="exportBtn">Скопировать итоги прозвона</button>'));
   var eb = document.getElementById('exportBtn'); if (eb) eb.onclick = function () { exportCalls(D.houses) };
   if (PUBLIC) document.querySelectorAll('th')[6].hidden = true;
   var list = D.houses.filter(function (h) { return !h.photos.length });
