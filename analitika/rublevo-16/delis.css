@@ -283,3 +283,24 @@ h1,h2,h3,p{margin:0}
 .pros li::before{content:"";width:18px;height:18px;border-radius:50%;background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;flex:none}
 .hero2__mid{font:15px var(--f-text);opacity:1!important;margin-top:4px}
 .hero2__mid strong{font:700 20px var(--f-ui);margin-left:4px}
+
+/* ===== Телефон ===== */
+@media (max-width:600px){
+  .hide-sm{display:none}
+  .header__inner{gap:10px;padding-block:10px}
+  .header__logo img{width:36px;height:36px}
+  .header__logo span{font-size:17px}
+  .header .pill-btn{height:36px;padding:0 12px;font-size:12.5px;margin-left:auto}
+  .crumbs nav{font-size:13px}
+  .hero2__text,.hero2__result,.formula{padding:20px}
+  .term b{font-size:20px}
+}
+@media (max-width:700px){
+  /* фильтры одной строкой с прокруткой вбок и без прилипания: на телефоне они съедали четверть экрана */
+  .toolbar{position:static!important;flex-wrap:wrap;padding-block:4px 12px}
+  .toolbar .seg{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .toolbar .seg::-webkit-scrollbar{display:none}
+  .toolbar .seg button{flex:none}
+  .toolbar .spacer{display:none}
+  .toolbar select{flex:1;min-width:0}
+}

@@ -182,7 +182,7 @@ function authorHtml() {
     '<b>' + AUTHOR_NAME + '</b><span class="author__role">«Делись» · партнёрские продажи недвижимости</span></div>' +
     '<div class="author__contact"><a class="btn btn--brand" href="' + AUTHOR_TEL + '">' + AUTHOR_PHONE + '</a><span>Telegram, MAX</span></div></div>';
 }
-function headerRight(workBtnHtml) { return PUBLIC ? '<a class="pill-btn pill-btn--dark" href="' + AUTHOR_TEL + '">Связаться: ' + AUTHOR_PHONE + '</a>' : workBtnHtml }
+function headerRight(workBtnHtml) { return PUBLIC ? '<a class="pill-btn pill-btn--dark" href="' + AUTHOR_TEL + '"><span class="hide-sm">Связаться: </span>' + AUTHOR_PHONE + '</a>' : workBtnHtml }
 
 function months(days) { var m = days / 30.4; return m < 1 ? Math.max(1, Math.round(days / 7)) + ' нед.' : (m < 10 ? m.toFixed(1).replace('.0', '').replace('.', ',') : Math.round(m)) + ' мес.' }
 var MONTHS_RU = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
