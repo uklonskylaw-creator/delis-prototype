@@ -387,11 +387,44 @@ function initVideos() {
 }
 
 function initRegTabs() {
-  const typeSelect = document.getElementById('home-type');
-  if (typeSelect) typeSelect.addEventListener('change', () => {
-    _homeType = typeSelect.value;
-    drawCatalog(_catalogItems);
-  });
+  const trigger = document.getElementById('home-type-trigger');
+  const menu = document.getElementById('home-type-menu');
+  if (trigger && menu) {
+    const options = [...menu.querySelectorAll('[data-property-type]')];
+    const close = (restoreFocus = false) => {
+      menu.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) trigger.focus();
+    };
+    const open = () => {
+      menu.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      (options.find(o => o.dataset.propertyType === _homeType) || options[0]).focus();
+    };
+    trigger.addEventListener('click', () => menu.hidden ? open() : close());
+    trigger.addEventListener('keydown', e => {
+      if (['ArrowDown', 'ArrowUp'].includes(e.key)) { e.preventDefault(); open(); }
+    });
+    options.forEach(option => option.addEventListener('click', () => {
+      _homeType = option.dataset.propertyType;
+      trigger.querySelector('.property-picker__label').textContent = option.querySelector('span').textContent;
+      trigger.querySelector('.property-picker__icon').innerHTML = option.querySelector('svg').outerHTML;
+      options.forEach(o => o.setAttribute('aria-selected', String(o === option)));
+      drawCatalog(_catalogItems);
+      close(true);
+    }));
+    menu.addEventListener('keydown', e => {
+      const index = options.indexOf(document.activeElement);
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(true); }
+      else if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(e.key)) {
+        e.preventDefault();
+        const next = e.key === 'Home' ? 0 : e.key === 'End' ? options.length - 1 : (index + (e.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
+        options[next].focus();
+      }
+    });
+    document.addEventListener('click', e => { if (!trigger.parentElement.contains(e.target)) close(); });
+    trigger.parentElement.addEventListener('focusout', e => { if (!trigger.parentElement.contains(e.relatedTarget)) close(); });
+  }
   const tabs = document.querySelectorAll('[data-reg-tab]');
   if (!tabs.length) return;
   // подсветка всегда совпадает с тем, что показано

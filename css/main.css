@@ -3814,3 +3814,23 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .catalog-type-select:focus-within {outline:2px solid #8752df;outline-offset:2px;}
 .form-banner--photo .form-banner__bg {object-fit:cover;object-position:center;image-rendering:auto;}
 @media(max-width:700px){.catalog-type-select {width:100%;}.catalog-type-select select {max-width:none;}.form-banner--photo .form-banner__bg {object-position:72% top;}}
+
+/* Custom property menu, matching the site's purple controls. */
+.property-picker {position:relative;min-width:190px;}
+.property-picker__trigger {display:flex;align-items:center;gap:10px;min-height:46px;width:100%;padding:10px 17px;border:1px solid #ddd;border-radius:28px;background:white;color:#282828;font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;}
+.property-picker__icon {display:flex;color:#8b4fe8;}
+.property-picker__label {text-align:left;flex:1;}
+.property-picker__chevron {flex:none;transition:transform .2s;color:#92879f;}
+.property-picker__trigger:hover,.property-picker__trigger[aria-expanded="true"] {border-color:#a779e6;background:#faf7ff;}
+.property-picker__trigger[aria-expanded="true"] .property-picker__chevron {transform:rotate(180deg);}
+.property-picker__menu {position:absolute;top:calc(100% + 10px);left:0;z-index:30;width:max-content;min-width:100%;max-width:calc(100vw - 48px);padding:7px;border:1px solid #e9e1f2;border-radius:18px;background:white;box-shadow:0 14px 36px #4c28701a;}
+.property-picker__menu[hidden] {display:none;}
+.property-picker__option {display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;border:0;border-radius:11px;background:white;text-align:left;color:#655b70;font:inherit;font-size:14px;cursor:pointer;transition:background .15s;}
+.property-picker__option>svg {flex:none;color:#9a65e3;}
+.property-picker__option>span:first-of-type {flex:1;}
+.property-picker__option:hover,.property-picker__option:focus-visible {background:#f6f1fd;outline:none;}
+.property-picker__option[aria-selected="true"] {background:#efe7fc;color:#7b3fd2;}
+.property-picker__check {color:#8a4de0;visibility:hidden;margin-left:12px;}
+.property-picker__option[aria-selected="true"] .property-picker__check {visibility:visible;}
+.property-picker__trigger:focus-visible {outline:2px solid #8b4fe8;outline-offset:3px;}
+@media(max-width:700px){.property-picker {width:100%;}.property-picker__menu {width:100%;max-width:none;}.property-picker__option {font-size:13px;padding:13px 10px;}}
