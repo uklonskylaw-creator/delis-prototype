@@ -1,3 +1,4 @@
+function brokerShortName(name) { return String(name || '').trim().split(/\s+/).slice(0, 2).join(' '); }
 /* СОЛД – Делись — main.js */
 
 
@@ -613,7 +614,7 @@ function objListRow(o) {
         ${b.logo ? `<img src="${b.logo}" alt="" class="broker-ava__logo">` : ''}
       </div>
       <div class="cat-row__broker-info">
-        <div class="cat-row__broker-name">${b.name || ''}</div>
+        <div class="cat-row__broker-name">${brokerShortName(b.name)}</div>
         <div class="cat-row__broker-agency">${b.agency || ''}</div>
         <a class="cat-row__broker-phone" href="tel:${String(b.phone || '').replace(/[^+0-9]/g, '')}">${b.phone || ''}</a>
       </div>
@@ -855,7 +856,7 @@ function objCard(o) {
             ${b.logo ? `<img src="${b.logo}" alt="" class="broker-ava__logo">` : ''}
           </div>
           <div class="obj-card__agent-info">
-            <span class="obj-card__agent-name">${b.name || ''}</span>
+            <span class="obj-card__agent-name">${brokerShortName(b.name)}</span>
             <span class="obj-card__agent-agency">${b.agency || ''}</span>
           </div>
         </div>

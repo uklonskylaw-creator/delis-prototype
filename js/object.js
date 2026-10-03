@@ -1,5 +1,6 @@
 /* Делись — подстановка данных объекта по ?id= (object.html и /pages/object-unreg/) */
 (function () {
+  const brokerShortName = name => String(name || "").trim().split(/\s+/).slice(0, 2).join(" ");
   const FIELD = {
     id:        o => 'ID' + o.id,
     title:     o => o.title,
@@ -92,7 +93,7 @@
         </div>
         <div class="obj-broker__info">
           <div class="obj-broker__role">Брокер объекта</div>
-          <div class="obj-broker__name">${b.name || ''}</div>
+          <div class="obj-broker__name">${brokerShortName(b.name)}</div>
           <div class="obj-broker__agency">${b.agency || ''}</div>
           <a href="tel:${(b.phone || '').replace(/[^+\d]/g, '')}" class="obj-broker__phone">${b.phone || ''}</a>
         </div>
