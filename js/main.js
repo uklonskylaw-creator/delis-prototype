@@ -144,7 +144,7 @@ async function renderCatalog() {
     console.warn('Failed to load objects.json', e);
   }
 }
-let _regStatus = 'auction';   /* вкладка каталога: all | auction | direct | sold */
+let _regStatus = 'direct';   /* вкладка каталога: all | auction | direct | sold */
 let _city = (() => { try { return localStorage.getItem('delis_city') || ''; } catch (e) { return ''; } })();
 
 /* Формат объекта: аукцион или прямая продажа */
@@ -337,8 +337,8 @@ function initSlider() {
 function initVideos() {
   const grid = document.getElementById('video-grid');
   if (!grid || !window.__VIDEOS) return;
-  function drawVideos() {
-    grid.innerHTML = window.__VIDEOS.map(v => `
+  function drawVideos(list) {
+    grid.innerHTML = list.map(v => `
     <li class="video-card">
       <a href="${v.url}" target="_blank" rel="noopener" class="video-card__media">
         <img src="${v.cover}" alt="">
@@ -347,19 +347,21 @@ function initVideos() {
       <h3 class="video-card__title"><a href="${v.url}" target="_blank" rel="noopener">${v.title}</a></h3>
     </li>`).join('');
   }
-  drawVideos();
 
-  // вкладки: наполнен курс Санкина, остальные разделы пока пустые
+  // вкладки: роликов в разделах пока нет — у каждой своя пустая заглушка
   const tabs = document.querySelectorAll('[data-vtab]');
+  function drawTab(key) {
+    const list = (window.__VIDEOS || []).filter(v => v.tab === key);
+    if (list.length) drawVideos(list);
+    else grid.innerHTML = '<li class="video__empty">В этом разделе пока нет роликов.</li>';
+  }
   tabs.forEach(btn => btn.addEventListener('click', () => {
     tabs.forEach(b => b.classList.toggle('tabs__btn--active', b === btn));
-    if (btn.dataset.vtab === 'sankin') {
-      drawVideos();
-    } else {
-      grid.innerHTML = '<li class="video__empty">В этом разделе пока нет роликов.</li>';
-    }
+    drawTab(btn.dataset.vtab);
     refresh();
   }));
+  const active = document.querySelector('[data-vtab].tabs__btn--active');
+  if (active) drawTab(active.dataset.vtab);
 
   const wrap = grid.closest('.video__slider');
   if (!wrap) return;
