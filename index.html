@@ -260,66 +260,47 @@
     <div class="news__row">
       <div class="news__main">
         <div class="news__head">
-          <div class="tabs">
-            <button class="tabs__btn tabs__btn--active" type="button">Все видео</button>
-            <button class="tabs__btn" type="button">Загородные дома</button>
-            <button class="tabs__btn" type="button">Квартиры</button>
-            <button class="tabs__btn" type="button">Брокер-туры</button>
+          <div class="tabs" data-pv-tabs>
+            <button class="tabs__btn tabs__btn--active" type="button" data-pv-tab="all">Все видео</button>
+            <button class="tabs__btn" type="button" data-pv-tab="house">Загородные дома</button>
+            <button class="tabs__btn" type="button" data-pv-tab="flat">Квартиры</button>
           </div>
         </div>
 
-        <article class="news-featured pv-featured">
-          <a href="#" class="pv-cover pv-cover--lg" data-pv-demo>
-            <img src="images/pv/living.jpg" alt="Гостиная загородного дома" class="news-featured__img">
+        <article class="news-featured pv-featured" data-pv-cat="house">
+          <a href="https://rutube.ru/video/f80f3781bf4f9ae4492d794edb8e2a07/" target="_blank" rel="noopener" class="pv-cover pv-cover--lg" data-pv-embed="https://rutube.ru/play/embed/f80f3781bf4f9ae4492d794edb8e2a07">
+            <img src="images/pv/rt-f80f.jpg" alt="Обзор современного дома 2500 м²" class="news-featured__img">
             <span class="pv-play"><img src="images/icon-play.svg" alt="" width="56" height="56"></span>
-            <span class="pv-dur">4:12</span>
+            <span class="pv-dur">68 мин</span>
           </a>
           <div class="news-featured__body">
             <div class="news-featured__meta">
-              <span>Уклонский и Партнёры</span>
+              <span>Дизайн интерьера</span>
               <img src="images/dot-separator.svg" alt="" width="4" height="4">
-              <span>Новорижское шоссе</span>
+              <span>Rutube</span>
             </div>
-            <h3 class="news-featured__title">Резиденция «Рублёво», дом 16:<br>прогулка по дому</h3>
-            <p class="news-featured__lead">Таунхаус-дуплекс на первом километре Новой Риги: гостиная с камином, кухня-столовая, четыре спальни, мебель FENDI CASA. Обзор для партнёров сети перед брокер-туром: что показывать покупателю и на чём делать акцент.</p>
+            <h3 class="news-featured__title">Обзор современного дома&nbsp;2500&nbsp;м²</h3>
+            <p class="news-featured__lead">Самый масштабный дом за 10 лет канала: парящий камин, подвесная лестница, кухня Modulnova, русская печь, спа с бассейном и окна, которые раздвигаются в проём 5,6 на 4 метра.</p>
           </div>
         </article>
 
         <ul class="news-list">
-          <li class="news-card">
-            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/fireplace.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
-            <div class="news-card__meta"><span>2:40</span></div>
+          <li class="news-card" data-pv-cat="house">
+            <a href="https://www.youtube.com/watch?v=DqxGGMxICkM&amp;t=555s" target="_blank" rel="noopener" class="pv-cover pv-cover--sm" data-pv-embed="https://www.youtube.com/embed/DqxGGMxICkM?start=555&amp;autoplay=1"><img src="images/pv/yt-DqxGGMxICkM.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
+            <div class="news-card__meta"><span>YouTube</span></div>
             <img src="images/news-divider.svg" alt="" class="news-card__divider">
             <div class="news-card__body">
-              <h4 class="news-card__title">Камин и гостиная вечером</h4>
-              <p class="news-card__text">Как снять загородный дом в тёплом свете, чтобы покупатель захотел приехать</p>
+              <h4 class="news-card__title">Самый умный дом на Новой Риге</h4>
+              <p class="news-card__text">Choice Estate, агентство элитной недвижимости</p>
             </div>
           </li>
-          <li class="news-card">
-            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/kitchen.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
-            <div class="news-card__meta"><span>1:55</span></div>
+          <li class="news-card" data-pv-cat="flat">
+            <a href="https://www.youtube.com/watch?v=A-9TI0j4hak&amp;t=8s" target="_blank" rel="noopener" class="pv-cover pv-cover--sm" data-pv-embed="https://www.youtube.com/embed/A-9TI0j4hak?start=8&amp;autoplay=1"><img src="images/pv/yt-A-9TI0j4hak.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
+            <div class="news-card__meta"><span>YouTube</span></div>
             <img src="images/news-divider.svg" alt="" class="news-card__divider">
             <div class="news-card__body">
-              <h4 class="news-card__title">Кухня-столовая: детали, которые продают</h4>
-              <p class="news-card__text">Техника, материалы и сценарии жизни в одном коротком ролике</p>
-            </div>
-          </li>
-          <li class="news-card">
-            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/spa.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
-            <div class="news-card__meta"><span>2:05</span></div>
-            <img src="images/news-divider.svg" alt="" class="news-card__divider">
-            <div class="news-card__body">
-              <h4 class="news-card__title">Мастер-спальня</h4>
-              <p class="news-card__text">Спокойный ролик о приватной части дома: свет, материалы, вид из окна</p>
-            </div>
-          </li>
-          <li class="news-card">
-            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/stairs.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
-            <div class="news-card__meta"><span>0:45</span></div>
-            <img src="images/news-divider.svg" alt="" class="news-card__divider">
-            <div class="news-card__body">
-              <h4 class="news-card__title">Лестница и второй свет: вертикальный ролик</h4>
-              <p class="news-card__text">Короткое видео для сторис и рилс, которое партнёры пересылают клиентам</p>
+              <h4 class="news-card__title">Квартира со множеством сценариев</h4>
+              <p class="news-card__text">The Cover Project: первый жилой интерьер Павла Платонова</p>
             </div>
           </li>
         </ul>
@@ -556,6 +537,14 @@
       <p class="mp-modal__text">Мы свяжемся с вами в ближайшее рабочее время.</p>
       <button type="button" class="btn btn--dark" data-mp-close>Хорошо</button>
     </div>
+  </div>
+</div>
+
+<!-- ========== ПЛЕЕР ВИДЕО ПАРТНЁРОВ (окно) ========== -->
+<div class="mp-modal pv-player" id="pv-player" aria-hidden="true">
+  <div class="pv-player__panel" role="dialog" aria-modal="true" aria-label="Видео">
+    <button type="button" class="mp-modal__close pv-player__close" data-pv-close aria-label="Закрыть">×</button>
+    <div class="pv-player__frame"></div>
   </div>
 </div>
 

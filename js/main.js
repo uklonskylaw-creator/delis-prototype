@@ -854,13 +854,42 @@ function initMarketingPlan() {
   // прототип: бэкенда нет, заявка никуда не уходит — показываем подтверждение
   form.addEventListener('submit', (e) => { e.preventDefault(); form.reset(); wrap.hidden = true; done.hidden = false; });
 
-  // видео партнёров — пока демо без роликов
-  document.querySelectorAll('[data-pv-demo]').forEach(a => a.addEventListener('click', (e) => e.preventDefault()));
+}
+
+/* Видео партнёров: вкладки по типу объекта и плеер во встроенном окне (ссылка остаётся запасным путём) */
+function initPartnerVideos() {
+  const sec = document.getElementById('partner-video');
+  if (!sec) return;
+  const items = sec.querySelectorAll('[data-pv-cat]');
+  sec.querySelectorAll('[data-pv-tab]').forEach(btn => btn.addEventListener('click', () => {
+    sec.querySelectorAll('[data-pv-tab]').forEach(b => b.classList.toggle('tabs__btn--active', b === btn));
+    const t = btn.dataset.pvTab;
+    items.forEach(el => el.classList.toggle('is-hidden', t !== 'all' && el.dataset.pvCat !== t));
+  }));
+
+  const player = document.getElementById('pv-player');
+  if (!player) return;
+  const frame = player.querySelector('.pv-player__frame');
+  const close = () => { player.classList.remove('is-open'); player.setAttribute('aria-hidden', 'true'); frame.innerHTML = ''; };
+  sec.querySelectorAll('[data-pv-embed]').forEach(a => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const ifr = document.createElement('iframe');
+    ifr.src = a.dataset.pvEmbed;
+    ifr.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';
+    ifr.allowFullscreen = true;
+    frame.innerHTML = '';
+    frame.appendChild(ifr);
+    player.classList.add('is-open'); player.setAttribute('aria-hidden', 'false');
+  }));
+  player.querySelectorAll('[data-pv-close]').forEach(b => b.addEventListener('click', close));
+  player.addEventListener('click', (e) => { if (e.target === player) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && player.classList.contains('is-open')) close(); });
 }
 
 // ---------- Init ----------
 document.addEventListener('DOMContentLoaded', () => {
   initMarketingPlan();
+  initPartnerVideos();
   renderCatalog();
   initMarqueeSpeed();
   initHeaderNav();

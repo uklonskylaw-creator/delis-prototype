@@ -3502,7 +3502,8 @@ body { overflow-x: hidden; }
 }
 .pv-featured .news-featured__body { justify-content: center; }
 .pv-featured .news-featured__lead { -webkit-line-clamp: 4; }
-.pv .news-card { grid-template-columns: 90px 36px 1px 1fr; cursor: pointer; }
+.pv .news-card { grid-template-columns: 120px auto 1px 1fr; cursor: pointer; }
+.pv .pv-cover--sm .news-card__img { width: 120px; height: 68px; }
 .pv-side { padding: 0; border: none; background: none; }
 .pv-side__card {
   height: 100%;
@@ -3745,3 +3746,10 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
   .pv .news-card { grid-template-columns: 90px 1fr; gap: 12px; }
   .pv-side__card { padding: 28px 20px; min-height: 360px; }
 }
+
+/* плеер видео партнёров: YouTube / Rutube во встроенном окне */
+.pv-player__panel { position: relative; width: min(1100px, 100%); }
+.pv-player__frame { aspect-ratio: 16 / 9; background: #000; border-radius: 16px; overflow: hidden; }
+.pv-player__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.pv-player__close { top: -44px; right: 0; color: #fff; }
+[data-pv-cat].is-hidden { display: none; }
