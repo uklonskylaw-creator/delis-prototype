@@ -7,6 +7,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MARKER = '<!-- generated clean URL route -->'
+ICON_LINKS = '\n'.join([
+    '<link rel="icon" href="/favicon.ico?v=20261003" sizes="16x16 32x32 48x48">',
+    '<link rel="icon" href="/favicon.svg?v=20261003" type="image/svg+xml" sizes="any">',
+    '<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261003" sizes="180x180">',
+])
+
 
 def route(path):
     return '/' + (path[:-10] if path.endswith('index.html') else path[:-5] + '/')
@@ -25,6 +31,8 @@ for path in sources:
     clean = route(relative)
     directory = posixpath.dirname(relative)
     text = rewrite(path.read_text(), directory)
+    if 'rel="icon"' not in text:
+        text = text.replace('<head>', '<head>\n' + ICON_LINKS, 1)
     # A base keeps existing image, CSS, fetch and script paths working after moving.
     base = '/' + directory + '/' if directory else '/'
     if '<base ' not in text:
