@@ -90,6 +90,7 @@ function initBurger() {
         <a href="${base}catalog/">Объекты</a>
         <a href="${base}agents/">Агентам</a>
         <a href="${base}owners/">Собственникам</a>
+        <a href="${base}auction/">Аукционный метод</a>
         <a href="${base}about/">Как это работает</a>
         <a href="${base}vacancies/">Вакансии</a>
         <a href="${base}contacts/">Контакты</a>
@@ -1000,7 +1001,7 @@ function initMediaPlayer() {
     if (!v && !a.dataset.pvEmbed) return;
     e.preventDefault();
     frame.replaceChildren(); error.hidden = true;
-    title.textContent = v?.title || a.closest('article, li')?.querySelector('h3')?.textContent || 'Видео партнёров';
+    title.textContent = v?.title || a.dataset.videoTitle || a.closest('article, li')?.querySelector('h3')?.textContent || 'Видео партнёров';
     source.href = v?.url || a.href;
     source.textContent = v?.type === 'file' ? 'Открыть видео отдельно ↗' : 'Открыть на сайте источника ↗';
     if (v?.type === 'file') {

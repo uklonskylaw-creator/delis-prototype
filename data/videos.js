@@ -10,6 +10,15 @@ window.__VIDEOS = [
     "type": "file"
   },
   {
+    "title": "Типичные ошибки при продаже элитной недвижимости",
+    "author": "VDT · Недвижимость",
+    "url": "https://www.youtube.com/watch?v=r8N4iTi1uWk",
+    "embed": "https://www.youtube.com/embed/r8N4iTi1uWk?autoplay=1",
+    "tab": "webinars",
+    "cover": "images/video/delis-elite-mistakes.jpg",
+    "duration": "54:56"
+  },
+  {
     "title": "Санкт-Петербург до 2040 года",
     "author": "Анастасия Казаченко",
     "url": "https://www.youtube.com/watch?v=TAa0F5jv8DY&t=289s",

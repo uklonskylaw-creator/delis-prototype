@@ -1,0 +1,109 @@
+/* Sales pages: Figma sales layout, Delis branding and mobile-first content. */
+.sales-page {padding-top:24px;}
+.sales-nav {display:flex;gap:8px;margin:0 0 28px;flex-wrap:wrap;}
+.sales-nav a {display:inline-flex;align-items:center;min-height:44px;border:1px solid #e3dcea;border-radius:100px;padding:10px 20px;font-size:14px;color:#73657f;background:white;}
+.sales-nav a[aria-current] {background:#efe6fc;border-color:#dac3f9;color:#7622d7;}
+.sales-eyebrow {display:block;font-size:13px;line-height:1.4;color:#eee1ff;margin-bottom:18px;}
+.sales-owner-hero {display:grid;grid-template-columns:1.65fr .8fr;align-items:center;gap:48px;padding:clamp(30px,3vw,58px);border-radius:24px;overflow:hidden;background:#7622d7 url('../images/agents-figma/imgFrame1980042169.png') center/cover;color:white;}
+.sales-owner-hero h1 {font-size:clamp(30px,2.65vw,51px);line-height:1.12;margin:0 0 24px;}
+.sales-owner-hero>div>p {color:#f0e6ff;font-size:clamp(15px,1.1vw,21px);max-width:55ch;line-height:1.45;}
+.sales-owner-points {display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sales-owner-points article {padding:20px;border:2px solid #2828280d;border-radius:18px;background:white;color:#282828;min-width:0;}
+.sales-owner-points article:last-child {grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:center;}
+.sales-owner-points h3 {font:600 15px/1.3 Inter,sans-serif;letter-spacing:0;margin:12px 0;}
+.sales-owner-points article:last-child h3 {margin:0;}
+.sales-owner-points article:last-child img {grid-row:1/3;}
+.sales-owner-points article p {font-size:12px;line-height:1.4;}
+.sales-section-heading {margin-bottom:30px;max-width:820px;}
+.sales-section-heading h2 {margin-top:12px;}
+.sales-section-heading>p {max-width:65ch;}
+.sales-video {position:relative;display:block;overflow:hidden;border-radius:18px;aspect-ratio:16/9;background:#efe7fa;}
+.sales-video>img {width:100%;height:100%;object-fit:cover;display:block;}
+.sales-video-play {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.72);border-radius:50%;background:#542596b0;transition:background .2s;}
+.sales-video:hover .sales-video-play {background:#542596;}
+.sales-video-duration {position:absolute;right:12px;bottom:12px;background:#282828c9;border-radius:6px;padding:5px 9px;color:white;font-size:13px;}
+.sales-page .sales-video-caption {font-size:12px;line-height:1.4;margin-top:12px;color:#897594;}
+.sales-formats {margin:72px 0;}
+.sales-format-grid {display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.sales-format-card {border:1px solid #e5deec;border-radius:24px;background:white;padding:36px;display:flex;flex-direction:column;align-items:flex-start;}
+.sales-format-card--auction {background:#f0e8fb;border-color:#e1cff9;}
+.sales-format-label {display:inline-flex;align-items:center;min-height:30px;color:#7622d7;background:#ece2fa;border-radius:100px;padding:6px 12px;font-size:12px;line-height:1.3;margin-bottom:18px;}
+.sales-format-card h3 {font-size:clamp(20px,1.4vw,27px);margin-bottom:20px;}
+.sales-format-card p {flex:1;max-width:55ch;}
+.sales-text-link {display:inline-flex;align-items:center;min-height:44px;color:#7622d7;font-size:14px;line-height:1.4;margin-top:18px;}
+.sales-process-region {margin:0 calc(-1 * clamp(24px,4.9vw,94px));padding:72px clamp(24px,4.9vw,94px) 0;background:linear-gradient(#f6f6f6,#fafafa);border-top:2px solid #28282810;border-radius:50px 50px 0 0;}
+.sales-process {display:grid;grid-template-columns:.7fr 1.3fr;align-items:start;gap:32px;padding:32px;border-radius:24px;background:linear-gradient(#21162596,#21162596),url('../images/owners-figma/sales-interior.jpg') center/cover;color:white;}
+.sales-process-copy {padding:8px 0;}
+.sales-process-copy h2 {font-size:clamp(24px,1.88vw,36px);margin-top:0;}
+.sales-process-copy p {color:#f0e6fa;max-width:30ch;}
+.sales-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;list-style:none;}
+.sales-step {position:relative;padding:24px 20px;border-radius:16px;background:white;color:#282828;overflow:hidden;}
+.sales-step--wide {grid-column:1/-1;}
+.sales-step-number {display:block;font-family:Unbounded,sans-serif;font-size:20px;color:#bda1e7;margin-bottom:18px;line-height:1;}
+.sales-step h3 {position:relative;font-family:Inter,sans-serif;font-size:16px;line-height:1.25;letter-spacing:-.015em;margin-bottom:14px;}
+.sales-step p {position:relative;font-size:13px;line-height:1.45;}
+.sales-contact {margin-top:72px;}
+.sales-contact-phone {display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:20px;margin-top:14px;}
+.sales-contact .agent-field select {width:100%;border:2px solid #28282814;background:white;border-radius:16px;min-height:56px;padding:16px 22px;font:inherit;font-size:16px;color:#736e7b;}
+.sales-contact .agent-consent a {text-decoration:underline;text-underline-offset:3px;}
+.sales-contact .sales-form-status {font-size:14px;line-height:1.5;color:white;background:#6c31b1;border-radius:12px;padding:16px;max-width:none;}
+.sales-honeypot {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+.sales-contact button:disabled {opacity:.6;cursor:wait;}
+.auction-hero {display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;background:#f3edf9;border:1px solid #e7ddf0;border-radius:28px;padding:clamp(28px,3vw,58px);overflow:hidden;}
+.auction-hero h1 {font-size:clamp(30px,2.5vw,48px);line-height:1.15;}
+.auction-hero h1 em {display:inline-block;margin-top:10px;}
+.auction-hero p {max-width:52ch;font-size:clamp(15px,1.05vw,20px);}
+.auction-hero-image {width:calc(100% + 58px);max-width:none;height:auto;border-radius:22px;mix-blend-mode:multiply;}
+.auction-hero-tags {display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.auction-hero-tags span {font-size:12px;line-height:1.3;padding:9px 13px;background:white;border:1px solid #e6d9f5;border-radius:100px;color:#795a91;}
+#auction-video {scroll-margin-top:110px;}
+.auction-explainer {margin:72px 0;}
+.auction-flow {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.auction-flow article {padding:32px;background:#efe8f9;border-radius:22px;border:1px solid #e0d4ed;}
+.auction-flow article:nth-child(2) {background:#eaf5ee;border-color:#d6e8dc;}
+.auction-flow article:nth-child(3) {background:#f8f0e5;border-color:#eadfcf;}
+.auction-flow-symbol {display:grid;place-items:center;width:48px;height:48px;background:white;color:#7622d7;border-radius:14px;font:500 16px Unbounded,sans-serif;margin-bottom:24px;}
+.auction-flow h3 {font-size:clamp(17px,1.3vw,24px);margin-bottom:16px;}
+.auction-reserve {display:flex;align-items:center;gap:24px;background:white;border:1px solid #e6d9f2;border-radius:22px;padding:30px;margin-top:24px;}
+.auction-reserve h3 {margin-bottom:10px;font-size:20px;}
+.auction-reserve>div:first-child {flex:none;}
+.auction-comparison {margin:72px 0;}
+.auction-compare-grid {display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.auction-compare-grid article {background:#f7f5f9;border-radius:20px;padding:28px;}
+.auction-compare-grid article:last-child {background:#f0e6fb;}
+.auction-compare-grid h3 {font-size:clamp(18px,1.3vw,25px);margin-bottom:24px;}
+.auction-compare-grid ul {display:grid;gap:14px;padding-left:20px;list-style:disc;color:#736e7b;font-size:15px;line-height:1.5;}
+.auction-comparison .auction-compare-note {font-size:13px;margin-top:24px;max-width:90ch;}
+.auction-timeline {margin:72px 0;}
+.auction-timeline ol {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;list-style:none;}
+.auction-timeline li {padding:26px;background:white;border:1px solid #e6dfee;border-radius:20px;}
+.auction-timeline li>span {display:inline-block;font:500 22px Unbounded,sans-serif;color:#a17bcf;margin-bottom:24px;}
+.auction-timeline h3 {font-size:16px;margin-bottom:16px;}
+.auction-timeline p {font-size:14px;}
+.auction-plan {display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;margin:72px 0;overflow:hidden;}
+.auction-plan-visual {position:relative;aspect-ratio:1.35;}
+.auction-plan-visual img {position:absolute;object-fit:cover;box-shadow:0 10px 25px #38254320;border-radius:8px;}
+.auction-plan-visual img:first-child {width:54%;height:92%;left:4%;top:4%;transform:rotate(-9deg);}
+.auction-plan-visual img:last-child {width:54%;height:92%;right:2%;top:8%;transform:rotate(7deg);}
+.auction-extra-video {display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin:72px 0;}
+.sales-page a:focus-visible,.sales-page button:focus-visible,.sales-page select:focus-visible {outline:3px solid #a578ef;outline-offset:5px;}
+@media(max-width:1200px) and (min-width:701px) {
+ .sales-owner-hero {gap:24px;grid-template-columns:1.3fr 1fr;}.sales-owner-points article {padding:14px;}.sales-process {grid-template-columns:1fr;}.sales-process-copy {display:grid;grid-template-columns:1fr 1fr;column-gap:24px;}.sales-process-copy .sales-eyebrow {grid-column:1/-1;}.auction-timeline ol {grid-template-columns:repeat(2,minmax(0,1fr));}.auction-hero {grid-template-columns:1fr 1fr;gap:24px;padding:28px;}.auction-hero h1 {font-size:30px;}.auction-flow article {padding:24px;}.auction-flow h3 {font-size:18px;}
+}
+@media(max-width:700px) {
+ .sales-nav {gap:6px;margin-bottom:24px;}.sales-nav a {padding:10px 14px;font-size:12px;}
+ .sales-page .cat-crumbs {flex-wrap:wrap;font-size:10px;gap:8px;}
+ .sales-owner-hero {grid-template-columns:1fr;gap:28px;padding:26px 20px;border-radius:20px;}.sales-owner-hero h1 {font-size:26px;margin-bottom:18px;}.sales-owner-hero h1 br {display:none;}.sales-eyebrow {font-size:11px;margin-bottom:14px;}.sales-owner-hero>div>p {font-size:14px;}.sales-owner-hero .agent-actions {flex-wrap:wrap;}.sales-owner-hero .agent-actions .btn {flex:none;width:100%;font-size:14px;}
+ .sales-owner-points {gap:8px;}.sales-owner-points article {padding:14px;border-radius:14px;}.sales-owner-points h3 {font-size:13px;}.sales-owner-points p {font-size:12px;}.sales-owner-points article:last-child {column-gap:12px;}
+ .sales-page .agent-intro h2 {font-size:23px;}.sales-video {border-radius:14px;}.sales-video-play {transform:translate(-50%,-50%) scale(.55);}.sales-page .sales-video-caption {font-size:11px;}
+ .sales-formats {margin:40px 0;}.sales-section-heading {margin-bottom:24px;}.sales-format-grid {grid-template-columns:1fr;gap:14px;}.sales-format-card {padding:24px 20px;border-radius:20px;}.sales-format-card h3 {font-size:21px;}.sales-format-card p {font-size:14px;}
+ .sales-process-region {margin:0 -20px;padding:32px 20px 0;border-radius:28px 28px 0 0;}.sales-process {grid-template-columns:1fr;gap:24px;padding:24px 16px;border-radius:20px;background-position:30% center;}.sales-process-copy h2 {font-size:24px;}.sales-process-copy p {font-size:14px;max-width:none;}.sales-steps {grid-template-columns:1fr;gap:12px;}.sales-step--wide {grid-column:auto;}.sales-step {padding:20px;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;}.sales-step-number {font-size:15px;margin:2px 0;}.sales-step h3 {font-size:16px;margin:0;}.sales-step p {grid-column:2;font-size:14px;}
+ .sales-contact {margin-top:40px;}.sales-contact .agent-field select {font-size:16px;padding:14px 16px;min-height:52px;}.sales-contact-phone {font-size:18px;}.sales-contact .sales-form-status {font-size:13px;}
+ .auction-hero {grid-template-columns:1fr;padding:26px 20px 12px;gap:24px;border-radius:20px;}.auction-hero h1 {font-size:26px;margin-bottom:20px;}.auction-hero p {font-size:14px;}.auction-hero .agent-actions {flex-wrap:wrap;}.auction-hero .agent-actions .btn {width:100%;flex:none;font-size:14px;}.auction-hero-tags {gap:6px;margin-top:20px;}.auction-hero-tags span {font-size:11px;padding:8px 11px;}.auction-hero-image {width:calc(100% + 24px);margin:0 -12px;}
+ .auction-explainer,.auction-comparison,.auction-timeline,.auction-plan,.auction-extra-video {margin:40px 0;}.auction-flow {grid-template-columns:1fr;gap:12px;}.auction-flow article {padding:24px;display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:center;}.auction-flow-symbol {width:44px;height:44px;margin:0;font-size:14px;}.auction-flow h3 {font-size:18px;margin:0;}.auction-flow p {grid-column:2;font-size:14px;}.auction-reserve {padding:24px 20px;gap:16px;align-items:flex-start;}.auction-reserve h3 {font-size:17px;}.auction-reserve p {font-size:14px;}
+ .auction-compare-grid {grid-template-columns:1fr;gap:16px;}.auction-compare-grid article {padding:24px 20px;}.auction-compare-grid h3 {font-size:19px;}.auction-compare-grid ul {font-size:14px;}
+ .auction-timeline ol {grid-template-columns:1fr;gap:12px;}.auction-timeline li {padding:22px;display:grid;grid-template-columns:34px 1fr;gap:12px;}.auction-timeline li>span {font-size:17px;margin:0;}.auction-timeline h3 {font-size:16px;margin:0;}.auction-timeline p {grid-column:2;font-size:14px;}
+ .auction-plan,.auction-extra-video {grid-template-columns:1fr;gap:28px;}.auction-plan h2,.auction-extra-video h2 {font-size:24px;}.auction-plan-visual {width:100%;max-width:400px;justify-self:center;}.sales-text-link {font-size:13px;}
+}
+@media(prefers-reduced-motion:reduce) {.sales-video-play {transition:none;}}
+.sales-page .btn--outline-brand {background:white;border:1px solid #d8c5ef;color:#7622d7;}
