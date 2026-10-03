@@ -12,9 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20261003mobile1">
-<link rel="stylesheet" href="css/base.css?v=20261003mobile1">
-<link rel="stylesheet" href="css/main.css?v=20261003mobile1">
+<link rel="stylesheet" href="css/tokens.css?v=20261003mobile2">
+<link rel="stylesheet" href="css/base.css?v=20261003mobile2">
+<link rel="stylesheet" href="css/main.css?v=20261003mobile2">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -59,14 +59,15 @@
         <img src="images/hero-bg.svg" alt="" class="hero__offer-bg">
         <div class="hero__offer-content">
           <h1 class="hero__title">
-            Главный инструмент<br>
-            партнёрских продаж
+            <span class="hero__desktop-title">Главный инструмент<br>партнёрских продаж</span><span class="hero__mobile-title">Партнёрские<br>продажи</span>
           </h1>
-          <p class="hero__text">
+          <p class="hero__text hero__desktop-text">
             Делись — информационная площадка для профессионалов рынка недвижимости.
             Ваш объект будут предлагать сотни агентов, замотивированные получить встречную
             комиссию за приведённого покупателя.
           </p>
+          <p class="hero__mobile-text">Сотни агентов предлагают ваш объект покупателям. Вы продаёте — партнёры получают встречную комиссию.</p>
+          <a class="hero__mobile-cta" href="/catalog/">Найти объект <span aria-hidden="true">↗</span></a>
           <ul class="hero__pins">
             <li class="hero__pin">Обучение и развитие</li>
             <li class="hero__pin">Сильное агентское комьюнити</li>
@@ -226,6 +227,10 @@
     <div class="catalog__panel">
       <div class="catalog__head">
         <h2 class="section-title">Объекты сети</h2>
+        <div class="catalog-mobile-filters">
+          <label for="mobile-sale-type">Тип продажи<select id="mobile-sale-type"><option value="direct">Прямая продажа</option><option value="auction">Аукцион</option><option value="private">Закрытая продажа</option></select></label>
+          <label for="mobile-property-type">Тип объекта<select id="mobile-property-type"><option value="all">Все объекты</option><option value="Квартира">Квартиры</option><option value="Дом">Загородная недвижимость</option><option value="Коммерция">Коммерческая недвижимость</option></select></label>
+        </div>
         <div class="catalog__head-actions">
 <div class="property-picker"><button type="button" class="property-picker__trigger" id="home-type-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="home-type-menu"><span class="property-picker__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="property-picker__label">Все объекты</span><svg class="property-picker__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="property-picker__menu" id="home-type-menu" role="listbox" aria-label="Тип объекта" hidden><button type="button" role="option" aria-selected="true" class="property-picker__option" data-property-type="all"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Все объекты</span><span class="property-picker__check" aria-hidden="true">✓</span></button><button type="button" role="option" aria-selected="false" class="property-picker__option" data-property-type="Квартира"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h1m4 0h1M9 11h1m4 0h1M10 21v-6h4v6"/></svg><span>Квартиры</span><span class="property-picker__check" aria-hidden="true">✓</span></button><button type="button" role="option" aria-selected="false" class="property-picker__option" data-property-type="Дом"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9v12h14V9M10 21v-7h4v7"/></svg><span>Загородная недвижимость</span><span class="property-picker__check" aria-hidden="true">✓</span></button><button type="button" role="option" aria-selected="false" class="property-picker__option" data-property-type="Коммерция"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V4h8v4M3 13h18M10 13v3h4v-3"/></svg><span>Коммерческая недвижимость</span><span class="property-picker__check" aria-hidden="true">✓</span></button></div></div>
           <button class="btn btn--dark btn--sm catalog__filters-btn" type="button" onclick="openFilters()">
@@ -243,8 +248,8 @@
       </div>
 
       <p class="catalog-private-note" hidden>Закрытая продажа — объект размещён только на сайте «Делись» и не рекламируется на других площадках.</p>
-      <p class="catalog__swipe-hint">Листайте объекты <span aria-hidden="true">↔</span></p>
       <div class="catalog__slider">
+        <p class="catalog__swipe-hint"><span>Объекты</span><span class="catalog__position" aria-live="polite"></span></p>
         <button class="catalog__arrow catalog__arrow--prev" type="button" aria-label="Назад" data-slide="-1">
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 12L4 7l5-5"/></svg>
         </button>
@@ -422,13 +427,13 @@
 <section class="form-section">
   <div class="form-section__container">
     <div class="form-banner form-banner--photo" id="form">
-      <img src="images/form-banner-team.png" alt="Михаил Уклонский и Полина" class="form-banner__bg">
+      <div class="form-banner__visual"><img src="images/form-banner-team.png" alt="Михаил Уклонский и Полина" class="form-banner__bg"></div>
       <div class="form-banner__left">
         <h2 class="form-banner__title">Продадим вашу недвижимость<br>за 14 дней</h2>
         <form class="form-banner__form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.')">
           <div class="form-banner__fields">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="tel" placeholder="+7 (___) ___ - __ - __" required>
+            <label class="form-banner__field">Ваше имя<input type="text" autocomplete="name" placeholder="Как к вам обращаться" required></label>
+            <label class="form-banner__field">Телефон<input type="tel" autocomplete="tel" placeholder="+7 (___) ___ - __ - __" required></label>
             <button type="submit" class="btn btn--dark">Оставить заявку</button>
           </div>
         </form>
@@ -627,9 +632,9 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/videos.js?v=20261003mobile1"></script>
-<script src="data/objects.js?v=20261003mobile1"></script>
-<script src="js/favorites.js?v=20261003mobile1"></script>
-<script src="js/main.js?v=20261003mobile1"></script>
+<script src="data/videos.js?v=20261003mobile2"></script>
+<script src="data/objects.js?v=20261003mobile2"></script>
+<script src="js/favorites.js?v=20261003mobile2"></script>
+<script src="js/main.js?v=20261003mobile2"></script>
 </body>
 </html>

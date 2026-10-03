@@ -175,6 +175,7 @@ function drawCatalog(items) {
   const list = byStatus(items);
   if (!list.length) {
     grid.innerHTML = '<p class="catalog__empty">В этом разделе пока нет объектов.</p>';
+    updateArrows();
     return;
   }
   list.slice(0, 12).forEach(o => grid.appendChild(objCard(o)));
@@ -313,6 +314,12 @@ function updateArrows() {
   wrap.querySelector('.catalog__arrow--prev').disabled = grid.scrollLeft <= 2;
   wrap.querySelector('.catalog__arrow--next').disabled = grid.scrollLeft >= max;
   wrap.classList.toggle('is-static', max <= 0);
+  const counter = wrap.querySelector('.catalog__position');
+  const cards = grid.querySelectorAll('.obj-card');
+  if (counter) {
+    const step = cards.length ? cards[0].getBoundingClientRect().width + (parseFloat(getComputedStyle(grid).gap) || 0) : 1;
+    counter.textContent = cards.length ? `${Math.min(cards.length, Math.round(grid.scrollLeft / step) + 1)} / ${cards.length}` : '0 объектов';
+  }
 }
 
 function initSlider() {
@@ -387,6 +394,10 @@ function initVideos() {
 }
 
 function initRegTabs() {
+  const saleSelect = document.getElementById('mobile-sale-type');
+  const propertySelect = document.getElementById('mobile-property-type');
+  saleSelect?.addEventListener('change', () => document.querySelector(`[data-reg-tab="${saleSelect.value}"]`)?.click());
+  propertySelect?.addEventListener('change', () => document.querySelector(`[data-property-type="${propertySelect.value}"]`)?.click());
   const trigger = document.getElementById('home-type-trigger');
   const menu = document.getElementById('home-type-menu');
   if (trigger && menu) {
@@ -407,6 +418,7 @@ function initRegTabs() {
     });
     options.forEach(option => option.addEventListener('click', () => {
       _homeType = option.dataset.propertyType;
+      if (propertySelect) propertySelect.value = _homeType;
       trigger.querySelector('.property-picker__label').textContent = option.querySelector('span').textContent;
       trigger.querySelector('.property-picker__icon').innerHTML = option.querySelector('svg').outerHTML;
       options.forEach(o => o.setAttribute('aria-selected', String(o === option)));
@@ -431,6 +443,7 @@ function initRegTabs() {
   tabs.forEach(b => b.classList.toggle('is-active', b.dataset.regTab === _regStatus));
   tabs.forEach(btn => btn.addEventListener('click', () => {
     _regStatus = btn.dataset.regTab;
+    if (saleSelect) saleSelect.value = _regStatus;
     const note = document.querySelector('.catalog-private-note');
     if (note) note.hidden = _regStatus !== 'private';
     tabs.forEach(b => b.classList.toggle('is-active', b === btn));

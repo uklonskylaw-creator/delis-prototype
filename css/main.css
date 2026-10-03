@@ -3920,3 +3920,75 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
   .video__slider .catalog__arrow { display: flex; top: auto; bottom: 0; }
   .video__slider.is-static .catalog__arrow { display: none; }
 }
+
+/* Compact mobile composition, October 3. */
+.hero__mobile-title, .hero__mobile-text, .hero__mobile-cta, .catalog-mobile-filters { display: none; }
+.form-banner__visual { display: contents; }
+.form-banner__field { display: flex; flex-direction: column; gap: 7px; font-size: 13px; color: #fff; }
+@media (max-width: 700px) {
+  .hero--home .hero__container { background: #f2edf9; border-radius: 24px; overflow: hidden; }
+  .hero--home .hero__offer { background: #7135d8; padding: 28px 24px 20px; border-radius: 0; }
+  .hero--home .hero__offer-bg { opacity: .16; }
+  .hero--home .hero__offer-content { gap: 18px; }
+  .hero--home .hero__desktop-title, .hero--home .hero__desktop-text, .hero--home .hero__pins { display: none; }
+  .hero--home .hero__mobile-title { display: block; }
+  .hero--home .hero__title { font-size: clamp(27px, 7.6vw, 34px); line-height: 1.17; font-weight: 600; letter-spacing: -.035em; text-wrap: initial; }
+  .hero--home .hero__title br { display: initial; }
+  .hero--home .hero__mobile-text { display: block; color: #f7f2ff; font-size: 16px; line-height: 1.5; max-width: 32ch; }
+  .hero--home .hero__mobile-cta { display: inline-flex; justify-content: space-between; align-items: center; align-self: flex-start; gap: 28px; padding: 12px 18px; min-height: 48px; background: #fff; color: #5930a0; border-radius: 14px; font-size: 15px; font-weight: 600; }
+  .hero--home .hero__right { height: auto; aspect-ratio: 1.8; border: 0; border-radius: 0; background: #7135d8; }
+  .hero--home .hero__right-photo { object-position: center 53%; opacity: .95; }
+  .hero--home .hero__right-overlay { background: linear-gradient(180deg, #7135d8 0%, transparent 35%, transparent 70%, #f2edf9 100%); }
+  .hero--home .hero__map-caption { background: none; color: #51357d; font-size: 11px; padding: 9px 24px; bottom: 0; }
+  .hero--home .stats { margin: 0; padding: 20px 16px 16px; gap: 0; background: #f2edf9; }
+  .hero--home .stats__item { min-height: 112px; background: none; border: 0; border-radius: 0; padding: 14px 12px; gap: 10px; justify-content: flex-start; }
+  .hero--home .stats__item:nth-child(odd) { border-right: 1px solid #ded3ed; }
+  .hero--home .stats__item:nth-child(-n+2) { border-bottom: 1px solid #ded3ed; }
+  .hero--home .stats__num { font-size: clamp(22px, 5.8vw, 26px); }
+  .hero--home .stats__label { font-size: 12px; color: #665879; line-height: 1.4; }
+  .catalog__panel { padding: 24px 16px 16px; background: #f3eff8; border: 0; }
+  .catalog__head { gap: 20px; margin-bottom: 20px; }
+  .catalog-mobile-filters { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; width: 100%; }
+  .catalog-mobile-filters label { display: flex; flex-direction: column; gap: 7px; color: #71627e; font-size: 12px; font-weight: 500; }
+  .catalog-mobile-filters select { width: 100%; min-width: 0; height: 52px; border: 1px solid #e0d8e9; border-radius: 14px; padding: 0 14px; background: #fff; color: #29232f; font-size: 16px; }
+  .catalog__head-actions .property-picker, .catalog__panel > .reg-tabs { display: none; }
+  .catalog__head-actions { gap: 10px; }
+  .catalog__head-actions .btn { font-size: 13px; border-radius: 14px; min-height: 48px; }
+  .catalog__slider { padding: 0; }
+  .catalog__swipe-hint { display: flex; align-items: center; justify-content: flex-start; gap: 12px; height: 48px; padding-right: 110px; margin: 0 0 14px; font-size: 13px; font-weight: 500; color: #5f526e; }
+  .catalog__position { font-variant-numeric: tabular-nums; color: #8a7a9a; }
+  .catalog__slider .catalog__arrow { top: 0; bottom: auto; width: 44px; height: 44px; background: #fff; border-color: #dfd3ed; box-shadow: none; }
+  .catalog__slider .catalog__arrow--prev { right: 54px; }
+  .catalog__slider .catalog__arrow--next { right: 0; }
+  .catalog__slider .obj-card { flex-basis: 100%; }
+  .pv-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .pv-heading .pv-all { display: none; }
+  .pv-heading .section-title { color: #302637; }
+  .pv-heading .tabs { order: initial; padding: 0; gap: 18px; }
+  .pv .news__container { gap: 20px; }
+  .pv .news-card { grid-template-columns: 100px minmax(0, 1fr); }
+  .form-section { padding-block: 40px; }
+  .form-banner--photo { background: #7135d8; border-radius: 24px; }
+  .form-banner__visual { display: block; position: relative; width: 100%; }
+  .form-banner--photo .form-banner__bg { aspect-ratio: 1.5; border-radius: 0; }
+  .form-banner__visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 65%, #7135d8 100%); }
+  .form-banner--photo .form-banner__left { padding: 8px 24px 24px; gap: 22px; }
+  .form-banner--photo .form-banner__title { font-size: clamp(23px, 6.2vw, 28px); line-height: 1.2; text-wrap: initial; }
+  .form-banner--photo .form-banner__fields { gap: 14px; }
+  .form-banner--photo .form-banner__fields input { border-radius: 14px; }
+  .form-banner--photo .form-banner__fields .btn { border-radius: 14px; height: 52px; }
+  .footer { border-radius: 24px 24px 0 0; padding: 28px 0 24px; }
+  .footer__inner { grid-template-columns: 1fr; gap: 24px; position: relative; padding-inline: 24px; }
+  .footer__contacts { grid-column: 1; align-items: center; width: 100%; gap: 18px; }
+  .footer__phone { font-size: 20px; }
+  .footer__contacts .btn--brand { width: 100%; min-height: 48px; border-radius: 14px; }
+  .footer__socials { justify-content: center; }
+  .footer__nav { grid-column: 1; grid-row: 2; gap: 24px; padding-block: 20px; }
+  .footer__nav ul { gap: 4px; }
+  .footer__nav a { font-size: 12px; }
+  .footer__col--brand { grid-column: 1; grid-row: 3; padding-right: 52px; gap: 10px; }
+  .footer__brand { font-size: 16px; }
+  .footer__up { position: absolute; right: 24px; bottom: 0; grid-row: auto; border-width: 1px; }
+  .footer__link br { display: none; }
+  button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid #a77de5; outline-offset: 3px; }
+}
