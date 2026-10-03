@@ -3992,3 +3992,21 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
   .footer__link br { display: none; }
   button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid #a77de5; outline-offset: 3px; }
 }
+
+/* Light mobile hero keeps the network map visible. */
+.header__partner { display: none; }
+@media (max-width: 700px) {
+  .header__inner:has(.header__partner) { gap: 6px; padding: 12px; }
+  .header__inner:has(.header__partner) .header__logo-img { width: 32px; height: 32px; }
+  .header__inner:has(.header__partner) .header__logo-text { font-size: 15px; }
+  .header__partner { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; min-height: 44px; padding: 10px 12px; border-radius: 12px; background: #7135d8; color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .header__inner:has(.header__partner) .header__burger { margin-left: 0; flex: 0 0 44px; width: 44px; }
+  .hero--home .hero__container { background: #fff; }
+  .hero--home .hero__offer { background: #fff; padding: 28px 24px 12px; color: #302637; }
+  .hero--home .hero__title { color: #6032ab; }
+  .hero--home .hero__mobile-text { color: #665a70; }
+  .hero--home .hero__right { background: #fff; aspect-ratio: 1.4; }
+  .hero--home .hero__right-photo { opacity: 1; object-fit: cover; object-position: center; }
+  .hero--home .hero__right-overlay { background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,.5) 12%, transparent 26%, transparent 78%, #f2edf9 100%); }
+  .hero--home .hero__map-caption { padding-inline: 24px; }
+}
