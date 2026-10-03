@@ -4152,3 +4152,13 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 
 .form-banner__polina-name {position:absolute;right:12%;bottom:26px;z-index:2;color:#fff;font-size:16px;font-weight:600;}
 @media(max-width:700px){.form-banner__polina-name {right:0;left:0;bottom:12px;text-align:center;font-size:14px;}}
+
+.contact-cards--people {grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+.contact-card--person {display:flex;align-items:center;gap:24px;padding:28px;border:1px solid #eae6f0;}
+.contact-person-photo {width:120px;height:160px;object-fit:cover;object-position:center top;border-radius:14px;flex:none;}
+.contact-person-copy {min-width:0;}
+.contact-person-copy h2 {font-family:Inter,sans-serif;font-size:22px;margin:0 0 12px;line-height:1.2;}
+.contact-person-copy p {font-size:15px;line-height:1.5;color:#756c7d;margin:0 0 18px;}
+.contact-person-phone {color:#7135d8;font-size:19px;font-weight:600;white-space:nowrap;}
+@media(max-width:800px){.contact-cards--people {grid-template-columns:1fr;}}
+@media(max-width:400px){.contact-card--person {padding:20px;gap:16px;flex-wrap:wrap;}.contact-person-photo {width:88px;height:112px;}.contact-person-copy h2 {font-size:20px;}.contact-person-phone {font-size:18px;}}

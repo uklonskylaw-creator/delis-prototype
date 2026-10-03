@@ -1,4 +1,3 @@
-/* Данные объектов как глобал — чтобы сайт работал и без сервера (file://) */
 window.__OBJECTS = [
   {
     "id": "rublevo-16",
@@ -37,7 +36,7 @@ window.__OBJECTS = [
     "broker": {
       "name": "Полина Пирогова",
       "agency": "Площадка «Делись»",
-      "phone": "+7 (995) 590-59-00",
+      "phone": "+7 (988) 593-70-00",
       "initials": "П",
       "photo": "images/polina.jpeg",
       "logo": "apple-touch-icon.png"
