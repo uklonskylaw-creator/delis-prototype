@@ -1001,3 +1001,7 @@ body { background: #F7F7F8; }
   .obj-panel__stats b { font-size: 18px; }
   .obj-side-tabs { flex-wrap: wrap; }
 }
+
+@media (max-width:700px) { .obj-back { max-width:100%; white-space:normal; text-align:left; } .obj-map__card { max-width:calc(100% - 32px); } }
+
+@media(max-width:700px){.obj-breadcrumbs__container {flex-wrap:wrap;gap:12px;} .obj-crumbs {min-width:0;flex-wrap:wrap;} }

@@ -11,16 +11,15 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Как это работает — Делись</title>
+<title>О проекте — Делись</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css?v=20261003d">
 <link rel="stylesheet" href="css/base.css?v=20261003d">
-<link rel="stylesheet" href="css/main.css?v=20261004mobile">
-</head>
-<body>
-<header class="header">
+<link rel="stylesheet" href="css/main.css?v=20261004rublevo">
+<meta name="description" content="Делись — профессиональная платформа для риелторов и агентств недвижимости. Миссия проекта, партнёрские сделки и развитие сообщества."><link rel="stylesheet" href="css/about.css?v=20261004figma"></head>
+<body class="about-page"><header class="header">
   <div class="header__inner">
     <div class="header__left">
       <a href="/" class="header__logo">
@@ -33,13 +32,14 @@
       <a href="/catalog/" class="header__nav-link">Объекты</a>
       <a href="/agents/" class="header__nav-link">Агентам</a>
       <a href="/owners/" class="header__nav-link">Собственникам</a>
-      <a href="/about/" class="header__nav-link">Как это работает</a>
+      <a href="/about/" class="header__nav-link">О проекте</a>
       <a href="/vacancies/" class="header__nav-link">Вакансии</a>
       <a href="/contacts/" class="header__nav-link">Контакты</a>
     </nav>
 
+    <a class="header__partner" href="/pages/cabinet/register/">Стать партнёром</a>
     <div class="header__right">
-      <a href="/about/#" class="header__icon-btn" aria-label="Сообщения">
+      <a href="/#" class="header__icon-btn" aria-label="Сообщения">
         <img src="images/icon-telegram-header.svg" alt="" width="22" height="22">
       </a>
       <div class="header__auth" id="header-auth">
@@ -48,89 +48,16 @@
       </div>
     </div>
   </div>
-</header>
-
-<section class="catalog-page-head">
-  <div class="searchbar-section__container">
-    <nav class="cat-crumbs"><a href="/">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Как это работает</span></nav>
-    <h1 class="section-title">Как работает «Делись»</h1>
-  </div>
-</section>
-<section class="static-section">
-  <div class="static-wrap">
-    <p class="static-lead">«Делись» — площадка объектов недвижимости, где сторона продавца платит встречную комиссию агенту, приведшему покупателя. Объект продаётся аукционом или прямой продажей, размер комиссии известен заранее и указан в карточке объекта.</p>
-
-    <div class="how-cols">
-      <div class="how-col">
-        <h3 class="how-col__title">Размещаю объект</h3>
-        <ol class="how-col__list">
-          <li>Регистрируетесь как агентство или частный агент.</li>
-          <li>Публикуете объект и указываете встречную комиссию, не менее 2 % от цены продажи.</li>
-          <li>Выбираете формат: аукцион или прямая продажа.</li>
-          <li>Указываете срок фиксации клиента за агентом, который приведёт покупателя.</li>
-          <li>Принимаете покупателей от агентов всей сети и выходите на сделку.</li>
-        </ol>
-      </div>
-      <div class="how-col">
-        <h3 class="how-col__title">Привожу покупателя</h3>
-        <ol class="how-col__list">
-          <li>Находите объект в каталоге. Размер комиссии указан в карточке.</li>
-          <li>Фиксируете за собой клиента. Фиксация видна всем участникам, спорить о том, кто первым привёл покупателя, не придётся. Срок фиксации указан в карточке.</li>
-          <li>Показываете объект. Показ может провести сторона продавца, если вам неудобно.</li>
-          <li>Сделка проходит с юридическим сопровождением.</li>
-          <li>Комиссию выплачивает сторона, разместившая объект, по условиям из карточки и договора.</li>
-        </ol>
-      </div>
-    </div>
-
-    <h2>Аукцион или прямая продажа</h2>
-    <p><b>Аукцион.</b> Объект выставляется по цене ниже рыночной, чтобы собрать максимум обращений за короткий срок. Покупатели конкурируют и делают предложения, продавец выбирает лучшее. Резервная цена фиксируется в договоре до старта кампании, ниже неё продажи не будет.</p>
-    <p><b>Прямая продажа.</b> Объект продаётся по заявленной цене, без кампании и конкуренции предложений. Встречная комиссия работает так же.</p>
-    <p>Оба формата доступны всем участникам, ограничений по типу объекта нет.</p>
-
-    <h2>Что гарантирует площадка, а что нет</h2>
-    <p>Площадка:</p>
-    <ul>
-      <li>проверяет участников при регистрации;</li>
-      <li>фиксирует условия сделки и размер встречной комиссии до начала работы;</li>
-      <li>фиксирует клиента за агентом и хранит историю;</li>
-      <li>хранит переписку и договорённости по объекту;</li>
-      <li>сопровождает сделку юридически.</li>
-    </ul>
-    <p>Площадка не выступает стороной расчётов по чужим объектам: комиссию платит тот, кто разместил объект. По объектам, размещённым самой площадкой, стороной продавца выступает «Делись».</p>
-
-    <h2>Вопросы и ответы</h2>
-    <dl class="faq">
-      <dt>Сколько стоит участие агенту, который приводит покупателя</dt>
-      <dd>Ничего. Комиссию платит сторона продавца.</dd>
-      <dt>Какая минимальная комиссия</dt>
-      <dd>2 % от цены продажи. Больше можно, меньше нельзя.</dd>
-      <dt>Кто может размещать объекты</dt>
-      <dd>Любой агент или агентство, принявшее правило встречной комиссии.</dd>
-      <dt>Что если объект не продан на аукционе</dt>
-      <dd>Кампания продолжается или объект переводится в прямую продажу. Решение принимает продавец.</dd>
-      <dt>Кто проводит показ</dt>
-      <dd>Агент покупателя или сторона продавца, по договорённости.</dd>
-      <dt>Когда выплачивается комиссия</dt>
-      <dd>После регистрации перехода права и расчётов по сделке.</dd>
-      <dt>В каких городах работает площадка</dt>
-      <dd>Во всех городах сети. Город выбирается в каталоге объектов.</dd>
-    </dl>
-
-    <div class="static-cta">
-      <a href="/catalog/" class="btn btn--dark">Смотреть объекты</a>
-      <a href="/agents/" class="btn btn--outline-brand">Условия для агентов</a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
+</header><main class="project-page"><nav class="cat-crumbs"><a href="/">Главная</a><span>·</span><span class="cat-crumbs__current">О проекте</span></nav>
+<section class="project-hero" data-figma-node="590:13068"><img class="project-hero-bg" src="images/about-figma/imgFrame1980042169.png" alt=""><h1>«Делись» — профессиональная платформа для риелторов и агентств недвижимости</h1><img class="project-founder" src="images/about-figma/imgMag5436111.png" alt="Михаил Уклонский, основатель проекта"><blockquote class="project-mission"><p>Миссия проекта — создать культуру и пространство честного агентского сотрудничества и развития</p><cite>Михаил Уклонский<br><span>Основатель проекта</span></cite><span class="project-mission-tip" aria-hidden="true"><img src="images/about-figma/imgVector.svg" alt=""><i></i><img src="images/about-figma/imgVector1.svg" alt=""></span></blockquote></section>
+<section class="project-base" data-figma-node="785:17060"><div class="project-base-copy"><span class="project-eyebrow">Преимущества</span><h2>Единая база объектов</h2><p>Полноценная экосистема для успешных сделок в сфере недвижимости. Мы объединяем предложения риелторов Москвы и Санкт-Петербурга, создавая прозрачную и взаимовыгодную площадку для работы.</p><p>Получайте комиссию за привлечённого покупателя. Размер встречной комиссии и условия сотрудничества доступны в карточке объекта после регистрации.</p><p>Размещайте свои объявления, находите варианты для клиентов и увеличивайте доход за счёт партнёрских сделок. Всё в одном месте.</p><a href="/pages/cabinet/register/" class="btn btn--dark">Стать партнёром</a></div><div class="project-benefits"><article><h3>Актуальные<br>объявления</h3><p>Объекты с открытыми для участников условиями выплаты встречной комиссии.</p></article><div class="project-laptop" aria-label="Каталог объектов на карте"><img src="images/about-figma/imgMockup1.png" alt="Ноутбук с картой объектов недвижимости"></div><article class="project-speed"><span class="project-clock" aria-hidden="true"><img src="images/about-figma/imgMaterialSymbolsAvgTimeRounded.svg" alt=""></span><h3>Ускорение<br>продаж</h3><p>Подключайте агентский ресурс, чтобы ваш объект предлагали большему числу покупателей.</p></article><article><h3>Максимум<br>дохода</h3><p>Находите объект и получайте комиссию за привлечённого покупателя на вторичном рынке.</p></article></div></section>
+<section class="project-regions" data-figma-node="785:17068"><h2>Межрегиональные сделки</h2><ol><li><div class="project-region-preview"><img src="images/about-figma/imgImg.png" alt="" loading="lazy"><span>1</span></div><p>Передавайте запросы клиентов на покупку недвижимости в другие города и регионы — и зарабатывайте на партнёрских сделках.</p><img class="project-region-arrow" src="images/about-figma/imgSubtract.svg" alt="" aria-hidden="true"></li><li><div class="project-region-preview"><img src="images/about-figma/imgImg.png" alt="" loading="lazy"><span>2</span></div><p>Выберите подходящего партнёра, обсудите условия сотрудничества и передайте клиента. Вознаграждение согласуйте напрямую.</p><img class="project-region-arrow" src="images/about-figma/imgSubtract.svg" alt="" aria-hidden="true"></li><li><div class="project-region-preview"><img src="images/about-figma/imgImg.png" alt="" loading="lazy"><span>3</span></div><p>Согласуйте порядок работы и сопровождения сделки с выбранным партнёром. Вы сами решаете, с кем сотрудничать.</p><img class="project-region-arrow" src="images/about-figma/imgSubtract.svg" alt="" aria-hidden="true"></li><li><div class="project-region-preview"><img src="images/about-figma/imgImg.png" alt="" loading="lazy"><span>4</span></div><p>Расширяйте географию работы и возможности для клиентов через профессиональную сеть.</p></li></ol></section><section class="project-learning" data-figma-node="612:16256"><h2>Обучение и вебинары</h2><div class="project-learning-banner"><img src="images/about-figma/imgFrame1980042162.png" alt="Команда специалистов проекта «Делись»" loading="lazy"><div class="project-learning-copy"><h3>Развивайтесь вместе<br>с профессионалами</h3><p>На нашей площадке вы найдёте обучающие видео и вебинары от специалистов, которые работают в недвижимости — напрямую и в смежных сферах.</p><p>Юристы, ипотечные брокеры, оценщики, дизайнеры и другие специалисты делятся практическими знаниями и опытом.</p><p>Профессиональный рост — ежедневный процесс. Мы создаём пространство, где можно учиться, развиваться и оставаться в курсе изменений рынка.</p><a class="btn btn--outline" href="/#video-library">Все видео</a></div></div></section><section class="project-partners"><h2>Наши партнёры</h2><div class="project-partner-logos"><span><img src="images/about-figma/img.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img1.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img2.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img3.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img4.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img1.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img2.svg" alt="Логотип партнёра" loading="lazy"></span><span><img src="images/about-figma/img3.svg" alt="Логотип партнёра" loading="lazy"></span></div></section></main><footer class="footer">
   <div class="footer__inner">
 
     <div class="footer__col footer__col--brand">
-      <p class="footer__brand">© «Делись», 2025</p>
-      <a href="/about/#" class="footer__link">Политика конфиденциальности</a>
-      <a href="/about/#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
+      <p class="footer__brand">© «Делись», 2026</p>
+      <a href="/#" class="footer__link">Политика конфиденциальности</a>
+      <a href="/#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
     </div>
 
     <nav class="footer__nav">
@@ -138,15 +65,15 @@
         <li><a href="/contacts/">Контакты</a></li>
         <li><a href="/about/">О нас</a></li>
         <li><a href="/vacancies/">Карьера</a></li>
-        <li><a href="/about/#">Документы</a></li>
-        <li><a href="/about/#">Счета и реквизиты</a></li>
+        <li><a href="/#">Документы</a></li>
+        <li><a href="/#">Счета и реквизиты</a></li>
         <li><a href="/#form">Заказать сайт</a></li>
       </ul>
       <ul>
-        <li><a href="/about/#">Торговая марка</a></li>
-        <li><a href="/about/#">Правовая информация</a></li>
-        <li><a href="/about/#">Договор оферты</a></li>
-        <li><a href="/about/#">Гарантия</a></li>
+        <li><a href="/#">Торговая марка</a></li>
+        <li><a href="/#">Правовая информация</a></li>
+        <li><a href="/#">Договор оферты</a></li>
+        <li><a href="/#">Гарантия</a></li>
       </ul>
     </nav>
 
@@ -155,16 +82,12 @@
     </button>
 
     <div class="footer__contacts">
-      <a href="tel:+70000000000" class="footer__phone">+7 (000) 000-00-00</a>
-      <a href="/about/#" class="btn btn--brand">
+      <a href="tel:+79955905900" class="footer__phone">+7 (995) 590-59-00</a>
+      <a href="/#form" class="btn btn--brand">
         <img src="images/icon-phone.svg" alt="" width="24" height="24">
         Заказать звонок
       </a>
     </div>
 
   </div>
-</footer>
-
-<script src="js/main.js?v=20261004mobile"></script>
-</body>
-</html>
+</footer><script src="js/main.js?v=20261004rublevo"></script></body></html>

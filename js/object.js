@@ -165,7 +165,15 @@
     if (main) main.src = img;
     const bg = document.querySelector('.obj-gallery__main-bg');
     if (bg) bg.style.backgroundImage = "url('" + img + "')";
-    document.querySelectorAll('.obj-thumb img').forEach(t => t.src = img);
+    const photos = o.photos || [o.image];
+    document.querySelectorAll('.obj-thumb').forEach((thumb, i) => {
+      thumb.hidden = i >= photos.length;
+      const t = thumb.querySelector('img');
+      if (t) { t.src = '../' + (photos[i] || o.image); t.alt = o.title + ' — фото ' + (i + 1); }
+      thumb.querySelector('.obj-thumb__more-label')?.remove();
+    });
+    if (o.description) { const text = document.getElementById('obj-text'); if (text) text.textContent = o.description; }
+    if (main) main.alt = o.title;
 
     // Подписи в чате (полная версия)
     const summary = `${o.title} · ${o.area} · ${o.price}`;

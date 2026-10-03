@@ -1,6 +1,53 @@
 /* Данные объектов как глобал — чтобы сайт работал и без сервера (file://) */
 window.__OBJECTS = [
   {
+    "id": "rublevo-16",
+    "status": "active",
+    "format": "direct",
+    "title": "Дом в «Резиденции Рублёво»",
+    "city": "Красногорск",
+    "address": "КП «Резиденция Рублёво», дом 16",
+    "metro": "Липовая Роща",
+    "walk": "1,5 км",
+    "area": "360.3 м²",
+    "type": "Дом",
+    "rooms": "4",
+    "floor": 2,
+    "district": "Московская область",
+    "price": "Цена по запросу",
+    "pricePerM": "—",
+    "commission": "4%",
+    "commissionType": "percent",
+    "commissionPercent": 4,
+    "image": "images/rublevo/rublevo-01.jpg",
+    "photos": [
+      "images/rublevo/rublevo-01.jpg",
+      "images/rublevo/rublevo-02.jpg",
+      "images/rublevo/rublevo-03.jpg",
+      "images/rublevo/rublevo-04.jpg",
+      "images/rublevo/rublevo-05.jpg",
+      "images/rublevo/rublevo-06.jpg",
+      "images/rublevo/rublevo-07.jpg",
+      "images/rublevo/rublevo-08.jpg",
+      "images/rublevo/rublevo-09.jpg"
+    ],
+    "video": false,
+    "site": false,
+    "featured": true,
+    "broker": {
+      "name": "Полина",
+      "agency": "Площадка «Делись»",
+      "phone": "+7 (995) 590-59-00",
+      "initials": "П",
+      "photo": "images/polina.jpeg",
+      "logo": "apple-touch-icon.png"
+    },
+    "lat": 55.8033633,
+    "lon": 37.3796681,
+    "mapLabel": "Рублёво",
+    "description": "Дом-дуплекс в КП «Резиденция Рублёво», на первом километре Новорижского шоссе. Четыре спальни, мебель FENDI CASA, техника Miele, хаммам и СПА-зона. Два этажа, веранда и парковка под навесом. Площадь по ЕГРН — 360,3 м²; в отчёте об оценке указана фактическая площадь 450 м². Прямая продажа через площадку «Делись». Цена уточняется. Фотографии из отчёта об оценке № 1541-2025."
+  },
+  {
     "id": "zakr-1",
     "status": "closed",
     "title": "Студия у Таврического сада",

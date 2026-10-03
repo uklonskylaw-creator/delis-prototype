@@ -4139,3 +4139,6 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
  .video__slider .catalog__arrow {width:42px;height:42px;bottom:0;}
  .video + .form-section {padding-top:24px;}
 }
+
+/* Polina alone in the application banner, keep her face visible on phones. */
+@media (max-width:700px) { .form-banner--photo .form-banner__bg { object-position: 85% center; } }

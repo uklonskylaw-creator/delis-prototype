@@ -98,7 +98,7 @@ function initBurger() {
         <a href="${base}agents/">Агентам</a>
         <a href="${base}owners/">Собственникам</a>
         <a href="${base}auction/">Аукционный метод</a>
-        <a href="${base}about/">Как это работает</a>
+        <a href="${base}about/">О проекте</a>
         <a href="${base}vacancies/">Вакансии</a>
         <a href="${base}contacts/">Контакты</a>
       </nav>
@@ -665,7 +665,7 @@ function catalogPagination() {
   return wrap;
 }
 const _num = v => Number(String(v).replace(/[^\d.,-]/g, '').replace(',', '.')) || 0;
-const _bonusPct = o => _num(o.price) ? Math.round(_num(o.commission) / _num(o.price) * 1000) / 10 : 0;
+const _bonusPct = o => o.commissionPercent || (_num(o.price) ? Math.round(_num(o.commission) / _num(o.price) * 1000) / 10 : 0);
 
 // ===== Состояние фильтров =====
 let _sortKey = null;          // ключ сортировки
@@ -675,7 +675,7 @@ function _objVal(o, key) {
   if (key === 'area')     return _num(o.area);
   if (key === 'price')    return _num(o.price);
   if (key === 'floor')    return Number(o.floor) || 0;
-  if (key === 'bonusRub') return _num(o.commission);
+  if (key === 'bonusRub') return o.commissionPercent ? _num(o.price) * o.commissionPercent / 100 : _num(o.commission);
   if (key === 'bonusPct') return _bonusPct(o);
   return 0;
 }
