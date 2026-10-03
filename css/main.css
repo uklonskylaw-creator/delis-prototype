@@ -4149,3 +4149,6 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
  .hero__mobile-lead {display:block;color:#282828;}
  .hero__mobile-accent {display:block;color:#6032ab;}
 }
+
+.form-banner__polina-name {position:absolute;right:12%;bottom:26px;z-index:2;color:#fff;font-size:16px;font-weight:600;}
+@media(max-width:700px){.form-banner__polina-name {right:0;left:0;bottom:12px;text-align:center;font-size:14px;}}

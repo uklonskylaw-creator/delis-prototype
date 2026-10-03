@@ -35,7 +35,7 @@ window.__OBJECTS = [
     "site": false,
     "featured": true,
     "broker": {
-      "name": "Полина",
+      "name": "Полина Пирогова",
       "agency": "Площадка «Делись»",
       "phone": "+7 (995) 590-59-00",
       "initials": "П",
