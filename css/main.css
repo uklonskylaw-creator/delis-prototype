@@ -364,7 +364,6 @@ body { overflow-x: hidden; }
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 70% 50%;   /* на узких экранах обрезаем слева: карточка агента справа остаётся целиком */
 }
 .hero__right-overlay {
   position: absolute;
@@ -1051,6 +1050,25 @@ body { overflow-x: hidden; }
   filter: none;
 }
 .marquee:hover .marquee__track { animation-play-state: paused; }
+
+/* Участники AREA: логотипы на белой подложке — multiply растворяет белый в фоне секции */
+.partners--area { padding: 8px 0 56px; }
+.partners--area .partners__container { gap: 20px; }
+.partners__title {
+  font-family: 'Unbounded', var(--font-family);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--color-black);
+}
+.marquee--area .marquee__group { gap: 64px; padding-right: 64px; }
+.marquee--area .marquee__group img {
+  height: 52px;
+  max-width: 170px;
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: multiply;
+}
 
 @keyframes marquee-scroll {
   from { transform: translateX(0); }

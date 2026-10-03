@@ -801,9 +801,21 @@ document.addEventListener('click', (e) => {
   btn.classList.add('tabs__btn--active');
 });
 
+/* Бегущая строка с data-marquee-speed: длительность круга под ширину ленты, скорость в px/с не зависит от числа логотипов */
+function initMarqueeSpeed() {
+  document.querySelectorAll('[data-marquee-speed]').forEach(track => {
+    const group = track.querySelector('.marquee__group');
+    const speed = Number(track.dataset.marqueeSpeed) || 70;
+    const apply = () => { if (group.offsetWidth) track.style.animationDuration = (group.offsetWidth / speed) + 's'; };
+    apply();
+    window.addEventListener('load', apply);   // логотипы грузятся лениво, ширина уточняется после загрузки
+  });
+}
+
 // ---------- Init ----------
 document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
+  initMarqueeSpeed();
   initHeaderNav();
   initBurger();
   initFavorites();
