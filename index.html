@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css?v=20261003mobile4">
 <link rel="stylesheet" href="css/base.css?v=20261003mobile4">
-<link rel="stylesheet" href="css/main.css?v=20261003commission2">
+<link rel="stylesheet" href="css/main.css?v=20261003videos1">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -508,12 +508,13 @@
 </div>
 
 <!-- ========== ПЛЕЕР ВИДЕО ПАРТНЁРОВ (окно) ========== -->
-<div class="mp-modal pv-player" id="pv-player" aria-hidden="true">
-  <div class="pv-player__panel" role="dialog" aria-modal="true" aria-label="Видео">
-    <button type="button" class="mp-modal__close pv-player__close" data-pv-close aria-label="Закрыть">×</button>
-    <div class="pv-player__frame"></div>
-  </div>
-</div>
+<dialog class="site-video-player" id="pv-player" aria-labelledby="site-video-title">
+  <button type="button" class="site-video-player__close" data-pv-close aria-label="Закрыть видео">×</button>
+  <h2 class="site-video-player__title" id="site-video-title">Видео</h2>
+  <div class="pv-player__frame"></div>
+  <p class="site-video-player__error" hidden>Видео не загрузилось. Попробуйте открыть его отдельно по ссылке ниже.</p>
+  <a class="site-video-player__source" target="_blank" rel="noopener">Открыть видео отдельно ↗</a>
+</dialog>
 
 <!-- Переключатель вариантов блока «Маркетинговый план»: виден только на localhost -->
 <div class="mp-switch" id="mp-switch" hidden>
@@ -624,9 +625,9 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/videos.js?v=20261003mobile4"></script>
+<script src="data/videos.js?v=20261003videos1"></script>
 <script src="data/objects.js?v=20261003mobile4"></script>
 <script src="js/favorites.js?v=20261003mobile4"></script>
-<script src="js/main.js?v=20261003commission2"></script>
+<script src="js/main.js?v=20261003videos1"></script>
 </body>
 </html>

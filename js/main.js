@@ -370,25 +370,29 @@ function initSlider() {
   updateArrows();
 }
 
-/* Лента видео: карточки ведут в плеер облака, файлы на сайте не лежат */
+/* Лента видео: свой MP4, встроенные видео и внешние источники. */
 function initVideos() {
   const grid = document.getElementById('video-grid');
   if (!grid || !window.__VIDEOS) return;
   function drawVideos(list) {
-    grid.innerHTML = list.map(v => `
-    <li class="video-card">
-      <a href="${v.url}" target="_blank" rel="noopener" class="video-card__media">
-        <img src="${v.cover}" alt="">
-        <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
-      </a>
-      <h3 class="video-card__title"><a href="${v.url}" target="_blank" rel="noopener">${v.title}</a></h3>
-    </li>`).join('');
+    grid.innerHTML = list.map(v => {
+      const play = v.type === 'file' || v.embed ? ` data-site-video="${window.__VIDEOS.indexOf(v)}"` : '';
+      return `<li class="video-card">
+        <a href="${v.url}" target="_blank" rel="noopener" class="video-card__media"${play}>
+          <img src="${v.cover}" alt="${v.title}" loading="lazy" width="1672" height="941">
+          <span class="video-card__play"><img src="images/icon-play.svg" alt="" width="48" height="48"></span>
+          ${v.duration ? `<span class="video-card__duration">${v.duration}</span>` : ''}
+        </a>
+        ${v.author ? `<p class="video-card__author">${v.author}</p>` : ''}
+        <h3 class="video-card__title"><a href="${v.url}" target="_blank" rel="noopener"${play}>${v.title}</a></h3>
+      </li>`;
+    }).join('');
   }
 
-  // вкладки: роликов в разделах пока нет — у каждой своя пустая заглушка
+  // «Все видео» включает ролики из всех тематических разделов.
   const tabs = document.querySelectorAll('[data-vtab]');
   function drawTab(key) {
-    const list = (window.__VIDEOS || []).filter(v => v.tab === key);
+    const list = (window.__VIDEOS || []).filter(v => key === 'all' || v.tab === key);
     if (list.length) drawVideos(list);
     else grid.innerHTML = '<li class="video__empty">В этом разделе пока нет роликов.</li>';
   }
@@ -970,29 +974,60 @@ function initPartnerVideos() {
     sec.querySelector('.pv-hero-card').hidden = sec.querySelector('.pv-featured').classList.contains('is-hidden');
   }));
 
+ }
+
+/* One accessible player for the partner section and the video library. */
+function initMediaPlayer() {
   const player = document.getElementById('pv-player');
   if (!player) return;
   const frame = player.querySelector('.pv-player__frame');
-  const close = () => { player.classList.remove('is-open'); player.setAttribute('aria-hidden', 'true'); frame.innerHTML = ''; };
-  sec.querySelectorAll('[data-pv-embed]').forEach(a => a.addEventListener('click', (e) => {
+  const title = player.querySelector('.site-video-player__title');
+  const source = player.querySelector('.site-video-player__source');
+  const error = player.querySelector('.site-video-player__error');
+  const close = () => player.close();
+  const clear = () => { frame.querySelector('video')?.pause(); frame.replaceChildren(); document.body.style.overflow = ''; };
+  player.addEventListener('close', clear);
+  player.querySelector('[data-pv-close]').addEventListener('click', close);
+  player.addEventListener('click', e => {
+    if (e.target !== player) return;
+    const r = player.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-site-video], [data-pv-embed]');
+    if (!a) return;
+    const v = a.hasAttribute('data-site-video') ? window.__VIDEOS?.[Number(a.dataset.siteVideo)] : null;
+    if (!v && !a.dataset.pvEmbed) return;
     e.preventDefault();
-    const ifr = document.createElement('iframe');
-    ifr.src = a.dataset.pvEmbed;
-    ifr.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';
-    ifr.allowFullscreen = true;
-    frame.innerHTML = '';
-    frame.appendChild(ifr);
-    player.classList.add('is-open'); player.setAttribute('aria-hidden', 'false');
-  }));
-  player.querySelectorAll('[data-pv-close]').forEach(b => b.addEventListener('click', close));
-  player.addEventListener('click', (e) => { if (e.target === player) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && player.classList.contains('is-open')) close(); });
+    frame.replaceChildren(); error.hidden = true;
+    title.textContent = v?.title || a.closest('article, li')?.querySelector('h3')?.textContent || 'Видео партнёров';
+    source.href = v?.url || a.href;
+    source.textContent = v?.type === 'file' ? 'Открыть видео отдельно ↗' : 'Открыть на сайте источника ↗';
+    if (v?.type === 'file') {
+      const video = document.createElement('video');
+      video.controls = true; video.playsInline = true; video.preload = 'metadata';
+      video.poster = v.cover; video.src = v.url;
+      video.addEventListener('error', () => { error.hidden = false; });
+      frame.appendChild(video);
+      player.showModal(); document.body.style.overflow = 'hidden';
+      video.play().catch(() => {});
+    } else {
+      const iframe = document.createElement('iframe');
+      iframe.src = v?.embed || a.dataset.pvEmbed;
+      iframe.title = title.textContent;
+      iframe.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+      iframe.allowFullscreen = true;
+      frame.appendChild(iframe);
+      player.showModal(); document.body.style.overflow = 'hidden';
+    }
+  });
 }
 
 // ---------- Init ----------
 document.addEventListener('DOMContentLoaded', () => {
   initMarketingPlan();
   initPartnerVideos();
+  initMediaPlayer();
   renderCatalog();
   initMarqueeSpeed();
   initHeaderNav();
