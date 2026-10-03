@@ -17,8 +17,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/tokens.css?v=20261003d">
 <link rel="stylesheet" href="../css/base.css?v=20261003d">
-<link rel="stylesheet" href="../css/main.css?v=20261004rublevo">
-<link rel="stylesheet" href="../css/object.css?v=20261004rublevo">
+<link rel="stylesheet" href="../css/main.css?v=20261004mapprice">
+<link rel="stylesheet" href="../css/object.css?v=20261004mapprice">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -277,9 +277,9 @@
 </footer>
 
 <script src="../js/favorites.js?v=20261003d"></script>
-<script src="../js/main.js?v=20261004rublevo"></script>
-<script src="../data/objects.js?v=20261004rublevo"></script>
-<script src="../js/object.js?v=20261004rublevo"></script>
+<script src="../js/main.js?v=20261004mapprice"></script>
+<script src="../data/objects.js?v=20261004mapprice"></script>
+<script src="../js/object.js?v=20261004mapprice"></script>
 <script>
 // Заблокированные элементы (кнопки и скрытая комиссия) → ведут на регистрацию
 document.addEventListener('click', (e) => {
@@ -361,9 +361,14 @@ document.addEventListener('click', (e) => {
   // Яндекс.Карта с пином объекта
   if (window.ymaps) {
     ymaps.ready(function () {
+      const id = new URLSearchParams(location.search).get('id');
+      const objects = window.__OBJECTS || [];
+      const object = objects.find(o => o.id === id) || objects[0];
+      if (!object || !Number.isFinite(object.lat) || !Number.isFinite(object.lon)) return;
+      const coords = [object.lat, object.lon];
       const map = new ymaps.Map('obj-ymap', {
-        center: [60.0205, 30.2756],  // Приморский район, СПб (наб. реки Каменки)
-        zoom: 12,
+        center: coords,
+        zoom: 16,
         controls: ['zoomControl']
       }, { suppressMapOpenBlock: true });
 
@@ -375,7 +380,7 @@ document.addEventListener('click', (e) => {
           '<i class="obj-price-pin__dot"></i>' +
         '</div>'
       );
-      const pin = new ymaps.Placemark([60.0205, 30.2756], { label: window.__OBJ_PIN || '' }, {
+      const pin = new ymaps.Placemark(coords, { label: object.mapLabel || '' }, {
         iconLayout: PinLayout,
         iconShape: { type: 'Rectangle', coordinates: [[-55, -52], [55, 0]] }
       });
