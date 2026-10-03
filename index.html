@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20261003c">
-<link rel="stylesheet" href="css/base.css?v=20261003c">
-<link rel="stylesheet" href="css/main.css?v=20261003c">
+<link rel="stylesheet" href="css/tokens.css?v=20261003d">
+<link rel="stylesheet" href="css/base.css?v=20261003d">
+<link rel="stylesheet" href="css/main.css?v=20261003d">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -87,7 +87,7 @@
         </li>
         <li class="stats__item stats__item--4">
           <span class="stats__num">14 <span class="stats__unit">дней</span></span>
-          <span class="stats__label">Средний срок продажи<br>через площадку<br>аукционным методом</span>
+          <span class="stats__label">Средний срок<br>продажи<br>аукционом</span>
           <img src="images/hero-stats-arrow.svg" alt="" class="stats__arrow">
         </li>
       </ul>
@@ -98,42 +98,6 @@
       <div class="hero__right-overlay"></div>
     </div>
 
-  </div>
-</section>
-
-<!-- ========== PARTNERS (бегущая строка) ========== -->
-<section class="partners">
-  <div class="partners__container">
-    <div class="marquee">
-      <div class="marquee__track">
-        <ul class="marquee__group">
-          <li><img src="images/partner-uip.png" alt="Уклонский и Партнёры" class="marquee__logo-lg"></li>
-          <li><img src="images/partner-sankin.png" alt="Александр Санкин" class="marquee__logo-lg"></li>
-          <li><img src="images/partner-aaa.png" alt="Ассоциация агентов-аукционистов" class="marquee__logo-lg"></li>
-          <li><img src="images/partner-1.svg" alt="Century 21"></li>
-          <li><img src="images/partner-3.svg" alt="Сбер"></li>
-          <li><img src="images/partner-4.svg" alt="Циан"></li>
-          <li><img src="images/partner-5.svg" alt="ПИК"></li>
-          <li><img src="images/partner-2.svg" alt="Century 21"></li>
-          <li><img src="images/partner-3.svg" alt="Сбер"></li>
-          <li><img src="images/partner-4.svg" alt="Циан"></li>
-          <li><img src="images/partner-5.svg" alt="ПИК"></li>
-        </ul>
-        <ul class="marquee__group" aria-hidden="true">
-          <li><img src="images/partner-uip.png" alt="" class="marquee__logo-lg"></li>
-          <li><img src="images/partner-sankin.png" alt="" class="marquee__logo-lg"></li>
-          <li><img src="images/partner-aaa.png" alt="" class="marquee__logo-lg"></li>
-          <li><img src="images/partner-1.svg" alt=""></li>
-          <li><img src="images/partner-3.svg" alt=""></li>
-          <li><img src="images/partner-4.svg" alt=""></li>
-          <li><img src="images/partner-5.svg" alt=""></li>
-          <li><img src="images/partner-2.svg" alt=""></li>
-          <li><img src="images/partner-3.svg" alt=""></li>
-          <li><img src="images/partner-4.svg" alt=""></li>
-          <li><img src="images/partner-5.svg" alt=""></li>
-        </ul>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -288,6 +252,193 @@
   </div>
 </section>
 
+<!-- ========== ВИДЕО ПАРТНЁРОВ (лента в формате прежнего дайджеста новостей) ========== -->
+<section class="news pv" id="partner-video">
+  <div class="news__container">
+    <h2 class="section-title section-title--center">Видео партнёров</h2>
+
+    <div class="news__row">
+      <div class="news__main">
+        <div class="news__head">
+          <div class="tabs">
+            <button class="tabs__btn tabs__btn--active" type="button">Все видео</button>
+            <button class="tabs__btn" type="button">Загородные дома</button>
+            <button class="tabs__btn" type="button">Квартиры</button>
+            <button class="tabs__btn" type="button">Брокер-туры</button>
+          </div>
+        </div>
+
+        <article class="news-featured pv-featured">
+          <a href="#" class="pv-cover pv-cover--lg" data-pv-demo>
+            <img src="images/pv/living.jpg" alt="Гостиная загородного дома" class="news-featured__img">
+            <span class="pv-play"><img src="images/icon-play.svg" alt="" width="56" height="56"></span>
+            <span class="pv-dur">4:12</span>
+          </a>
+          <div class="news-featured__body">
+            <div class="news-featured__meta">
+              <span>Уклонский и Партнёры</span>
+              <img src="images/dot-separator.svg" alt="" width="4" height="4">
+              <span>Новорижское шоссе</span>
+            </div>
+            <h3 class="news-featured__title">Резиденция «Рублёво», дом 16:<br>прогулка по дому</h3>
+            <p class="news-featured__lead">Таунхаус-дуплекс на первом километре Новой Риги: гостиная с камином, кухня-столовая, четыре спальни, мебель FENDI CASA. Обзор для партнёров сети перед брокер-туром: что показывать покупателю и на чём делать акцент.</p>
+          </div>
+        </article>
+
+        <ul class="news-list">
+          <li class="news-card">
+            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/fireplace.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
+            <div class="news-card__meta"><span>2:40</span></div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Камин и гостиная вечером</h4>
+              <p class="news-card__text">Как снять загородный дом в тёплом свете, чтобы покупатель захотел приехать</p>
+            </div>
+          </li>
+          <li class="news-card">
+            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/kitchen.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
+            <div class="news-card__meta"><span>1:55</span></div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Кухня-столовая: детали, которые продают</h4>
+              <p class="news-card__text">Техника, материалы и сценарии жизни в одном коротком ролике</p>
+            </div>
+          </li>
+          <li class="news-card">
+            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/spa.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
+            <div class="news-card__meta"><span>2:05</span></div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Мастер-спальня</h4>
+              <p class="news-card__text">Спокойный ролик о приватной части дома: свет, материалы, вид из окна</p>
+            </div>
+          </li>
+          <li class="news-card">
+            <a href="#" class="pv-cover pv-cover--sm" data-pv-demo><img src="images/pv/stairs.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
+            <div class="news-card__meta"><span>0:45</span></div>
+            <img src="images/news-divider.svg" alt="" class="news-card__divider">
+            <div class="news-card__body">
+              <h4 class="news-card__title">Лестница и второй свет: вертикальный ролик</h4>
+              <p class="news-card__text">Короткое видео для сторис и рилс, которое партнёры пересылают клиентам</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <aside class="news__side pv-side">
+        <div class="pv-side__card">
+          <span class="pv-side__label">Для собственников и агентов</span>
+          <h3 class="pv-side__title">Снимем такое видео для вашего объекта</h3>
+          <p class="pv-side__text">Фото, горизонтальный обзор и вертикальные ролики входят в маркетинговый план. Видео получают все партнёры сети и показывают своим покупателям.</p>
+          <button type="button" class="btn btn--brand pv-side__btn" data-mp-open>Заказать маркетинговый план</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ========== МАРКЕТИНГОВЫЙ ПЛАН (5 вариантов вёрстки на выбор, переключатель только на localhost) ========== -->
+<section class="mp" id="marketing-plan">
+  <div class="mp__container">
+
+    <!-- Вариант 1: документ — текст слева, стопка страниц плана справа -->
+    <div class="mp-v mp-v1" data-mp-variant="1">
+      <div class="mp-v1__text">
+        <span class="mp-kicker">Маркетинговый план</span>
+        <h2 class="section-title">План продажи<br>вашего объекта</h2>
+        <p class="mp-lead">Расписываем по шагам, кому продаём, где рекламируем, сколько это стоит и когда выходим на сделку. Вы видите весь путь до продажи ещё до старта.</p>
+        <ul class="mp-check">
+          <li>Анализ рынка и конкурентов</li>
+          <li>Портреты покупателей</li>
+          <li>12 этапов продажи с ответственными</li>
+          <li>Рекламная кампания на 14 дней</li>
+          <li>Таймлайн и календарь показов</li>
+          <li>Смета: каждая статья с исполнителем</li>
+        </ul>
+        <button type="button" class="btn btn--dark mp-cta" data-mp-open>Заказать маркетинговый план</button>
+      </div>
+      <div class="mp-v1__doc" aria-hidden="true">
+        <div class="mp-page mp-page--back"></div>
+        <div class="mp-page mp-page--mid"></div>
+        <div class="mp-page mp-page--front">
+          <span class="mp-page__brand">Делись</span>
+          <span class="mp-page__title">Маркетинговый план</span>
+          <span class="mp-page__sub">Ваш объект · 12 этапов продажи</span>
+          <span class="mp-page__bars"><i style="width:82%"></i><i style="width:64%"></i><i style="width:90%"></i><i style="width:48%"></i></span>
+          <span class="mp-page__table"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вариант 2: фиолетовый баннер в стиле первого экрана с плитками разделов -->
+    <div class="mp-v mp-v2" data-mp-variant="2">
+      <div class="mp-v2__text">
+        <h2 class="mp-v2__title">Закажите маркетинговый план продажи</h2>
+        <p class="mp-v2__lead">Один документ, в котором видно всё: цена, покупатели, реклама, показы, сроки и смета.</p>
+        <button type="button" class="btn mp-v2__btn" data-mp-open>Заказать план</button>
+      </div>
+      <ul class="mp-v2__tiles">
+        <li><b>01</b>Анализ рынка и конкурентов</li>
+        <li><b>02</b>Портреты покупателей</li>
+        <li><b>03</b>12 этапов продажи</li>
+        <li><b>04</b>Реклама на 14 дней</li>
+        <li><b>05</b>Календарь показов</li>
+        <li><b>06</b>Смета с исполнителями</li>
+      </ul>
+    </div>
+
+    <!-- Вариант 3: шаги — как получить план -->
+    <div class="mp-v mp-v3" data-mp-variant="3">
+      <div class="mp-v3__head">
+        <h2 class="section-title section-title--center">Маркетинговый план за четыре шага</h2>
+        <p class="mp-lead mp-lead--center">От заявки до запуска рекламы: вы заранее знаете, что, когда и за сколько будет сделано.</p>
+      </div>
+      <ol class="mp-v3__steps">
+        <li><span class="mp-v3__num">1</span><b>Заявка</b><span>Оставляете контакты и адрес или ссылку на объявление</span></li>
+        <li><span class="mp-v3__num">2</span><b>Созвон</b><span>Уточняем цель, сроки и особенности объекта</span></li>
+        <li><span class="mp-v3__num">3</span><b>Готовый план</b><span>Аналитика, покупатели, 12 этапов, реклама и смета в одном документе</span></li>
+        <li><span class="mp-v3__num">4</span><b>Запуск</b><span>Объект получают партнёры сети, стартует рекламная кампания</span></li>
+      </ol>
+      <div class="mp-v3__cta"><button type="button" class="btn btn--dark mp-cta" data-mp-open>Заказать маркетинговый план</button></div>
+    </div>
+
+    <!-- Вариант 4: бенто-сетка с цифрами плана -->
+    <div class="mp-v mp-v4" data-mp-variant="4">
+      <div class="mp-v4__main">
+        <span class="mp-kicker mp-kicker--light">Маркетинговый план</span>
+        <h2 class="mp-v4__title">Продажа по плану, а не наугад</h2>
+        <p class="mp-v4__lead">Расписываем каждый шаг продажи вашего объекта и считаем бюджет до рубля.</p>
+        <button type="button" class="btn mp-v2__btn" data-mp-open>Заказать план</button>
+      </div>
+      <div class="mp-v4__cell"><b>12</b><span>этапов продажи<br>с ответственными</span></div>
+      <div class="mp-v4__cell"><b>14</b><span>дней рекламной<br>кампании</span></div>
+      <div class="mp-v4__cell"><b>3</b><span>канала продаж: площадки,<br>партнёры, прямые звонки</span></div>
+      <div class="mp-v4__cell mp-v4__cell--accent"><b>1</b><span>смета, где у каждой<br>статьи есть исполнитель</span></div>
+    </div>
+
+    <!-- Вариант 5: таймлайн кампании -->
+    <div class="mp-v mp-v5" data-mp-variant="5">
+      <div class="mp-v5__text">
+        <span class="mp-kicker">Маркетинговый план</span>
+        <h2 class="section-title">Видно каждый день продажи</h2>
+        <p class="mp-lead">В плане есть таймлайн: когда снимаем, когда запускаем рекламу, когда показы и когда выходим на сделку. Пример типовой кампании:</p>
+        <button type="button" class="btn btn--dark mp-cta" data-mp-open>Заказать маркетинговый план</button>
+      </div>
+      <div class="mp-v5__gantt" aria-label="Пример таймлайна кампании">
+        <div class="mp-gantt__scale"><span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span></div>
+        <div class="mp-gantt__row"><span>Подготовка, фото и видео</span><i style="--from:0;--len:5"></i></div>
+        <div class="mp-gantt__row"><span>Рекламная кампания</span><i style="--from:5;--len:14"></i></div>
+        <div class="mp-gantt__row"><span>Звонки покупателей и агентов</span><i style="--from:5;--len:14"></i></div>
+        <div class="mp-gantt__row"><span>Брокер-тур</span><i style="--from:9;--len:1"></i></div>
+        <div class="mp-gantt__row"><span>Показы покупателям</span><i style="--from:13;--len:2"></i></div>
+        <div class="mp-gantt__row"><span>Предложения и задаток</span><i class="is-accent" style="--from:15;--len:2"></i></div>
+        <div class="mp-gantt__row"><span>Сделка</span><i class="is-accent" style="--from:17;--len:8"></i></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ========== VIDEO ========== -->
 <section class="video">
   <div class="video__container">
@@ -295,7 +446,8 @@
       <div class="video__head-left">
         <h2 class="section-title">Видео</h2>
         <div class="tabs">
-          <button class="tabs__btn tabs__btn--active" type="button" data-vtab="webinars">Вебинары</button>
+          <button class="tabs__btn tabs__btn--active" type="button" data-vtab="all">Все видео</button>
+          <button class="tabs__btn" type="button" data-vtab="webinars">Вебинары</button>
           <button class="tabs__btn" type="button" data-vtab="news">Новости</button>
           <button class="tabs__btn" type="button" data-vtab="platform">Платформа</button>
           <button class="tabs__btn" type="button" data-vtab="reviews">Обзоры</button>
@@ -379,6 +531,39 @@
 
   </div>
 </footer>
+
+<!-- ========== ЗАКАЗ МАРКЕТИНГОВОГО ПЛАНА (окно) ========== -->
+<div class="mp-modal" id="mp-modal" aria-hidden="true">
+  <div class="mp-modal__panel" role="dialog" aria-modal="true" aria-labelledby="mp-modal-title">
+    <button type="button" class="mp-modal__close" data-mp-close aria-label="Закрыть">×</button>
+    <div class="mp-modal__form-wrap">
+      <h3 class="mp-modal__title" id="mp-modal-title">Заказать маркетинговый план</h3>
+      <p class="mp-modal__text">Оставьте контакты, мы перезвоним, уточним детали объекта и подготовим план.</p>
+      <form class="mp-modal__form" id="mp-form">
+        <div class="mp-modal__who">
+          <label><input type="radio" name="who" value="owner" checked><span>Я собственник</span></label>
+          <label><input type="radio" name="who" value="agent"><span>Я агент</span></label>
+        </div>
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" placeholder="+7 (___) ___ - __ - __" required>
+        <input type="text" name="object" placeholder="Адрес объекта или ссылка на объявление">
+        <button type="submit" class="btn btn--dark mp-modal__submit">Отправить заявку</button>
+        <p class="mp-modal__note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
+      </form>
+    </div>
+    <div class="mp-modal__done" hidden>
+      <h3 class="mp-modal__title">Заявка принята</h3>
+      <p class="mp-modal__text">Мы свяжемся с вами в ближайшее рабочее время.</p>
+      <button type="button" class="btn btn--dark" data-mp-close>Хорошо</button>
+    </div>
+  </div>
+</div>
+
+<!-- Переключатель вариантов блока «Маркетинговый план»: виден только на localhost -->
+<div class="mp-switch" id="mp-switch" hidden>
+  <span>Марк-план, вариант:</span>
+  <button type="button" data-mp-pick="1">1</button><button type="button" data-mp-pick="2">2</button><button type="button" data-mp-pick="3">3</button><button type="button" data-mp-pick="4">4</button><button type="button" data-mp-pick="5">5</button>
+</div>
 
 <!-- ========== FILTERS OVERLAY ========== -->
 <div class="filter-overlay" id="filter-overlay" onclick="if(event.target.id==='filter-overlay') closeFilters()">
@@ -483,9 +668,9 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/videos.js?v=20261003c"></script>
-<script src="data/objects.js?v=20261003c"></script>
-<script src="js/favorites.js?v=20261003c"></script>
-<script src="js/main.js?v=20261003c"></script>
+<script src="data/videos.js?v=20261003d"></script>
+<script src="data/objects.js?v=20261003d"></script>
+<script src="js/favorites.js?v=20261003d"></script>
+<script src="js/main.js?v=20261003d"></script>
 </body>
 </html>

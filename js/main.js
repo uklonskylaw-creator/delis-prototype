@@ -812,8 +812,55 @@ function initMarqueeSpeed() {
   });
 }
 
+/* Блок «Маркетинговый план»: вариант вёрстки из ?mp=N (по умолчанию 1), переключатель только на localhost */
+function initMarketingPlan() {
+  const sec = document.getElementById('marketing-plan');
+  if (!sec) return;
+  const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const fromUrl = new URLSearchParams(location.search).get('mp');
+  let v = /^[1-5]$/.test(fromUrl || '') ? fromUrl : '1';
+  const sw = document.getElementById('mp-switch');
+  const pick = (n) => {
+    v = n;
+    document.body.dataset.mp = n;
+    if (sw) sw.querySelectorAll('[data-mp-pick]').forEach(b => b.classList.toggle('is-active', b.dataset.mpPick === n));
+  };
+  pick(v);
+  if (sw && local) {
+    sw.hidden = false;
+    sw.querySelectorAll('[data-mp-pick]').forEach(b => b.addEventListener('click', () => {
+      pick(b.dataset.mpPick);
+      history.replaceState(null, '', '?mp=' + b.dataset.mpPick + '#marketing-plan');
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+  }
+
+  // окно заявки
+  const modal = document.getElementById('mp-modal');
+  if (!modal) return;
+  const form = document.getElementById('mp-form');
+  const wrap = modal.querySelector('.mp-modal__form-wrap');
+  const done = modal.querySelector('.mp-modal__done');
+  const open = () => {
+    wrap.hidden = false; done.hidden = true;
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => { const f = form.querySelector('input[name="name"]'); if (f) f.focus(); }, 50);
+  };
+  const close = () => { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); };
+  document.querySelectorAll('[data-mp-open]').forEach(b => b.addEventListener('click', open));
+  modal.querySelectorAll('[data-mp-close]').forEach(b => b.addEventListener('click', close));
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+  // прототип: бэкенда нет, заявка никуда не уходит — показываем подтверждение
+  form.addEventListener('submit', (e) => { e.preventDefault(); form.reset(); wrap.hidden = true; done.hidden = false; });
+
+  // видео партнёров — пока демо без роликов
+  document.querySelectorAll('[data-pv-demo]').forEach(a => a.addEventListener('click', (e) => e.preventDefault()));
+}
+
 // ---------- Init ----------
 document.addEventListener('DOMContentLoaded', () => {
+  initMarketingPlan();
   renderCatalog();
   initMarqueeSpeed();
   initHeaderNav();
