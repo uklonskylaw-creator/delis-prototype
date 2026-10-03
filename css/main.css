@@ -3928,7 +3928,7 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 @media (max-width: 700px) {
   .hero--home .hero__container { background: #f2edf9; border-radius: 24px; overflow: hidden; }
   .hero--home .hero__offer { background: #7135d8; padding: 28px 24px 20px; border-radius: 0; }
-  .hero--home .hero__offer-bg { opacity: .16; }
+  .hero--home .hero__offer-bg { display: none; }
   .hero--home .hero__offer-content { gap: 18px; }
   .hero--home .hero__desktop-title, .hero--home .hero__desktop-text, .hero--home .hero__pins { display: none; }
   .hero--home .hero__mobile-title { display: block; }
@@ -3938,7 +3938,7 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
   .hero--home .hero__mobile-cta { display: inline-flex; justify-content: space-between; align-items: center; align-self: flex-start; gap: 28px; padding: 12px 18px; min-height: 48px; background: #fff; color: #5930a0; border-radius: 14px; font-size: 15px; font-weight: 600; }
   .hero--home .hero__right { height: auto; aspect-ratio: 1.8; border: 0; border-radius: 0; background: #7135d8; }
   .hero--home .hero__right-photo { object-position: center 53%; opacity: .95; }
-  .hero--home .hero__right-overlay { background: linear-gradient(180deg, #7135d8 0%, transparent 35%, transparent 70%, #f2edf9 100%); }
+  .hero--home .hero__right-overlay { background: linear-gradient(180deg, #7135d8 0%, rgba(113,53,216,.96) 14%, rgba(113,53,216,.78) 30%, rgba(113,53,216,.46) 48%, rgba(113,53,216,.12) 68%, transparent 82%, #f2edf9 100%); }
   .hero--home .hero__map-caption { background: none; color: #51357d; font-size: 11px; padding: 9px 24px; bottom: 0; }
   .hero--home .stats { margin: 0; padding: 20px 16px 16px; gap: 0; background: #f2edf9; }
   .hero--home .stats__item { min-height: 112px; background: none; border: 0; border-radius: 0; padding: 14px 12px; gap: 10px; justify-content: flex-start; }
