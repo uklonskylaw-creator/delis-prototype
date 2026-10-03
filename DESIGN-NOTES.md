@@ -40,3 +40,9 @@ Figma, файл Даши: https://www.figma.com/design/u50NGXeBYdT7VOBZQt3hBu/?n
 Формы используют действующий публичный https://uklonsky.ru/send.php с того же сайта; поддерживает CORS для POST JSON {text}. Источник заявок маркируется «Делись», страница и тип объекта передаются отдельно. Реальные тестовые заявки не отправлялись: UI, данные, успешный и ошибочный ответы проверять с перехватом запроса. Серверную реализацию и данные других приложений не менять в рамках этой задачи.
 
 На главной добавлено видео YouTube r8N4iTi1uWk «Типичные ошибки при продаже элитной недвижимости», VDT, 54:56, с отдельной обложкой «Делись» на основе исходного превью и сохранением личности спикера. Карточка есть в блоке партнёрских видео и в видеотеке (второй после собственного урока).
+
+## Update 2026-10-03: video hierarchy, auction comparison, owner registration
+- Main video block: own auction lesson as featured video, then Petersburg, owner mistakes, realtor habits. Property video reviews remain in the next separate block.
+- FAQ portrait on agents/owners/auction uses proportional images/form-person.png instead of distorted Figma bitmap.
+- Auction page compares six stages of classical sale and auction; supplied buyer funnel has no invented forecast counts and opens full size.
+- Registration adds owner role, personal contact/region form without agency/INN/experience fields, and persists the proper owner role. Registration continues to use the existing local demonstration account flow; real backend/SMS authentication is not implemented.

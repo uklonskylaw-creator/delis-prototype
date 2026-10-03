@@ -107,3 +107,26 @@
 }
 @media(prefers-reduced-motion:reduce) {.sales-video-play {transition:none;}}
 .sales-page .btn--outline-brand {background:white;border:1px solid #d8c5ef;color:#7622d7;}
+
+/* Comparison and buyer funnel */
+.sale-compare-head,.sale-compare article {display:grid;grid-template-columns:.7fr 1fr 1fr;gap:24px;}
+.sale-compare-head {padding:18px 20px;background:#f0e6fb;border-radius:14px 14px 0 0;font-size:15px;}
+.sale-compare article {padding:22px 20px;border-bottom:1px solid #e6dfee;align-items:start;}
+.sale-compare h3 {font-size:16px;line-height:1.5;margin:0;}
+.sale-compare article p {font-size:15px;line-height:1.6;margin:0;}
+.sale-compare article div>span {display:none;}
+.buyer-funnel {margin:40px 0 0;}
+.buyer-funnel img {display:block;width:100%;height:auto;border-radius:18px;}
+.buyer-funnel figcaption {padding-top:24px;max-width:80ch;}
+.buyer-funnel h3 {font-size:22px;margin-bottom:12px;}
+.buyer-funnel figcaption p {font-size:15px;line-height:1.6;margin-bottom:16px;}
+.buyer-funnel figcaption a {color:#803be9;font-size:14px;}
+@media(max-width:700px){
+.sale-compare-head {display:none;}
+.sale-compare article {grid-template-columns:1fr;gap:14px;padding:24px 0;}
+.sale-compare article div {padding:16px;background:#f7f5f9;border-radius:12px;}
+.sale-compare article div:last-child {background:#f0e6fb;}
+.sale-compare article div>span {display:block;font-weight:600;font-size:13px;margin-bottom:8px;color:#674195;}
+.sale-compare article p {font-size:14px;}
+.buyer-funnel h3 {font-size:18px;}
+}

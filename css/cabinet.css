@@ -1975,3 +1975,9 @@
   }
   .cab-toolbar-row .btn { width: 100%; justify-content: center; }
 }
+
+/* Three registration roles */
+.auth-card--type {max-width:1040px;}
+.account-types {grid-template-columns:repeat(3,minmax(0,1fr));}
+.account-type:focus-within {outline:2px solid #803be9;outline-offset:3px;}
+@media(max-width:700px){.account-types {grid-template-columns:1fr;}}

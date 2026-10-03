@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/main.css?v=20261003commission2">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20261003d">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20261003final">
 </head>
 <body class="cabinet-page">
 
@@ -54,6 +54,11 @@
         <input type="radio" name="account-type" value="agent">
         <img src="../../images/reg-icon-agent.svg" alt="Частный агент" class="account-type__img account-type__img--default">
         <img src="../../images/reg-agent.svg" alt="Частный агент" class="account-type__img account-type__img--active">
+      </label>
+      <label class="account-type" data-type="owner">
+        <input type="radio" name="account-type" value="owner" aria-label="Собственник">
+        <img src="../../images/reg-icon-owner.svg" alt="Собственник" class="account-type__img account-type__img--default">
+        <img src="../../images/reg-owner.svg" alt="Собственник" class="account-type__img account-type__img--active">
       </label>
     </div>
 
@@ -223,6 +228,53 @@
     </form>
   </div>
 
+  <div class="auth-card auth-step" data-step="owner-1">
+    <div class="auth-card__head">
+      <h1 class="auth-card__title">Регистрация собственника</h1>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
+    </div>
+
+    <form class="auth-form" id="form-owner" onsubmit="handleRegister(event, 'owner')">
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Регион</label>
+        <select name="region" required data-region>
+          <option value="Санкт-Петербург и ЛО">Санкт-Петербург и ЛО</option>
+          <option value="Москва и МО">Москва и МО</option>
+          <option value="other">Другой город</option>
+        </select>
+      </div>
+      <div class="auth-field auth-field--full" data-other-city hidden>
+        <label class="auth-field__label">Город</label>
+        <input type="text" name="city" list="ru-cities" placeholder="Начните вводить название" autocomplete="address-level2">
+      </div>
+      <div class="auth-row">
+        <div class="auth-field">
+          <label class="auth-field__label">ФИО</label>
+          <input type="text" name="fullname" placeholder="Иван Иванов Иванович" required>
+        </div>
+        <div class="auth-field">
+          <label class="auth-field__label">Телефон для входа в аккаунт</label>
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" data-phone required>
+        </div>
+      </div>
+      <div class="auth-field auth-field--full">
+        <label class="auth-field__label">Адрес электронной почты для получения и восстановления пароля</label>
+        <input type="email" placeholder="name@example.ru" required>
+      </div>
+
+      <label class="auth-check" style="margin-top:24px;">
+        <input type="checkbox" required>
+        <span class="auth-check__box"></span>
+        <span>Нажимая на кнопку «Отправить», я соглашаюсь с <a href="https://uklonsky.ru/policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a></span>
+      </label>
+
+      <div class="auth-actions auth-actions--row" style="margin-top:20px;">
+        <button type="button" class="btn btn--outline-brand" data-go="type">Назад к выбору типа</button>
+        <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
+      </div>
+    </form>
+  </div>
+
   <!-- ===== STEP: SMS-подтверждение телефона ===== -->
   <div class="auth-card auth-card--narrow auth-step" data-step="confirm-phone">
     <div class="auth-card__head">
@@ -312,7 +364,7 @@ typeCards.forEach(c => c.addEventListener('click', () => {
 btnTypeNext.addEventListener('click', (e) => {
   e.preventDefault();
   if (!selectedType) return;
-  goStep(selectedType === 'agency' ? 'agency-1' : 'agent-1');
+  goStep(selectedType + '-1');
 });
 
 // === Segmented control ===
@@ -397,13 +449,13 @@ function handleRegister(e, type) {
     regState.phone = e.target.querySelector('input[type="tel"]')?.value || '+7 (___) ___-__-__';
     regState.email = e.target.querySelector('input[type="email"]')?.value || 'your@email.com';
     // регион и агентство собираем со всех шагов формы
-    const card = document.querySelector('[data-step="' + (type === 'agent' ? 'agent-1' : 'agency-1') + '"]');
+    const card = document.querySelector('[data-step="' + (type + '-1') + '"]');
     const regionSel = card?.querySelector('[data-region]');
     const otherCity = card?.querySelector('[data-other-city] input');
     regState.region = regionSel
       ? (regionSel.value === 'other' ? (otherCity?.value || 'Другой город') : regionSel.value)
       : '';
-    regState.agency = card?.querySelector('input[type="text"]')?.value || '';
+    regState.agency = type === 'owner' ? '' : (card?.querySelector('input[type="text"]')?.value || '');
     regState.password = window.DelisAuth.randomPassword();
     const numEl = document.getElementById('confirm-phone-num');
     if (numEl) numEl.textContent = regState.phone;
@@ -490,7 +542,7 @@ function finishRegister() {
     name: regState.name,
     agency: regState.agency || '',
     region: regState.region || '',
-    role: regState.type === 'agent' ? 'Частный агент' : 'Агентство'
+    role: { agent: 'Частный агент', agency: 'Агентство', owner: 'Собственник' }[regState.type]
   };
   D.saveAccount(acc);
   localStorage.setItem('delis_user', JSON.stringify({
@@ -498,7 +550,7 @@ function finishRegister() {
     agency: acc.agency, region: acc.region, role: acc.role,
     registeredAt: new Date().toISOString()
   }));
-  const dest = regState.type === 'agent' ? '/pages/cabinet/profile-private/' : '/pages/cabinet/profile/';
+  const dest = regState.type === 'owner' ? '/pages/cabinet/objects/' : regState.type === 'agent' ? '/pages/cabinet/profile-private/' : '/pages/cabinet/profile/';
   const goBtn = document.getElementById('btn-go-cabinet');
   if (goBtn) goBtn.setAttribute('onclick', `location.href='${dest}'`);
   goStep('success');
