@@ -49,7 +49,7 @@
            </div>
            <div class="obj-deal__col obj-deal__col--final">
              <span class="obj-deal__label">Встречная комиссия${o.commissionType === 'percent' ? ' (от цены продажи)' : ''}</span>
-             <b class="obj-deal__final">${o.commission}</b>
+             <b class="obj-deal__final">${Commission.render(o.commission)}</b>
            </div>
          </div>`;
 
@@ -155,7 +155,8 @@
     // Текстовые поля
     document.querySelectorAll('[data-field]').forEach(el => {
       const fn = FIELD[el.dataset.field];
-      if (fn) el.textContent = fn(o);
+      if (el.dataset.field === 'commission') el.innerHTML = Commission.render(o.commission);
+      else if (fn) el.textContent = fn(o);
     });
 
     // Фотографии (галерея)

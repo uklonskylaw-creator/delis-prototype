@@ -4010,3 +4010,32 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
   .hero--home .hero__right-overlay { background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,.5) 12%, transparent 26%, transparent 78%, #f2edf9 100%); }
   .hero--home .hero__map-caption { padding-inline: 24px; }
 }
+
+/* Guest commission access, shared across all property views. */
+.commission-lock { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 6px 10px; border: 1px solid #e3d7f3; border-radius: 10px; background: #f5effd; color: #7541bb; vertical-align: middle; }
+.commission-lock__blur { filter: blur(3px); user-select: none; font-size: 15px; font-weight: 600; }
+.commission-lock svg { flex: none; }
+.commission-lock:focus-visible { outline: 2px solid #7541bb; outline-offset: 3px; }
+.commission-lock:hover { background: #eae0f9; }
+.commission-dialog { width: min(440px, calc(100% - 32px)); margin: auto; border: 0; padding: 40px 28px 28px; border-radius: 24px; color: #302637; background: #fff; box-shadow: 0 20px 70px #29103a33; }
+.commission-dialog::backdrop { background: #21102d88; }
+.commission-dialog h2 { font-size: 24px; line-height: 1.25; margin-bottom: 14px; }
+.commission-dialog p { font-size: 16px; line-height: 1.5; color: #74677e; margin-bottom: 24px; }
+.commission-dialog .btn { width: 100%; font-size: 16px; white-space: normal; }
+.commission-dialog__close { position: absolute; top: 4px; right: 6px; width: 44px; height: 44px; font-size: 28px; }
+.commission-dialog__login { display: block; text-align: center; padding: 16px 0 0; font-size: 14px; color: #7135d8; }
+.partners__heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.partners__area-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #7135d8; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.partners__area-link span { font-size: 20px; }
+.mp-real-page--team { z-index: 3; }
+.mp-real-page--cover { z-index: 2; transform: translate(-30px, 26px); }
+.mp-real-page--team { transform: translate(110px, 5px) rotate(9deg); }
+@media (max-width: 700px) {
+ .hero--home .hero__title { font-size: clamp(23px, 6.4vw, 29px); letter-spacing: -.03em; }
+ .partners__heading { gap: 12px; }
+ .partners__area-link { font-size: 12px; gap: 6px; }
+ .mp-real-page--team { transform: translate(50px, 5px) rotate(9deg); }
+ .mp-real-page--cover { transform: translate(-18px, 26px); }
+ .commission-dialog { padding: 40px 22px 22px; }
+ .commission-dialog h2 { font-size: 22px; }
+}

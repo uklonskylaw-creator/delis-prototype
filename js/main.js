@@ -1,5 +1,34 @@
 /* СОЛД – Делись — main.js */
 
+
+// The static prototype models sign-in locally; production must gate commission in the API.
+const Commission = {
+  authenticated() {
+    try { return !!JSON.parse(localStorage.getItem('delis_user') || 'null'); } catch { return false; }
+  },
+  render(value) {
+    if (this.authenticated()) return String(value || '—');
+    return `<button type="button" class="commission-lock" data-commission-lock aria-label="Встречная комиссия доступна после регистрации"><span class="commission-lock__blur" aria-hidden="true">••• ••• ₽</span><svg width="16" height="18" viewBox="0 0 20 22" fill="none" aria-hidden="true"><rect x="3" y="9" width="14" height="11" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M6 9V6a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/><circle cx="10" cy="14" r="1.5" fill="currentColor"/></svg></button>`;
+  },
+  open() {
+    let dialog = document.getElementById('commission-dialog');
+    if (!dialog) {
+      dialog = document.createElement('dialog');
+      dialog.id = 'commission-dialog';
+      dialog.className = 'commission-dialog';
+      dialog.setAttribute('aria-labelledby', 'commission-dialog-title');
+      dialog.innerHTML = `<button type="button" class="commission-dialog__close" aria-label="Закрыть">×</button><h2 id="commission-dialog-title">Комиссия доступна после регистрации</h2><p>Зарегистрируйтесь или войдите, чтобы увидеть размер встречной комиссии по объекту.</p><a href="/pages/cabinet/register/" class="btn btn--brand">Стать партнёром</a><a href="/pages/cabinet/login/" class="commission-dialog__login">Уже есть аккаунт? Войти</a>`;
+      dialog.querySelector('button').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
+      document.body.appendChild(dialog);
+    }
+    if (!dialog.open) dialog.showModal();
+  }
+};
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-commission-lock]')) { e.preventDefault(); e.stopImmediatePropagation(); Commission.open(); }
+}, true);
+
 let _catalogItems = [];
 let _catalogView = null;       /* null = список скрыт до клика по view-toggle */
 
@@ -206,8 +235,8 @@ function fillMapCard(id) {
   const rows = closed
     ? [['Начальная цена', o.startPrice], ['Цена продажи', o.salePrice], ['Срок продажи', o.days + ' ' + plurDays(o.days)]]
     : objFormat(o) === 'direct'
-      ? [['Цена', o.price], ['Встречная комиссия', o.commission]]
-      : [['Начальная цена', o.startPrice], ['Даты показов', o.showDates], ['Встречная комиссия', o.commission]];
+      ? [['Цена', o.price], ['Встречная комиссия', Commission.render(o.commission)]]
+      : [['Начальная цена', o.startPrice], ['Даты показов', o.showDates], ['Встречная комиссия', Commission.render(o.commission)]];
   box.innerHTML = `
     <a href="${objectHref(o.id)}" class="map-card__photo">
       <img src="${o.image}" alt="${o.title}" class="map-card__img">
@@ -518,7 +547,7 @@ function catalogTable(items) {
           <div>${o.area}</div>
           <div>${v7}</div>
           <div>${v8}</div>
-          <div class="cat-table__accent">${o.commission}</div>
+          <div class="cat-table__accent">${Commission.render(o.commission)}</div>
           <div class="cat-table__link-cell"><a href="${objectHref(o.id)}" aria-label="Открыть"><img src="images/icon-link.svg" alt="" width="16" height="16"></a></div>
         </div>`;
       }).join('')}
@@ -549,10 +578,10 @@ function objListRow(o) {
        ['Срок продажи', o.days + ' ' + plurDays(o.days), '']]
     : isDirect
       ? [['Цена', o.price, ''],
-         ['Встречная комиссия', o.commission, ' cat-row__price-line--commission']]
+         ['Встречная комиссия', Commission.render(o.commission), ' cat-row__price-line--commission']]
       : [['Начальная цена', o.startPrice, ''],
          ['Даты показов', o.showDates, ''],
-         ['Встречная комиссия', o.commission, ' cat-row__price-line--commission']];
+         ['Встречная комиссия', Commission.render(o.commission), ' cat-row__price-line--commission']];
 
   const b = o.broker || {};
   const side = `
@@ -716,6 +745,7 @@ function renderRange(box) {
 function initRanges() {
   document.querySelectorAll('.filter-range[data-key]').forEach(box => {
     const key = box.dataset.key;
+    if (!Commission.authenticated() && ['bonusPct', 'bonusRub'].includes(key)) { box.innerHTML = Commission.render(''); return; }
     const vals = _catalogItems.map(o => _objVal(o, key));
     const step = Number(box.dataset.step) || 1;
     let min = Math.floor(Math.min(...vals) / step) * step;
@@ -776,7 +806,7 @@ function objCard(o) {
       : [['Начальная цена', o.startPrice],
          ['Даты показов', o.showDates]];
 
-  const comm = closed ? '' : o.commission;
+  const comm = closed ? '' : Commission.render(o.commission);
 
   card.innerHTML = `
     <a href="${href}" class="obj-card__media">
