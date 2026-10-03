@@ -4039,3 +4039,14 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
  .commission-dialog { padding: 40px 22px 22px; }
  .commission-dialog h2 { font-size: 22px; }
 }
+
+/* The cover sits above the budget sheets; charts peek out on the left. */
+.mp-real-page--cover { z-index: 3; transform: translateY(26px); }
+.mp-real-page--team { z-index: 1; transform: translate(-110px, 5px) rotate(-10deg); }
+.mp-real-page--budget { z-index: 2; transform: translate(90px, 5px) rotate(9deg); }
+@media (max-width: 700px) {
+ .mp-real-page--cover { transform: translate(12px, 26px); }
+ .mp-real-page--team { transform: translate(-58px, 5px) rotate(-10deg); }
+ .mp-real-page--budget { transform: translate(54px, 5px) rotate(9deg); }
+ .commission-lock { gap: 6px; padding-inline: 8px; }
+}
