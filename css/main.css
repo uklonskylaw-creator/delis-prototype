@@ -4176,3 +4176,6 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .obj-card__foot {gap:16px;flex-wrap:wrap;}
 .obj-card__agent .broker-ava__photo {object-position:center 25%;}
 @media(max-width:700px){.obj-card__agent .broker-ava--sm {width:60px;height:60px;}.obj-card__agent {gap:12px;}}
+
+.broker-ava__crop {display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;}
+.broker-ava__crop .broker-ava__photo[src*="polina"] {transform:translateY(10px) scale(1.8);transform-origin:center top;border-radius:0;}

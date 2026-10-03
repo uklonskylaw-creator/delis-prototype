@@ -609,7 +609,7 @@ function objListRow(o) {
   const side = `
     <div class="cat-row__broker">
       <div class="broker-ava">
-        ${b.photo ? `<img src="${b.photo}" alt="" class="broker-ava__photo">` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
+        ${b.photo ? `<span class="broker-ava__crop"><img src="${b.photo}" alt="${b.name || 'Агент'}" class="broker-ava__photo"></span>` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
         ${b.logo ? `<img src="${b.logo}" alt="" class="broker-ava__logo">` : ''}
       </div>
       <div class="cat-row__broker-info">
@@ -851,7 +851,7 @@ function objCard(o) {
       <div class="obj-card__foot">
         <div class="obj-card__agent">
           <div class="broker-ava broker-ava--sm">
-            ${b.photo ? `<img src="${b.photo}" alt="" class="broker-ava__photo">` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
+            ${b.photo ? `<span class="broker-ava__crop"><img src="${b.photo}" alt="${b.name || 'Агент'}" class="broker-ava__photo"></span>` : `<span class="broker-ava__initials">${b.initials || '—'}</span>`}
             ${b.logo ? `<img src="${b.logo}" alt="" class="broker-ava__logo">` : ''}
           </div>
           <div class="obj-card__agent-info">
