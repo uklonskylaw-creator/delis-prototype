@@ -4162,3 +4162,9 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .contact-person-phone {color:#7135d8;font-size:19px;font-weight:600;white-space:nowrap;}
 @media(max-width:800px){.contact-cards--people {grid-template-columns:1fr;}}
 @media(max-width:400px){.contact-card--person {padding:20px;gap:16px;flex-wrap:wrap;}.contact-person-photo {width:88px;height:112px;}.contact-person-copy h2 {font-size:20px;}.contact-person-phone {font-size:18px;}}
+
+.contact-person-photo--mikhail {object-fit:contain;object-position:center bottom;background:#f0eaf8;}
+.contact-locations {grid-template-columns:repeat(2,minmax(0,1fr));}
+.contact-locations p {font-size:14px;line-height:1.5;margin-top:10px;color:#756c7d;}
+.contact-location-email {grid-column:1/-1;}
+@media(max-width:700px){.contact-locations {grid-template-columns:1fr;}.contact-location-email {grid-column:auto;}}
