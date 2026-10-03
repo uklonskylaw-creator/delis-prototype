@@ -389,11 +389,11 @@ function initVideos() {
 }
 
 function initRegTabs() {
-  document.querySelectorAll('[data-home-type]').forEach(btn => btn.addEventListener('click', () => {
-    _homeType = btn.dataset.homeType;
-    document.querySelectorAll('[data-home-type]').forEach(b => b.classList.toggle('is-active', b === btn));
+  const typeSelect = document.getElementById('home-type');
+  if (typeSelect) typeSelect.addEventListener('change', () => {
+    _homeType = typeSelect.value;
     drawCatalog(_catalogItems);
-  }));
+  });
   const tabs = document.querySelectorAll('[data-reg-tab]');
   if (!tabs.length) return;
   // подсветка всегда совпадает с тем, что показано

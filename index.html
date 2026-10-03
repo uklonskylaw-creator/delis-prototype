@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20261003e">
-<link rel="stylesheet" href="css/base.css?v=20261003e">
-<link rel="stylesheet" href="css/main.css?v=20261003e">
+<link rel="stylesheet" href="css/tokens.css?v=20261003g">
+<link rel="stylesheet" href="css/base.css?v=20261003g">
+<link rel="stylesheet" href="css/main.css?v=20261003g">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -222,6 +222,7 @@
       <div class="catalog__head">
         <h2 class="section-title">Объекты сети</h2>
         <div class="catalog__head-actions">
+<label class="catalog-type-select"><img src="images/icon-home.svg" alt="" width="18" height="18"><select id="home-type" aria-label="Тип объекта"><option value="all">Все объекты</option><option value="Квартира">Квартиры</option><option value="Дом">Загородная недвижимость</option><option value="Коммерция">Коммерческая недвижимость</option></select></label>
           <button class="btn btn--dark btn--sm catalog__filters-btn" type="button" onclick="openFilters()">
             <img src="images/icon-settings.svg" alt="" width="18" height="18">
             Все фильтры
@@ -230,14 +231,7 @@
         </div>
       </div>
 
-      <div class="catalog-types" aria-label="Тип недвижимости">
-        <span>Тип объекта</span>
-        <button type="button" class="reg-tab is-active" data-home-type="all">Все объекты</button>
-        <button type="button" class="reg-tab" data-home-type="Квартира">Квартиры</button>
-        <button type="button" class="reg-tab" data-home-type="Дом">Загородные дома</button>
-        <button type="button" class="reg-tab" data-home-type="Коммерция">Коммерческая недвижимость</button>
-      </div>
-      <div class="reg-tabs">
+<div class="reg-tabs">
         <button type="button" class="reg-tab is-active" data-reg-tab="direct">Прямая продажа</button>
         <button type="button" class="reg-tab" data-reg-tab="auction">Аукцион</button>
         <button type="button" class="reg-tab" data-reg-tab="private">Закрытые продажи</button>
@@ -317,7 +311,7 @@
         <img class="mp-real-page mp-real-page--budget" src="images/plan-budget.png" alt="Сводная смета расходов, суммы и исполнители скрыты">
         <img class="mp-real-page mp-real-page--team" src="images/plan-team.png" alt="Расчёт работы команды, данные скрыты">
         <img class="mp-real-page mp-real-page--cover" src="images/plan-cover.png" alt="Маркетинговый план продажи, данные объекта скрыты">
-        <div class="mp-polina"><img src="images/polina.jpeg" alt="Полина"><span>Полина</span></div><span class="mp-doc-caption">Пример нашего плана · данные скрыты</span>
+        <span class="mp-doc-caption">Пример нашего плана · данные скрыты</span>
       </div>
     </div>
 
@@ -422,7 +416,7 @@
 <section class="form-section">
   <div class="form-section__container">
     <div class="form-banner form-banner--photo" id="form">
-      <img src="images/form-banner-sankin.jpg" alt="Михаил Уклонский и Александр Санкин" class="form-banner__bg">
+      <img src="images/form-banner-team.png" alt="Михаил Уклонский и Полина" class="form-banner__bg">
       <div class="form-banner__left">
         <h2 class="form-banner__title">Продадим вашу недвижимость<br>за 14 дней</h2>
         <form class="form-banner__form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.')">
@@ -627,9 +621,9 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/videos.js?v=20261003e"></script>
-<script src="data/objects.js?v=20261003e"></script>
-<script src="js/favorites.js?v=20261003e"></script>
-<script src="js/main.js?v=20261003e"></script>
+<script src="data/videos.js?v=20261003g"></script>
+<script src="data/objects.js?v=20261003g"></script>
+<script src="js/favorites.js?v=20261003g"></script>
+<script src="js/main.js?v=20261003g"></script>
 </body>
 </html>

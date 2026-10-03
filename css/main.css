@@ -3808,5 +3808,9 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .pv-editorial:has(.pv-hero-card[hidden]) { grid-template-columns:1fr; }
 .pv-editorial:has(.pv-hero-card[hidden]) .pv-side-list { max-width:900px; width:100%; margin-inline:auto; }
 
-.mp-polina {position:absolute;right:0;bottom:38px;display:flex;align-items:center;gap:10px;background:white;padding:7px 16px 7px 7px;border-radius:40px;box-shadow:0 8px 25px #49216c22;z-index:1;font-size:14px;color:#64547a;}
-.mp-polina img {width:60px;height:60px;object-fit:cover;object-position:50% 22%;border-radius:50%;}
+
+.catalog-type-select {display:flex;align-items:center;gap:9px;border:1px solid #ddd;border-radius:32px;background:white;padding:0 14px;min-width:185px;height:46px;}
+.catalog-type-select select {font:inherit;font-size:14px;font-weight:500;color:#282828;border:0;background:transparent;max-width:270px;width:100%;padding:10px 0;cursor:pointer;}
+.catalog-type-select:focus-within {outline:2px solid #8752df;outline-offset:2px;}
+.form-banner--photo .form-banner__bg {object-fit:cover;object-position:center;image-rendering:auto;}
+@media(max-width:700px){.catalog-type-select {width:100%;}.catalog-type-select select {max-width:none;}.form-banner--photo .form-banner__bg {object-position:72% top;}}
