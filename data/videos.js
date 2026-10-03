@@ -3,7 +3,8 @@ window.__VIDEOS = [
   {
     "title": "Аукционный метод продажи недвижимости",
     "author": "Делись",
-    "url": "https://crm-uklonsky.ru/assets/delis-media/auk-01-web-1080p.mp4",
+    "url": "/auction/#auction-video",
+    "mediaSrc": "https://crm-uklonsky.ru/assets/delis-media/auk-01-web-1080p.mp4",
     "tab": "webinars",
     "cover": "images/video/delis-auction-method.jpg",
     "duration": "12:13",

@@ -130,3 +130,10 @@
 .sale-compare article p {font-size:14px;}
 .buyer-funnel h3 {font-size:18px;}
 }
+
+.sales-step-icon {position:absolute;right:20px;top:20px;width:38px;height:38px;display:grid;place-items:center;background:#f4edfc;color:#803be9;border-radius:10px;}
+.sales-step-number {min-height:38px;display:flex;align-items:center;}
+.sales-owner-plan {padding:0;margin:72px 0;}
+.sales-owner-plan .mp__container {padding:0;}
+.sales-owner-plan .mp-v1 {display:grid;}
+@media(max-width:700px){.sales-owner-plan {margin:40px 0;}.sales-step-icon {right:16px;top:16px;}.sales-owner-plan .mp-v1 {display:flex;}}

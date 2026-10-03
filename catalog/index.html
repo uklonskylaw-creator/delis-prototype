@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css?v=20261003d">
 <link rel="stylesheet" href="css/base.css?v=20261003d">
-<link rel="stylesheet" href="css/main.css?v=20261003commission2">
+<link rel="stylesheet" href="css/main.css?v=20261004mobile">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body class="page-catalog">
@@ -58,12 +58,16 @@
       <a href="/">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Объекты</span>
     </nav>
     <h1 class="section-title catalog-page-head__title">Объекты</h1>
-    <p class="catalog-page-head__sub">Объекты сети: активные аукционы, прямые продажи и результаты завершённых сделок. По каждому объекту указана встречная комиссия агенту, который приведёт покупателя.</p>
+    <p class="catalog-page-head__sub">Недвижимость партнёрской сети. Выберите формат продажи и тип объекта. Встречная комиссия доступна после регистрации.</p>
   </div>
 </section>
 
 <section class="searchbar-section">
   <div class="searchbar-section__container">
+    <div class="catalog-phone-selects">
+      <label>Тип продажи<select id="catalog-sale-type"><option value="direct">Прямая продажа</option><option value="auction">Аукцион</option><option value="sold">Завершённые продажи</option><option value="all">Все объекты</option></select></label>
+      <label>Тип объекта<select id="catalog-property-type"><option value="all">Все объекты</option><option value="Квартира">Квартира</option><option value="Дом">Дом</option><option value="Коммерция">Коммерция</option></select></label>
+    </div>
     <div class="reg-tabs-bar">
       <div class="reg-tabs">
         <button type="button" class="reg-tab is-active" data-reg-tab="direct">Прямая продажа</button>
@@ -105,7 +109,7 @@
         Показать на карте
       </button>
       <div class="searchbar__input">
-        <input type="text" id="search-input" placeholder="Поиск по базе: ID, метро, город, район, ЖК, улица, застройщик...">
+        <input type="text" id="search-input" placeholder="Город, адрес, метро или ID" aria-label="Поиск объектов">
         <img src="images/icon-search.svg" alt="" width="22" height="22">
       </div>
 
@@ -302,6 +306,6 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFilte
 </script>
 <script src="data/objects.js?v=20261003d"></script>
 <script src="js/favorites.js?v=20261003d"></script>
-<script src="js/main.js?v=20261003commission2"></script>
+<script src="js/main.js?v=20261004mobile"></script>
 </body>
 </html>

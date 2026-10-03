@@ -48,3 +48,12 @@ Figma, файл Даши: https://www.figma.com/design/u50NGXeBYdT7VOBZQt3hBu/?n
 - Registration adds owner role, personal contact/region form without agency/INN/experience fields, and persists the proper owner role. Registration continues to use the existing local demonstration account flow; real backend/SMS authentication is not implemented.
 
 - Final user revision: property reviews appear first in the original editorial layout; useful realtor materials appear below marketing plan in the original horizontal video carousel. Auction video no longer has the “Урок 1” label.
+
+## 2026-10-04 — mobile catalogue and inline video
+- Catalogue mobile controls: sale/property selects, full-width search, filters/map actions, city/sort row; desktop registry retained. Mobile cards use proportional photos, separate area line and aligned price/commission fields, tappable title and broker phone.
+- Navigation is a full-width dynamic-viewport panel with compact links, two auth buttons, keyboard focus handling and inert closed state.
+- Own video URL is now a Delis auction page anchor; remote MP4 storage is mediaSrc only. Video card/title and player source link no longer navigate to CRM. Main JS/CSS/video-data URLs versioned together to avoid cached handlers.
+- Mobile carousel grid bottom margin and section padding reduced so the lead form follows the controls without a large blank area.
+
+- Owner page select had malformed opening markup for the apartment option: repaired. Added seven matching inline SVG process icons and reused main-page marketing plan/document stack with CTA to the owner consultation form. Updated owner video thumbnail/title/link too.
+- Browser checks include Chromium 320/390/1440 and WebKit iPhone 13: catalogue selection, navigation, owner apartment option, seven icons, plan CTA, inline MP4 opening/closing with no address change or popup. Mobile video-to-form gap measured at 40 CSS px.

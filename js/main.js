@@ -72,6 +72,8 @@ function initBurger() {
   burger.className = 'header__burger';
   burger.type = 'button';
   burger.setAttribute('aria-label', 'Меню');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-controls', 'delis-mobile-menu');
   burger.innerHTML = '<span></span><span></span><span></span>';
   inner.appendChild(burger);
 
@@ -82,6 +84,11 @@ function initBurger() {
 
   const menu = document.createElement('div');
   menu.className = 'mobile-menu';
+  menu.id = 'delis-mobile-menu';
+  menu.setAttribute('role', 'dialog');
+  menu.setAttribute('aria-label', 'Навигация по сайту');
+  menu.setAttribute('aria-modal', 'true');
+  menu.setAttribute('inert', '');
   menu.innerHTML = `
     <div class="mobile-menu__panel">
       <button class="mobile-menu__close" type="button" aria-label="Закрыть">&times;</button>
@@ -99,12 +106,19 @@ function initBurger() {
     </div>`;
   document.body.appendChild(menu);
 
-  const open = () => { menu.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
-  const close = () => { menu.classList.remove('is-open'); document.body.style.overflow = ''; };
+  const open = () => { menu.removeAttribute('inert'); menu.classList.add('is-open'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; menu.querySelector('.mobile-menu__close').focus(); };
+  const close = () => { menu.classList.remove('is-open'); menu.setAttribute('inert', ''); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; burger.focus(); };
   burger.addEventListener('click', open);
   menu.querySelector('.mobile-menu__close').addEventListener('click', close);
   menu.addEventListener('click', (e) => { if (e.target === menu) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  menu.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const nodes = [...menu.querySelectorAll('a, button')];
+    const first = nodes[0], last = nodes[nodes.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('is-open')) close(); });
 }
 
 // Избранное: клики по сердечкам + иконка в шапке со счётчиком
@@ -331,7 +345,7 @@ function initCitySelect() {
   search.addEventListener('input', () => draw(search.value));
   drop.addEventListener('click', (e) => e.stopPropagation());
   document.addEventListener('click', close);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('is-open')) close(); });
   draw('');
 }
 
@@ -428,6 +442,8 @@ function initVideos() {
 }
 
 function initRegTabs() {
+  document.getElementById('catalog-sale-type')?.addEventListener('change', e => document.querySelector(`[data-reg-tab="${e.target.value}"]`)?.click());
+  document.getElementById('catalog-property-type')?.addEventListener('change', () => refreshList());
   const saleSelect = document.getElementById('mobile-sale-type');
   const propertySelect = document.getElementById('mobile-property-type');
   saleSelect?.addEventListener('change', () => document.querySelector(`[data-reg-tab="${saleSelect.value}"]`)?.click());
@@ -481,6 +497,7 @@ function initRegTabs() {
     const note = document.querySelector('.catalog-private-note');
     if (note) note.hidden = _regStatus !== 'private';
     tabs.forEach(b => b.classList.toggle('is-active', b === btn));
+    const catalogSale = document.getElementById('catalog-sale-type'); if (catalogSale) catalogSale.value = _regStatus;
     drawCatalog(_catalogItems);
     if (typeof refreshList === 'function' && _catalogView) refreshList();
   }));
@@ -598,7 +615,7 @@ function objListRow(o) {
       <div class="cat-row__broker-info">
         <div class="cat-row__broker-name">${b.name || ''}</div>
         <div class="cat-row__broker-agency">${b.agency || ''}</div>
-        <div class="cat-row__broker-phone">${b.phone || ''}</div>
+        <a class="cat-row__broker-phone" href="tel:${String(b.phone || '').replace(/[^+0-9]/g, '')}">${b.phone || ''}</a>
       </div>
     </div>`;
 
@@ -608,7 +625,7 @@ function objListRow(o) {
     </a>
     <div class="cat-row__main">
       <div class="cat-row__head">
-        <h3 class="cat-row__title">${o.title}</h3>
+        <h3 class="cat-row__title"><a href="${href}">${o.title}</a></h3>
         <span class="cat-row__sep">•</span>
         <span class="cat-row__area">${o.area}</span>
       </div>
@@ -665,10 +682,12 @@ function _objVal(o, key) {
 
 // Проходит ли объект по всем активным фильтрам (читаем состояние прямо из DOM)
 function objectMatches(o) {
+  const phoneType = document.getElementById('catalog-property-type')?.value;
+  if (phoneType && phoneType !== 'all' && o.type !== phoneType) return false;
   // Текстовый поиск
   const q = (document.getElementById('search-input')?.value || '').trim().toLowerCase();
   if (q) {
-    const hay = [o.title, o.metro, o.district, o.id, o.rooms].join(' ').toLowerCase();
+    const hay = [o.title, o.city, o.address, o.metro, o.district, o.id, o.rooms].join(' ').toLowerCase();
     if (!hay.includes(q)) return false;
   }
   // Район
@@ -1003,11 +1022,11 @@ function initMediaPlayer() {
     frame.replaceChildren(); error.hidden = true;
     title.textContent = v?.title || a.dataset.videoTitle || a.closest('article, li')?.querySelector('h3')?.textContent || 'Видео партнёров';
     source.href = v?.url || a.href;
-    source.textContent = v?.type === 'file' ? 'Открыть видео отдельно ↗' : 'Открыть на сайте источника ↗';
+    source.textContent = v?.type === 'file' ? 'Об аукционном методе ↗' : 'Открыть на сайте источника ↗';
     if (v?.type === 'file') {
       const video = document.createElement('video');
       video.controls = true; video.playsInline = true; video.preload = 'metadata';
-      video.poster = v.cover; video.src = v.url;
+      video.poster = v.cover; video.src = v.mediaSrc || v.url;
       video.addEventListener('error', () => { error.hidden = false; });
       frame.appendChild(video);
       player.showModal(); document.body.style.overflow = 'hidden';
@@ -1204,6 +1223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Кнопка «Сбросить» — очистить все фильтры
   document.getElementById('filter-reset')?.addEventListener('click', () => {
     document.querySelectorAll('#filter-overlay input[type="checkbox"]').forEach(c => c.checked = false);
+    const phoneType = document.getElementById('catalog-property-type'); if (phoneType) phoneType.value = 'all';
     document.querySelectorAll('[data-group="rooms"] .filter-pill').forEach(p => p.classList.remove('filter-pill--active'));
     const search = document.getElementById('search-input');
     if (search) search.value = '';
