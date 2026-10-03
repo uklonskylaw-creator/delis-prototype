@@ -16,8 +16,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
-<link rel="stylesheet" href="../../css/main.css?v=20261004mapprice">
-<link rel="stylesheet" href="../../css/cabinet.css?v=20261003final">
+<link rel="stylesheet" href="../../css/main.css?v=20261004visual">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20261004visual">
 </head>
 <body class="cabinet-page">
 
@@ -150,9 +150,9 @@
         <label class="auth-check">
           <input type="checkbox" required>
           <span class="auth-check__box"></span>
-          <span>Нажимая на кнопку «Отправить», я соглашаюсь<br>с <a href="/pages/cabinet/register/#">Политикой обработки персональных данных</a></span>
+          <span>Даю <a href="/legal/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/legal/privacy/">Политика</a></span>
         </label>
-        <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
+        <label class="auth-check"><input type="checkbox" name="accept_terms" required><span class="auth-check__box"></span><span>Принимаю <a href="/legal/terms/" target="_blank" rel="noopener">пользовательское соглашение</a></span></label><button type="submit" class="btn btn--dark">Зарегистрироваться</button>
       </div>
     </form>
   </div>
@@ -217,12 +217,12 @@
       <label class="auth-check" style="margin-top:24px;">
         <input type="checkbox" required>
         <span class="auth-check__box"></span>
-        <span>Нажимая на кнопку «Отправить», я соглашаюсь с <a href="/pages/cabinet/register/#">Политикой обработки персональных данных</a></span>
+        <span>Даю <a href="/legal/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/legal/privacy/">Политика</a></span>
       </label>
 
       <div class="auth-actions auth-actions--row" style="margin-top:20px;">
         <button type="button" class="btn btn--outline-brand" data-go="type">Назад к выбору типа</button>
-        <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
+        <label class="auth-check"><input type="checkbox" name="accept_terms" required><span class="auth-check__box"></span><span>Принимаю <a href="/legal/terms/" target="_blank" rel="noopener">пользовательское соглашение</a></span></label><button type="submit" class="btn btn--dark">Зарегистрироваться</button>
       </div>
     </form>
   </div>
@@ -264,12 +264,12 @@
       <label class="auth-check" style="margin-top:24px;">
         <input type="checkbox" required>
         <span class="auth-check__box"></span>
-        <span>Нажимая на кнопку «Отправить», я соглашаюсь с <a href="https://uklonsky.ru/policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a></span>
+        <span>Даю <a href="/legal/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/legal/privacy/">Политика</a></span>
       </label>
 
       <div class="auth-actions auth-actions--row" style="margin-top:20px;">
         <button type="button" class="btn btn--outline-brand" data-go="type">Назад к выбору типа</button>
-        <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
+        <label class="auth-check"><input type="checkbox" name="accept_terms" required><span class="auth-check__box"></span><span>Принимаю <a href="/legal/terms/" target="_blank" rel="noopener">пользовательское соглашение</a></span></label><button type="submit" class="btn btn--dark">Зарегистрироваться</button>
       </div>
     </form>
   </div>
@@ -431,6 +431,8 @@ const regState = { type: null, phone: null, email: null };
 // === Submit handlers (mock) ===
 function handleRegister(e, type) {
   e.preventDefault();
+  if (!e.target.reportValidity()) return;
+  regState.consents = {personalData: true, terms: true, version: "delis-2026-10-04", acceptedAt: new Date().toISOString()};
   const submitBtn = e.target.querySelector('button[type="submit"]');
   // Mock-ошибка для демонстрации: ИНН 0000000000 = занят
   const innInput = e.target.querySelector('input[name="inn"]');
@@ -535,6 +537,7 @@ function resendSms() {
 function finishRegister() {
   const D = window.DelisAuth;
   const acc = {
+    consents: regState.consents,
     email: regState.email,
     phone: regState.phone,
     password: regState.password,

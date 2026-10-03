@@ -1981,3 +1981,5 @@
 .account-types {grid-template-columns:repeat(3,minmax(0,1fr));}
 .account-type:focus-within {outline:2px solid #803be9;outline-offset:3px;}
 @media(max-width:700px){.account-types {grid-template-columns:1fr;}}
+
+@media(max-width:700px){.agent-section-head{flex-wrap:wrap;gap:12px}.agency-edit-btn{white-space:normal;max-width:100%;font-size:14px;padding:10px 16px}.cab-main{min-width:0}}

@@ -978,8 +978,7 @@ function initMarketingPlan() {
   modal.querySelectorAll('[data-mp-close]').forEach(b => b.addEventListener('click', close));
   modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
-  // прототип: бэкенда нет, заявка никуда не уходит — показываем подтверждение
-  form.addEventListener('submit', (e) => { e.preventDefault(); form.reset(); wrap.hidden = true; done.hidden = false; });
+  // The shared sales handler confirms success only after the intake server accepts the request.
 
 }
 
@@ -1005,7 +1004,7 @@ function initMediaPlayer() {
   const title = player.querySelector('.site-video-player__title');
   const source = player.querySelector('.site-video-player__source');
   const error = player.querySelector('.site-video-player__error');
-  const close = () => player.close();
+  const close = () => { clear(); player.close(); };
   const clear = () => { frame.querySelector('video')?.pause(); frame.replaceChildren(); document.body.style.overflow = ''; };
   player.addEventListener('close', clear);
   player.querySelector('[data-pv-close]').addEventListener('click', close);

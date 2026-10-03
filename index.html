@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css?v=20261003mobile4">
 <link rel="stylesheet" href="css/base.css?v=20261003mobile4">
-<link rel="stylesheet" href="css/main.css?v=20261004aligned">
+<link rel="stylesheet" href="css/main.css?v=20261004visual">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -434,13 +434,13 @@
       <div class="form-banner__left">
         <div class="form-banner__contact-name"><span>Полина Пирогова</span><small>Площадка «Делись»</small></div>
         <h2 class="form-banner__title">Продадим вашу недвижимость <br>через партнёрскую сеть</h2>
-        <form class="form-banner__form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.')">
+        <form class="form-banner__form" data-sales-form data-subject="home">
           <div class="form-banner__fields">
-            <label class="form-banner__field">Ваше имя<input type="text" autocomplete="name" placeholder="Как к вам обращаться" required></label>
-            <label class="form-banner__field">Телефон<input type="tel" autocomplete="tel" placeholder="+7 (___) ___ - __ - __" required></label>
-            <button type="submit" class="btn btn--dark">Оставить заявку</button>
+            <label class="form-banner__field">Ваше имя<input type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться" required></label>
+            <label class="form-banner__field">Телефон<input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___ - __ - __" required></label>
+            <label class="legal-consent"><input type="checkbox" name="personal_consent" required> <span>Даю <a href="/legal/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a> для ответа на заявку. <a href="/legal/privacy/" target="_blank" rel="noopener">Политика</a></span></label><button type="submit" class="btn btn--dark">Оставить заявку</button>
           </div>
-        </form>
+        <p role="status" hidden></p></form>
       </div>
     </div>
   </div>
@@ -452,8 +452,8 @@
 
     <div class="footer__col footer__col--brand">
       <p class="footer__brand">© «Делись», 2026</p>
-      <a href="/#" class="footer__link">Политика конфиденциальности</a>
-      <a href="/#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
+      <a href="/legal/privacy/" class="footer__link">Политика конфиденциальности</a>
+      <a href="/legal/privacy/" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
     </div>
 
     <nav class="footer__nav">
@@ -461,15 +461,15 @@
         <li><a href="/contacts/">Контакты</a></li>
         <li><a href="/about/">О нас</a></li>
         <li><a href="/vacancies/">Карьера</a></li>
-        <li><a href="/#">Документы</a></li>
-        <li><a href="/#">Счета и реквизиты</a></li>
+        <li><a href="/legal/">Документы</a></li>
+        <li><a href="/legal/requisites/">Счета и реквизиты</a></li>
         <li><a href="/#form">Заказать сайт</a></li>
       </ul>
       <ul>
-        <li><a href="/#">Торговая марка</a></li>
-        <li><a href="/#">Правовая информация</a></li>
-        <li><a href="/#">Договор оферты</a></li>
-        <li><a href="/#">Гарантия</a></li>
+        <li><a href="/legal/publication-rules/">Правила публикации</a></li>
+        <li><a href="/legal/">Правовая информация</a></li>
+        <li><a href="/legal/terms/">Договор оферты</a></li>
+        <li><a href="/legal/publication-rules/">Права на материалы</a></li>
       </ul>
     </nav>
 
@@ -495,7 +495,7 @@
     <div class="mp-modal__form-wrap">
       <h3 class="mp-modal__title" id="mp-modal-title">Заказать маркетинговый план</h3>
       <p class="mp-modal__text">Оставьте контакты, мы перезвоним, уточним детали объекта и подготовим план.</p>
-      <form class="mp-modal__form" id="mp-form">
+      <form class="mp-modal__form" id="mp-form" data-sales-form data-subject="marketing">
         <div class="mp-modal__who">
           <label><input type="radio" name="who" value="owner" checked><span>Я собственник</span></label>
           <label><input type="radio" name="who" value="agent"><span>Я агент</span></label>
@@ -503,8 +503,8 @@
         <input type="text" name="name" placeholder="Ваше имя" required>
         <input type="tel" name="phone" placeholder="+7 (___) ___ - __ - __" required>
         <input type="text" name="object" placeholder="Адрес объекта или ссылка на объявление">
-        <button type="submit" class="btn btn--dark mp-modal__submit">Отправить заявку</button>
-        <p class="mp-modal__note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
+        <p role="status" hidden></p><button type="submit" class="btn btn--dark mp-modal__submit">Отправить заявку</button>
+        <label class="legal-consent"><input type="checkbox" name="personal_consent" required> <span>Даю <a href="/legal/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a> для ответа на заявку. <a href="/legal/privacy/" target="_blank" rel="noopener">Политика</a></span></label>
       </form>
     </div>
     <div class="mp-modal__done" hidden>
@@ -636,6 +636,6 @@ document.addEventListener('keydown', (e) => {
 <script src="data/videos.js?v=20261004aligned"></script>
 <script src="data/objects.js?v=20261004contacts"></script>
 <script src="js/favorites.js?v=20261003mobile4"></script>
-<script src="js/main.js?v=20261004shortnames"></script>
-</body>
+<script src="js/main.js?v=20261004visual"></script>
+<script src="/js/sales.js?v=20261004visual"></script></body>
 </html>

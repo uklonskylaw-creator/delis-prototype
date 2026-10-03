@@ -1005,3 +1005,5 @@ body { background: #F7F7F8; }
 @media (max-width:700px) { .obj-back { max-width:100%; white-space:normal; text-align:left; } .obj-map__card { max-width:calc(100% - 32px); } }
 
 @media(max-width:700px){.obj-breadcrumbs__container {flex-wrap:wrap;gap:12px;} .obj-crumbs {min-width:0;flex-wrap:wrap;} }
+
+@media(max-width:700px){.obj-head__title-row{flex-wrap:nowrap;align-items:flex-start;}.obj-head__title{flex:1;min-width:0;}.obj-head__addr{flex-wrap:nowrap;align-items:flex-start;white-space:normal;overflow:visible;}.obj-head__addr span{white-space:normal;overflow:visible;line-height:1.5;}.obj-head__addr img{margin-top:3px;}}

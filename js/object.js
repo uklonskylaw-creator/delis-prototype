@@ -9,7 +9,7 @@
     floorOnly: o => o.floors ? `${o.floor}/${o.floors}` : String(o.floor),
     rooms:     o => (o.rooms === 'С' ? 'Студия' : o.rooms),
     type:      o => o.type,
-    address:   o => `${o.city}, ${o.address} · рядом с м. ${o.metro}`,
+    address:   o => `${o.city}, ${o.address}`,
     metro:     o => 'м. ' + o.metro,
     walk:      o => o.walk,
     price:     o => o.price,
@@ -140,6 +140,19 @@
     window.__OBJ_PIN = rub ? (rub / 1e6).toFixed(1).replace('.', ',').replace(',0', '') + ' млн' : '';
 
     renderPanel(o);
+    // Only show characteristics of the selected object, never template apartment values.
+    const params = document.getElementById('obj-params');
+    if (params) {
+      const rows = [['Тип объекта', o.type], ['Площадь', o.area], ['Цена', o.salePrice || o.price || o.startPrice], [o.type === 'Дом' ? 'Этажей' : 'Этаж', o.floor]];
+      if (o.rooms) rows.push([o.id === 'rublevo-16' ? 'Спален' : 'Комнат', o.rooms]);
+      if (o.id === 'rublevo-16') rows.push(['Площадь по отчёту', '450 м²'], ['Мебель', 'FENDI CASA'], ['Техника', 'Miele'], ['Дополнительно', 'Хаммам и СПА-зона']);
+      params.replaceChildren(...rows.filter(([,value]) => value !== undefined && value !== '').map(([label,value]) => {
+        const row = document.createElement('div'); row.className = 'obj-param-row';
+        for (const [cls,text] of [['obj-param-label',label],['obj-param-dots',''],['obj-param-value',String(value)]]) { const span=document.createElement('span');span.className=cls;span.textContent=text;row.appendChild(span); }
+        return row;
+      }));
+    }
+
 
     // Карточка адреса на карте
     const setTxt = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val; };

@@ -398,3 +398,5 @@
   color: var(--color-gray-500);
 }
 .ao-chip--on .ao-chip__note { color: var(--color-brand); }
+
+.ao-layout>*{min-width:0}.ao-chip{max-width:100%;white-space:normal;overflow-wrap:anywhere}@media(max-width:700px){.ao-layout{grid-template-columns:minmax(0,1fr)}.ao-card{min-width:0}.ao-chips{min-width:0}.ao-foot{flex-wrap:wrap;gap:14px}}

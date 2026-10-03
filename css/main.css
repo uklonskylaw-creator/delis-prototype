@@ -4191,3 +4191,17 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .obj-card__comm {justify-self:end;display:flex;align-items:center;justify-content:center;width:136px;min-height:44px;}
 .obj-card__comm .commission-lock {width:136px;min-height:44px;}
 @media(max-width:700px){.obj-card__title {height:48px;min-height:48px;}.obj-card__agent {min-height:60px;}}
+
+.legal-consent{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;margin:12px 0}.legal-consent input[type=checkbox]{width:18px!important;height:18px!important;flex:none;padding:0!important;margin-top:2px}.legal-consent a{color:inherit;text-decoration:underline}
+
+/* Shared scale for Figma landing pages and public informational pages. */
+.agent-page h1{font-size:clamp(28px,2.7vw,40px)}.agent-page h2{font-size:clamp(25px,2.1vw,32px)}.agent-page .btn,.project-page .btn,.static-section .btn{font-size:15px;line-height:20px;min-height:48px;padding:12px 22px}.static-section{padding-block:40px}.static-wrap .static-lead{font-size:16px;line-height:1.6}
+@media(max-width:700px){.agent-page h1{font-size:24px;line-height:1.2}.agent-page h2{font-size:23px}.agent-page .btn,.project-page .btn,.static-section .btn{font-size:14px;min-height:44px;padding:10px 18px;white-space:normal}.static-section{padding-block:24px}}
+
+@media(max-width:700px){.obj-deal{grid-template-columns:minmax(0,1fr);gap:16px}.obj-deal__start,.obj-deal__final{font-size:23px;line-height:1.3}.obj-param-label{white-space:normal;max-width:55%}.obj-param-value{max-width:50%;overflow-wrap:anywhere}.pv-heading .section-title{font-size:24px;max-width:15ch;line-height:1.2}}
+@media(max-width:400px){.contact-card--person{flex-wrap:nowrap;padding:20px;gap:14px;align-items:flex-start}.contact-person-photo{width:76px;height:104px}.contact-person-copy h2{font-size:18px}.contact-person-copy p{font-size:13px;margin-bottom:12px}.contact-person-phone{font-size:16px}.contact-card--person .contact-card__label{font-size:12px}}
+@media(max-width:360px){.contact-card--person{padding:16px;gap:12px}.contact-person-photo{width:64px;height:88px}.contact-person-phone{font-size:14px}}
+
+@media(min-width:701px){.form-banner--photo{height:auto;min-height:520px;display:flex;align-items:center;padding:40px 48px}.form-banner--photo .form-banner__left{position:relative;left:auto;top:auto;transform:none;width:min(440px,44%);gap:18px}.form-banner--photo .form-banner__title{font-size:30px;line-height:1.2}.form-banner__contact-name{flex-wrap:wrap}}
+
+.form-banner [role=status]{color:white;font-size:14px;line-height:1.5;margin:12px 0 0}

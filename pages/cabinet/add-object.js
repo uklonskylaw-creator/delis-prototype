@@ -155,7 +155,7 @@ function publishHTML() {
       ${row('Бонус посреднику', aoGet('bonus') ? aoGet('bonus') + ' ₽' : '')}
       <div class="ao-total__row ao-total__row--sum"><span>Цена</span>
         <span>${aoGet('price') ? aoGet('price') + ' ₽' : '—'}</span></div>
-    </div>`;
+    </div><label class="legal-consent"><input id="ao-rights" type="checkbox"><span>Подтверждаю полномочия на размещение объекта и права на материалы. Принимаю <a href="/legal/publication-rules/" target="_blank" rel="noopener">правила публикации</a>. Личные данные других людей удалены; для публикации портрета и контактов требуется <a href="/legal/publication-consent/" target="_blank" rel="noopener">отдельное согласие</a>.</span></label>`;
 }
 
 // ---------- Экраны ----------
@@ -293,6 +293,7 @@ function aoNext() {
   if (miss) { aoWarn(miss.err || `Заполните поле «${miss.l}»`); return; }
 
   if (aoStep === aoTotal() - 1) {
+    if (!document.getElementById("ao-rights")?.checked) { aoWarn("Подтвердите полномочия и права на материалы"); return; }
     if (aoIsEdit) {
       localStorage.setItem('delis_edit_saved', aoGet('lot', ''));
       localStorage.removeItem(AO_EDIT_KEY);

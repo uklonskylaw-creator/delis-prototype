@@ -104,3 +104,8 @@
 @media(max-width:700px){.project-learning-banner>img {aspect-ratio:1.65;object-fit:cover;object-position:right center;}}
 
 @media(min-width:701px){.project-hero:has(.project-founder--video){min-height:360px;}}
+
+.project-hero{width:100%;max-width:100%;aspect-ratio:auto;min-height:360px}.project-hero:has(.project-founder--video) h1{font-size:clamp(26px,2.4vw,36px)}.project-page h2{font-size:clamp(25px,2.1vw,32px)}.project-benefits h3{font-size:clamp(18px,1.6vw,25px)}@media(max-width:700px){.project-hero{min-height:0}.project-hero:has(.project-founder--video) h1{font-size:24px}.project-benefits h3{font-size:19px}.project-learning .btn{width:auto;align-self:flex-start}}
+
+/* Narrow screens need full-width benefit cards for readable headings. */
+@media(max-width:700px){.project-benefits{grid-template-columns:minmax(0,1fr);gap:16px;}.project-benefits article{min-height:0;padding:20px;}.project-benefits h3{font-size:20px;line-height:1.25;}.project-benefits p{font-size:14px;line-height:1.5;}.project-benefits .project-laptop{min-height:190px;}}
