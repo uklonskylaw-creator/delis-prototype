@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css?v=20261003mobile4">
 <link rel="stylesheet" href="css/base.css?v=20261003mobile4">
-<link rel="stylesheet" href="css/main.css?v=20261003videos1">
+<link rel="stylesheet" href="css/main.css?v=20261003reviewtabs">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -265,7 +265,7 @@
 </section>
 
 <!-- ========== ВИДЕО ПАРТНЁРОВ (лента в формате прежнего дайджеста новостей) ========== -->
-<section class="news pv" id="video-library"><div class="news__container"><div class="pv-heading"><h2 class="section-title">Видео</h2></div><div class="pv-editorial"><div class="pv-hero-card"><article class="news-featured pv-featured"><a class="pv-cover pv-cover--lg" href="https://crm-uklonsky.ru/assets/delis-media/auk-01-web-1080p.mp4" data-site-video="0"><img class="news-featured__img" src="images/video/delis-auk-01.png" alt="Аукционный метод продажи недвижимости. Урок 1"><span class="pv-play"><img src="images/icon-play.svg" alt="" width="56" height="56"></span><span class="pv-dur">12:13</span></a><div class="news-featured__body"><div class="news-featured__meta">Делись · Урок 1</div><h3 class="news-featured__title">Аукционный метод продажи недвижимости</h3><p class="news-featured__lead">Как подготовить объект, собрать покупателей и провести торги. Первый урок Михаила Уклонского.</p></div></article></div><ul class="pv-side-list"><li class="news-card"><a class="pv-cover pv-cover--sm" href="https://www.youtube.com/watch?v=TAa0F5jv8DY&amp;t=289s" data-site-video="2" target="_blank" rel="noopener"><img class="news-card__img" src="images/video/delis-spb-2040.png" alt="Санкт-Петербург до 2040 года" loading="lazy"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a><div class="news-card__meta"><span>YouTube</span></div><div class="news-card__body"><h4 class="news-card__title">Санкт-Петербург до 2040 года</h4><p class="news-card__text">Анастасия Казаченко</p></div></li><li class="news-card"><a class="pv-cover pv-cover--sm" href="https://www.youtube.com/watch?v=r8N4iTi1uWk" data-site-video="1" target="_blank" rel="noopener"><img class="news-card__img" src="images/video/delis-elite-mistakes.jpg" alt="Типичные ошибки при продаже элитной недвижимости" loading="lazy"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a><div class="news-card__meta"><span>YouTube</span></div><div class="news-card__body"><h4 class="news-card__title">Типичные ошибки при продаже элитной недвижимости</h4><p class="news-card__text">VDT · Недвижимость</p></div></li><li class="news-card"><a class="pv-cover pv-cover--sm" href="https://www.youtube.com/watch?v=QRYBjCwauS4" data-site-video="3" target="_blank" rel="noopener"><img class="news-card__img" src="images/video/delis-levchenko.png" alt="7 полезных привычек риэлтора" loading="lazy"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a><div class="news-card__meta"><span>YouTube</span></div><div class="news-card__body"><h4 class="news-card__title">7 полезных привычек риэлтора</h4><p class="news-card__text">Максим Левченко</p></div></li></ul></div></div></section>
+
 
 <section class="news pv" id="partner-video"><div class="news__container">
 <div class="pv-heading"><h2 class="section-title">Видеообзоры объектов</h2><div class="tabs" data-pv-tabs>
@@ -398,6 +398,33 @@
 
 <!-- ========== VIDEO ========== -->
 
+
+<section class="video" id="video-library">
+  <div class="video__container">
+    <div class="video__head">
+      <div class="video__head-left">
+        <h2 class="section-title">Полезные материалы для риэлторов</h2>
+        <div class="tabs">
+          <button class="tabs__btn tabs__btn--active" type="button" data-vtab="all">Все видео</button>
+          <button class="tabs__btn" type="button" data-vtab="webinars">Вебинары</button>
+          <button class="tabs__btn" type="button" data-vtab="news">Новости</button>
+          <button class="tabs__btn" type="button" data-vtab="platform">Платформа</button>
+          <button class="tabs__btn" type="button" data-vtab="reviews">Обзоры</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="video__slider">
+      <button class="catalog__arrow catalog__arrow--prev" type="button" aria-label="Назад" data-vslide="-1">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 12L4 7l5-5"/></svg>
+      </button>
+      <ul class="video__grid" id="video-grid"></ul>
+      <button class="catalog__arrow catalog__arrow--next" type="button" aria-label="Вперёд" data-vslide="1">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 2l5 5-5 5"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
 
 <!-- ========== FORM ========== -->
 <section class="form-section">
@@ -605,7 +632,7 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/videos.js?v=20261003sales2"></script>
+<script src="data/videos.js?v=20261003restored"></script>
 <script src="data/objects.js?v=20261003mobile4"></script>
 <script src="js/favorites.js?v=20261003mobile4"></script>
 <script src="js/main.js?v=20261003sales2"></script>

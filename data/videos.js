@@ -1,11 +1,11 @@
 /* Видео: собственный MP4 воспроизводится на сайте; YouTube — через встроенный плеер. */
 window.__VIDEOS = [
   {
-    "title": "Аукционный метод продажи недвижимости. Урок 1",
+    "title": "Аукционный метод продажи недвижимости",
     "author": "Делись",
     "url": "https://crm-uklonsky.ru/assets/delis-media/auk-01-web-1080p.mp4",
     "tab": "webinars",
-    "cover": "images/video/delis-auk-01.png",
+    "cover": "images/video/delis-auction-method.jpg",
     "duration": "12:13",
     "type": "file"
   },

@@ -46,3 +46,5 @@ Figma, файл Даши: https://www.figma.com/design/u50NGXeBYdT7VOBZQt3hBu/?n
 - FAQ portrait on agents/owners/auction uses proportional images/form-person.png instead of distorted Figma bitmap.
 - Auction page compares six stages of classical sale and auction; supplied buyer funnel has no invented forecast counts and opens full size.
 - Registration adds owner role, personal contact/region form without agency/INN/experience fields, and persists the proper owner role. Registration continues to use the existing local demonstration account flow; real backend/SMS authentication is not implemented.
+
+- Final user revision: property reviews appear first in the original editorial layout; useful realtor materials appear below marketing plan in the original horizontal video carousel. Auction video no longer has the “Урок 1” label.

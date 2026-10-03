@@ -4070,3 +4070,10 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
  .site-video-player { padding: 18px 14px 10px; }
  .site-video-player__title { font-size: 17px; }
 }
+
+/* Property review heading and categories occupy separate rows. */
+#partner-video .pv-heading {display:flex;flex-direction:column;align-items:flex-start;gap:20px;}
+#partner-video .pv-heading .section-title {margin:0;line-height:1.25;color:#302637;}
+#partner-video .pv-heading .tabs {width:100%;max-width:100%;gap:24px;overflow-x:auto;padding-bottom:8px;}
+#partner-video .pv-heading .tabs__btn {flex:none;min-height:44px;}
+@media(max-width:700px){#partner-video .pv-heading {gap:14px;}#partner-video .pv-heading .tabs {gap:20px;}#partner-video .pv-heading .tabs__btn {font-size:14px;}}
