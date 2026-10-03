@@ -8,24 +8,22 @@ let _catalogView = null;       /* null = список скрыт до клика
 function objectHref(id) {
   let user = null;
   try { user = JSON.parse(localStorage.getItem('delis_user') || 'null'); } catch (e) {}
-  const page = user ? 'object.html' : 'object-unreg.html';
-  return `pages/${page}?id=${id}`;
+  const page = user ? 'object/' : 'object-unreg/';
+  return `/pages/${page}?id=${id}`;
 }
 
 // Префикс до корня сайта (для ссылок, работающих с любой вложенности)
 function rootPrefix() {
-  if (location.pathname.includes('/pages/cabinet/')) return '../../';
-  if (location.pathname.includes('/pages/')) return '../';
-  return '';
+  return '/';
 }
 
 // Проводим ссылки навигации шапки на статичные страницы
 function initHeaderNav() {
   const base = rootPrefix();
   const map = {
-    'О проекте': base + 'about.html',
-    'Вакансии':  base + 'vacancies.html',
-    'Контакты':  base + 'contacts.html'
+    'О проекте': base + 'about/',
+    'Вакансии':  base + 'vacancies/',
+    'Контакты':  base + 'contacts/'
   };
   document.querySelectorAll('a.header__nav-link').forEach(a => {
     const t = a.textContent.trim();
@@ -49,9 +47,9 @@ function initBurger() {
   inner.appendChild(burger);
 
   const auth = user
-    ? `<a href="${base}pages/cabinet/profile.html" class="btn btn--dark">Личный кабинет</a>`
-    : `<a href="${base}pages/cabinet/login.html" class="btn btn--outline">Вход</a>
-       <a href="${base}pages/cabinet/register.html" class="btn btn--dark">Регистрация</a>`;
+    ? `<a href="${base}pages/cabinet/profile/" class="btn btn--dark">Личный кабинет</a>`
+    : `<a href="${base}pages/cabinet/login/" class="btn btn--outline">Вход</a>
+       <a href="${base}pages/cabinet/register/" class="btn btn--dark">Регистрация</a>`;
 
   const menu = document.createElement('div');
   menu.className = 'mobile-menu';
@@ -59,13 +57,13 @@ function initBurger() {
     <div class="mobile-menu__panel">
       <button class="mobile-menu__close" type="button" aria-label="Закрыть">&times;</button>
       <nav class="mobile-menu__nav">
-        <a href="${base}index.html">Главная</a>
-        <a href="${base}catalog.html">Объекты</a>
-        <a href="${base}agents.html">Агентам</a>
-        <a href="${base}owners.html">Собственникам</a>
-        <a href="${base}about.html">Как это работает</a>
-        <a href="${base}vacancies.html">Вакансии</a>
-        <a href="${base}contacts.html">Контакты</a>
+        <a href="${base}">Главная</a>
+        <a href="${base}catalog/">Объекты</a>
+        <a href="${base}agents/">Агентам</a>
+        <a href="${base}owners/">Собственникам</a>
+        <a href="${base}about/">Как это работает</a>
+        <a href="${base}vacancies/">Вакансии</a>
+        <a href="${base}contacts/">Контакты</a>
       </nav>
       <div class="mobile-menu__auth">${auth}</div>
     </div>`;
@@ -109,7 +107,7 @@ function initFavorites() {
   // Иконка избранного в шапке → страница «Избранное»
   const heart = document.querySelector('.header__icon-btn[aria-label="Избранное"]');
   if (heart) {
-    heart.setAttribute('href', rootPrefix() + 'pages/cabinet/favorites.html');
+    heart.setAttribute('href', rootPrefix() + 'pages/cabinet/favorites/');
     heart.style.position = 'relative';
   }
   updateFavBadge();
@@ -933,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const user = JSON.parse(localStorage.getItem('delis_user') || 'null');
     const auth = document.getElementById('header-auth');
     if (user && auth) {
-      auth.innerHTML = `<a href="${rootPrefix()}pages/cabinet/profile.html" class="btn btn--dark header__cabinet-btn">Личный кабинет</a>`;
+      auth.innerHTML = `<a href="${rootPrefix()}pages/cabinet/profile/" class="btn btn--dark header__cabinet-btn">Личный кабинет</a>`;
     }
   } catch (e) {}
 

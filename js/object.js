@@ -1,4 +1,4 @@
-/* Делись — подстановка данных объекта по ?id= (object.html и object-unreg.html) */
+/* Делись — подстановка данных объекта по ?id= (object.html и /pages/object-unreg/) */
 (function () {
   const FIELD = {
     id:        o => 'ID' + o.id,
@@ -78,7 +78,7 @@
         </button>
       </div>`;
 
-    const action = (closed ? '' : `<a href="../index.html#form" class="btn btn--brand btn--sm obj-panel__btn">Записаться на показ</a>`) + extra;
+    const action = (closed ? '' : `<a href="/#form" class="btn btn--brand btn--sm obj-panel__btn">Записаться на показ</a>`) + extra;
 
     const broker = `
       <div class="obj-broker">

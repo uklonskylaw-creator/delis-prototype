@@ -26,11 +26,11 @@ function renderSidebar(activePage) {
   // Частный агент: без раздела «Сотрудники» (определяем по странице или типу аккаунта)
   const isAgent = document.body.dataset.lk === 'agent' || getUser()?.type === 'agent';
   let items = [
-    { id: 'profile',    label: 'Личная информация', href: 'profile.html' },
-    { id: 'objects',    label: 'Объекты',            href: 'objects.html' },
-    { id: 'favorites',  label: 'Избранное',          href: 'favorites.html' },
-    { id: 'employees',  label: 'Сотрудники',         href: 'employees.html' },
-    { id: 'clients',    label: 'Клиенты',            href: 'clients.html' }
+    { id: 'profile',    label: 'Личная информация', href: '/pages/cabinet/profile/' },
+    { id: 'objects',    label: 'Объекты',            href: '/pages/cabinet/objects/' },
+    { id: 'favorites',  label: 'Избранное',          href: '/pages/cabinet/favorites/' },
+    { id: 'employees',  label: 'Сотрудники',         href: '/pages/cabinet/employees/' },
+    { id: 'clients',    label: 'Клиенты',            href: '/pages/cabinet/clients/' }
   ];
   if (isAgent) items = items.filter(it => it.id !== 'employees');
   return `
@@ -49,7 +49,7 @@ function logout(e) {
   e.preventDefault();
   if (confirm('Выйти из аккаунта?')) {
     localStorage.removeItem('delis_user');
-    location.href = '../../index.html';
+    location.href = '/';
   }
 }
 
@@ -60,20 +60,20 @@ function renderHeader() {
     <header class="header">
       <div class="header__inner">
         <div class="header__left">
-          <a href="../../index.html" class="header__logo">
+          <a href="/" class="header__logo">
             <img src="../../images/logo.svg" alt="" class="header__logo-img">
             <span class="header__logo-text">ДЕЛИСЬ</span>
           </a>
         </div>
         <nav class="header__nav">
-          <a href="../../index.html" class="header__nav-link">Главная</a>
-          <a href="profile.html" class="header__nav-link">Кабинет</a>
+          <a href="/" class="header__nav-link">Главная</a>
+          <a href="/pages/cabinet/profile/" class="header__nav-link">Кабинет</a>
         </nav>
         <div class="header__right">
           <button class="header__icon-btn" aria-label="Поиск">
             <img src="../../images/icon-search-header.svg" alt="" width="24" height="24">
           </button>
-          <a href="favorites.html" class="header__icon-btn" aria-label="Избранное">
+          <a href="/pages/cabinet/favorites/" class="header__icon-btn" aria-label="Избранное">
             <img src="../../images/icon-heart.svg" alt="" width="24" height="24">
           </a>
           <span style="font-size:13px;color:var(--color-gray-500);">${user.name?.split(' ')[0] || 'Гость'}</span>

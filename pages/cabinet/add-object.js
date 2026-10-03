@@ -4,7 +4,7 @@
 const AO_KEY = 'delis_draft_object';   // черновик нового объекта
 const AO_EDIT_KEY = 'delis_edit_object';   // объект, открытый на редактирование
 
-/* Режим редактирования включается ссылкой add-object.html#edit=<id объекта>.
+/* Режим редактирования включается ссылкой /pages/cabinet/add-object/#edit=<id объекта>.
    Черновик нового объявления при этом не трогаем — у него свой ключ. */
 const aoEditId = (location.hash.match(/edit=(\d+)/) || [])[1] || null;
 const aoIsEdit = aoEditId !== null;
@@ -299,13 +299,13 @@ function aoNext() {
     } else {
       localStorage.removeItem(AO_KEY);
     }
-    location.href = 'objects.html';
+    location.href = '/pages/cabinet/objects/';
     return;
   }
   aoStep++; aoRender();
 }
 function aoBack() {
-  if (aoIsEdit && aoStep <= 1) { location.href = 'objects.html'; return; }
+  if (aoIsEdit && aoStep <= 1) { location.href = '/pages/cabinet/objects/'; return; }
   if (aoStep > 0) { aoStep--; aoRender(); }
 }
 function aoWarn(msg) {

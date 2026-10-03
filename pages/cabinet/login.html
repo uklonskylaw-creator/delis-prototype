@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/pages/cabinet/">
+<link rel="canonical" href="https://delis-agent.ru/pages/cabinet/login/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/pages/cabinet/login/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Вход — Делись</title>
@@ -17,13 +21,13 @@
 <header class="header">
   <div class="header__inner">
     <div class="header__left">
-      <a href="../../index.html" class="header__logo">
+      <a href="/" class="header__logo">
         <img src="../../images/logo.svg" alt="" class="header__logo-img">
         <span class="header__logo-text">ДЕЛИСЬ</span>
       </a>
     </div>
     <div class="header__right">
-      <a href="register.html" class="btn btn--dark btn--sm">Регистрация</a>
+      <a href="/pages/cabinet/register/" class="btn btn--dark btn--sm">Регистрация</a>
     </div>
   </div>
 </header>
@@ -32,7 +36,7 @@
   <div class="auth-card auth-card--login">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Вход в кабинет</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
 
     <form class="auth-form" id="login-form" onsubmit="handleLogin(event)">
@@ -46,11 +50,11 @@
       </div>
 
       <div class="auth-actions" style="justify-content:space-between;">
-        <a href="forgot.html" style="font-size:13px;color:var(--color-brand);font-weight:600;text-decoration:underline;">Забыли пароль?</a>
+        <a href="/pages/cabinet/forgot/" style="font-size:13px;color:var(--color-brand);font-weight:600;text-decoration:underline;">Забыли пароль?</a>
         <button type="submit" class="btn btn--dark" id="btn-login">Войти</button>
       </div>
 
-      <p class="auth-bottom-link">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+      <p class="auth-bottom-link">Нет аккаунта? <a href="/pages/cabinet/register/">Зарегистрироваться</a></p>
     </form>
   </div>
 </main>
@@ -85,7 +89,7 @@ function handleLogin(e) {
       loginAt: new Date().toISOString()
     }));
     snackbar('Вход выполнен', 'success');
-    setTimeout(() => { location.href = 'objects.html'; }, 1000);
+    setTimeout(() => { location.href = '/pages/cabinet/objects/'; }, 1000);
   }, 700);
 }
 </script>

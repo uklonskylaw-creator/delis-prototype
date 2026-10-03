@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/analitika/rublevo-16/">
+<link rel="canonical" href="https://delis-agent.ru/analitika/rublevo-16/object/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/analitika/rublevo-16/object/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -15,7 +19,7 @@
 <script src="vendor/maplibre/leaflet-maplibre-gl.js"></script>
 <link rel="stylesheet" href="delis.css">
 <style>
-/* Раскладка повторяет pages/object.html прототипа «Делись»: галерея слева, цена и действия справа, ниже описание и параметры */
+/* Раскладка повторяет /analitika/rublevo-16/pages/object/ прототипа «Делись»: галерея слева, цена и действия справа, ниже описание и параметры */
 .grid2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;margin-bottom:16px;align-items:start}
 @media (max-width:1100px){.grid2{grid-template-columns:minmax(0,1fr)}}
 .head{display:grid;gap:8px;margin-bottom:16px}
@@ -92,7 +96,7 @@ function liveTag(l) {
   if (l.live === 'off') return '<span class="tag tag--off">снято' + (l.live_edit ? ' ' + dmy(l.live_edit) : '') + '</span>';
   return isLive(l) ? '<span class="tag tag--on">актуально</span>' : '<span class="tag tag--off">снято</span>';
 }
-function backHref() { return (H && !H.photos.length ? 'nophoto.html' : 'index.html') + (H ? '#' + H.id : '') }
+function backHref() { return (H && !H.photos.length ? '/analitika/rublevo-16/nophoto/' : '/analitika/rublevo-16/') + (H ? '#' + H.id : '') }
 
 function priceRows(h) {
   var c = call(h), fp = factPrice(h), r = [];
@@ -165,10 +169,10 @@ function render() {
   var seenLive = {}, liveLinks = h.links.filter(function (l) { if (l.live !== 'on' || seenLive[l.url]) return false; seenLive[l.url] = 1; return true });
   var latest = liveLinks[0] || h.links[0];
   var idx = DATA.houses.indexOf(h), prev = DATA.houses[idx - 1], next = DATA.houses[idx + 1];
-  var navLink = function (x, dir) { return x ? '<a class="pill-btn" href="object.html?id=' + x.id + '">' + (dir < 0 ? '← ' : '') + '№ ' + x.num + ' · ' + esc(kindLabel(x)) + ', ' + mln(x.price_last) + (dir > 0 ? ' →' : '') + '</a>' : '<span></span>' };
+  var navLink = function (x, dir) { return x ? '<a class="pill-btn" href="/analitika/rublevo-16/object/?id=' + x.id + '">' + (dir < 0 ? '← ' : '') + '№ ' + x.num + ' · ' + esc(kindLabel(x)) + ', ' + mln(x.price_last) + (dir > 0 ? ' →' : '') + '</a>' : '<span></span>' };
 
   document.getElementById('app').innerHTML =
-    '<div class="crumbs"><nav><a href="index.html">Конкуренты дома 16</a><span>·</span>' + (h.photos.length ? '' : '<a href="nophoto.html">Без фото</a><span>·</span>') + '<b>№ ' + h.num + '</b></nav><a class="pill-btn" href="' + backHref() + '">← Назад к списку</a></div>' +
+    '<div class="crumbs"><nav><a href="/analitika/rublevo-16/">Конкуренты дома 16</a><span>·</span>' + (h.photos.length ? '' : '<a href="/analitika/rublevo-16/nophoto/">Без фото</a><span>·</span>') + '<b>№ ' + h.num + '</b></nav><a class="pill-btn" href="' + backHref() + '">← Назад к списку</a></div>' +
     '<section class="grid2">' +
       '<div class="side">' +
         '<div class="card"><div class="head"><h1><span>' + esc(kindLabel(h)) + '</span><span class="dot">·</span><span>' + h.area + ' м²</span><span class="dot">·</span><span>' + plotTxt(h.plot) + '</span></h1>' +
@@ -199,7 +203,7 @@ function render() {
   if (h.geo) {
     var om = makeMap(document.getElementById('omap'), h.geo, 17);
     if (om) {
-      DATA.houses.forEach(function (x) { if (x.geo && x.id !== h.id) L.marker(x.geo, { icon: L.divIcon({ className: '', html: '<div class="pin pin--' + pinClass(x) + '" style="opacity:.55;transform:scale(.8)">' + x.num + '</div>', iconSize: [30, 30], iconAnchor: [15, 15] }) }).addTo(om).on('click', function () { location.href = 'object.html?id=' + x.id }) });
+      DATA.houses.forEach(function (x) { if (x.geo && x.id !== h.id) L.marker(x.geo, { icon: L.divIcon({ className: '', html: '<div class="pin pin--' + pinClass(x) + '" style="opacity:.55;transform:scale(.8)">' + x.num + '</div>', iconSize: [30, 30], iconAnchor: [15, 15] }) }).addTo(om).on('click', function () { location.href = '/analitika/rublevo-16/object/?id=' + x.id }) });
       L.marker(h.geo, { icon: L.divIcon({ className: '', html: '<div class="pin pin--here">' + h.num + '</div>', iconSize: [44, 44], iconAnchor: [22, 22] }), zIndexOffset: 1000 }).addTo(om);
     }
   }
@@ -227,8 +231,8 @@ function render() {
 function init(d) {
   DATA = d;
   H = DATA.houses.filter(function (x) { return x.id === qid() })[0];
-  document.getElementById('hdr').innerHTML = headerHtml('Рыночная аналитика · КП «Резиденция Рублёво»', headerRight('<a class="pill-btn pill-btn--dark" href="index.html">Все дома</a>'));
-  if (!H) { document.getElementById('app').innerHTML = '<p class="notfound">Дом не найден. <a href="index.html" style="color:var(--brand)">Вернуться к списку</a></p>'; return }
+  document.getElementById('hdr').innerHTML = headerHtml('Рыночная аналитика · КП «Резиденция Рублёво»', headerRight('<a class="pill-btn pill-btn--dark" href="/analitika/rublevo-16/">Все дома</a>'));
+  if (!H) { document.getElementById('app').innerHTML = '<p class="notfound">Дом не найден. <a href="/analitika/rublevo-16/" style="color:var(--brand)">Вернуться к списку</a></p>'; return }
   render();
 }
 (DATA ? Promise.resolve(DATA) : fetch('data.json').then(function (r) { return r.json() })).then(init);

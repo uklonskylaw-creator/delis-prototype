@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/analitika/rublevo-16/">
+<link rel="canonical" href="https://delis-agent.ru/analitika/rublevo-16/nophoto/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/analitika/rublevo-16/nophoto/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -34,7 +38,7 @@ td b{font-weight:700}
 <body>
 <div id="hdr"></div>
 <main class="wrap">
-  <div class="crumbs"><nav><a href="index.html">Конкуренты дома 16</a><span>·</span><b>Без фото</b></nav><a class="pill-btn" href="index.html">← Дома с фото</a></div>
+  <div class="crumbs"><nav><a href="/analitika/rublevo-16/">Конкуренты дома 16</a><span>·</span><b>Без фото</b></nav><a class="pill-btn" href="/analitika/rublevo-16/">← Дома с фото</a></div>
   <section class="hero">
     <h1>Дома без фото</h1>
     <p id="lead"></p>
@@ -56,7 +60,7 @@ function init(D) {
   var list = D.houses.filter(function (h) { return !h.photos.length });
   document.getElementById('lead').textContent = list.length + ' ' + plural(list.length, 'дом', 'дома', 'домов') + ' из старых объявлений ЦИАН: фото удалены вместе с ними, а сами объявления сняты. ' + (PUBLIC ? 'Цены, сроки экспозиции, продавцы и ссылки сохранились.' : 'Цена, телефоны и ссылки сохранились, по ним можно звонить и узнавать, чем закончилась продажа.');
   document.getElementById('rows').innerHTML = list.map(function (h) {
-    var c = call(h), fp = factPrice(h), url = 'object.html?id=' + h.id;
+    var c = call(h), fp = factPrice(h), url = '/analitika/rublevo-16/object/?id=' + h.id;
     var drop = h.price_max !== h.price_last ? '<div class="who">было ' + mln(h.price_max) + '</div>' : '';
     return '<tr id="' + h.id + '"><td class="n"><b>№ ' + h.num + '</b></td>' +
       '<td><a href="' + url + '"><b>' + esc(kindLabel(h)) + '</b></a><div class="who n">' + h.area + ' м² · ' + plotTxt(h.plot) + '</div></td>' +

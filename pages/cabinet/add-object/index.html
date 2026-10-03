@@ -1,0 +1,65 @@
+<!-- generated clean URL route -->
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="/pages/cabinet/">
+<link rel="canonical" href="https://delis-agent.ru/pages/cabinet/add-object/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/pages/cabinet/add-object/" + location.search + location.hash);</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новый объект — Делись</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/cabinet.css?v=20260916">
+<link rel="stylesheet" href="../../css/add-object.css?v=20260919">
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body class="cabinet-page cabinet-page--app">
+
+<div id="cab-header"></div>
+
+<main>
+  <div class="ao-shell">
+    <div class="cabinet-breadcrumbs">
+      <a href="/">Главная</a> • <a href="/pages/cabinet/objects/">Объекты</a> • Новый объект
+    </div>
+
+    <div class="ao-layout">
+
+      <aside class="ao-side">
+        <div class="ao-side__kicker" id="ao-kicker">Новый объект</div>
+        <div class="ao-side__step" id="ao-side-step">Новое объявление</div>
+        <div class="ao-progress"><div class="ao-progress__bar" id="ao-bar" style="width:0%"></div></div>
+
+        <div class="ao-hint" id="ao-hint"></div>
+      </aside>
+
+      <section class="ao-card">
+        <div id="ao-body"></div>
+        <div id="ao-warn" style="display:none;margin-top:16px;padding:12px 16px;border-radius:12px;background:var(--color-danger-bg);color:var(--color-danger-hover);font-size:14px;"></div>
+
+        <div class="ao-foot">
+          <span class="ao-foot__note">Сохраняем все заполненные поля</span>
+          <div class="ao-foot__actions">
+            <button type="button" class="ao-back" id="ao-back" onclick="aoBack()">Назад</button>
+            <button type="button" class="btn btn--brand" id="ao-next" onclick="aoNext()">Создать</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<script src="../../js/auth.js"></script>
+<script src="_layout.js"></script>
+<script>mountCabinet('objects');</script>
+<script src="metro-spb.js?v=20260918b"></script>
+<script src="add-object-data.js?v=20260919"></script>
+<script src="add-object.js?v=20260919"></script>
+</body>
+</html>

@@ -112,7 +112,7 @@ function closeLb() { if (!LB) return; LB.el.remove(); LB = null; document.body.s
 document.addEventListener('keydown', function (e) { if (!LB) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1) });
 
 function headerHtml(title, right) {
-  return '<header class="header"><div class="header__inner"><a class="header__logo" href="index.html"><img src="img/logo.svg" alt=""><span>ДЕЛИСЬ</span></a>' +
+  return '<header class="header"><div class="header__inner"><a class="header__logo" href="/analitika/rublevo-16/"><img src="img/logo.svg" alt=""><span>ДЕЛИСЬ</span></a>' +
     '<div class="header__title">' + esc(title) + '</div>' + (right || '') + '</div></header>';
 }
 

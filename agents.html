@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/">
+<link rel="canonical" href="https://delis-agent.ru/agents/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/agents/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Агентам — Делись</title>
@@ -23,35 +27,35 @@
     </div>
 
     <nav class="header__nav">
-      <a href="catalog.html" class="header__nav-link">Объекты</a>
-      <a href="agents.html" class="header__nav-link">Агентам</a>
-      <a href="owners.html" class="header__nav-link">Собственникам</a>
-      <a href="about.html" class="header__nav-link">Как это работает</a>
-      <a href="vacancies.html" class="header__nav-link">Вакансии</a>
-      <a href="contacts.html" class="header__nav-link">Контакты</a>
+      <a href="/catalog/" class="header__nav-link">Объекты</a>
+      <a href="/agents/" class="header__nav-link">Агентам</a>
+      <a href="/owners/" class="header__nav-link">Собственникам</a>
+      <a href="/about/" class="header__nav-link">Как это работает</a>
+      <a href="/vacancies/" class="header__nav-link">Вакансии</a>
+      <a href="/contacts/" class="header__nav-link">Контакты</a>
     </nav>
 
     <div class="header__right">
-      <a href="#" class="header__icon-btn" aria-label="Сообщения">
+      <a href="/agents/#" class="header__icon-btn" aria-label="Сообщения">
         <img src="images/icon-telegram-header.svg" alt="" width="22" height="22">
       </a>
       <div class="header__auth" id="header-auth">
-        <a href="pages/cabinet/login.html" class="header__login-btn">Вход</a>
-        <a href="pages/cabinet/register.html" class="btn btn--dark header__cabinet-btn">Регистрация</a>
+        <a href="/pages/cabinet/login/" class="header__login-btn">Вход</a>
+        <a href="/pages/cabinet/register/" class="btn btn--dark header__cabinet-btn">Регистрация</a>
       </div>
     </div>
   </div>
 </header>
 
 <main class="agent-page">
-  <nav class="cat-crumbs"><a href="index.html">Главная</a><span>·</span><span>Стать партнёром</span></nav>
+  <nav class="cat-crumbs"><a href="/">Главная</a><span>·</span><span>Стать партнёром</span></nav>
   <section class="agent-hero">
-    <div><span class="agent-eyebrow">Партнёрская сеть «Делись»</span><h1>Стать партнёром</h1><p>Объекты со встречной комиссией, материалы для покупателей и фиксация клиентов — в одном месте. Присоединяйтесь как частный агент или агентство.</p><div class="agent-actions"><a class="btn agent-white" href="pages/cabinet/register.html">Стать партнёром</a><a class="btn btn--dark" href="catalog.html">Смотреть объекты</a></div></div>
+    <div><span class="agent-eyebrow">Партнёрская сеть «Делись»</span><h1>Стать партнёром</h1><p>Объекты со встречной комиссией, материалы для покупателей и фиксация клиентов — в одном месте. Присоединяйтесь как частный агент или агентство.</p><div class="agent-actions"><a class="btn agent-white" href="/pages/cabinet/register/">Стать партнёром</a><a class="btn btn--dark" href="/catalog/">Смотреть объекты</a></div></div>
     <img src="images/hero-graphic.svg" alt="Партнёрская работа с недвижимостью" class="agent-hero-art">
   </section>
   <section class="agent-intro agent-surface">
     <div><span class="agent-eyebrow">О проекте «Делись»</span><h2>Преимущества<br>для партнёров</h2><p>Помогаем продавать объекты вместе.</p><ul class="agent-checks"><li>Комиссия известна заранее и указана в карточке объекта.</li><li>Объекты и готовые материалы для ваших покупателей.</li><li>Фиксация клиента и история работы по объекту.</li></ul></div>
-    <a class="agent-video" href="index.html#partner-video"><img src="images/news-featured.png" alt="Видеообзоры недвижимости"><span class="agent-play">▶</span><span class="agent-video-label">Посмотреть обзоры объектов ↗</span></a>
+    <a class="agent-video" href="/#partner-video"><img src="images/news-featured.png" alt="Видеообзоры недвижимости"><span class="agent-play">▶</span><span class="agent-video-label">Посмотреть обзоры объектов ↗</span></a>
   </section>
   <section class="agent-benefits" aria-label="Возможности партнёра">
     <article><img src="images/icon-phone.svg" alt=""><h3>Встречная комиссия</h3><p>При размещении объекта встречная комиссия агенту покупателя — от 2 % цены продажи. Размер виден до показа.</p></article>
@@ -61,8 +65,8 @@
     <article><img src="images/icon-presentation.svg" alt=""><h3>Презентации объектов</h3><p>Используйте фотографии, описания и доступные презентации, чтобы предложить объект своему покупателю.</p></article>
     <article><img src="images/icon-play.svg" alt=""><h3>Обзоры и обучение</h3><p>Изучайте видео объектов и материалы на главной странице. Выбирайте подходящий формат работы по каждой продаже.</p></article>
   </section>
-  <section class="agent-invite"><div><h2>Ваш следующий покупатель<br>уже ищет объект</h2><p>Подключайтесь к сети и предложите ему подходящую недвижимость.</p></div><div class="agent-invite-actions"><a class="btn agent-white" href="pages/cabinet/register.html">Зарегистрироваться</a><a href="tel:+79955905900">Обсудить сотрудничество: +7 (995) 590-59-00</a></div></section>
-  <section class="agent-registration agent-surface"><div><span class="agent-eyebrow">Три шага</span><h2>Как происходит<br><em>регистрация</em></h2><p>Присоединиться может частный агент или агентство.</p><img src="images/reg-agent.svg" alt="Регистрация агента на площадке" class="agent-register-art"></div><ol><li><span>01</span><div><h3>Создайте профиль</h3><p>Укажите контакты и выберите, в каком качестве работаете: агент или агентство.</p><a href="pages/cabinet/register.html">Перейти к регистрации ↗</a></div></li><li><span>02</span><div><h3>Выберите объекты</h3><p>Откройте каталог, выберите город и тип недвижимости. Изучите встречную комиссию и условия работы.</p></div></li><li><span>03</span><div><h3>Начните работу с покупателем</h3><p>Предложите объект клиенту, зафиксируйте его и согласуйте показ с представителем объекта. Свой объект можно разместить со встречной комиссией.</p></div></li></ol></section>
+  <section class="agent-invite"><div><h2>Ваш следующий покупатель<br>уже ищет объект</h2><p>Подключайтесь к сети и предложите ему подходящую недвижимость.</p></div><div class="agent-invite-actions"><a class="btn agent-white" href="/pages/cabinet/register/">Зарегистрироваться</a><a href="tel:+79955905900">Обсудить сотрудничество: +7 (995) 590-59-00</a></div></section>
+  <section class="agent-registration agent-surface"><div><span class="agent-eyebrow">Три шага</span><h2>Как происходит<br><em>регистрация</em></h2><p>Присоединиться может частный агент или агентство.</p><img src="images/reg-agent.svg" alt="Регистрация агента на площадке" class="agent-register-art"></div><ol><li><span>01</span><div><h3>Создайте профиль</h3><p>Укажите контакты и выберите, в каком качестве работаете: агент или агентство.</p><a href="/pages/cabinet/register/">Перейти к регистрации ↗</a></div></li><li><span>02</span><div><h3>Выберите объекты</h3><p>Откройте каталог, выберите город и тип недвижимости. Изучите встречную комиссию и условия работы.</p></div></li><li><span>03</span><div><h3>Начните работу с покупателем</h3><p>Предложите объект клиенту, зафиксируйте его и согласуйте показ с представителем объекта. Свой объект можно разместить со встречной комиссией.</p></div></li></ol></section>
   <section class="agent-faq"><div class="agent-faq-head"><h2>Отвечаем<br>на популярные вопросы</h2><div class="agent-expert"><div><span>Обсудить сотрудничество</span><b>Михаил Уклонский</b><a href="tel:+79955905900">+7 (995) 590-59-00</a></div><img src="images/form-person.png" alt="Михаил Уклонский"></div></div>
     <details open><summary>Кто выплачивает встречную комиссию?</summary><p>Сторона, разместившая объект. По объектам самой площадки платит «Делись». Размер комиссии указан в карточке; выплата производится после регистрации перехода права и расчётов по сделке.</p></details>
     <details><summary>Можно ли размещать свои объекты?</summary><p>Да. При размещении укажите встречную комиссию агенту, который приведёт покупателя: не меньше 2 % цены продажи.</p></details>
@@ -77,23 +81,23 @@
 
     <div class="footer__col footer__col--brand">
       <p class="footer__brand">© «Делись», 2026</p>
-      <a href="#" class="footer__link">Политика конфиденциальности</a>
-      <a href="#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
+      <a href="/agents/#" class="footer__link">Политика конфиденциальности</a>
+      <a href="/agents/#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
     </div>
 
     <nav class="footer__nav">
       <ul>
-        <li><a href="about.html">О нас</a></li>
-        <li><a href="vacancies.html">Карьера</a></li>
-        <li><a href="#">Документы</a></li>
-        <li><a href="#">Счета и реквизиты</a></li>
-        <li><a href="index.html#form">Заказать сайт</a></li>
+        <li><a href="/about/">О нас</a></li>
+        <li><a href="/vacancies/">Карьера</a></li>
+        <li><a href="/agents/#">Документы</a></li>
+        <li><a href="/agents/#">Счета и реквизиты</a></li>
+        <li><a href="/#form">Заказать сайт</a></li>
       </ul>
       <ul>
-        <li><a href="#">Торговая марка</a></li>
-        <li><a href="#">Правовая информация</a></li>
-        <li><a href="#">Договор оферты</a></li>
-        <li><a href="#">Гарантия</a></li>
+        <li><a href="/agents/#">Торговая марка</a></li>
+        <li><a href="/agents/#">Правовая информация</a></li>
+        <li><a href="/agents/#">Договор оферты</a></li>
+        <li><a href="/agents/#">Гарантия</a></li>
       </ul>
     </nav>
 
@@ -103,14 +107,14 @@
 
     <div class="footer__contacts">
       <a href="tel:+79955905900" class="footer__phone">+7 (995) 590-59-00</a>
-      <a href="#" class="btn btn--brand">
+      <a href="/agents/#" class="btn btn--brand">
         <img src="images/icon-phone.svg" alt="" width="24" height="24">
         Заказать звонок
       </a>
       <div class="footer__socials">
-        <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
-        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/agents/#" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.139 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.069.588-.954c-.044-.072-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.064-.454-.106-1.123-.113-.858-.009-1.585.003-1.996.207-.274.136-.485.439-.356.456.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.331 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161c-.112.135-.009.413-.009.413s1.79 4.225 3.817 6.355c1.858 1.953 3.968 1.825 3.968 1.825z"/></svg></a>
+        <a href="/agents/#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="m4 11 16-6-3 16-5-5-3 4v-5l8-8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/agents/#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
 

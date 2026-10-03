@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/pages/cabinet/">
+<link rel="canonical" href="https://delis-agent.ru/pages/cabinet/register/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/pages/cabinet/register/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Регистрация — Делись</title>
@@ -17,13 +21,13 @@
 <header class="header">
   <div class="header__inner">
     <div class="header__left">
-      <a href="../../index.html" class="header__logo">
+      <a href="/" class="header__logo">
         <img src="../../images/logo.svg" alt="" class="header__logo-img">
         <span class="header__logo-text">ДЕЛИСЬ</span>
       </a>
     </div>
     <div class="header__right">
-      <a href="login.html" class="btn btn--outline btn--sm">Вход</a>
+      <a href="/pages/cabinet/login/" class="btn btn--outline btn--sm">Вход</a>
     </div>
   </div>
 </header>
@@ -33,7 +37,7 @@
   <div class="auth-card auth-card--type auth-step auth-step--active" data-step="type">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Выберите тип аккаунта</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
 
     <div class="account-types" id="account-types">
@@ -58,7 +62,7 @@
   <div class="auth-card auth-step" data-step="agency-1">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Регистрация агентства</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
     <div class="auth-steps">
       <span class="auth-steps__item auth-steps__item--active" data-go="agency-1">Данные о организации</span>
@@ -112,7 +116,7 @@
   <div class="auth-card auth-step" data-step="agency-2">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Регистрация</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
     <div class="auth-steps">
       <span class="auth-steps__item auth-steps__item--done" data-go="agency-1">Данные о организации</span>
@@ -138,7 +142,7 @@
         <label class="auth-check">
           <input type="checkbox" required>
           <span class="auth-check__box"></span>
-          <span>Нажимая на кнопку «Отправить», я соглашаюсь<br>с <a href="#">Политикой обработки персональных данных</a></span>
+          <span>Нажимая на кнопку «Отправить», я соглашаюсь<br>с <a href="/pages/cabinet/register/#">Политикой обработки персональных данных</a></span>
         </label>
         <button type="submit" class="btn btn--dark">Зарегистрироваться</button>
       </div>
@@ -149,7 +153,7 @@
   <div class="auth-card auth-step" data-step="agent-1">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Регистрация частного агента</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
 
     <form class="auth-form" id="form-agent" onsubmit="handleRegister(event, 'agent')">
@@ -205,7 +209,7 @@
       <label class="auth-check" style="margin-top:24px;">
         <input type="checkbox" required>
         <span class="auth-check__box"></span>
-        <span>Нажимая на кнопку «Отправить», я соглашаюсь с <a href="#">Политикой обработки персональных данных</a></span>
+        <span>Нажимая на кнопку «Отправить», я соглашаюсь с <a href="/pages/cabinet/register/#">Политикой обработки персональных данных</a></span>
       </label>
 
       <div class="auth-actions auth-actions--row" style="margin-top:20px;">
@@ -219,7 +223,7 @@
   <div class="auth-card auth-card--narrow auth-step" data-step="confirm-phone">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Подтверждение телефона</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
     <p style="font-size:14px;color:var(--color-gray-500);margin-bottom:16px;">
       Мы отправили SMS с 4-значным кодом на номер <strong id="confirm-phone-num">+7 (___) ___-__-__</strong>
@@ -242,7 +246,7 @@
   <div class="auth-card auth-card--narrow auth-step" data-step="create-pass">
     <div class="auth-card__head">
       <h1 class="auth-card__title">Пароль отправлен на почту</h1>
-      <a href="../../index.html" class="auth-card__close" aria-label="Закрыть">×</a>
+      <a href="/" class="auth-card__close" aria-label="Закрыть">×</a>
     </div>
     <div class="auth-form">
       <p class="auth-note">
@@ -268,7 +272,7 @@
       <p class="auth-success__text">
         Добро пожаловать в Делись. Перенаправляем в личный кабинет…
       </p>
-      <button class="btn btn--dark" id="btn-go-cabinet" onclick="location.href='profile.html'">Перейти в кабинет</button>
+      <button class="btn btn--dark" id="btn-go-cabinet" onclick="location.href='/pages/cabinet/profile/'">Перейти в кабинет</button>
     </div>
   </div>
 </main>
@@ -490,7 +494,7 @@ function finishRegister() {
     agency: acc.agency, region: acc.region, role: acc.role,
     registeredAt: new Date().toISOString()
   }));
-  const dest = regState.type === 'agent' ? 'profile-private.html' : 'profile.html';
+  const dest = regState.type === 'agent' ? '/pages/cabinet/profile-private/' : '/pages/cabinet/profile/';
   const goBtn = document.getElementById('btn-go-cabinet');
   if (goBtn) goBtn.setAttribute('onclick', `location.href='${dest}'`);
   goStep('success');

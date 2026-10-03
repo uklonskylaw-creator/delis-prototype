@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/analitika/rublevo-16/">
+<link rel="canonical" href="https://delis-agent.ru/analitika/rublevo-16/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/analitika/rublevo-16/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -97,7 +101,7 @@ footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max
         <li>Прозрачные документы</li>
       </ul>
     </div>
-    <a class="hero2__result" href="#verdict"><small>Вывод: реалистичная цена сделки</small><b id="heroFork"></b><span id="heroForkSub"></span><span class="hero2__mid">Наиболее вероятная цена: <strong id="heroMid"></strong></span><em>Как получилась вилка ↓</em></a>
+    <a class="hero2__result" href="/analitika/rublevo-16/#verdict"><small>Вывод: реалистичная цена сделки</small><b id="heroFork"></b><span id="heroForkSub"></span><span class="hero2__mid">Наиболее вероятная цена: <strong id="heroMid"></strong></span><em>Как получилась вилка ↓</em></a>
   </section>
 
   <section class="formula" id="formula"></section>
@@ -149,7 +153,7 @@ footer{padding-block:8px 48px;font:13px/1.5 var(--f-text);color:var(--ink-3);max
   </div>
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty" hidden>В этом отборе домов нет.</div>
-  <a class="promo" id="nophotoLink" href="nophoto.html" style="margin-bottom:24px"></a>
+  <a class="promo" id="nophotoLink" href="/analitika/rublevo-16/nophoto/" style="margin-bottom:24px"></a>
   <section class="alts" id="alts"></section>
   <section class="verdict" id="verdict"></section>
   <div id="author" style="margin-bottom:24px"></div>
@@ -207,7 +211,7 @@ function renderChart() {
   });
   var svg = document.getElementById('chart'); svg.innerHTML = s;
   svg.querySelectorAll('.pt').forEach(function (g) {
-    var go = function () { location.href = 'object.html?id=' + g.getAttribute('data-id') };
+    var go = function () { location.href = '/analitika/rublevo-16/object/?id=' + g.getAttribute('data-id') };
     g.addEventListener('click', go); g.addEventListener('keydown', function (e) { if (e.key === 'Enter') go() });
   });
 }
@@ -227,13 +231,13 @@ function renderMap() {
   var noGeoListings = noGeo.reduce(function (s, h) { return s + h.listings }, 0);
   document.getElementById('mapNote').textContent = 'На карте ' + withGeo.length + ' из ' + DATA.houses.length + ' домов: только те, где площадка передала точку самого дома (обычно указан номер дома). Номер на метке = номер в реестре, клик открывает карточку.';
   document.getElementById('noGeo').innerHTML = '<b>Без точки дома: ' + noGeo.length + ' ' + plural(noGeo.length, 'дом', 'дома', 'домов') + ', ' + noGeoListings + ' ' + plural(noGeoListings, 'объявление', 'объявления', 'объявлений') + '.</b> Площадки ставят им центр посёлка, поэтому на карте их нет:' +
-    noGeo.map(function (h) { return '<a href="object.html?id=' + h.id + '" title="' + esc(kindLabel(h) + ', ' + h.area + ' м², ' + mln(h.price_last)) + '">№ ' + h.num + '</a>' }).join('');
+    noGeo.map(function (h) { return '<a href="/analitika/rublevo-16/object/?id=' + h.id + '" title="' + esc(kindLabel(h) + ', ' + h.area + ' м², ' + mln(h.price_last)) + '">№ ' + h.num + '</a>' }).join('');
   var m = makeMap(document.getElementById('map'), VILLAGE, 17); if (!m) return;
   var b = [];
   withGeo.sort(function (a, c) { return (a.ours ? 1 : 0) - (c.ours ? 1 : 0) }).forEach(function (h) {
     b.push(h.geo);
     L.marker(h.geo, { icon: housePin(h), zIndexOffset: h.ours ? 1000 : 0 }).addTo(m).bindPopup('<div class="pop">' + (h.photos[0] ? '<img src="' + esc(h.photos[0]) + '" alt="">' : '') +
-      '<b>№ ' + h.num + ' · ' + esc(kindLabel(h)) + '</b><span>' + h.area + ' м² · ' + plotTxt(h.plot) + ' · ' + mln(h.price_last) + '</span><a href="object.html?id=' + h.id + '">Подробнее →</a></div>');
+      '<b>№ ' + h.num + ' · ' + esc(kindLabel(h)) + '</b><span>' + h.area + ' м² · ' + plotTxt(h.plot) + ' · ' + mln(h.price_last) + '</span><a href="/analitika/rublevo-16/object/?id=' + h.id + '">Подробнее →</a></div>');
   });
   if (b.length) m.fitBounds(b, { padding: [30, 30], maxZoom: 18 });
 }
@@ -360,7 +364,7 @@ function sorted(list) {
 }
 
 function card(h) {
-  var c = call(h), fp = factPrice(h), url = 'object.html?id=' + h.id;
+  var c = call(h), fp = factPrice(h), url = '/analitika/rublevo-16/object/?id=' + h.id;
   var tags = '<span class="tag obj__num">№ ' + h.num + '</span>' + (h.ours ? '<span class="tag tag--ours">Наш дом</span>' : '') +
     (h.market === 'active' ? '<span class="tag tag--active">В продаже</span>' : '<span class="tag tag--gone">Ушёл с рынка ' + dmy(h.last_seen) + '</span>') +
     (h.owner_listed ? '<span class="tag tag--owner">Есть от собственника</span>' : '') +

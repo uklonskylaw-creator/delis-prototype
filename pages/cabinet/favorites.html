@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="/pages/cabinet/">
+<link rel="canonical" href="https://delis-agent.ru/pages/cabinet/favorites/">
+<script>if (/\.html$/.test(location.pathname)) location.replace("/pages/cabinet/favorites/" + location.search + location.hash);</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Избранное — Делись</title>
@@ -17,7 +21,7 @@
 
 <main>
   <div class="cabinet-shell">
-    <div class="cabinet-breadcrumbs"><a href="../../index.html">Главная</a> • Личный кабинет • Избранное</div>
+    <div class="cabinet-breadcrumbs"><a href="/">Главная</a> • Личный кабинет • Избранное</div>
     <h1 class="cabinet-title">Личный кабинет</h1>
 
     <div class="cabinet-layout">
@@ -48,7 +52,7 @@ function favCard(o) {
   return `
   <article class="fav-card" data-id="${o.id}">
     <div class="fav-card__top">
-      <a href="../object.html?id=${o.id}" class="fav-card__title">${o.title}</a>
+      <a href="/pages/object/?id=${o.id}" class="fav-card__title">${o.title}</a>
       <button class="fav-card__remove" type="button" onclick="removeFav('${o.id}')" aria-label="Убрать из избранного">
         <svg viewBox="0 0 24 24" fill="#764FE9" width="22" height="22"><path d="M12 21s-7-4.5-9.5-9C.5 7 4 3 8 3c2 0 3 1 4 2 1-1 2-2 4-2 4 0 7.5 4 5.5 9-2.5 4.5-9.5 9-9.5 9z"/></svg>
       </button>
@@ -61,7 +65,7 @@ function favCard(o) {
       <div><span>Площадь</span><strong>${o.area}</strong></div>
       <div><span>Цена</span><strong>${o.price}</strong></div>
     </div>
-    <a href="../object.html?id=${o.id}" class="fav-card__media"><img src="../../${o.image}" alt=""></a>
+    <a href="/pages/object/?id=${o.id}" class="fav-card__media"><img src="../../${o.image}" alt=""></a>
   </article>`;
 }
 
@@ -70,7 +74,7 @@ function drawFavs(items) {
   const favs = items.filter(o => ids.includes(o.id));
   if (!favs.length) {
     grid.style.display = 'block';
-    grid.innerHTML = '<div class="fav-empty">В избранном пока пусто.<br><a href="../../catalog.html">Перейти в каталог →</a></div>';
+    grid.innerHTML = '<div class="fav-empty">В избранном пока пусто.<br><a href="/catalog/">Перейти в каталог →</a></div>';
     return;
   }
   grid.style.display = 'grid';
