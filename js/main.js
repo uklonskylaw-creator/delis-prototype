@@ -144,22 +144,25 @@ async function renderCatalog() {
     console.warn('Failed to load objects.json', e);
   }
 }
+let _homeType = 'all';
 let _regStatus = 'direct';   /* вкладка каталога: all | auction | direct | sold */
 let _city = (() => { try { return localStorage.getItem('delis_city') || ''; } catch (e) { return ''; } })();
 
 /* Формат объекта: аукцион или прямая продажа */
-function objFormat(o) { return (o.format === 'direct') ? 'direct' : 'auction'; }
+function objFormat(o) { return o.format === 'private' ? 'private' : (o.format === 'direct' ? 'direct' : 'auction'); }
 function objSold(o) { return (o.status || 'closed') === 'closed'; }
 
 /* Ярлык формата для карточки и карты */
 function objBadge(o) {
   if (objSold(o)) return 'Продано' + (o.soldAt ? ' · ' + o.soldAt : '');
-  return objFormat(o) === 'direct' ? 'Прямая продажа' : 'Аукцион';
+  return objFormat(o) === 'private' ? 'Закрытая продажа' : (objFormat(o) === 'direct' ? 'Прямая продажа' : 'Аукцион');
 }
 
 function byStatus(items) {
   return items.filter(o => {
     if (_city && o.city !== _city) return false;
+    if (document.getElementById('catalog-grid') && _homeType !== 'all' && o.type !== _homeType) return false;
+    if (_regStatus === 'private') return !objSold(o) && objFormat(o) === 'private';
     if (_regStatus === 'all')     return true;
     if (_regStatus === 'sold')    return objSold(o);
     if (_regStatus === 'direct')  return !objSold(o) && objFormat(o) === 'direct';
@@ -386,12 +389,19 @@ function initVideos() {
 }
 
 function initRegTabs() {
+  document.querySelectorAll('[data-home-type]').forEach(btn => btn.addEventListener('click', () => {
+    _homeType = btn.dataset.homeType;
+    document.querySelectorAll('[data-home-type]').forEach(b => b.classList.toggle('is-active', b === btn));
+    drawCatalog(_catalogItems);
+  }));
   const tabs = document.querySelectorAll('[data-reg-tab]');
   if (!tabs.length) return;
   // подсветка всегда совпадает с тем, что показано
   tabs.forEach(b => b.classList.toggle('is-active', b.dataset.regTab === _regStatus));
   tabs.forEach(btn => btn.addEventListener('click', () => {
     _regStatus = btn.dataset.regTab;
+    const note = document.querySelector('.catalog-private-note');
+    if (note) note.hidden = _regStatus !== 'private';
     tabs.forEach(b => b.classList.toggle('is-active', b === btn));
     drawCatalog(_catalogItems);
     if (typeof refreshList === 'function' && _catalogView) refreshList();
@@ -805,10 +815,28 @@ document.addEventListener('click', (e) => {
 function initMarqueeSpeed() {
   document.querySelectorAll('[data-marquee-speed]').forEach(track => {
     const group = track.querySelector('.marquee__group');
-    const speed = Number(track.dataset.marqueeSpeed) || 70;
-    const apply = () => { if (group.offsetWidth) track.style.animationDuration = (group.offsetWidth / speed) + 's'; };
-    apply();
-    window.addEventListener('load', apply);   // логотипы грузятся лениво, ширина уточняется после загрузки
+    if (!group) return;
+    const original = group.innerHTML;
+    const apply = () => {
+      track.style.animation = 'none';
+      group.innerHTML = original;
+      track.querySelectorAll('.marquee__group').forEach(el => { if (el !== group) el.remove(); });
+      const min = track.parentElement.clientWidth;
+      while (group.getBoundingClientRect().width < min && group.children.length < 250) group.insertAdjacentHTML('beforeend', original);
+      const distance = group.getBoundingClientRect().width;
+      const copy = group.cloneNode(true);
+      copy.setAttribute('aria-hidden', 'true');
+      copy.querySelectorAll('a,button').forEach(el => el.tabIndex = -1);
+      track.appendChild(copy);
+      track.style.setProperty('--marquee-distance', distance + 'px');
+      track.style.animationDuration = distance / (Number(track.dataset.marqueeSpeed) || 70) + 's';
+      void track.offsetWidth;
+      track.style.animation = '';
+      track.style.animationDuration = distance / (Number(track.dataset.marqueeSpeed) || 70) + 's';
+    };
+    Promise.all([...group.querySelectorAll('img')].map(img => { img.loading = 'eager'; return img.decode().catch(() => {}); })).then(apply);
+    let timer;
+    new ResizeObserver(() => { clearTimeout(timer); timer = setTimeout(apply, 120); }).observe(track.parentElement);
   });
 }
 
@@ -865,6 +893,7 @@ function initPartnerVideos() {
     sec.querySelectorAll('[data-pv-tab]').forEach(b => b.classList.toggle('tabs__btn--active', b === btn));
     const t = btn.dataset.pvTab;
     items.forEach(el => el.classList.toggle('is-hidden', t !== 'all' && el.dataset.pvCat !== t));
+    sec.querySelector('.pv-hero-card').hidden = sec.querySelector('.pv-featured').classList.contains('is-hidden');
   }));
 
   const player = document.getElementById('pv-player');

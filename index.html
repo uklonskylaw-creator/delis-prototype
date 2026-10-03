@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20261003d">
-<link rel="stylesheet" href="css/base.css?v=20261003d">
-<link rel="stylesheet" href="css/main.css?v=20261003d">
+<link rel="stylesheet" href="css/tokens.css?v=20261003e">
+<link rel="stylesheet" href="css/base.css?v=20261003e">
+<link rel="stylesheet" href="css/main.css?v=20261003e">
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
@@ -230,12 +230,20 @@
         </div>
       </div>
 
+      <div class="catalog-types" aria-label="Тип недвижимости">
+        <span>Тип объекта</span>
+        <button type="button" class="reg-tab is-active" data-home-type="all">Все объекты</button>
+        <button type="button" class="reg-tab" data-home-type="Квартира">Квартиры</button>
+        <button type="button" class="reg-tab" data-home-type="Дом">Загородные дома</button>
+        <button type="button" class="reg-tab" data-home-type="Коммерция">Коммерческая недвижимость</button>
+      </div>
       <div class="reg-tabs">
         <button type="button" class="reg-tab is-active" data-reg-tab="direct">Прямая продажа</button>
         <button type="button" class="reg-tab" data-reg-tab="auction">Аукцион</button>
-        <button type="button" class="reg-tab" data-reg-tab="sold">Закрытые продажи</button>
+        <button type="button" class="reg-tab" data-reg-tab="private">Закрытые продажи</button>
       </div>
 
+      <p class="catalog-private-note" hidden>Закрытая продажа — объект размещён только на сайте «Делись» и не рекламируется на других площадках.</p>
       <div class="catalog__slider">
         <button class="catalog__arrow catalog__arrow--prev" type="button" aria-label="Назад" data-slide="-1">
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 12L4 7l5-5"/></svg>
@@ -253,21 +261,13 @@
 </section>
 
 <!-- ========== ВИДЕО ПАРТНЁРОВ (лента в формате прежнего дайджеста новостей) ========== -->
-<section class="news pv" id="partner-video">
-  <div class="news__container">
-    <h2 class="section-title section-title--center">Видео партнёров</h2>
-
-    <div class="news__row">
-      <div class="news__main">
-        <div class="news__head">
-          <div class="tabs" data-pv-tabs>
-            <button class="tabs__btn tabs__btn--active" type="button" data-pv-tab="all">Все видео</button>
-            <button class="tabs__btn" type="button" data-pv-tab="house">Загородные дома</button>
-            <button class="tabs__btn" type="button" data-pv-tab="flat">Квартиры</button>
-          </div>
-        </div>
-
-        <article class="news-featured pv-featured" data-pv-cat="house">
+<section class="news pv" id="partner-video"><div class="news__container">
+<div class="pv-heading"><h2 class="section-title">Видео партнёров</h2><div class="tabs" data-pv-tabs>
+<button class="tabs__btn tabs__btn--active" type="button" data-pv-tab="all">Все видео</button>
+<button class="tabs__btn" type="button" data-pv-tab="house">Загородные дома</button>
+<button class="tabs__btn" type="button" data-pv-tab="flat">Квартиры</button>
+</div><a class="pv-all" href="#video-library">Все видео ↗</a></div>
+<div class="pv-editorial"><div class="pv-hero-card"><article class="news-featured pv-featured" data-pv-cat="house">
           <a href="https://rutube.ru/video/f80f3781bf4f9ae4492d794edb8e2a07/" target="_blank" rel="noopener" class="pv-cover pv-cover--lg" data-pv-embed="https://rutube.ru/play/embed/f80f3781bf4f9ae4492d794edb8e2a07">
             <img src="images/pv/rt-f80f.jpg" alt="Обзор современного дома 2500 м²" class="news-featured__img">
             <span class="pv-play"><img src="images/icon-play.svg" alt="" width="56" height="56"></span>
@@ -282,10 +282,7 @@
             <h3 class="news-featured__title">Обзор современного дома&nbsp;2500&nbsp;м²</h3>
             <p class="news-featured__lead">Самый масштабный дом за 10 лет канала: парящий камин, подвесная лестница, кухня Modulnova, русская печь, спа с бассейном и окна, которые раздвигаются в проём 5,6 на 4 метра.</p>
           </div>
-        </article>
-
-        <ul class="news-list">
-          <li class="news-card" data-pv-cat="house">
+        </article></div><ul class="pv-side-list"><li class="news-card" data-pv-cat="house">
             <a href="https://www.youtube.com/watch?v=DqxGGMxICkM&amp;t=555s" target="_blank" rel="noopener" class="pv-cover pv-cover--sm" data-pv-embed="https://www.youtube.com/embed/DqxGGMxICkM?start=555&amp;autoplay=1"><img src="images/pv/yt-DqxGGMxICkM.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
             <div class="news-card__meta"><span>YouTube</span></div>
             <img src="images/news-divider.svg" alt="" class="news-card__divider">
@@ -293,8 +290,7 @@
               <h4 class="news-card__title">Самый умный дом на Новой Риге</h4>
               <p class="news-card__text">Choice Estate, агентство элитной недвижимости</p>
             </div>
-          </li>
-          <li class="news-card" data-pv-cat="flat">
+          </li><li class="news-card" data-pv-cat="flat">
             <a href="https://www.youtube.com/watch?v=A-9TI0j4hak&amp;t=8s" target="_blank" rel="noopener" class="pv-cover pv-cover--sm" data-pv-embed="https://www.youtube.com/embed/A-9TI0j4hak?start=8&amp;autoplay=1"><img src="images/pv/yt-A-9TI0j4hak.jpg" alt="" class="news-card__img"><span class="pv-play pv-play--sm"><img src="images/icon-play.svg" alt="" width="28" height="28"></span></a>
             <div class="news-card__meta"><span>YouTube</span></div>
             <img src="images/news-divider.svg" alt="" class="news-card__divider">
@@ -302,21 +298,7 @@
               <h4 class="news-card__title">Квартира со множеством сценариев</h4>
               <p class="news-card__text">The Cover Project: первый жилой интерьер Павла Платонова</p>
             </div>
-          </li>
-        </ul>
-      </div>
-
-      <aside class="news__side pv-side">
-        <div class="pv-side__card">
-          <span class="pv-side__label">Для собственников и агентов</span>
-          <h3 class="pv-side__title">Снимем такое видео для вашего объекта</h3>
-          <p class="pv-side__text">Фото, горизонтальный обзор и вертикальные ролики входят в маркетинговый план. Видео получают все партнёры сети и показывают своим покупателям.</p>
-          <button type="button" class="btn btn--brand pv-side__btn" data-mp-open>Заказать маркетинговый план</button>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
+          </li><li class="pv-list-cta"><span>Для собственников и агентов</span><h3>Снимем видео для вашего объекта</h3><p>Фото, обзор и короткие ролики — в маркетинговом плане.</p><button type="button" class="btn btn--dark" data-mp-open>Заказать съёмку</button></li></ul></div></div></section>
 
 <!-- ========== МАРКЕТИНГОВЫЙ ПЛАН (5 вариантов вёрстки на выбор, переключатель только на localhost) ========== -->
 <section class="mp" id="marketing-plan">
@@ -327,27 +309,15 @@
       <div class="mp-v1__text">
         <span class="mp-kicker">Маркетинговый план</span>
         <h2 class="section-title">План продажи<br>вашего объекта</h2>
-        <p class="mp-lead">Расписываем по шагам, кому продаём, где рекламируем, сколько это стоит и когда выходим на сделку. Вы видите весь путь до продажи ещё до старта.</p>
-        <ul class="mp-check">
-          <li>Анализ рынка и конкурентов</li>
-          <li>Портреты покупателей</li>
-          <li>12 этапов продажи с ответственными</li>
-          <li>Рекламная кампания на 14 дней</li>
-          <li>Таймлайн и календарь показов</li>
-          <li>Смета: каждая статья с исполнителем</li>
-        </ul>
+        <p class="mp-lead">Изучаем конкурентов, подбираем инструменты продвижения и выстраиваем работу с партнёрами. В одном документе — как охватить рынок, в какой очередности действовать и сколько стоит каждый шаг.</p>
+        <ul class="mp-check"><li>Анализ рынка и конкурентов</li><li>Подбор маркетинговых инструментов</li><li>Полный охват рынка</li><li>Схема работы с партнёрами</li><li>Этапы и очередность продвижения</li><li>Смета и расчёт работы команды</li></ul>
         <button type="button" class="btn btn--dark mp-cta" data-mp-open>Заказать маркетинговый план</button>
       </div>
-      <div class="mp-v1__doc" aria-hidden="true">
-        <div class="mp-page mp-page--back"></div>
-        <div class="mp-page mp-page--mid"></div>
-        <div class="mp-page mp-page--front">
-          <span class="mp-page__brand">Делись</span>
-          <span class="mp-page__title">Маркетинговый план</span>
-          <span class="mp-page__sub">Ваш объект · 12 этапов продажи</span>
-          <span class="mp-page__bars"><i style="width:82%"></i><i style="width:64%"></i><i style="width:90%"></i><i style="width:48%"></i></span>
-          <span class="mp-page__table"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        </div>
+      <div class="mp-v1__doc" aria-label="Обезличенные страницы реального маркетингового плана">
+        <img class="mp-real-page mp-real-page--budget" src="images/plan-budget.png" alt="Сводная смета расходов, суммы и исполнители скрыты">
+        <img class="mp-real-page mp-real-page--team" src="images/plan-team.png" alt="Расчёт работы команды, данные скрыты">
+        <img class="mp-real-page mp-real-page--cover" src="images/plan-cover.png" alt="Маркетинговый план продажи, данные объекта скрыты">
+        <div class="mp-polina"><img src="images/polina.jpeg" alt="Полина"><span>Полина</span></div><span class="mp-doc-caption">Пример нашего плана · данные скрыты</span>
       </div>
     </div>
 
@@ -360,10 +330,10 @@
       </div>
       <ul class="mp-v2__tiles">
         <li><b>01</b>Анализ рынка и конкурентов</li>
-        <li><b>02</b>Портреты покупателей</li>
-        <li><b>03</b>12 этапов продажи</li>
-        <li><b>04</b>Реклама на 14 дней</li>
-        <li><b>05</b>Календарь показов</li>
+        <li><b>02</b>Подбор маркетинговых инструментов</li>
+        <li><b>03</b>Этапы продвижения</li>
+        <li><b>04</b>Полный охват рынка</li>
+        <li><b>05</b>Работа с партнёрами</li>
         <li><b>06</b>Смета с исполнителями</li>
       </ul>
     </div>
@@ -421,7 +391,7 @@
 </section>
 
 <!-- ========== VIDEO ========== -->
-<section class="video">
+<section class="video" id="video-library">
   <div class="video__container">
     <div class="video__head">
       <div class="video__head-left">
@@ -472,7 +442,7 @@
   <div class="footer__inner">
 
     <div class="footer__col footer__col--brand">
-      <p class="footer__brand">© «Делись», 2025</p>
+      <p class="footer__brand">© «Делись», 2026</p>
       <a href="#" class="footer__link">Политика конфиденциальности</a>
       <a href="#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
     </div>
@@ -498,7 +468,7 @@
     </button>
 
     <div class="footer__contacts">
-      <a href="tel:+70000000000" class="footer__phone">+7 (000) 000-00-00</a>
+      <a href="tel:+79955905900" class="footer__phone">+7 (995) 590-59-00</a>
       <a href="#" class="btn btn--brand">
         <img src="images/icon-phone.svg" alt="" width="24" height="24">
         Заказать звонок
@@ -657,9 +627,9 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
-<script src="data/videos.js?v=20261003d"></script>
-<script src="data/objects.js?v=20261003d"></script>
-<script src="js/favorites.js?v=20261003d"></script>
-<script src="js/main.js?v=20261003d"></script>
+<script src="data/videos.js?v=20261003e"></script>
+<script src="data/objects.js?v=20261003e"></script>
+<script src="js/favorites.js?v=20261003e"></script>
+<script src="js/main.js?v=20261003e"></script>
 </body>
 </html>
