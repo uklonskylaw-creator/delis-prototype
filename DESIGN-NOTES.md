@@ -57,3 +57,5 @@ Figma, файл Даши: https://www.figma.com/design/u50NGXeBYdT7VOBZQt3hBu/?n
 
 - Owner page select had malformed opening markup for the apartment option: repaired. Added seven matching inline SVG process icons and reused main-page marketing plan/document stack with CTA to the owner consultation form. Updated owner video thumbnail/title/link too.
 - Browser checks include Chromium 320/390/1440 and WebKit iPhone 13: catalogue selection, navigation, owner apartment option, seven icons, plan CTA, inline MP4 opening/closing with no address change or popup. Mobile video-to-form gap measured at 40 CSS px.
+
+04.10.2026: По просьбе пользователя удалён прежний курс Александра Санкина (24 внешних урока 2–25 из cloud.mail.ru) из видеотеки и неиспользуемые обложки. Сохранены пять согласованных роликов: собственный аукционный метод, ошибки при продаже, Петербург, привычки риэлтора и флиппинг. Не возвращать старый курс при восстановлении компоновки.
