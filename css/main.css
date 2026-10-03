@@ -4142,3 +4142,10 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 
 /* Polina alone in the application banner, keep her face visible on phones. */
 @media (max-width:700px) { .form-banner--photo .form-banner__bg { object-position: 85% center; } }
+
+/* Mobile headline follows the supplied reference. */
+@media(max-width:700px){
+ .hero--home .hero__title {font-size:clamp(26px,7.3vw,32px);line-height:1.17;letter-spacing:-.035em;}
+ .hero__mobile-lead {display:block;color:#282828;}
+ .hero__mobile-accent {display:block;color:#6032ab;}
+}
