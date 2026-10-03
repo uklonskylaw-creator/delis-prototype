@@ -7,9 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20261003d">
-<link rel="stylesheet" href="css/base.css?v=20261003d">
-<link rel="stylesheet" href="css/main.css?v=20261003d">
+<link rel="stylesheet" href="css/tokens.css?v=20261003f">
+<link rel="stylesheet" href="css/base.css?v=20261003f">
+<link rel="stylesheet" href="css/main.css?v=20261003f">
+<link rel="stylesheet" href="css/agents.css?v=20261003f">
 </head>
 <body>
 <header class="header">
@@ -42,55 +43,40 @@
   </div>
 </header>
 
-<section class="catalog-page-head">
-  <div class="searchbar-section__container">
-    <nav class="cat-crumbs"><a href="index.html">Главная</a><span class="cat-crumbs__sep">·</span><span class="cat-crumbs__current">Агентам</span></nav>
-    <h1 class="section-title">Агентам</h1>
-  </div>
-</section>
-<section class="static-section">
-  <div class="static-wrap">
-    <p class="static-lead">Площадка открыта для агентств и частных агентов. Единственное условие для того, кто размещает объект: встречная комиссия агенту, который приведёт покупателя, не меньше 2 % от цены продажи.</p>
-
-    <h2>Условия работы</h2>
-    <ul>
-      <li>Встречная комиссия от 2 % от цены продажи. Больше можно, меньше объект не принимается.</li>
-      <li>Размер комиссии указывается в карточке объекта и виден до показа.</li>
-      <li>Формат продажи выбирает тот, кто размещает объект: аукцион или прямая продажа.</li>
-      <li>Комиссию выплачивает сторона, разместившая объект. По объектам самой площадки платит «Делись».</li>
-      <li>Выплата после регистрации перехода права и расчётов по сделке.</li>
-    </ul>
-
-    <h2>Фиксация клиента</h2>
-    <p>Покупатель закрепляется за агентом, который первым его привёл. Фиксация видна всем участникам, поэтому спорить о том, кто первый, не приходится.</p>
-    <p>Срок фиксации задаёт тот, кто разместил объект, и он указан в карточке. Если срок истёк, а сделка не вышла, клиента можно зафиксировать заново.</p>
-
-    <h2>Что делать при споре</h2>
-    <p>Все обращения, показы и переписка хранятся на площадке. При споре о клиенте решает запись в системе: кто раньше зафиксировал покупателя по конкретному объекту.</p>
-
-    <h2>Обучение</h2>
-    <p>Аукционный метод отличается от привычной продажи: цена стартует ниже рыночной, спрос собирается в короткий срок, покупатели конкурируют предложениями. Чтобы работать с такими объектами, разберитесь в методе и в том, как вести показы при аукционной кампании.</p>
-    <p>Материалы и разборы сделок собраны в разделе с видео на главной странице.</p>
-
-    <h2>Как начать</h2>
-    <ol class="how-col__list">
-      <li>Зарегистрируйтесь как агентство или частный агент.</li>
-      <li>Выберите город в каталоге объектов.</li>
-      <li>Возьмите объект в работу или разместите свой, указав встречную комиссию.</li>
-    </ol>
-
-    <div class="static-cta">
-      <a href="pages/cabinet/register.html" class="btn btn--dark">Зарегистрироваться</a>
-      <a href="catalog.html" class="btn btn--outline-brand">Смотреть объекты</a>
-    </div>
-  </div>
-</section>
-
+<main class="agent-page">
+  <nav class="cat-crumbs"><a href="index.html">Главная</a><span>·</span><span>Стать партнёром</span></nav>
+  <section class="agent-hero">
+    <div><span class="agent-eyebrow">Партнёрская сеть «Делись»</span><h1>Стать партнёром</h1><p>Объекты со встречной комиссией, материалы для покупателей и фиксация клиентов — в одном месте. Присоединяйтесь как частный агент или агентство.</p><div class="agent-actions"><a class="btn agent-white" href="pages/cabinet/register.html">Стать партнёром</a><a class="btn btn--dark" href="catalog.html">Смотреть объекты</a></div></div>
+    <img src="images/hero-graphic.svg" alt="Партнёрская работа с недвижимостью" class="agent-hero-art">
+  </section>
+  <section class="agent-intro agent-surface">
+    <div><span class="agent-eyebrow">О проекте «Делись»</span><h2>Преимущества<br>для партнёров</h2><p>Помогаем продавать объекты вместе.</p><ul class="agent-checks"><li>Комиссия известна заранее и указана в карточке объекта.</li><li>Объекты и готовые материалы для ваших покупателей.</li><li>Фиксация клиента и история работы по объекту.</li></ul></div>
+    <a class="agent-video" href="index.html#partner-video"><img src="images/news-featured.png" alt="Видеообзоры недвижимости"><span class="agent-play">▶</span><span class="agent-video-label">Посмотреть обзоры объектов ↗</span></a>
+  </section>
+  <section class="agent-benefits" aria-label="Возможности партнёра">
+    <article><img src="images/icon-phone.svg" alt=""><h3>Встречная комиссия</h3><p>При размещении объекта встречная комиссия агенту покупателя — от 2 % цены продажи. Размер виден до показа.</p></article>
+    <article><img src="images/icon-doc.svg" alt=""><h3>Условия сделки заранее</h3><p>Комиссия, порядок показов и срок фиксации указаны в карточке. Выплата — после регистрации перехода права и расчётов.</p></article>
+    <article><img src="images/icon-home.svg" alt=""><h3>Объекты для ваших клиентов</h3><p>Выбирайте квартиры, загородные дома и коммерческую недвижимость по городу и параметрам покупателя.</p></article>
+    <article><img src="images/icon-check-green.svg" alt=""><h3>Фиксация клиентов</h3><p>Покупатель закрепляется за агентом, который первым его привёл. Срок фиксации задаёт сторона, разместившая объект.</p></article>
+    <article><img src="images/icon-presentation.svg" alt=""><h3>Презентации объектов</h3><p>Используйте фотографии, описания и доступные презентации, чтобы предложить объект своему покупателю.</p></article>
+    <article><img src="images/icon-play.svg" alt=""><h3>Обзоры и обучение</h3><p>Изучайте видео объектов и материалы на главной странице. Выбирайте подходящий формат работы по каждой продаже.</p></article>
+  </section>
+  <section class="agent-invite"><div><h2>Ваш следующий покупатель<br>уже ищет объект</h2><p>Подключайтесь к сети и предложите ему подходящую недвижимость.</p></div><div class="agent-invite-actions"><a class="btn agent-white" href="pages/cabinet/register.html">Зарегистрироваться</a><a href="tel:+79955905900">Обсудить сотрудничество: +7 (995) 590-59-00</a></div></section>
+  <section class="agent-registration agent-surface"><div><span class="agent-eyebrow">Три шага</span><h2>Как происходит<br><em>регистрация</em></h2><p>Присоединиться может частный агент или агентство.</p><img src="images/reg-agent.svg" alt="Регистрация агента на площадке" class="agent-register-art"></div><ol><li><span>01</span><div><h3>Создайте профиль</h3><p>Укажите контакты и выберите, в каком качестве работаете: агент или агентство.</p><a href="pages/cabinet/register.html">Перейти к регистрации ↗</a></div></li><li><span>02</span><div><h3>Выберите объекты</h3><p>Откройте каталог, выберите город и тип недвижимости. Изучите встречную комиссию и условия работы.</p></div></li><li><span>03</span><div><h3>Начните работу с покупателем</h3><p>Предложите объект клиенту, зафиксируйте его и согласуйте показ с представителем объекта. Свой объект можно разместить со встречной комиссией.</p></div></li></ol></section>
+  <section class="agent-faq"><div class="agent-faq-head"><h2>Отвечаем<br>на популярные вопросы</h2><div class="agent-expert"><div><span>Обсудить сотрудничество</span><b>Михаил Уклонский</b><a href="tel:+79955905900">+7 (995) 590-59-00</a></div><img src="images/form-person.png" alt="Михаил Уклонский"></div></div>
+    <details open><summary>Кто выплачивает встречную комиссию?</summary><p>Сторона, разместившая объект. По объектам самой площадки платит «Делись». Размер комиссии указан в карточке; выплата производится после регистрации перехода права и расчётов по сделке.</p></details>
+    <details><summary>Можно ли размещать свои объекты?</summary><p>Да. При размещении укажите встречную комиссию агенту, который приведёт покупателя: не меньше 2 % цены продажи.</p></details>
+    <details><summary>Как фиксируется покупатель?</summary><p>Покупатель закрепляется за агентом, который первым его привёл. Срок фиксации указан в карточке объекта. После истечения срока клиента можно зафиксировать заново, если сделка ещё не состоялась.</p></details>
+    <details><summary>Что делать, если возник спор о клиенте?</summary><p>При споре учитывается запись о фиксации покупателя по конкретному объекту. Обращения, показы и переписка помогают восстановить историю работы.</p></details>
+    <details><summary>Что означает закрытая продажа?</summary><p>Объект рекламируется только на сайте «Делись» и не размещается на других площадках. Это формат продажи, а не архив проданных объектов.</p></details>
+    <details><summary>Обязательно ли работать через аукцион?</summary><p>Нет. На площадке есть прямая продажа и другие форматы. Условия конкретного объекта указаны в его карточке.</p></details>
+  </section>
+</main>
 <footer class="footer">
   <div class="footer__inner">
 
     <div class="footer__col footer__col--brand">
-      <p class="footer__brand">© «Делись», 2025</p>
+      <p class="footer__brand">© «Делись», 2026</p>
       <a href="#" class="footer__link">Политика конфиденциальности</a>
       <a href="#" class="footer__link">Политика обработки<br>и защиты персональных данных</a>
     </div>
@@ -116,7 +102,7 @@
     </button>
 
     <div class="footer__contacts">
-      <a href="tel:+70000000000" class="footer__phone">+7 (000) 000-00-00</a>
+      <a href="tel:+79955905900" class="footer__phone">+7 (995) 590-59-00</a>
       <a href="#" class="btn btn--brand">
         <img src="images/icon-phone.svg" alt="" width="24" height="24">
         Заказать звонок
@@ -131,6 +117,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261003d"></script>
+<script src="js/main.js?v=20261003f"></script>
 </body>
 </html>

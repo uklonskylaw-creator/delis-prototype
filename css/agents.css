@@ -1,0 +1,45 @@
+.agent-page {max-width:1440px;margin:0 auto;padding:50px 60px 80px;color:#282828;}
+.agent-page .cat-crumbs {margin-bottom:24px;gap:12px;}
+.agent-page h1,.agent-page h2 {font-family:'Unbounded',sans-serif;font-weight:500;letter-spacing:-.035em;line-height:1.15;text-wrap:balance;}
+.agent-page h1 {font-size:clamp(32px,4vw,58px);margin:18px 0;}
+.agent-page h2 {font-size:clamp(25px,2.4vw,36px);margin:12px 0 20px;}
+.agent-page h3 {font-size:18px;line-height:1.3;font-weight:600;}
+.agent-page p {font-size:15px;line-height:1.6;color:#736e7b;max-width:60ch;}
+.agent-eyebrow {font-size:12px;color:#8a50e9;}
+.agent-hero {background:linear-gradient(120deg,#6424e4,#a769ed);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:24px;overflow:hidden;color:white;}
+.agent-hero p,.agent-hero .agent-eyebrow {color:#f0e6ff;}
+.agent-hero-art {width:100%;max-height:310px;object-fit:contain;}
+.agent-actions {display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.agent-white {background:white;color:#7036da;}
+.agent-page .btn {font-size:14px;padding:13px 23px;}
+.agent-surface {background:white;border-radius:22px;padding:40px;}
+.agent-intro {display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center;margin:36px 0;}
+.agent-checks {display:grid;gap:15px;margin-top:22px;}
+.agent-checks li {position:relative;padding-left:24px;font-size:14px;line-height:1.5;}
+.agent-checks li:before {content:'✓';position:absolute;left:0;color:#37ae68;font-weight:700;}
+.agent-video {position:relative;display:block;overflow:hidden;border-radius:16px;aspect-ratio:16/9;}
+.agent-video>img {width:100%;height:100%;object-fit:cover;}
+.agent-play {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#ffffff80;color:white;font-size:24px;}
+.agent-video-label {position:absolute;bottom:0;left:0;width:100%;padding:24px 18px 14px;background:linear-gradient(transparent,#211430b0);color:white;font-size:13px;}
+.agent-benefits {display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.agent-benefits article {background:white;border-radius:14px;padding:24px;}
+.agent-benefits img {width:26px;height:26px;object-fit:contain;margin-bottom:14px;}
+.agent-benefits p {font-size:13px;margin-top:12px;}
+.agent-invite {margin:36px 0 52px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;background:linear-gradient(120deg,#a366ee,#692add);border-radius:22px;color:white;padding:36px 40px;}
+.agent-invite h2 {font-size:28px;}.agent-invite p {color:#eee1ff;}.agent-invite-actions {display:flex;flex-direction:column;align-items:flex-start;gap:18px;}.agent-invite-actions>a:last-child {font-size:13px;}
+.agent-registration {display:grid;grid-template-columns:1fr 1.4fr;gap:60px;}
+.agent-registration em {font-style:normal;color:#803be9;}
+.agent-register-art {max-width:220px;width:100%;height:180px;object-fit:contain;margin-top:24px;}
+.agent-registration ol {display:flex;flex-direction:column;gap:28px;list-style:none;}
+.agent-registration li {display:flex;gap:18px;position:relative;}
+.agent-registration li>span {flex:none;display:grid;place-items:center;border:1px solid #a276eb;border-radius:50%;width:34px;height:34px;color:#803be9;background:white;font-size:12px;}
+.agent-registration li:not(:last-child):before {content:'';position:absolute;top:40px;bottom:-22px;left:17px;border-left:1px dashed #bfa1ed;}
+.agent-registration li p {margin-top:10px;}.agent-registration li a {display:inline-block;color:#803be9;font-size:13px;margin-top:12px;}
+.agent-faq {margin-top:46px;}.agent-faq-head {display:flex;justify-content:space-between;gap:24px;align-items:center;margin-bottom:24px;}
+.agent-expert {display:flex;align-items:center;gap:20px;background:white;border-radius:16px;padding:16px 20px;}
+.agent-expert>div {display:flex;flex-direction:column;gap:7px;}.agent-expert span {font-size:11px;color:#999;}.agent-expert b {font-size:14px;}.agent-expert a {font-size:13px;color:#803be9;}.agent-expert img {width:70px;height:80px;object-fit:cover;object-position:top;border-radius:12px;}
+.agent-faq details {background:white;border-radius:12px;padding:18px 22px;margin:8px 0;}
+.agent-faq summary {cursor:pointer;font-size:14px;font-weight:500;display:flex;justify-content:space-between;gap:16px;list-style:none;}.agent-faq summary::-webkit-details-marker {display:none;}.agent-faq summary:after {content:'+';color:#803be9;}.agent-faq details[open] summary:after {content:'−';}.agent-faq details p {margin-top:14px;max-width:100ch;font-size:13px;}
+.agent-page a:focus-visible,.agent-page summary:focus-visible {outline:2px solid #8a50e9;outline-offset:5px;}
+@media(max-width:900px) {.agent-page {padding:35px 24px 50px;}.agent-hero {padding:30px;}.agent-benefits {grid-template-columns:repeat(2,1fr);}.agent-registration {gap:30px;}.agent-surface {padding:28px;}.agent-intro {gap:24px;}.agent-invite {padding:30px;}.agent-invite h2 {font-size:24px;}}
+@media(max-width:600px) {.agent-page {padding:30px 16px 40px;}.agent-hero,.agent-intro,.agent-invite,.agent-registration {grid-template-columns:1fr;}.agent-hero {padding:26px 22px;}.agent-hero-art {max-height:180px;}.agent-benefits {grid-template-columns:1fr;}.agent-surface {padding:24px 20px;}.agent-invite {padding:26px 22px;}.agent-faq-head {flex-direction:column;align-items:stretch;}.agent-expert {justify-content:space-between;}.agent-register-art {height:120px;}.agent-page h2 {font-size:25px;}.agent-faq details {padding:17px;}}
