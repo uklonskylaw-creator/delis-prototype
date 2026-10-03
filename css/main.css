@@ -3999,7 +3999,7 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
   .header__inner:has(.header__partner) { gap: 6px; padding: 12px; }
   .header__inner:has(.header__partner) .header__logo-img { width: 32px; height: 32px; }
   .header__inner:has(.header__partner) .header__logo-text { font-size: 15px; }
-  .header__partner { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; min-height: 44px; padding: 10px 12px; border-radius: 12px; background: #7135d8; color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .header__partner { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; min-height: 44px; padding: 10px; border-radius: 12px; background: #7135d8; color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; }
   .header__inner:has(.header__partner) .header__burger { margin-left: 0; flex: 0 0 44px; width: 44px; }
   .hero--home .hero__container { background: #fff; }
   .hero--home .hero__offer { background: #fff; padding: 28px 24px 12px; color: #302637; }
