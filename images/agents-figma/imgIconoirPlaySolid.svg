@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-4" y="-4" width="98" height="98"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(2px);clip-path:url(#bgblur_0_0_252_clip_path);height:100%;width:100%"></div></foreignObject><g id="iconoir:play-solid" data-figma-bg-blur-radius="4">
+<path d="M0 45C0 20.1472 20.1472 0 45 0V0C69.8528 0 90 20.1472 90 45V45C90 69.8528 69.8528 90 45 90V90C20.1472 90 0 69.8528 0 45V45Z" fill="#F7F4FF" fill-opacity="0.32"/>
+<path id="Vector" d="M39.2089 30.1667C39.0371 30.0594 38.8413 30.0019 38.6416 30C38.4419 29.9982 38.2452 30.0521 38.0716 30.1563C37.8981 30.2605 37.7537 30.4112 37.6533 30.5931C37.5529 30.7751 37.5 30.9818 37.5 31.1923V58.8077C37.5 59.0182 37.5529 59.2249 37.6533 59.4068C37.7537 59.5888 37.8981 59.7395 38.0716 59.8437C38.2452 59.9479 38.4419 60.0018 38.6416 60C38.8413 59.9981 39.0371 59.9406 39.2089 59.8332L61.3208 46.0256C61.4897 45.92 61.6296 45.7699 61.7267 45.5901C61.8239 45.4103 61.875 45.2069 61.875 45C61.875 44.7931 61.8239 44.5897 61.7267 44.4099C61.6296 44.2301 61.4897 44.08 61.3208 43.9744L39.2089 30.1667Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_252_clip_path" transform="translate(4 4)"><path d="M0 45C0 20.1472 20.1472 0 45 0V0C69.8528 0 90 20.1472 90 45V45C90 69.8528 69.8528 90 45 90V90C20.1472 90 0 69.8528 0 45V45Z"/>
+</clipPath></defs>
+</svg>

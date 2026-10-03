@@ -557,5 +557,16 @@ function finishRegister() {
   <option value="Смоленск">
 </datalist>
 <script src="../../js/auth.js?v=20261003d"></script>
+<script>
+(() => {
+  try {
+    const contact = JSON.parse(sessionStorage.getItem('delis_partner_contact') || 'null');
+    if (!contact) return;
+    document.querySelectorAll('input[name="fullname"]').forEach(input => { input.value = contact.name || ''; });
+    document.querySelectorAll('input[type="tel"]').forEach(input => { input.value = contact.phone || ''; });
+    sessionStorage.removeItem('delis_partner_contact');
+  } catch (_) {}
+})();
+</script>
 </body>
 </html>
