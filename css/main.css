@@ -4150,8 +4150,6 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
  .hero__mobile-accent {display:block;color:#6032ab;}
 }
 
-.form-banner__polina-name {position:absolute;right:12%;bottom:26px;z-index:2;color:#fff;font-size:16px;font-weight:600;}
-@media(max-width:700px){.form-banner__polina-name {right:0;left:0;bottom:12px;text-align:center;font-size:14px;}}
 
 .contact-cards--people {grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
 .contact-card--person {display:flex;align-items:center;gap:24px;padding:28px;border:1px solid #eae6f0;}
@@ -4179,3 +4177,17 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 
 .broker-ava__crop {display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;}
 .broker-ava__crop .broker-ava__photo[src*="polina"] {transform:translateY(10px) scale(1.8);transform-origin:center top;border-radius:0;}
+
+.form-banner__contact-name {display:flex;align-items:center;gap:10px;color:#fff;font-family:Inter,sans-serif;font-size:16px;line-height:1.4;}
+.form-banner__contact-name small {font-size:12px;opacity:.75;}
+@media(max-width:700px){.form-banner__contact-name {font-size:15px;flex-wrap:wrap;gap:4px 10px;}}
+
+/* Consistent card rhythm: title, facts, price, agent, commission. */
+.obj-card__title {flex:none;height:48px;min-height:48px;overflow:hidden;line-height:1.3;}
+.obj-card__facts {height:116px;min-height:116px;}
+.obj-card__rows {min-height:50px;}
+.obj-card__foot {display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start;}
+.obj-card__agent {min-height:64px;width:100%;}
+.obj-card__comm {justify-self:end;display:flex;align-items:center;justify-content:center;width:136px;min-height:44px;}
+.obj-card__comm .commission-lock {width:136px;min-height:44px;}
+@media(max-width:700px){.obj-card__title {height:48px;min-height:48px;}.obj-card__agent {min-height:60px;}}

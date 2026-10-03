@@ -2,7 +2,7 @@
 window.__VIDEOS = [
   {
     "title": "Аукционный метод продажи недвижимости",
-    "author": "Делись",
+    "author": "Михаил Уклонский",
     "url": "/auction/#auction-video",
     "mediaSrc": "https://crm-uklonsky.ru/assets/delis-media/auk-01-web-1080p.mp4",
     "tab": "webinars",
@@ -12,7 +12,7 @@ window.__VIDEOS = [
   },
   {
     "title": "Типичные ошибки при продаже элитной недвижимости",
-    "author": "VDT · Недвижимость",
+    "author": "Алексей Аверьянов",
     "url": "https://www.youtube.com/watch?v=r8N4iTi1uWk",
     "embed": "https://www.youtube.com/embed/r8N4iTi1uWk?autoplay=1",
     "tab": "webinars",
@@ -20,7 +20,7 @@ window.__VIDEOS = [
     "duration": "54:56"
   },
   {
-    "title": "Санкт-Петербург до 2040 года",
+    "title": "Развитие Санкт-Петербурга до 2040 года",
     "author": "Анастасия Казаченко",
     "url": "https://www.youtube.com/watch?v=TAa0F5jv8DY&t=289s",
     "embed": "https://www.youtube.com/embed/TAa0F5jv8DY?start=289&autoplay=1",
