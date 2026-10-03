@@ -4168,3 +4168,11 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .contact-locations p {font-size:14px;line-height:1.5;margin-top:10px;color:#756c7d;}
 .contact-location-email {grid-column:1/-1;}
 @media(max-width:700px){.contact-locations {grid-template-columns:1fr;}.contact-location-email {grid-column:auto;}}
+
+/* Larger, readable agent portraits in property cards. */
+.obj-card__agent .broker-ava--sm {width:64px;height:64px;}
+.obj-card__agent .broker-ava--sm .broker-ava__logo {width:24px;height:24px;right:-2px;bottom:-2px;border-width:2px;}
+.obj-card__agent {gap:14px;}
+.obj-card__foot {gap:16px;flex-wrap:wrap;}
+.obj-card__agent .broker-ava__photo {object-position:center 25%;}
+@media(max-width:700px){.obj-card__agent .broker-ava--sm {width:60px;height:60px;}.obj-card__agent {gap:12px;}}
