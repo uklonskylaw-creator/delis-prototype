@@ -4205,3 +4205,11 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 @media(min-width:701px){.form-banner--photo{height:auto;min-height:520px;display:flex;align-items:center;padding:40px 48px}.form-banner--photo .form-banner__left{position:relative;left:auto;top:auto;transform:none;width:min(440px,44%);gap:18px}.form-banner--photo .form-banner__title{font-size:30px;line-height:1.2}.form-banner__contact-name{flex-wrap:wrap}}
 
 .form-banner [role=status]{color:white;font-size:14px;line-height:1.5;margin:12px 0 0}
+
+/* Commission belongs to the photo; agent footer keeps a single clean row. */
+.obj-card__visual{position:relative;flex:none;}
+.obj-card__visual .obj-card__comm{position:absolute;right:12px;bottom:12px;width:auto;min-width:140px;min-height:0;display:flex;flex-direction:column;gap:4px;padding:8px 10px;background:rgba(255,255,255,.96);border:1px solid rgba(113,53,216,.15);border-radius:12px;box-shadow:0 3px 12px rgba(26,14,44,.12);}
+.obj-card__comm small{font-size:10px;line-height:1.2;color:#665b72;font-weight:500;}
+.obj-card__visual .commission-lock{width:124px;min-height:30px;padding:4px 7px;border-radius:7px;}
+.broker-ava__crop{position:relative;}
+.broker-ava__crop .broker-ava__photo[src*="polina"]{position:absolute;width:280%;height:280%;max-width:none;left:-81%;top:-10%;transform:none;border-radius:0;object-position:center;}

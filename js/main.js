@@ -834,10 +834,12 @@ function objCard(o) {
   const comm = closed ? '' : Commission.render(o.commission);
 
   card.innerHTML = `
-    <a href="${href}" class="obj-card__media">
+    <div class="obj-card__visual"><a href="${href}" class="obj-card__media">
       <img src="${o.image}" alt="${o.title}">
       <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : (direct ? ' obj-card__badge--direct' : ' obj-card__badge--live')}">${objBadge(o)}</span>
     </a>
+    ${comm ? `<span class="obj-card__comm" title="Встречная комиссия"><small>Встречная комиссия</small>${comm}</span>` : ''}
+    </div>
     <div class="obj-card__body">
       <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
       <ul class="obj-card__facts">
@@ -860,7 +862,6 @@ function objCard(o) {
             <span class="obj-card__agent-agency">${b.agency || ''}</span>
           </div>
         </div>
-        ${comm ? `<span class="obj-card__comm" title="Встречная комиссия">${comm}</span>` : ''}
       </div>
     </div>
   `;
