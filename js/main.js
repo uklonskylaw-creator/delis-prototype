@@ -7,8 +7,16 @@ const Commission = {
   authenticated() {
     try { return !!JSON.parse(localStorage.getItem('delis_user') || 'null'); } catch { return false; }
   },
-  render(value) {
-    if (this.authenticated()) return String(value || '—');
+  compact(value) {
+    const text = String(value || '—');
+    if (text.includes('%')) return text.replace(/\s+/g, '');
+    const number = Number(text.replace(/[\s\u00a0₽]/g, '').replace(',', '.'));
+    if (!Number.isFinite(number) || !/\d/.test(text)) return text;
+    const format = n => new Intl.NumberFormat('ru-RU', {maximumFractionDigits:1}).format(n);
+    return number >= 1000000 ? format(number / 1000000) + ' млн ₽' : number >= 1000 ? format(number / 1000) + ' тыс. ₽' : format(number) + ' ₽';
+  },
+  render(value, compact = false) {
+    if (this.authenticated()) return compact ? this.compact(value) : String(value || '—');
     return `<button type="button" class="commission-lock" data-commission-lock aria-label="Встречная комиссия доступна после регистрации"><svg class="commission-lock__money" width="20" height="16" viewBox="0 0 24 20" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="21" height="13" rx="2.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 7h1m12 6h1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="commission-lock__blur" aria-hidden="true">••• ••• ₽</span><svg width="16" height="18" viewBox="0 0 20 22" fill="none" aria-hidden="true"><rect x="3" y="9" width="14" height="11" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M6 9V6a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/><circle cx="10" cy="14" r="1.5" fill="currentColor"/></svg></button>`;
   },
   open() {
@@ -831,14 +839,13 @@ function objCard(o) {
       : [['Начальная цена', o.startPrice],
          ['Даты показов', o.showDates]];
 
-  const comm = closed ? '' : Commission.render(o.commission);
+  const comm = closed ? '' : Commission.render(o.commission, true);
 
   card.innerHTML = `
     <div class="obj-card__visual"><a href="${href}" class="obj-card__media">
       <img src="${o.image}" alt="${o.title}">
       <span class="obj-card__badge${closed ? ' obj-card__badge--sold' : (direct ? ' obj-card__badge--direct' : ' obj-card__badge--live')}">${objBadge(o)}</span>
     </a>
-    ${comm ? `<span class="obj-card__comm" title="Встречная комиссия"><small>Встречная комиссия</small>${comm}</span>` : ''}
     </div>
     <div class="obj-card__body">
       <h3 class="obj-card__title"><a href="${href}" class="obj-card__title-link">${o.title}</a></h3>
@@ -862,6 +869,7 @@ function objCard(o) {
             <span class="obj-card__agent-agency">${b.agency || ''}</span>
           </div>
         </div>
+        ${comm ? `<span class="obj-card__comm" title="Встречная комиссия">${comm}</span>` : ''}
       </div>
     </div>
   `;
