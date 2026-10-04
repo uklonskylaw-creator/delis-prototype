@@ -4216,7 +4216,14 @@ body[data-mp="4"] .mp-v4, body[data-mp="5"] .mp-v5 { display: grid; }
 .obj-card__agent-name,.obj-card__agent-agency{white-space:normal;overflow:visible;overflow-wrap:anywhere;line-height:1.35;}
 .obj-card__comm{width:82px;min-height:38px;justify-self:end;font-size:12px;text-align:center;}
 .obj-card__comm .commission-lock{width:72px;min-height:38px;padding:8px;gap:7px;}
-.obj-card__comm .commission-lock__money{display:none;}
-.obj-card__comm .commission-lock__blur{font-size:0;filter:none;}
-.obj-card__comm .commission-lock__blur::after{content:'•••';font-size:14px;letter-spacing:2px;}
+.obj-card__comm .commission-lock__money{display:block;width:16px;height:14px;flex:none;}
+.obj-card__comm .commission-lock__blur{font-size:13px;filter:blur(2px);letter-spacing:1px;}
+
 @media(max-width:360px){.obj-card__foot{grid-template-columns:minmax(0,1fr) 72px;gap:8px;}.obj-card__agent{gap:8px;}.obj-card__agent .broker-ava--sm{width:52px;height:52px;}.obj-card__comm{width:72px;font-size:11px;}.obj-card__agent-name{font-size:12px;}.obj-card__agent-agency{font-size:11px;}}
+
+.obj-card__foot{grid-template-columns:minmax(0,1fr) 100px;}
+.obj-card__comm,.obj-card__comm .commission-lock{width:100px;}
+.obj-card__comm .commission-lock{gap:5px;padding:7px;justify-content:center;}
+.commission-lock__currency{font-size:13px;filter:none;flex:none;}
+.obj-card__comm .commission-lock>svg:last-child{width:12px;height:15px;flex:none;}
+@media(max-width:360px){.obj-card__foot{grid-template-columns:minmax(0,1fr) 94px;}.obj-card__comm,.obj-card__comm .commission-lock{width:94px;}}
